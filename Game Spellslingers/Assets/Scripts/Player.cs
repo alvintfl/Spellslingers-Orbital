@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Player : Character
 {
+
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private ExpBar expBar;
+
+    private string ENEMY_TAG = "Enemy";
     private static int maxHealth = 100;
 
     Player() : base(10f, Player.maxHealth) { }
@@ -29,9 +32,17 @@ public class Player : Character
         UpdatePosition();
     }
 
-    public override void TakeDamage(int damage)
-    {
+    private void OnCollisonEnter2D(Collision2D collision) {
+        if (collision.gameObject.CompareTag(ENEMY_TAG)) {
+            Debug.Log("hi");
+            TakeDamage(10);
+            Destroy(gameObject);
+        }
+    }
+
+    public override void TakeDamage(int damage) {
         base.TakeDamage(damage);
         healthBar.SetHealth(CurrentHealth);
     }
+
 }

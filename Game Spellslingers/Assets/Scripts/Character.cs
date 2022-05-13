@@ -17,11 +17,21 @@ public class Character : MonoBehaviour
         this.currentHealth = currentHealth;
     }
 
+    public float GetMoveSpeed() {
+        return this.moveSpeed;
+    }
+
     public virtual void Awake()
     {
         this.rb = gameObject.AddComponent<Rigidbody2D>();
         this.rb.gravityScale = 0;
+        this.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
+
+    public Rigidbody2D GetRb() {
+        return this.rb;
+    }
+
     public void SetX(float f) { this.movement.x = f; }
     public void SetY(float f) { this.movement.y = f; }
     public int CurrentHealth { get { return currentHealth; } set { this.currentHealth = value; } }
