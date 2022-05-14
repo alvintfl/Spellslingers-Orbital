@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ExpBar : MonoBehaviour
 {
     [SerializeField] private Slider slider;
+    [SerializeField] private LevelUpMenu levelUpMenu;
     private int maxExp = 1;
     private int exp = 0;
 
@@ -23,8 +24,15 @@ public class ExpBar : MonoBehaviour
 
         if (this.exp >= this.maxExp)
         {
+            levelUpMenu.Pause();
             LevelUp();
         }    
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            levelUpMenu.Resume();
+        }
+
     }
 
     public void LevelUp()

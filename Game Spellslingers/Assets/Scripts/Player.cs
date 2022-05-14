@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : Character
 {
     [SerializeField] private HealthBar healthBar;
-    [SerializeField] private ExpBar expBar;
     private static int maxHealth = 100;
 
     Player() : base(10f, Player.maxHealth) { }
