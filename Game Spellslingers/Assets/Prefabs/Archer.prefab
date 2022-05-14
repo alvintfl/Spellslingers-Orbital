@@ -134,8 +134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4497528536043046645}
+  currentHealth: 100
   healthBar: {fileID: 1143798331546505329}
-  expBar: {fileID: 0}
 --- !u!95 &4497528536043046645
 Animator:
   serializedVersion: 4
