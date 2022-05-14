@@ -27,14 +27,14 @@ public class Player : Character
     {
         UpdatePosition();
     }
-
+    /*
     private void OnCollisonEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag(ENEMY_TAG)) {
             Debug.Log("hi");
             TakeDamage(10);
             Destroy(gameObject);
         }
-    }
+    }*/
 
     public override void TakeDamage(int damage) {
         base.TakeDamage(damage);
