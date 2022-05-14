@@ -2,22 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelUpMenu : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused = false;
 
-    public GameObject levelUpMenuUI;
+    [SerializeField] private GameObject PauseMenuUI;
 
     public void Resume()
     {
-        levelUpMenuUI.SetActive(false);
+        PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        LevelUpMenu.gameIsPaused = false;
+        PauseMenu.gameIsPaused = false;
     }
+
     public void Pause()
     {
-        levelUpMenuUI.SetActive(true);
+        PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        LevelUpMenu.gameIsPaused = true;
+        PauseMenu.gameIsPaused = true;
     }
 }
