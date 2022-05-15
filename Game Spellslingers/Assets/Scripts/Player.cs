@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : Character
 {
     [SerializeField] private HealthBar healthBar;
-    private static int maxHealth = 100;
+    public static int maxHealth = 100;
 
     Player() : base(10f, Player.maxHealth) { }
 
@@ -27,17 +27,24 @@ public class Player : Character
     {
         UpdatePosition();
     }
-    /*
+
     private void OnCollisonEnter2D(Collision2D collision) {
+        /*
         if (collision.gameObject.CompareTag(ENEMY_TAG)) {
             Debug.Log("hi");
             TakeDamage(10);
             Destroy(gameObject);
         }
-    }*/
+        */
+    }
 
     public override void TakeDamage(int damage) {
         base.TakeDamage(damage);
         healthBar.SetHealth(CurrentHealth);
+    }
+
+    public void SetHealth(int health) {
+        CurrentHealth = health;
+        this.healthBar.SetHealth(health);
     }
 }
