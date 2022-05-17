@@ -43,7 +43,7 @@ public class ExpManager : MonoBehaviour
         }
     }
 
-    public void ResetSkills()
+    private void ResetSkills()
     {
         for (int i = 0; i < selectedSkills.Length; i++)
         {

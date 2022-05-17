@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Arrow : Projectile
 {
-    public Arrow() : base(1f) { }
+    public Arrow() : base(8f) { }
 }

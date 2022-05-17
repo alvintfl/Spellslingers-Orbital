@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,30 +8,62 @@ public class Shoot : MonoBehaviour
 {
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject projectilePrefab;
+    private Queue<GameObject> activeProjectiles;
     private ObjectPool<GameObject> projectilePool;
+    private int poolSize;
+    private int maxRange;
 
     private void Start()
     {
+        this.poolSize = 10;
+        this.maxRange = 7;
+        this.activeProjectiles = new Queue<GameObject>();
         this.projectilePool = new ObjectPool<GameObject>(
-        () => {
-            GameObject projectile = Instantiate(projectilePrefab);
-            projectile.GetComponent<Projectile>().ProjectilePool = this.projectilePool;
-            return projectile;
+        () => Instantiate(projectilePrefab),
+        x => {
+            x.SetActive(true);
+            activeProjectiles.Enqueue(x);
         },
-        x => x.SetActive(true),
-        x => x.SetActive(false),
+        x => {
+            x.SetActive(false);
+        },
         x => Destroy(x),
-        false, 5, 6);
+        false, this.poolSize, this.poolSize + 1);
     }
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Fire();
         }
+        
+        if (this.activeProjectiles.Count > this.poolSize)
+        {
+            GameObject projectile = this.activeProjectiles.Dequeue();
+            if (projectile.activeSelf && 
+                (projectile.transform.position.x - this.firePoint.position.x > this.maxRange ||
+                 projectile.transform.position.y - this.firePoint.position.y > this.maxRange
+                 ))
+            {
+                this.projectilePool.Release(projectile);
+            } else
+            {
+                this.activeProjectiles.Enqueue(projectile);
+            }
+        } else if (this.activeProjectiles.Count > 0)
+        {
+            GameObject projectile = this.activeProjectiles.Dequeue();
+            if (!projectile.activeSelf)
+            {
+                this.projectilePool.Release(projectile);
+            } else
+            {
+                this.activeProjectiles.Enqueue(projectile);
+            }
+        }
     }
 
-    public void Fire()
+    private void Fire()
     {
         GameObject projectile = projectilePool.Get();
         if (projectile != null)
