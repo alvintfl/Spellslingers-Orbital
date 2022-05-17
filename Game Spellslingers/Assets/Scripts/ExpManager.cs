@@ -8,9 +8,8 @@ public class ExpManager : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private PauseMenu pauseMenu;
     private GameObject[] skillsLibrary;
-    private GameObject[] selectedSkills;
-    private bool IsSkillSelected = false;
-    
+    private GameObject[] selectedSkills = new GameObject[3];    
+
     private int maxExp = 1;
     private int exp = 0;
 
@@ -30,32 +29,36 @@ public class ExpManager : MonoBehaviour
         if (this.exp >= this.maxExp)
         {
             this.pauseMenu.Pause();
-            this.selectedSkills = LevelUp();
-        }    
+            LevelUp();
+        }
 
-        if (IsSkillSelected)
+        for (int i = 0; i < this.selectedSkills.Length; i++)
         {
-            IsSkillSelected = false;
-            foreach (GameObject skill in selectedSkills)
+            if (selectedSkills[i] != null 
+                && selectedSkills[i].GetComponent<Skill>().IsSelected)
             {
-                GameObject.Destroy(skill);
+                    this.pauseMenu.Resume();
+                    ResetSkills();
             }
         }
     }
 
-    public void Delete()
+    public void ResetSkills()
     {
-        this.pauseMenu.Resume();
-        this.IsSkillSelected = true;
+        for (int i = 0; i < selectedSkills.Length; i++)
+        {
+            GameObject.Destroy(selectedSkills[i]);
+            selectedSkills[i] = null;
+        }
     }
 
-    public GameObject[] LevelUp()
+    public void LevelUp()
     {
         this.exp -= this.maxExp;
         this.maxExp += 1;
         this.slider.value = this.exp;
         this.slider.maxValue = this.maxExp;
-        return GenerateSkills();
+        GenerateSkills();
     }
 
     public void AddExp(int exp)
@@ -63,7 +66,7 @@ public class ExpManager : MonoBehaviour
         this.exp += exp;
         this.slider.value += exp;
     }
-    private GameObject[] GenerateSkills()
+    private void GenerateSkills()
     {
         //TODO
         //Randomly select skills
@@ -72,14 +75,12 @@ public class ExpManager : MonoBehaviour
         selectedSkills[1] = this.skillsLibrary[1];
         selectedSkills[2] = this.skillsLibrary[2];
 
-        GameObject[] selectedSkillsPrefab = new GameObject[3];
         for (int i = 0; i < selectedSkills.Length; i++)
         {
             GameObject skillObject = Instantiate(selectedSkills[i], pauseMenu.transform.GetChild(0).gameObject.transform);
             int yCoordinate = i == 0 ? 69 : i == 1 ? -64 : -197;
             skillObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(33, yCoordinate);
-            selectedSkillsPrefab[i] = skillObject;
+            this.selectedSkills[i] = skillObject;
         }
-        return selectedSkillsPrefab;
     }
 }

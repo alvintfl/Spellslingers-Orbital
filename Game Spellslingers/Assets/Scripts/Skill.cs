@@ -17,8 +17,11 @@ public abstract class Skill : MonoBehaviour
 
     public GameObject PlayerObject { get { return this.playerObject; } }
     public Button Button { get { return this.button; } }
-    public void Delete()
+
+    public bool IsSelected { get { return this.isSelected; } }
+
+    public void Select()
     {
-        GameObject.FindWithTag("ExpManager").GetComponent<ExpManager>().Delete();
+        this.isSelected = true;
     }
 }

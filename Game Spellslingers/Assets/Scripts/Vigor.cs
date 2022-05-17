@@ -8,11 +8,11 @@ public class Vigor : Skill
     {
         Button.onClick.AddListener(() =>
         {
+            Select();
             Player player = PlayerObject.GetComponent<Player>();
             int increase = (int) (Player.maxHealth * 0.2);
             Player.maxHealth += increase;
             player.SetHealth(player.CurrentHealth + increase);
-            Delete();
         });
     }
 }
