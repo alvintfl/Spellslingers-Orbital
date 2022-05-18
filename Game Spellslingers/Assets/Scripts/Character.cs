@@ -21,6 +21,11 @@ public class Character : MonoBehaviour
         return this.moveSpeed;
     }
 
+    public void SetMoveSpeed(float movespeed) {
+        this.moveSpeed += movespeed;
+    }
+
+
     public virtual void Awake()
     {
         this.rb = gameObject.AddComponent<Rigidbody2D>();

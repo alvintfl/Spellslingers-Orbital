@@ -12,15 +12,19 @@ public class Shoot : MonoBehaviour
     private ObjectPool<GameObject> projectilePool;
     private int poolSize;
     private int maxRange;
+    private int projectileCount;
     private float rate;
     private float[] lastFirePoint;
+    private float projectileSpacing;
 
     private void Start()
     {
-        this.poolSize = 10;
-        this.maxRange = 7;
+        this.poolSize = 16;
+        this.maxRange = 3;
         this.rate = 2f;
         this.lastFirePoint = new float[] {0,0};
+        this.projectileCount = 1;
+        this.projectileSpacing = 0.2f;
         this.activeProjectiles = new Queue<GameObject>();
         this.projectilePool = new ObjectPool<GameObject>(
         () => Instantiate(projectilePrefab),
@@ -32,16 +36,13 @@ public class Shoot : MonoBehaviour
         x => Destroy(x),
         false, this.poolSize, this.poolSize + 1);
 
-        StartCoroutine(Fire());
+        StartCoroutine("Fire");
     }
     private void Update()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-        if (x == 0 && y == 0)
-        {
-            return;
-        } else
+        if (!(x == 0 && y == 0))
         {
             this.lastFirePoint[0] = x;
             this.lastFirePoint[1] = y;
@@ -50,8 +51,8 @@ public class Shoot : MonoBehaviour
         {
             GameObject projectile = this.activeProjectiles.Dequeue();
             if (projectile.activeSelf && 
-                (projectile.transform.position.x - this.firePoint.position.x > this.maxRange ||
-                 projectile.transform.position.y - this.firePoint.position.y > this.maxRange
+                (Math.Abs(projectile.transform.position.x - this.firePoint.position.x) > this.maxRange ||
+                 Math.Abs(projectile.transform.position.y - this.firePoint.position.y) > this.maxRange
                  ))
             {
                 this.projectilePool.Release(projectile);
@@ -72,74 +73,93 @@ public class Shoot : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-    }
-
     private IEnumerator Fire()
     {
         while (true)
         {
-            GameObject projectile = this.projectilePool.Get();
-            if (projectile != null)
+            for (int i = 0; i < this.projectileCount; i++)
             {
-                projectile.transform.position = this.firePoint.position;
-                Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-                float speed = projectile.GetComponent<Projectile>().Speed;
-                float x = Input.GetAxisRaw("Horizontal");
-                float y = Input.GetAxisRaw("Vertical");
-                Vector3 v = new Vector3(1,0,0);
-                if (x == 0 && y == 0)
+                GameObject projectile = this.projectilePool.Get();
+                if (projectile != null)
                 {
-                    x = lastFirePoint[0];
-                    y = lastFirePoint[1];
+                    // Position, direction and speed variables to fire projectile.
+                    projectile.transform.position = this.firePoint.position;
+                    Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+                    float speed = projectile.GetComponent<Projectile>().Speed;
+                    Vector3 v = new Vector3(1, 0, 0);
+
+                    // Arranging the position of projectiles to be fired all at once.
+                    float coordinate = (float) (Math.Ceiling((double) i / 2) * this.projectileSpacing);
+                    coordinate = i % 2 == 0 ? coordinate : -1 * coordinate;
+
+                    float x = Input.GetAxisRaw("Horizontal");
+                    float y = Input.GetAxisRaw("Vertical");
+                    if (x == 0 && y == 0)
+                    {
+                        x = lastFirePoint[0];
+                        y = lastFirePoint[1];
+                    }
+                    if (y > 0)
+                    {
+                        if (x > 0)
+                        {
+                            projectile.transform.eulerAngles = new Vector3(0, 0, 270f);
+                            v = new Vector3(1, 1, 0);
+                        }
+                        else if (x < 0)
+                        {
+                            projectile.transform.eulerAngles = new Vector3(0, 0, 360f);
+                            v = new Vector3(-1, 1, 0);
+                        }
+                        else
+                        {
+                            projectile.transform.eulerAngles = new Vector3(0, 0, 315f);
+                            v = new Vector3(0, 1, 0);
+                        }
+                        projectile.transform.position += new Vector3((float) coordinate, 0, 0);
+                    }
+                    else if (y < 0)
+                    {
+                        if (x > 0)
+                        {
+                            projectile.transform.eulerAngles = new Vector3(0, 0, 180f);
+                            v = new Vector3(1, -1, 0);
+                        }
+                        else if (x < 0)
+                        {
+                            projectile.transform.eulerAngles = new Vector3(0, 0, 90f);
+                            v = new Vector3(-1, -1, 0);
+                        }
+                        else
+                        {
+                            projectile.transform.eulerAngles = new Vector3(0, 0, 135f);
+                            v = new Vector3(0, -1, 0);
+                        }
+                        projectile.transform.position += new Vector3((float) coordinate, 0, 0);
+                    }
+                    else
+                    {
+                        if (x >= 0)
+                        {
+                            projectile.transform.eulerAngles = new Vector3(0, 0, 225f);
+                            v = new Vector3(1, 0, 0);
+                        }
+                        else if (x < 0)
+                        {
+                            projectile.transform.eulerAngles = new Vector3(0, 0, 45f);
+                            v = new Vector3(-1, 0, 0);
+                        }
+                        projectile.transform.position += new Vector3(0, (float) coordinate, 0);
+                    }
+                    rb.AddForce(v.normalized * speed, ForceMode2D.Impulse);
                 }
-                if (y > 0)
-                {
-                    if (x > 0)
-                    {
-                        projectile.transform.eulerAngles = new Vector3(0,0,270f);
-                        v = new Vector3(1, 1, 0);
-                    } else if (x < 0)
-                    {
-                        projectile.transform.eulerAngles = new Vector3(0,0,360f);
-                        v = new Vector3(-1, 1, 0);
-                    } else
-                    {
-                        projectile.transform.eulerAngles = new Vector3(0,0,315f);
-                        v = new Vector3(0, 1, 0);
-                    }
-                } else if (y < 0)
-                {
-                    if (x > 0)
-                    {
-                        projectile.transform.eulerAngles = new Vector3(0,0,180f);
-                        v = new Vector3(1, -1, 0);
-                    } else if (x < 0)
-                    {
-                        projectile.transform.eulerAngles = new Vector3(0,0,90f);
-                        v = new Vector3(-1, -1, 0);
-                    } else
-                    {
-                        projectile.transform.eulerAngles = new Vector3(0,0,135f);
-                        v = new Vector3(0, -1, 0);
-                    }
-                } else
-                {
-                    if (x >= 0)
-                    {
-                        projectile.transform.eulerAngles = new Vector3(0,0,225f);
-                        v = new Vector3(1, 0, 0);
-                    } else if (x < 0)
-                    {
-                        projectile.transform.eulerAngles = new Vector3(0,0,45f);
-                        v = new Vector3(-1, 0, 0);
-                    }
-                }
-                rb.AddForce(v.normalized * speed, ForceMode2D.Impulse);
-                yield return new WaitForSeconds(this.rate);
             }
-            yield return null;
+            yield return new WaitForSeconds(this.rate);
         }
+    }
+
+    public void AddProjectiles()
+    {
+        this.projectileCount++;
     }
 }
