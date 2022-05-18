@@ -393,6 +393,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer
       objectReference: {fileID: 0}
+    - target: {fileID: 4497528536043046644, guid: ade9930e2c880d6468d1edc267f55441, type: 3}
+      propertyPath: moveSpeed
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4497528536043046646, guid: ade9930e2c880d6468d1edc267f55441, type: 3}
       propertyPath: m_RootOrder
       value: 3
