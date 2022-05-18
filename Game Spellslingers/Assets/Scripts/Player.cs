@@ -7,6 +7,8 @@ public class Player : Character
     [SerializeField] private HealthBar healthBar;
     public static int maxHealth = 100;
 
+    //private string ENEMY_TAG = "Enemy";
+
     Player() : base(10f, Player.maxHealth) { }
 
     public override void Awake()
@@ -27,23 +29,24 @@ public class Player : Character
     {
         UpdatePosition();
     }
-
-    private void OnCollisonEnter2D(Collision2D collision) {
-        /*
+    /*
+    private void OnCollisionEnter2D(Collision2D collision) 
+    {
+        Debug.Log("????");
         if (collision.gameObject.CompareTag(ENEMY_TAG)) {
             Debug.Log("hi");
             TakeDamage(10);
-            Destroy(gameObject);
         }
-        */
-    }
+    }*/
 
-    public override void TakeDamage(int damage) {
+    public override void TakeDamage(float damage) 
+    {
         base.TakeDamage(damage);
         healthBar.SetHealth(CurrentHealth);
     }
 
-    public void SetHealth(int health) {
+    public void SetHealth(float health) 
+    {
         CurrentHealth = health;
         this.healthBar.SetHealth(health);
     }

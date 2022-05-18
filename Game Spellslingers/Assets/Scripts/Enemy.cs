@@ -11,6 +11,15 @@ public class Enemy : Character
     private Vector2 enemyMove;
     private string PLAYER_TAG = "Player";
 
+    private float enemyDamage;
+    public float getEnemyDamage() {
+        return enemyDamage;
+    }
+
+    public void setEnemyDamage(float value){
+        this.enemyDamage = value;
+    }
+
     Enemy() : base(2f, Enemy.maxHealth) { }
 
     // Start is called before the first frame update
@@ -35,4 +44,12 @@ public class Enemy : Character
         this.GetRb().MovePosition((Vector2)transform.position + (direction * this.GetMoveSpeed() * Time.deltaTime));
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("????");
+        if (collision.gameObject.CompareTag(PLAYER_TAG))
+        {
+            FindObjectOfType<Player>().TakeDamage(enemyDamage);
+        }
+    }
 }

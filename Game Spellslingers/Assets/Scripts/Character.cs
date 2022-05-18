@@ -9,9 +9,9 @@ public class Character : MonoBehaviour
 
     private Vector2 movement;
     private float moveSpeed = 0;
-    private int currentHealth = 100;
+    private float currentHealth = 100f;
 
-    public Character(float moveSpeed, int currentHealth)
+    public Character(float moveSpeed, float currentHealth)
     {
         this.moveSpeed = moveSpeed;
         this.currentHealth = currentHealth;
@@ -25,6 +25,7 @@ public class Character : MonoBehaviour
     {
         this.rb = gameObject.AddComponent<Rigidbody2D>();
         this.rb.gravityScale = 0;
+        this.rb.bodyType = RigidbodyType2D.Dynamic;
         this.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
@@ -34,7 +35,7 @@ public class Character : MonoBehaviour
 
     public void SetX(float f) { this.movement.x = f; }
     public void SetY(float f) { this.movement.y = f; }
-    public int CurrentHealth { get { return currentHealth; } set { this.currentHealth = value; } }
+    public float CurrentHealth { get { return currentHealth; } set { this.currentHealth = value; } }
 
     public void AnimateMovement()
     {
@@ -49,8 +50,9 @@ public class Character : MonoBehaviour
             this.movement.normalized * this.moveSpeed * Time.fixedDeltaTime);
     }
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(float damage)
     {
         currentHealth -= damage;
     }
+
 }
