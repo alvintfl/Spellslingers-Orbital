@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class Character : MonoBehaviour
     private float moveSpeed = 0;
     private float currentHealth = 100f;
 
+    public event EventHandler HealthChange;
     public Character(float moveSpeed, float currentHealth)
     {
         this.moveSpeed = moveSpeed;
@@ -40,7 +42,13 @@ public class Character : MonoBehaviour
 
     public void SetX(float f) { this.movement.x = f; }
     public void SetY(float f) { this.movement.y = f; }
-    public float CurrentHealth { get { return currentHealth; } set { this.currentHealth = value; } }
+    public float CurrentHealth { 
+        get { return currentHealth; } 
+        set { 
+            this.currentHealth = value;
+            OnHealthChange(EventArgs.Empty);
+        } 
+    }
 
     public void AnimateMovement()
     {
@@ -58,6 +66,11 @@ public class Character : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        OnHealthChange(EventArgs.Empty);
+    }
+    private void OnHealthChange(EventArgs e)
+    {
+        HealthChange?.Invoke(this, e);
     }
 
 }

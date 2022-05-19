@@ -1,24 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool gameIsPaused = false;
-
-    [SerializeField] private GameObject PauseMenuUI;
-
-    public void Resume()
+    public void Start()
     {
-        PauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        PauseMenu.gameIsPaused = false;
+        ExpManager.LevelUp += Pause;
+        Skill.Selected += Resume;
     }
 
-    public void Pause()
+    public void Resume(object sender, EventArgs e)
     {
-        PauseMenuUI.SetActive(true);
+        Time.timeScale = 1f;
+    }
+
+    public void Pause(object sender, EventArgs e)
+    {
         Time.timeScale = 0f;
-        PauseMenu.gameIsPaused = true;
     }
 }

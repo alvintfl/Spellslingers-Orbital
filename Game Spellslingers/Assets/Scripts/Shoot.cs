@@ -8,10 +8,8 @@ public class Shoot : MonoBehaviour
 {
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject projectilePrefab;
-    private Queue<GameObject> activeProjectiles;
     private ObjectPool<GameObject> projectilePool;
     private int poolSize;
-    private int maxRange;
     private int projectileCount;
     private float rate;
     private float[] lastFirePoint;
@@ -20,18 +18,20 @@ public class Shoot : MonoBehaviour
     private void Start()
     {
         this.poolSize = 16;
-        this.maxRange = 3;
         this.rate = 2f;
         this.lastFirePoint = new float[] {0,0};
         this.projectileCount = 1;
         this.projectileSpacing = 0.2f;
-        this.activeProjectiles = new Queue<GameObject>();
         this.projectilePool = new ObjectPool<GameObject>(
-        () => Instantiate(projectilePrefab),
-        x => {
-            x.SetActive(true);
-            activeProjectiles.Enqueue(x);
+        () => {
+            GameObject projectileObject = Instantiate(projectilePrefab);
+            Projectile projectile = projectileObject.GetComponent<Projectile>();
+            projectile.Collided +=
+                (sender, e) => this.projectilePool.Release(projectileObject);
+            projectile.FirePoint = this.firePoint;
+            return projectileObject;
         },
+        x => x.SetActive(true),
         x => x.SetActive(false),
         x => Destroy(x),
         false, this.poolSize, this.poolSize + 1);
@@ -40,37 +40,7 @@ public class Shoot : MonoBehaviour
     }
     private void Update()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-        if (!(x == 0 && y == 0))
-        {
-            this.lastFirePoint[0] = x;
-            this.lastFirePoint[1] = y;
-        }
-        if (this.activeProjectiles.Count > this.poolSize)
-        {
-            GameObject projectile = this.activeProjectiles.Dequeue();
-            if (projectile.activeSelf && 
-                (Math.Abs(projectile.transform.position.x - this.firePoint.position.x) > this.maxRange ||
-                 Math.Abs(projectile.transform.position.y - this.firePoint.position.y) > this.maxRange
-                 ))
-            {
-                this.projectilePool.Release(projectile);
-            } else
-            {
-                this.activeProjectiles.Enqueue(projectile);
-            }
-        } else if (this.activeProjectiles.Count > 0)
-        {
-            GameObject projectile = this.activeProjectiles.Dequeue();
-            if (!projectile.activeSelf)
-            {
-                this.projectilePool.Release(projectile);
-            } else
-            {
-                this.activeProjectiles.Enqueue(projectile);
-            }
-        }
+        UpdateLastFirePoint();
     }
 
     private IEnumerator Fire()
@@ -155,6 +125,17 @@ public class Shoot : MonoBehaviour
                 }
             }
             yield return new WaitForSeconds(this.rate);
+        }
+    }
+
+    public void UpdateLastFirePoint()
+    {
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
+        if (!(x == 0 && y == 0))
+        {
+            this.lastFirePoint[0] = x;
+            this.lastFirePoint[1] = y;
         }
     }
 

@@ -20,7 +20,7 @@ public class Enemy : Character
         this.enemyDamage = value;
     }
 
-    Enemy() : base(2f, Enemy.maxHealth) { }
+    public Enemy() : base(2f, Enemy.maxHealth) { }
 
     // Start is called before the first frame update
     void Start() {

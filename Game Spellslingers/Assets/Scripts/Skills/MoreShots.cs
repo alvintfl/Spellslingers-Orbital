@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class MoreShots : Skill
         this.shoot = GameObject.FindGameObjectWithTag("Player").GetComponent<Shoot>();
         Button.onClick.AddListener(() =>
         {
-            Select();
+            OnSelected(EventArgs.Empty);
             this.shoot.AddProjectiles();
         });
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public abstract class Skill : MonoBehaviour
 {
     private GameObject playerObject;
     private Button button;
-    private bool isSelected;
+    public static event EventHandler Selected;
 
     public void Awake()
     {
@@ -18,10 +19,8 @@ public abstract class Skill : MonoBehaviour
     public GameObject PlayerObject { get { return this.playerObject; } }
     public Button Button { get { return this.button; } }
 
-    public bool IsSelected { get { return this.isSelected; } }
-
-    public void Select()
+    protected virtual void OnSelected(EventArgs e)
     {
-        this.isSelected = true;
+        Selected?.Invoke(this, e);
     }
 }
