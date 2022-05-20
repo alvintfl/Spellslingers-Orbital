@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Projectile : MonoBehaviour
+public abstract class Projectile : MonoBehaviour
 {
     private Transform firePoint;
     private float speed;
@@ -21,7 +21,10 @@ public class Projectile : MonoBehaviour
         AtMaxRange();
     }
 
-    public float Speed { get { return speed; } }
+    public abstract void IncreaseDamage(int damage);
+
+    public abstract int GetDamage();
+    public float Speed { get { return this.speed; } }
 
     public Transform FirePoint { set { this.firePoint = value; } }
 

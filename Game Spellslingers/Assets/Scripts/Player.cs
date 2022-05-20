@@ -7,10 +7,7 @@ public class Player : Character
 {
     public static int maxHealth = 100;
 
-    //private string ENEMY_TAG = "Enemy";
-
     Player() : base(10f, Player.maxHealth) { }
-
 
     void Update()
     {
@@ -28,13 +25,4 @@ public class Player : Character
     {
         UpdatePosition();
     }
-    /*
-    private void OnCollisionEnter2D(Collision2D collision) 
-    {
-        Debug.Log("????");
-        if (collision.gameObject.CompareTag(ENEMY_TAG)) {
-            Debug.Log("hi");
-            TakeDamage(10);
-        }
-    }*/
 }

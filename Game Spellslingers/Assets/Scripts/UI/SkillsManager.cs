@@ -6,33 +6,38 @@ using Random = System.Random;
 
 public class SkillsManager : MonoBehaviour
 {
-    private GameObject[] skillsLibrary;
+    private List<GameObject> skillsLibrary;
     private GameObject[] selectedSkills;
     public event EventHandler SkillsGenerated;
 
+    private void Awake()
+    {
+        GameObject[] skillPrefabs = Resources.LoadAll<GameObject>("Skills/");
+        this.skillsLibrary = new List<GameObject>();
+        for (int i = 0; i < skillPrefabs.Length; i++)
+        {
+            GameObject skillObject = Instantiate(skillPrefabs[i]);
+            skillObject.SetActive(false);
+            skillObject.GetComponent<Skill>().MaxedOut += 
+                (sender, e) => this.skillsLibrary.Remove(skillObject);
+            this.skillsLibrary.Add(skillObject);
+        }
+    }
+
     private void Start()
     {
-        this.skillsLibrary = Resources.LoadAll<GameObject>("Skills/");
         this.selectedSkills = new GameObject[3];
         ExpManager.LevelUp += GenerateSkills;
-        Skill.Selected += ResetSkills;
     }
+    public List<GameObject> SkillsLibrary { get { return this.skillsLibrary; } }
 
     public GameObject[] SelectedSkills { get { return this.selectedSkills; } }
 
-    private void ResetSkills(object sender, EventArgs e) 
-    {
-        for (int i = 0; i < selectedSkills.Length; i++)
-        {
-            GameObject.Destroy(selectedSkills[i]);
-            selectedSkills[i] = null;
-        }
-    }
     private void GenerateSkills(object sender, EventArgs e)
     {
         //Fisher-Yates shuffle
         Random random = new Random();
-        for (int i = this.skillsLibrary.Length - 1; i > 0; i--)
+        for (int i = this.skillsLibrary.Count - 1; i > 0; i--)
         {
             int j = random.Next(0, i + 1);
             GameObject temp = this.skillsLibrary[i];
@@ -40,29 +45,31 @@ public class SkillsManager : MonoBehaviour
             this.skillsLibrary[j] = temp;
         }
 
-        //int[] seen = new int[] { -1, -1, -1 };
-        for (int i = 0; i < this.selectedSkills.Length; i++)
+        if (this.skillsLibrary.Count > 3)
         {
             // Select without replacement
-            /*
-            int j = random.Next(0, this.skillsLibrary.Length - 1);
-            int start = i;
-            while (start > -1)
+            Dictionary<int, bool> seen = new Dictionary<int, bool>();
+            for (int i = 0; i < this.selectedSkills.Length; i++)
             {
-                if (j != seen[start])
+                int j = random.Next(0, this.skillsLibrary.Count - 1);
+                GameObject skillObject = this.skillsLibrary[j];
+                while (seen.ContainsKey(j))
                 {
-                    start--;
+                    j = random.Next(0, this.skillsLibrary.Count - 1);
+                    skillObject = this.skillsLibrary[j];
                 }
-                else
-                {
-                    start = i;
-                    j = random.Next(0, this.skillsLibrary.Length - 1);
-                }
+                seen.Add(j, true);
+                skillObject.SetActive(true);
+                this.selectedSkills[i] = skillObject;
             }
-            seen[i] = j;
-            */
-            GameObject skillObject = Instantiate(this.skillsLibrary[i]);
-            this.selectedSkills[i] = skillObject;
+        } else
+        {
+            for (int i = 0; i < this.skillsLibrary.Count; i++)
+            {
+                GameObject skillObject = this.skillsLibrary[i];
+                skillObject.SetActive(true);
+                this.selectedSkills[i] = skillObject;
+            }
         }
         OnSkillGenerated(EventArgs.Empty);
     }
@@ -71,5 +78,4 @@ public class SkillsManager : MonoBehaviour
     {
         SkillsGenerated?.Invoke(this, e);
     }
-
 }

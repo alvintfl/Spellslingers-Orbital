@@ -143,4 +143,14 @@ public class Shoot : MonoBehaviour
     {
         this.projectileCount++;
     }
+
+    public void IncreaseRate(float decrease)
+    {
+        this.rate -= decrease;
+    }
+
+    public void IncreaseDamage(int damage)
+    {
+        this.projectilePrefab.GetComponent<Projectile>().IncreaseDamage(damage);
+    }
 }
