@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class Quickstep : Skill
 {
-    // Start is called before the first frame update
-    void Start()
+    public Quickstep() : base(5) { }
+    private void Start()
     {
         Button.onClick.AddListener(() =>
          {
              OnSelected(EventArgs.Empty);
              Player player = PlayerObject.GetComponent<Player>();
-             float moveSpeedIncrease = player.GetMoveSpeed() * 0.1f;
+             float moveSpeedIncrease = player.GetMoveSpeed() * 0.03f;
              player.SetMoveSpeed(moveSpeedIncrease);
          });
     }
