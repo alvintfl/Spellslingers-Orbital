@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
 
     private Vector2 movement;
     private float moveSpeed = 10;
@@ -22,6 +23,9 @@ public class Movement : MonoBehaviour
         this.rb.bodyType = RigidbodyType2D.Dynamic;
         this.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         this.rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+
+        this.sr = GetComponent<SpriteRenderer>();
+        this.anim = GetComponent<Animator>();
     }
 
     public virtual void Update()
@@ -55,10 +59,32 @@ public class Movement : MonoBehaviour
 
     public void AnimateMovement()
     {
-        this.animator.SetFloat("Horizontal", this.movement.x);
-        this.animator.SetFloat("Vertical", this.movement.y);
-        this.animator.SetFloat("Speed", this.movement.sqrMagnitude);
+        if (this.movement.x > 0) 
+        {
+            sr.flipX = false;
+        }
+        if (this.movement.x < 0) 
+        {
+            sr.flipX = true;
+        }
+        this.anim.SetFloat("Horizontal", this.movement.x);
+        this.anim.SetFloat("Vertical", this.movement.y);
+        this.anim.SetFloat("Speed", this.movement.sqrMagnitude);
     }
+
+    public void AnimateDeath()
+    {
+        if (this.movement.x > 0)
+        {
+            sr.flipX = false;
+        }
+        if (this.movement.x < 0)
+        {
+            sr.flipX = true;
+        }
+        this.anim.SetTrigger("Death");
+    }
+
 
     public virtual void UpdatePosition()
     {

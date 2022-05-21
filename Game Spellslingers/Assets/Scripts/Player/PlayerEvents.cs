@@ -25,8 +25,7 @@ public class PlayerEvents : MonoBehaviour
     void PlayerDiedListener() 
     {
         print("Player has died.");
-        Destroy(Player.instance);
-        print("player destroyed");
+        
     }
 
 
