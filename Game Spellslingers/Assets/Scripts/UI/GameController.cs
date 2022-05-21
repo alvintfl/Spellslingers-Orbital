@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private GameObject[] characters;
 
+
     public int _charIndex;
     public int CharIndex
     {

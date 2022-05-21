@@ -6,7 +6,6 @@ public class CameraFollow : MonoBehaviour
 {
 
     private Vector3 tempPos;
-
     [SerializeField]
     private float minX, maxX, minY, maxY;
 
@@ -21,7 +20,7 @@ public class CameraFollow : MonoBehaviour
     
     void LateUpdate()
     {
-        if (Player.instance.CurrentHealth <= 0) {
+        if (Player.instance.Health.CurrentHealth <= 0) {
             return;
         }
         tempPos = transform.position;
