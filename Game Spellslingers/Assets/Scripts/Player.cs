@@ -14,6 +14,7 @@ public class Player : Character
     public delegate void PlayerDied();
     public static event PlayerDied playerDiedInfo;
 
+
     void Start()
     {
         if (instance != null && instance != this)
@@ -57,6 +58,7 @@ public class Player : Character
         // health hits zero
         if (CurrentHealth <= 0) 
         {
+            AnimateDeath();
             this.PlayerDiesEvent();
         }
     }
