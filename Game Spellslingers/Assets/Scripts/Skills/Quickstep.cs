@@ -15,6 +15,7 @@ public class Quickstep : Skill
              Movement player = PlayerObject.GetComponent<Player>().Movement;
              float moveSpeedIncrease = player.GetMoveSpeed() * 0.03f;
              player.SetMoveSpeed(moveSpeedIncrease);
-         });
+         }
+         );
     }
 }

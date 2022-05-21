@@ -24,6 +24,9 @@ public class SpawnManager : MonoBehaviour
     {
         
     }
+    // when i spawn enemies , healthUi listens create hp bar
+
+
 
     IEnumerator Spawn()
     {
