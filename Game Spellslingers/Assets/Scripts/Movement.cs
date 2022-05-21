@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator anim;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
 
