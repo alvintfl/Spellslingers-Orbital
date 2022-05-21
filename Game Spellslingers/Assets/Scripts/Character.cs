@@ -10,30 +10,39 @@ public class Character : MonoBehaviour
 
     private Vector2 movement;
     private float moveSpeed = 0;
-    private float currentHealth = 100f;
+    public float currentHealth = 100f;
+
+    private Player _player;
+
 
     public event EventHandler HealthChange;
     public Character(float moveSpeed, float currentHealth)
     {
         this.moveSpeed = moveSpeed;
         this.currentHealth = currentHealth;
+        _player = new Player(this);
     }
 
-    public float GetMoveSpeed() {
+
+    public float GetMoveSpeed() 
+    {
         return this.moveSpeed;
     }
 
-    public void SetMoveSpeed(float movespeed) {
+    public void SetMoveSpeed(float movespeed) 
+    {
         this.moveSpeed += movespeed;
     }
 
 
     public virtual void Awake()
     {
+
         this.rb = gameObject.AddComponent<Rigidbody2D>();
         this.rb.gravityScale = 0;
         this.rb.bodyType = RigidbodyType2D.Dynamic;
         this.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        this.rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
     }
 
     public Rigidbody2D GetRb() {
@@ -65,6 +74,7 @@ public class Character : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
+        Debug.Log("taking dmg");
         currentHealth -= damage;
         OnHealthChange(EventArgs.Empty);
     }

@@ -6,10 +6,13 @@ using UnityEngine;
 public class Player : Character
 {
     public static int maxHealth = 100;
-
-    //private string ENEMY_TAG = "Enemy";
-
-    Player() : base(10f, Player.maxHealth) { }
+    private Character _c;
+    public Player(Character c) : base(10f, Player.maxHealth) {
+        _c = c;
+    
+    }
+    public delegate void PlayerDied();
+    public static event PlayerDied playerDiedInfo;
 
 
     void Update()
@@ -28,13 +31,17 @@ public class Player : Character
     {
         UpdatePosition();
     }
-    /*
-    private void OnCollisionEnter2D(Collision2D collision) 
+
+    public static void CheckPlayerStatus() 
     {
-        Debug.Log("????");
-        if (collision.gameObject.CompareTag(ENEMY_TAG)) {
-            Debug.Log("hi");
-            TakeDamage(10);
+        // health hits zero
+        if (_c.currentHealth <= 0) 
+        {
+            Debug.Log("You have died!");
+            // to make sure function is subscribed
+            if (playerDiedInfo != null) 
+                playerDiedInfo();     
         }
-    }*/
+    }
 }
+

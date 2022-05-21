@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3087973092160009045}
   - component: {fileID: 3087973092160009034}
   - component: {fileID: 2080513365961352411}
-  - component: {fileID: 3417293412276461162}
+  - component: {fileID: 9017512112035854780}
   m_Layer: 0
   m_Name: bat
   m_TagString: Enemy
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.22308853, y: 0.10845664}
   m_EdgeRadius: 0
---- !u!114 &3417293412276461162
+--- !u!114 &9017512112035854780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,8 +121,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3087973092160009033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cd3df889ddb0284098170464d2a3605, type: 3}
+  m_Script: {fileID: 11500000, guid: f841cd6b97e07f3489bf431243666ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  currentHealth: 50
   healthBar: {fileID: 0}
