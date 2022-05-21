@@ -72,19 +72,6 @@ public class Movement : MonoBehaviour
         this.anim.SetFloat("Speed", this.movement.sqrMagnitude);
     }
 
-    public void AnimateDeath()
-    {
-        if (this.movement.x > 0)
-        {
-            sr.flipX = false;
-        }
-        if (this.movement.x < 0)
-        {
-            sr.flipX = true;
-        }
-        this.anim.SetTrigger("Death");
-    }
-
 
     public virtual void UpdatePosition()
     {
