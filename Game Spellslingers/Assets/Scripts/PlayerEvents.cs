@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerEvents : MonoBehaviour
 {
-
+    [SerializeField]
+    private GameObject dsc;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +26,7 @@ public class PlayerEvents : MonoBehaviour
     void PlayerDiedListener() 
     {
         print("Player has died.");
-        
+        dsc.SetActive(true);
     }
 
 

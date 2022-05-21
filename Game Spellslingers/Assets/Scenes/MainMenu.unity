@@ -660,6 +660,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4c11c853b23d942ae8d7e0574afddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characters:
+  - {fileID: 6924658717456068486, guid: d19e72e8e81b46844aa19a33e3cf8874, type: 3}
   _charIndex: 0
 --- !u!4 &2025755114
 Transform:
