@@ -7,13 +7,24 @@ public class Player : Character
 {
     public static int maxHealth = 100;
     private Character _c;
-    public Player(Character c) : base(10f, Player.maxHealth) {
-        _c = c;
-    
-    }
+    public Player() : base(10f, Player.maxHealth) { }
+
+    public static Player instance;
+
     public delegate void PlayerDied();
     public static event PlayerDied playerDiedInfo;
 
+    void Start()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else 
+        {
+            instance = this;
+        }
+    }
 
     void Update()
     {
@@ -32,16 +43,24 @@ public class Player : Character
         UpdatePosition();
     }
 
-    public static void CheckPlayerStatus() 
+
+    public void PlayerDiesEvent()
+    {
+        // check function is subscribed
+        if (playerDiedInfo != null)
+            Debug.Log("1212hi");
+            playerDiedInfo();
+    }
+
+    public void CheckPlayerStatus() 
     {
         // health hits zero
-        if (_c.currentHealth <= 0) 
+        if (CurrentHealth <= 0) 
         {
-            Debug.Log("You have died!");
-            // to make sure function is subscribed
-            if (playerDiedInfo != null) 
-                playerDiedInfo();     
+            this.PlayerDiesEvent();
         }
     }
+
+
 }
 

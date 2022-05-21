@@ -12,7 +12,6 @@ public class Character : MonoBehaviour
     private float moveSpeed = 0;
     public float currentHealth = 100f;
 
-    private Player _player;
 
 
     public event EventHandler HealthChange;
@@ -20,7 +19,6 @@ public class Character : MonoBehaviour
     {
         this.moveSpeed = moveSpeed;
         this.currentHealth = currentHealth;
-        _player = new Player(this);
     }
 
 
@@ -44,7 +42,7 @@ public class Character : MonoBehaviour
         this.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         this.rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
     }
-
+    
     public Rigidbody2D GetRb() {
         return this.rb;
     }
@@ -53,7 +51,8 @@ public class Character : MonoBehaviour
     public void SetY(float f) { this.movement.y = f; }
     public float CurrentHealth { 
         get { return currentHealth; } 
-        set { 
+        set 
+        { 
             this.currentHealth = value;
             OnHealthChange(EventArgs.Empty);
         } 
