@@ -33,7 +33,7 @@ public class PlayerHealth : Health
         // health hits zero
         if (CurrentHealth <= 0) 
         {
-            AnimateDeath();
+            //AnimateDeath();
             this.PlayerDiesEvent();
         }
     }

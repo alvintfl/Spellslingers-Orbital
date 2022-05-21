@@ -16,7 +16,6 @@ public class EnemyMovement : Movement
 
     public override void Update()
     {
-        base.Update();
         Vector3 direction = player.position - transform.position;
         // for rotation
         // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

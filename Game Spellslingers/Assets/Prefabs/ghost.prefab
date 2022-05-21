@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 894202517894858281}
   - component: {fileID: 2105309371113050797}
   - component: {fileID: 4079560681455299224}
+  - component: {fileID: 9178322468591829936}
+  - component: {fileID: 8766874865652809519}
   m_Layer: 0
   m_Name: ghost
   m_TagString: Enemy
@@ -124,6 +126,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe462f2ead95df44381cd0a84e96ae01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  currentHealth: 50
-  healthBar: {fileID: 0}
+--- !u!114 &9178322468591829936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894202517894858282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55aeccb2892ea114abe01c926fc8660f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8766874865652809519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894202517894858282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a168f0e55ba16044a80d837f8c10113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  PLAYER_TAG: Player

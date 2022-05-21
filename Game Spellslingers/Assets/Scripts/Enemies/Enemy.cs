@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour 
 {
-    [SerializeField] private HealthBar healthBar;
-    [SerializeField] private Movement movement;
-    [SerializeField] private Health health;
+    private Movement movement;
+    private Health health;
 
     private float _enemyDamage;
 
     public Enemy(float ed)
     {
         this._enemyDamage = ed;
+    }
+
+    private void Awake()
+    {
+        this.movement = gameObject.GetComponent<Movement>();
+        this.health = gameObject.GetComponent<Health>();    
     }
     public Movement Movement { get { return this.movement; } }
     public Health Health { get { return this.health; } }
