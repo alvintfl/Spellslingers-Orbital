@@ -8,12 +8,11 @@ public class EnemyGhost : Enemy
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("ghost has collided with player");
+        //Debug.Log("ghost has collided with player");
         if (collision.gameObject.CompareTag("Player"))
         {
             print(getEnemyDamage());
-            Player.instance.TakeDamage(getEnemyDamage());
-            Player.instance.CheckPlayerStatus();
+            Player.instance.Health.TakeDamage(getEnemyDamage());
         }
     }
-} // class
+}

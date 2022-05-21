@@ -5,19 +5,27 @@ using UnityEngine;
 
 public class HealthUI : MonoBehaviour
 {
-    [SerializeField] private HealthBar healthbar;
-    [SerializeField] private Player player;
+    [SerializeField] private GameObject healthbarCanvasPrefab;
+    private HealthBar healthbar;
+    private PlayerHealth playerHealth;
 
     private void Start()
     {
-        this.healthbar.SetMaxHealth(Player.maxHealth);
-        this.healthbar.SetHealth(Player.maxHealth);
-        this.player.HealthChange += UpdateHealth;
+        GameObject healthbarCanvas = Instantiate(healthbarCanvasPrefab);
+        this.healthbar = healthbarCanvas.GetComponentInChildren<HealthBar>();
+        GameObject playerObject = GameObjectManager.instance.allObjects.Find(x => x.CompareTag("Player"));
+        healthbarCanvas.transform.SetParent(playerObject.transform);
+        healthbarCanvas.transform.position = playerObject.transform.position;
+        healthbarCanvas.transform.position += new Vector3(0, -1, 0);
+        this.playerHealth = playerObject.GetComponent<PlayerHealth>();
+        this.healthbar.SetMaxHealth(PlayerHealth.maxHealth);
+        this.healthbar.SetHealth(PlayerHealth.maxHealth);
+        this.playerHealth.HealthChange += UpdateHealth;
     }
 
     public void UpdateHealth(object sender, EventArgs e)
     {
-        this.healthbar.SetMaxHealth(Player.maxHealth);
-        this.healthbar.SetHealth(player.CurrentHealth);
+        this.healthbar.SetMaxHealth(PlayerHealth.maxHealth);
+        this.healthbar.SetHealth(playerHealth.CurrentHealth);
     }
 }

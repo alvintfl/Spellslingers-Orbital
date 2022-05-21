@@ -3,47 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Character
+public class PlayerHealth : Health
 {
     public static int maxHealth = 100;
-    private Character _c;
-    public Player() : base(10f, Player.maxHealth) { }
-
-    public static Player instance;
-
     public delegate void PlayerDied();
     public static event PlayerDied playerDiedInfo;
 
+    public PlayerHealth() : base(PlayerHealth.maxHealth) { }
 
-    void Start()
+    private void Update()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(this);
-        }
-        else 
-        {
-            instance = this;
-        }
-    }
-
-    void Update()
-    {
-        // Get user input 
-        SetX(Input.GetAxisRaw("Horizontal"));
-        SetY(Input.GetAxisRaw("Vertical"));
-        AnimateMovement();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeDamage(20);
         }
     }
-
-    void FixedUpdate()
-    {
-        UpdatePosition();
-    }
-
 
     public void PlayerDiesEvent()
     {
@@ -53,16 +27,21 @@ public class Player : Character
             playerDiedInfo();
     }
 
+
     public void CheckPlayerStatus() 
     {
         // health hits zero
         if (CurrentHealth <= 0) 
         {
-            AnimateDeath();
+            //AnimateDeath();
             this.PlayerDiesEvent();
         }
     }
 
+    protected override void OnHealthChange(EventArgs e)
+    {
+        base.OnHealthChange(e);
+        CheckPlayerStatus();
+    }
 
 }
-

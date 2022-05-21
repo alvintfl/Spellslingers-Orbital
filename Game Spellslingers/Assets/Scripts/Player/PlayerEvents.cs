@@ -15,12 +15,12 @@ public class PlayerEvents : MonoBehaviour
     void OnEnable() 
     {
         // subscribe to function
-        Player.playerDiedInfo += PlayerDiedListener;
+        PlayerHealth.playerDiedInfo += PlayerDiedListener;
     }
 
     void OnDisable() 
     {
-        Player.playerDiedInfo -= PlayerDiedListener;
+        PlayerHealth.playerDiedInfo -= PlayerDiedListener;
     }
 
     void PlayerDiedListener() 

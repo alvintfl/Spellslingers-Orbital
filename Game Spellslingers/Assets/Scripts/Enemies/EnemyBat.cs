@@ -12,8 +12,7 @@ public class EnemyBat : Enemy
         if (collision.gameObject.CompareTag("Player"))
         {
             print(getEnemyDamage());
-            Player.instance.TakeDamage(getEnemyDamage());
-            Player.instance.CheckPlayerStatus();
+            Player.instance.Health.TakeDamage(getEnemyDamage());
         }
     }
 }

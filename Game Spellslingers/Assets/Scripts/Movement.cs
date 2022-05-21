@@ -1,41 +1,23 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Movement : MonoBehaviour
 {
-    private Animator anim;
+    [SerializeField] private Animator anim;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
 
     private Vector2 movement;
-    private float moveSpeed = 0;
-    public float currentHealth = 100f;
+    private float moveSpeed = 10;
 
-
-    public event EventHandler HealthChange;
-    public Character(float moveSpeed, float currentHealth)
+    public Movement(float moveSpeed)
     {
         this.moveSpeed = moveSpeed;
-        this.currentHealth = currentHealth;
     }
 
-
-    public float GetMoveSpeed() 
+    private void Awake()
     {
-        return this.moveSpeed;
-    }
-
-    public void SetMoveSpeed(float movespeed) 
-    {
-        this.moveSpeed += movespeed;
-    }
-
-
-    public virtual void Awake()
-    {
-
         this.rb = gameObject.AddComponent<Rigidbody2D>();
         this.rb.gravityScale = 0;
         this.rb.bodyType = RigidbodyType2D.Dynamic;
@@ -45,20 +27,34 @@ public class Character : MonoBehaviour
         this.sr = GetComponent<SpriteRenderer>();
         this.anim = GetComponent<Animator>();
     }
-    
-    public Rigidbody2D GetRb() {
-        return this.rb;
+
+    public virtual void Update()
+    {
+        AnimateMovement();
+    }
+
+    public virtual void FixedUpdate()
+    {
+        UpdatePosition();
+    }
+
+    public float GetMoveSpeed() 
+    {
+        return this.moveSpeed;
+    }
+
+    public void SetMoveSpeed(float movespeed)
+    {
+        this.moveSpeed += movespeed;
     }
 
     public void SetX(float f) { this.movement.x = f; }
+
     public void SetY(float f) { this.movement.y = f; }
-    public float CurrentHealth { 
-        get { return currentHealth; } 
-        set 
-        { 
-            this.currentHealth = value;
-            OnHealthChange(EventArgs.Empty);
-        } 
+
+    public Rigidbody2D GetRb()
+    {
+        return this.rb;
     }
 
     public void AnimateMovement()
@@ -90,21 +86,9 @@ public class Character : MonoBehaviour
     }
 
 
-    public void UpdatePosition()
+    public virtual void UpdatePosition()
     {
         rb.MovePosition(this.rb.position + 
             this.movement.normalized * this.moveSpeed * Time.fixedDeltaTime);
     }
-
-    public virtual void TakeDamage(float damage)
-    {
-        Debug.Log("taking dmg");
-        currentHealth -= damage;
-        OnHealthChange(EventArgs.Empty);
-    }
-    private void OnHealthChange(EventArgs e)
-    {
-        HealthChange?.Invoke(this, e);
-    }
-
 }

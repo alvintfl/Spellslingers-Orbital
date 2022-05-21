@@ -7,9 +7,10 @@ public class MoreShots : Skill
 {
     private Shoot shoot;
     public MoreShots() : base(10) { }
-    private void Start()
+    public override void Start()
     {
-        this.shoot = GameObject.FindGameObjectWithTag("Player").GetComponent<Shoot>();
+        base.Start();
+        this.shoot = PlayerObject.GetComponent<Shoot>();
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);

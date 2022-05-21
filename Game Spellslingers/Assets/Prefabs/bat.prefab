@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3087973092160009034}
   - component: {fileID: 2080513365961352411}
   - component: {fileID: 9017512112035854780}
+  - component: {fileID: 1491747874061120987}
+  - component: {fileID: 1645632641069021547}
   m_Layer: 0
   m_Name: bat
   m_TagString: Enemy
@@ -124,6 +126,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f841cd6b97e07f3489bf431243666ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  currentHealth: 50
-  healthBar: {fileID: 0}
+--- !u!114 &1491747874061120987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3087973092160009033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55aeccb2892ea114abe01c926fc8660f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1645632641069021547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3087973092160009033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a168f0e55ba16044a80d837f8c10113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  PLAYER_TAG: Player
