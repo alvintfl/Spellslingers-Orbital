@@ -6,12 +6,13 @@ using UnityEngine;
 public class Quickstep : Skill
 {
     public Quickstep() : base(5) { }
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         Button.onClick.AddListener(() =>
          {
              OnSelected(EventArgs.Empty);
-             Player player = PlayerObject.GetComponent<Player>();
+             Movement player = PlayerObject.GetComponent<Player>().Movement;
              float moveSpeedIncrease = player.GetMoveSpeed() * 0.03f;
              player.SetMoveSpeed(moveSpeedIncrease);
          });

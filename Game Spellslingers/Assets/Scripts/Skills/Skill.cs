@@ -20,23 +20,14 @@ public abstract class Skill : MonoBehaviour
 
     public Skill() { }
 
-    private void Awake()
+    public virtual void Start()
     {
-        this.playerObject = GameObject.FindGameObjectWithTag("Player");
+        this.playerObject = GameObjectManager.instance.allObjects.Find(x => x.CompareTag("Player"));
         this.button = gameObject.GetComponent<Button>();
-    }
-
-    private void OnDisable()
-    {
     }
 
     public GameObject PlayerObject { get { return this.playerObject; } }
     public Button Button { get { return this.button; } }
-
-    public bool IsMaxLevel()
-    { 
-        return this.level > this.maxLevel;
-    }
 
     protected virtual void OnSelected(EventArgs e)
     {

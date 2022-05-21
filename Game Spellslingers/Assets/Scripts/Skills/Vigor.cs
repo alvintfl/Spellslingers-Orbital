@@ -7,15 +7,16 @@ using UnityEngine.UI;
 public class Vigor : Skill
 {
     public Vigor() : base(10) { }
-    private void Start()
+    public override void Start()
     { 
+        base.Start();
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);
-            Player player = PlayerObject.GetComponent<Player>();
+            Health playerHealth = PlayerObject.GetComponent<Player>().Health;
             int increase = 20;
-            Player.maxHealth += increase;
-            player.CurrentHealth += increase;
+            PlayerHealth.maxHealth += increase;
+            playerHealth.CurrentHealth += increase;
         });
     }
 }
