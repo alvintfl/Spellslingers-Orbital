@@ -15,7 +15,7 @@ public class Vigor : Skill
             OnSelected(EventArgs.Empty);
             Health playerHealth = PlayerObject.GetComponent<Player>().Health;
             int increase = 20;
-            PlayerHealth.maxHealth += increase;
+            playerHealth.MaxHealth += increase;
             playerHealth.CurrentHealth += increase;
         });
     }

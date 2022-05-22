@@ -1,28 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour 
+public class Enemy : Character
 {
-    private Movement movement;
-    private Health health;
-
     private float _enemyDamage;
+    private int exp;
+    public static event EventHandler<DropExpEventArgs> DropExp;
 
-    public Enemy(float ed)
+    private void Start()
+    {
+        this.Health.DiedInfo += OnDropExp;
+    }
+
+    public Enemy(float ed, int exp)
     {
         this._enemyDamage = ed;
+        this.exp = exp;
     }
-
-    private void Awake()
-    {
-        this.movement = gameObject.GetComponent<Movement>();
-        this.health = gameObject.GetComponent<Health>();    
-    }
-    public Movement Movement { get { return this.movement; } }
-    public Health Health { get { return this.health; } }
 
     public float getEnemyDamage() {
         return this._enemyDamage;
     }
+
+    public void OnDropExp()
+    {
+        DropExpEventArgs args = new DropExpEventArgs();
+        args.Exp = this.exp;
+        DropExp?.Invoke(this, args);
+        Destroy(gameObject);
+    }
+}
+
+public class DropExpEventArgs : EventArgs
+{
+    public int Exp { get; set; }
 }

@@ -6,21 +6,16 @@ public class PlayerEvents : MonoBehaviour
 {
     [SerializeField]
     private GameObject dsc;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    void OnEnable() 
+    void Start() 
     {
         // subscribe to function
-        PlayerHealth.playerDiedInfo += PlayerDiedListener;
+        Player.instance.Health.DiedInfo += PlayerDiedListener;
     }
 
     void OnDisable() 
     {
-        PlayerHealth.playerDiedInfo -= PlayerDiedListener;
+        Player.instance.Health.DiedInfo -= PlayerDiedListener;
     }
 
     void PlayerDiedListener() 
@@ -28,6 +23,4 @@ public class PlayerEvents : MonoBehaviour
         print("Player has died.");
         dsc.SetActive(true);
     }
-
-
 }

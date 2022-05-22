@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBat : Enemy
 {
-    EnemyBat() : base(5.5f) { }
+    EnemyBat() : base(5.5f, 1) { }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
