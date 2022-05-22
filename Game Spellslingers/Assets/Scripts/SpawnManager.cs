@@ -39,7 +39,7 @@ public class SpawnManager : MonoBehaviour
             int randomEnemyID = Random.Range(0, _enemies.Length);
             Vector2 position = GetRandomCoordinates();
             _spawnedEnemy = Instantiate(_enemies[randomEnemyID], position, Quaternion.identity) as GameObject;
-            spawned(_enemies[randomEnemyID]);
+            spawned(_spawnedEnemy);
         }
     }
 

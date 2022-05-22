@@ -489,6 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbarCanvasPrefab: {fileID: 3820971678798788655, guid: 7dda02398cc2a8c458ae81b6f872f419, type: 3}
+  enemyHealthbarCanvasPrefab: {fileID: 6812855993077025830, guid: c4ea22f004ec68748bfda63a843219b1, type: 3}
 --- !u!1 &4840690964923272744
 GameObject:
   m_ObjectHideFlags: 0
