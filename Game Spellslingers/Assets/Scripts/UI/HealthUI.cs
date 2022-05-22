@@ -8,9 +8,7 @@ public class HealthUI : MonoBehaviour
     [SerializeField] private GameObject healthbarCanvasPrefab;
     [SerializeField] private GameObject enemyHealthbarCanvasPrefab;
     private HealthBar healthbar;
-    private HealthBar enemyHealthbar;
     private Health playerHealth;
-    private Health enemyHealth;
 
 
     void OnEnable() {
@@ -19,7 +17,7 @@ public class HealthUI : MonoBehaviour
 
     void OnDisable()
     {
-        SpawnManager.spawned += EnemyHealthBar;
+        SpawnManager.spawned -= EnemyHealthBar;
     }
 
     private void Start()
@@ -39,15 +37,19 @@ public class HealthUI : MonoBehaviour
     void EnemyHealthBar(GameObject en) 
     {
         GameObject healthbarCanvas = Instantiate(enemyHealthbarCanvasPrefab);
-        this.enemyHealthbar = healthbarCanvas.GetComponentInChildren<HealthBar>();
+        HealthBar enemyHealthbar = healthbarCanvas.GetComponentInChildren<HealthBar>();
         healthbarCanvas.transform.SetParent(en.transform);
         healthbarCanvas.transform.position = en.transform.position;
         healthbarCanvas.transform.position += new Vector3(0, -1, 0);
-        this.enemyHealth = en.GetComponent<EnemyHealth>();
-        this.enemyHealthbar.SetMaxHealth(enemyHealth.MaxHealth);
-        this.enemyHealthbar.SetHealth(enemyHealth.MaxHealth);
-        this.enemyHealth.HealthChange += UpdateEnemyHealth;
-
+        EnemyHealth enemyHealth = en.GetComponent<EnemyHealth>();
+        enemyHealthbar.SetMaxHealth(enemyHealth.MaxHealth);
+        enemyHealthbar.SetHealth(enemyHealth.MaxHealth);
+        enemyHealth.HealthChange +=
+            (object sender, EventArgs e) =>
+            {
+                enemyHealthbar.SetMaxHealth(enemyHealth.MaxHealth);
+                enemyHealthbar.SetHealth(enemyHealth.CurrentHealth);
+            };
     }
 
     public void UpdatePlayerHealth(object sender, EventArgs e)
@@ -55,12 +57,4 @@ public class HealthUI : MonoBehaviour
         this.healthbar.SetMaxHealth(this.playerHealth.MaxHealth);
         this.healthbar.SetHealth(playerHealth.CurrentHealth);
     }
-
-    public void UpdateEnemyHealth(object sender, EventArgs e)
-    {
-        this.healthbar.SetMaxHealth(enemyHealth.MaxHealth);
-        this.healthbar.SetHealth(enemyHealth.CurrentHealth);    
-    }
-
-
 }
