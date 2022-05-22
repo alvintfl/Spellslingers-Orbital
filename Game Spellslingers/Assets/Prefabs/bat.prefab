@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9017512112035854780}
   - component: {fileID: 1491747874061120987}
   - component: {fileID: 1645632641069021547}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55aeccb2892ea114abe01c926fc8660f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 30
 --- !u!114 &1645632641069021547
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,18 +5,22 @@ using UnityEngine;
 
 public class PlayerHealth : Health
 {
-    public static int maxHealth = 100;
+    //public static int maxHealth = 100;
+    /*
     public delegate void PlayerDied();
     public static event PlayerDied playerDiedInfo;
     private Animator anim;
+    */
 
 
 
-    public PlayerHealth() : base(PlayerHealth.maxHealth) { }
+    //public PlayerHealth() : base(PlayerHealth.maxHealth) { }
 
+    /*
     private void Awake() {
         this.anim = GetComponent<Animator>();
     }
+    */
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -25,6 +29,7 @@ public class PlayerHealth : Health
         }
     }
 
+    /*
     public void PlayerDiesEvent()
     {
         // check function is subscribed
@@ -53,5 +58,6 @@ public class PlayerHealth : Health
         base.OnHealthChange(e);
         CheckPlayerStatus();
     }
+    */
 
 }

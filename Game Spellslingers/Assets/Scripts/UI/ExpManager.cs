@@ -16,14 +16,11 @@ public class ExpManager : MonoBehaviour
     void Start()
     {
         ExpManager.LevelUp += IncreaseMaxExp;
+        Enemy.DropExp += AddExp;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            AddExp(1);
-        }
         IsLevelUp();
     }
 
@@ -60,9 +57,9 @@ public class ExpManager : MonoBehaviour
         OnGainMaxExp(EventArgs.Empty);
     }
 
-    public void AddExp(int exp)
+    public void AddExp(object sender, DropExpEventArgs e)
     {
-        this.exp += exp;
+        this.exp += e.Exp;
         OnGainExp(EventArgs.Empty); 
     }
 }

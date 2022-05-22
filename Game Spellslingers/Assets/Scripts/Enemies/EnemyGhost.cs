@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyGhost : Enemy
 {
-    EnemyGhost() : base(10.5f) { }
+    EnemyGhost() : base(10.5f, 1) { }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

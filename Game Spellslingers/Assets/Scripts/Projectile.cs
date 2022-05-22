@@ -16,6 +16,7 @@ public abstract class Projectile : MonoBehaviour
         this.speed = speed; 
     }
 
+
     private void Update()
     {
         AtMaxRange();
@@ -28,6 +29,7 @@ public abstract class Projectile : MonoBehaviour
 
     public Transform FirePoint { set { this.firePoint = value; } }
 
+
     private void AtMaxRange()
     {
         if (this.firePoint != null && gameObject.activeSelf && 
@@ -38,7 +40,7 @@ public abstract class Projectile : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public virtual void OnCollisionEnter2D(Collision2D collision)
     {
         OnCollided(EventArgs.Empty);
     }
