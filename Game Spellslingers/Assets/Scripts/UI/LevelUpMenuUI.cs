@@ -21,6 +21,12 @@ public class LevelUpMenuUI : MonoBehaviour
         Skill.Selected += ResetSkills;
     }
 
+    private void OnDisable()
+    {
+        this.skillsManager.SkillsGenerated -= DisplaySkills;
+        Skill.Selected -= ResetSkills;
+    }
+
     private void DisplaySkills (object sender, EventArgs e)
     {
         this.selectedSkills = this.skillsManager.SelectedSkills;

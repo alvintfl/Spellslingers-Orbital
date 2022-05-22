@@ -13,15 +13,21 @@ public class ExpManager : MonoBehaviour
     private int maxExp = 1;
     private int exp = 0;
 
-    void Start()
+    private void Start()
     {
         ExpManager.LevelUp += IncreaseMaxExp;
         Enemy.DropExp += AddExp;
     }
 
-    void Update()
+    private void Update()
     {
         IsLevelUp();
+    }
+
+    private void OnDisable()
+    {
+        ExpManager.LevelUp -= IncreaseMaxExp;
+        Enemy.DropExp -= AddExp;
     }
 
     private void IsLevelUp()

@@ -17,6 +17,7 @@ public class HealthUI : MonoBehaviour
 
     void OnDisable()
     {
+        this.playerHealth.HealthChange -= UpdatePlayerHealth;
         SpawnManager.spawned -= EnemyHealthBar;
     }
 
