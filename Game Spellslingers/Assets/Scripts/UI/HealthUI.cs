@@ -23,6 +23,8 @@ public class HealthUI : MonoBehaviour
         this.playerHealth.HealthChange += UpdateHealth;
     }
 
+
+
     public void UpdateHealth(object sender, EventArgs e)
     {
         this.healthbar.SetMaxHealth(this.playerHealth.MaxHealth);

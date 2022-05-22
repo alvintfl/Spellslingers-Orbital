@@ -20,6 +20,7 @@ public class DeathScreenMenuManager : MonoBehaviour
     }
     public void RestartGame()
     {
+        //DontDestroyOnLoad(Player.instance);
         SceneManager.LoadScene("Gameplay");
     }
     public void ReturnToMainMenu()
