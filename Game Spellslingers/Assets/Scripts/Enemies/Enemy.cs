@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour 
 {
-    private Movement movement;
-    private Health health;
+    private EnemyMovement movement;
+    private EnemyHealth health;
 
     private float _enemyDamage;
 
@@ -16,11 +16,11 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        this.movement = gameObject.GetComponent<Movement>();
-        this.health = gameObject.GetComponent<Health>();    
+        this.movement = gameObject.GetComponent<EnemyMovement>();
+        this.health = gameObject.GetComponent<EnemyHealth>();    
     }
     public Movement Movement { get { return this.movement; } }
-    public Health Health { get { return this.health; } }
+    public EnemyHealth Health { get { return this.health; } }
 
     public float getEnemyDamage() {
         return this._enemyDamage;

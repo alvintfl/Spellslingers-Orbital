@@ -14,6 +14,9 @@ public class SpawnManager : MonoBehaviour
     private int _randomX;
     private int _randomY;
 
+    public delegate void SpawnDelegate(GameObject enemy);
+    public static event SpawnDelegate spawned;
+
     void Start()
     {
         StartCoroutine(Spawn());
@@ -36,6 +39,7 @@ public class SpawnManager : MonoBehaviour
             int randomEnemyID = Random.Range(0, _enemies.Length);
             Vector2 position = GetRandomCoordinates();
             _spawnedEnemy = Instantiate(_enemies[randomEnemyID], position, Quaternion.identity) as GameObject;
+            spawned(_enemies[randomEnemyID]);
         }
     }
 
