@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : Movement
 {
-    public PlayerMovement() : base(10f) { }
+    public PlayerMovement() : base(6f) { }
     public override void Update()
     {
         // Get user input 

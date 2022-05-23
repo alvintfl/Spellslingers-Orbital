@@ -18,14 +18,19 @@ public class Arrow : Projectile
         return Arrow.damage;
     }
 
-    public override void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-           base.OnCollisionEnter2D(collision);
-           EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
-           enemyHealth.TakeDamage(GetDamage());
-           Debug.Log(enemyHealth.CurrentHealth);
+            base.OnCollisionEnter2D(collision);
+            if (collision.gameObject != null)
+            {
+                Health enemyHealth = collision.gameObject.GetComponent<Health>();
+                if (enemyHealth != null)
+                {
+                    enemyHealth.TakeDamage(GetDamage());
+                }
+            }
         }
     }
 }

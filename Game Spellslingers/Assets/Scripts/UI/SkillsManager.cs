@@ -74,6 +74,11 @@ public class SkillsManager : MonoBehaviour
         OnSkillGenerated(EventArgs.Empty);
     }
 
+    private void OnDisable()
+    {
+        ExpManager.LevelUp -= GenerateSkills;
+    }
+
     private void OnSkillGenerated(EventArgs e)
     {
         SkillsGenerated?.Invoke(this, e);

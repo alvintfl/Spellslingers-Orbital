@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 1489601786894410472}
   - component: {fileID: 3082237518536786345}
   - component: {fileID: 3082237518536786354}
-  - component: {fileID: 6854872606387770251}
   - component: {fileID: 8148727754313355653}
   - component: {fileID: 2221691645503362054}
+  - component: {fileID: -177557709795728106}
   m_Layer: 8
   m_Name: Archer
   m_TagString: Player
@@ -182,19 +182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1489601785947990572}
   projectilePrefab: {fileID: 8438916434391917495, guid: 149b46b3251f4bf42be2b95a0cf2a961, type: 3}
---- !u!114 &6854872606387770251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1489601786894410487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c2f7126a63b4964d896b49e70af48b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
 --- !u!114 &8148727754313355653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,3 +207,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 036ccef56cd90c84abb7dffce14f9eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-177557709795728106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489601786894410487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2fe0734887d61f4fb0dbfb240a10168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100

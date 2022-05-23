@@ -24,6 +24,7 @@ public class Shoot : MonoBehaviour
         this.projectileSpacing = 0.2f;
         this.projectilePool = new ObjectPool<GameObject>(
         () => {
+            Debug.Log("Making one arrow");
             GameObject projectileObject = Instantiate(projectilePrefab);
             Projectile projectile = projectileObject.GetComponent<Projectile>();
             projectile.Collided +=
@@ -47,11 +48,16 @@ public class Shoot : MonoBehaviour
     {
         while (true)
         {
+            Dictionary<GameObject, bool> seen = new Dictionary<GameObject, bool>();
             for (int i = 0; i < this.projectileCount; i++)
             {
                 GameObject projectile = this.projectilePool.Get();
                 if (projectile != null)
                 {
+                    while (seen.ContainsKey(projectile))
+                    {
+                        projectile = this.projectilePool.Get();
+                    }
                     // Position, direction and speed variables to fire projectile.
                     projectile.transform.position = this.firePoint.position;
                     Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
@@ -123,6 +129,7 @@ public class Shoot : MonoBehaviour
                     }
                     rb.AddForce(v.normalized * speed, ForceMode2D.Impulse);
                 }
+                seen.Add(projectile, true);
             }
             yield return new WaitForSeconds(this.rate);
         }

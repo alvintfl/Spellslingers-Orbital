@@ -7,7 +7,7 @@ public class EnemyMovement : Movement
     private Transform player;
     private Vector2 enemyMove;
     public string PLAYER_TAG = "Player";
-    public EnemyMovement() : base(2f) { }
+    public EnemyMovement() : base(2.5f) { }
 
     private void Start()
     {
