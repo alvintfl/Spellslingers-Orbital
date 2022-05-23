@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class DeathScreenMenuManager : MonoBehaviour
 {
     public static DeathScreenMenuManager instance;
+
     private void Awake()
     {
         if (instance == null)

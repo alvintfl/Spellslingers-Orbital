@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     {
         ExpManager.LevelUp += Pause;
         Skill.Selected += Resume;
+
     }
 
     public void Resume(object sender, EventArgs e)
