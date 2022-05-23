@@ -7,6 +7,7 @@ public class Enemy : Character
 {
     private float _enemyDamage;
     private int exp;
+    private bool IsCollidedStay;
     public static event EventHandler<DropExpEventArgs> DropExp;
 
     private void Start()
@@ -20,8 +21,35 @@ public class Enemy : Character
         this.exp = exp;
     }
 
-    public float getEnemyDamage() {
-        return this._enemyDamage;
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Player.instance.Health.TakeDamage(this._enemyDamage);
+        }
+    }
+
+    private IEnumerator OnCollisionStay2D(Collision2D collision)
+    {
+        if (!IsCollidedStay && collision.gameObject.CompareTag("Player"))
+        {
+            IsCollidedStay = true;
+            while (IsCollidedStay)
+            {
+                Player.instance.Health.TakeDamage(this._enemyDamage);
+                yield return new WaitForSeconds(1);
+            }
+        }
+        yield return null;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            StopAllCoroutines();
+            IsCollidedStay = false;
+        }
     }
 
     public void OnDropExp()

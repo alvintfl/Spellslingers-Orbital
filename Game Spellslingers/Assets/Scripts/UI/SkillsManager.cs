@@ -12,7 +12,6 @@ public class SkillsManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Starting");
         GameObject[] skillPrefabs = Resources.LoadAll<GameObject>("Skills/");
         this.skillsLibrary = new List<GameObject>();
         for (int i = 0; i < skillPrefabs.Length; i++)
@@ -23,7 +22,6 @@ public class SkillsManager : MonoBehaviour
                 (sender, e) => this.skillsLibrary.Remove(skillObject);
             this.skillsLibrary.Add(skillObject);
         }
-        Debug.Log("Ending");
     }
 
     private void Start()
@@ -37,7 +35,6 @@ public class SkillsManager : MonoBehaviour
 
     private void GenerateSkills(object sender, EventArgs e)
     {
-        Debug.Log("Generating");
         //Fisher-Yates shuffle
         Random random = new Random();
         for (int i = this.skillsLibrary.Count - 1; i > 0; i--)
@@ -75,7 +72,6 @@ public class SkillsManager : MonoBehaviour
             }
         }
         OnSkillGenerated(EventArgs.Empty);
-        Debug.Log("End-Generating");
     }
 
     private void OnDisable()

@@ -10,11 +10,13 @@ public class ExpManager : MonoBehaviour
     public event EventHandler GainMaxExp;
     public event EventHandler GainExp;
 
-    private int maxExp = 1;
-    private int exp = 0;
+    private int maxExp;
+    private int exp;
 
     private void Start()
     {
+        this.exp = 0;
+        this.maxExp = 5;
         ExpManager.LevelUp += IncreaseMaxExp;
         Enemy.DropExp += AddExp;
     }
@@ -59,13 +61,14 @@ public class ExpManager : MonoBehaviour
     public void IncreaseMaxExp(object sender, EventArgs e)
     {
         this.exp -= this.maxExp;
-        this.maxExp += 1;
+        this.maxExp = (int) (this.maxExp * 1.2);
         OnGainMaxExp(EventArgs.Empty);
     }
 
     public void AddExp(object sender, DropExpEventArgs e)
     {
         this.exp += e.Exp;
+        Debug.Log(this.maxExp);
         OnGainExp(EventArgs.Empty); 
     }
 }

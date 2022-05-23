@@ -7,7 +7,7 @@ using UnityEngine.Pool;
 public abstract class Projectile : MonoBehaviour
 {
     private Transform firePoint;
-    private float speed;
+    public float speed;
     private int maxRange = 20;
     public event EventHandler Collided;
 
@@ -42,7 +42,10 @@ public abstract class Projectile : MonoBehaviour
 
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        OnCollided(EventArgs.Empty);
+        if (gameObject.activeSelf)
+        {
+            OnCollided(EventArgs.Empty);
+        }
     }
 
     protected virtual void OnCollided(EventArgs e)

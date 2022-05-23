@@ -33,7 +33,6 @@ public class Health : MonoBehaviour
     public float MaxHealth { get { return maxHealth; }  set { this.maxHealth = value;  } }
     public virtual void TakeDamage(float damage)
     {
-        Debug.Log("taking dmg");
         currentHealth -= damage;
         OnHealthChange(EventArgs.Empty);
     }

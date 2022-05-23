@@ -11,8 +11,8 @@ public class ExpUI : MonoBehaviour
 
     private void Start()
     {
-        this.slider.value = 0;
-        this.slider.maxValue = 1;
+        this.slider.value = this.expManager.Exp;
+        this.slider.maxValue = this.expManager.MaxExp;
         this.expManager.GainMaxExp += UpdateMaxExp;
         this.expManager.GainExp += UpdateExp;
     }
