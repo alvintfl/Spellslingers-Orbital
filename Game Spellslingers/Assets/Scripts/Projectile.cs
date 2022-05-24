@@ -6,9 +6,9 @@ using UnityEngine.Pool;
 
 public abstract class Projectile : MonoBehaviour
 {
-    private Transform firePoint;
+    public Transform firePoint;
     public float speed;
-    private int maxRange = 20;
+    public int maxRange = 20;
     public event EventHandler Collided;
 
     public Projectile(float speed)
@@ -30,7 +30,7 @@ public abstract class Projectile : MonoBehaviour
     public Transform FirePoint { set { this.firePoint = value; } }
 
 
-    private void AtMaxRange()
+    public virtual void AtMaxRange()
     {
         if (this.firePoint != null && gameObject.activeSelf && 
                 (Math.Abs(gameObject.transform.position.x - this.firePoint.position.x) > this.maxRange ||
@@ -40,7 +40,7 @@ public abstract class Projectile : MonoBehaviour
         }
     }
 
-    public virtual void OnCollisionEnter2D(Collision2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (gameObject.activeSelf)
         {
