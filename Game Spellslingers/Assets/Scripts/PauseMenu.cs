@@ -8,18 +8,28 @@ public class PauseMenu : MonoBehaviour
 {
     public void Start()
     {
-        ExpManager.LevelUp += (sender, e) => Pause();
-        Skill.Selected += (sender, e) => Resume();
-        //Player.instance.Health.DiedInfo += Pause;
-        SceneManager.sceneLoaded += (scene, mode) => Resume();
+        ExpManager.LevelUp += Pause;
+        Skill.Selected += Resume;
+        SceneManager.sceneLoaded += Resume;
     }
 
-    public void Resume()
+    public void OnDisable()
+    {
+        ExpManager.LevelUp -= Pause;
+        Skill.Selected -= Resume;
+        SceneManager.sceneLoaded -= Resume;
+    }
+
+    public void Resume(object sender, EventArgs e)
+    {
+        Time.timeScale = 1f;
+    }
+    public void Resume(Scene scene, LoadSceneMode mode)
     {
         Time.timeScale = 1f;
     }
 
-    public void Pause()
+    public void Pause(object sender, EventArgs e)
     {
         Time.timeScale = 0f;
     }

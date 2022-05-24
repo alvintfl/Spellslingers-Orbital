@@ -19,6 +19,7 @@ public class ExpManager : MonoBehaviour
         this.maxExp = 5;
         ExpManager.LevelUp += IncreaseMaxExp;
         Enemy.DropExp += AddExp;
+        Player.instance.Health.DiedInfo += StopExp;
     }
 
     private void Update()
@@ -30,6 +31,7 @@ public class ExpManager : MonoBehaviour
     {
         ExpManager.LevelUp -= IncreaseMaxExp;
         Enemy.DropExp -= AddExp;
+        Player.instance.Health.DiedInfo -= StopExp;
     }
 
     private void IsLevelUp()
@@ -70,5 +72,10 @@ public class ExpManager : MonoBehaviour
         this.exp += e.Exp;
         Debug.Log(this.maxExp);
         OnGainExp(EventArgs.Empty); 
+    }
+
+    private void StopExp()
+    {
+        OnDisable();
     }
 }
