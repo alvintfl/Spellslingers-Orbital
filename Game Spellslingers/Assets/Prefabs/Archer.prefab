@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 8148727754313355653}
   - component: {fileID: 2221691645503362054}
   - component: {fileID: -177557709795728106}
+  - component: {fileID: -7705816388539365747}
   m_Layer: 8
   m_Name: Archer
   m_TagString: Player
@@ -221,3 +222,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+--- !u!114 &-7705816388539365747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489601786894410487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0349b59b2a9dc747bdd08dd69dc853e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
