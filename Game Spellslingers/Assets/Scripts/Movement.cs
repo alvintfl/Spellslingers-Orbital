@@ -5,16 +5,12 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private Animator anim;
+    [SerializeField] private float moveSpeed;
+
     private Rigidbody2D rb;
     private SpriteRenderer sr;
 
     private Vector2 movement;
-    private float moveSpeed = 10;
-
-    public Movement(float moveSpeed)
-    {
-        this.moveSpeed = moveSpeed;
-    }
 
     private void Awake()
     {
@@ -30,7 +26,10 @@ public class Movement : MonoBehaviour
 
     public virtual void Update()
     {
-        AnimateMovement();
+        if (this.anim != null)
+        {
+            AnimateMovement();
+        }
     }
 
     public virtual void FixedUpdate()
@@ -72,8 +71,7 @@ public class Movement : MonoBehaviour
         this.anim.SetFloat("Speed", this.movement.sqrMagnitude);
     }
 
-
-    public virtual void UpdatePosition()
+    public void UpdatePosition()
     {
         rb.MovePosition(this.rb.position + 
             this.movement.normalized * this.moveSpeed * Time.fixedDeltaTime);

@@ -24,7 +24,6 @@ public class Shoot : MonoBehaviour
         this.projectileSpacing = 0.2f;
         this.projectilePool = new ObjectPool<GameObject>(
         () => {
-            Debug.Log("Making one arrow");
             GameObject projectileObject = Instantiate(projectilePrefab);
             Projectile projectile = projectileObject.GetComponent<Projectile>();
             projectile.Collided +=
@@ -37,11 +36,17 @@ public class Shoot : MonoBehaviour
         x => Destroy(x),
         false, this.poolSize, this.poolSize + 1);
 
+        Player.instance.Health.DiedInfo += StopFiring;
         StartCoroutine("Fire");
     }
     private void Update()
     {
         UpdateLastFirePoint();
+    }
+
+    private void OnDestroy()
+    {
+        Player.instance.Health.DiedInfo -= StopFiring;
     }
 
     private IEnumerator Fire()
@@ -144,6 +149,11 @@ public class Shoot : MonoBehaviour
             this.lastFirePoint[0] = x;
             this.lastFirePoint[1] = y;
         }
+    }
+
+    private void StopFiring()
+    {
+        StopAllCoroutines();
     }
 
     public void AddProjectiles()

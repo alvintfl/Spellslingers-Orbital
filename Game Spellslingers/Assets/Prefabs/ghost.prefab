@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 894202517894858281}
   - component: {fileID: 2105309371113050797}
   - component: {fileID: 4079560681455299224}
-  - component: {fileID: 9178322468591829936}
+  - component: {fileID: 8958660910977612165}
   - component: {fileID: 8766874865652809519}
   m_Layer: 7
   m_Name: ghost
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe462f2ead95df44381cd0a84e96ae01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9178322468591829936
+--- !u!114 &8958660910977612165
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 894202517894858282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55aeccb2892ea114abe01c926fc8660f, type: 3}
+  m_Script: {fileID: 11500000, guid: c2fe0734887d61f4fb0dbfb240a10168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 30
@@ -152,4 +152,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
-  PLAYER_TAG: Player
+  moveSpeed: 2.5

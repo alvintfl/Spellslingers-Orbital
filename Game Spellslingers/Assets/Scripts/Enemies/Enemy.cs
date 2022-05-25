@@ -10,7 +10,7 @@ public class Enemy : Character
     private bool IsCollidedStay;
     public static event EventHandler<DropExpEventArgs> DropExp;
 
-    private void Start()
+    public virtual void Start()
     {
         this.Health.DiedInfo += OnDropExp;
     }
@@ -21,7 +21,7 @@ public class Enemy : Character
         this.exp = exp;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -57,6 +57,11 @@ public class Enemy : Character
         DropExpEventArgs args = new DropExpEventArgs();
         args.Exp = this.exp;
         DropExp?.Invoke(this, args);
+        Die();
+    }
+
+    public virtual void Die()
+    {
         Destroy(gameObject);
     }
 }

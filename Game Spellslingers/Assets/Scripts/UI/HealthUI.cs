@@ -42,7 +42,7 @@ public class HealthUI : MonoBehaviour
         healthbarCanvas.transform.SetParent(en.transform);
         healthbarCanvas.transform.position = en.transform.position;
         healthbarCanvas.transform.position += new Vector3(0, -1, 0);
-        EnemyHealth enemyHealth = en.GetComponent<EnemyHealth>();
+        Health enemyHealth = en.GetComponent<Health>();
         enemyHealthbar.SetMaxHealth(enemyHealth.MaxHealth);
         enemyHealthbar.SetHealth(enemyHealth.MaxHealth);
         enemyHealth.HealthChange +=
