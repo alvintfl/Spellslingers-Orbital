@@ -10,14 +10,8 @@ public class Enemy : Character
     private bool IsCollidedStay;
     public static event EventHandler<DropExpEventArgs> DropExp;
 
-    private GameObject playerObject;
-    private Avoidance playerAvoidance;
-
     private void Start()
     {
-        this.playerObject = GameObjectManager.instance.allObjects.Find(x => x.CompareTag("Player"));
-        this.playerAvoidance = playerObject.GetComponent<Player>().Avoidance;
-
         this.Health.DiedInfo += OnDropExp;
     }
 
@@ -29,10 +23,9 @@ public class Enemy : Character
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print(playerAvoidance.getAvoidChance());
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (!playerAvoidance.avoidRoll())
+            if (!Player.instance.Avoidance.avoidRoll())
             {
                 Player.instance.Health.TakeDamage(this._enemyDamage);
             }
@@ -46,7 +39,7 @@ public class Enemy : Character
             IsCollidedStay = true;
             while (IsCollidedStay)
             {
-                if (!playerAvoidance.avoidRoll()) 
+                if (!Player.instance.Avoidance.avoidRoll()) 
                 { 
                     Player.instance.Health.TakeDamage(this._enemyDamage);
                 }

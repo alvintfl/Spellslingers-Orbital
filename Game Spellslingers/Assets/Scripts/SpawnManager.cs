@@ -4,80 +4,104 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _enemies;
+    [SerializeField] private List<GameObject> _enemies;
     [SerializeField] private Camera _camera;
-    [SerializeField] private int _offsetX;
-    [SerializeField] private int _offsetY;
+    [SerializeField] private List<GameObject> second_wave;
+    //[SerializeField] private int _offsetX;
+    //[SerializeField] private int _offsetY;
+    private int count;
+    private int[] directions;
+    private bool isNextWave;
 
     GameObject _spawnedEnemy;
 
-    private int _randomX;
-    private int _randomY;
-    private bool next;
+    //private int _randomX;
+    //private int _randomY;
 
     public delegate void SpawnDelegate(GameObject enemy);
     public static event SpawnDelegate spawned;
 
-    void Start()
+    private void Start()
     {
+        this.count = 0;
+        this.directions = new int[] { 0, 1, 2, 3 };
+        this.isNextWave = false;
         StartCoroutine(Spawn());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //Debug.Log(Time.timeSinceLevelLoad);
-        if (!next && Time.timeSinceLevelLoad > 10  )
-        {
-            next = true;
-            //StartCoroutine(Spawn());
-        }
-
-        
+        StartNextWave();
     }
-    // when i spawn enemies , healthUi listens create hp bar
-
-
 
     IEnumerator Spawn()
     {
+        if (count % 4 == 0)
+        {
+            //Fisher-Yates shuffle
+            for (int i = directions.Length - 1; i > 0; i--)
+            {
+                int j = Random.Range(0, i + 1);
+                int temp = this.directions[i];
+                this.directions[i] = this.directions[j];
+                this.directions[j] = temp;
+            }
+        }
         while (true)
         {
-            if (Time.timeSinceLevelLoad<40)
+            if (Time.timeSinceLevelLoad<90)
             {
-                yield return new WaitForSeconds(Random.Range(1, 5));
+                yield return new WaitForSeconds(Random.Range(2, 5));
             }
             else
             {
-                yield return new WaitForSeconds(Random.Range(0.5f, 2));
+                yield return new WaitForSeconds(Random.Range(1, 3));
             }
-            //yield return new WaitForSeconds(Random.Range(1, 5));
-            int randomEnemyID = Random.Range(0, _enemies.Length);
-            Vector2 position = GetRandomCoordinates();
+            int randomEnemyID = Random.Range(0, _enemies.Count);
+            int direction = this.directions[count % 4];
+            Vector2 coords = direction == 0
+                ? LeftSpawn() : direction == 1
+                ? RightSpawn() : direction == 2
+                ? TopSpawn() : BottomSpawn();
+            Vector2 position = _camera.ScreenToWorldPoint(coords);
             _spawnedEnemy = Instantiate(_enemies[randomEnemyID], position, Quaternion.identity) as GameObject;
             spawned(_spawnedEnemy);
+            count++;
         }
     }
 
-    Vector2 GetRandomCoordinates() {
-        /*
-        _randomX = Random.Range(0 + _offsetX, Screen.width + _offsetX);
-        _randomY = Random.Range(0 + _offsetY, Screen.height + _offsetY);
-        Vector2 coords = new Vector2(_randomX, _randomY);
-        */
-        int x = Screen.width / 2;
-        int y = Screen.height / 2;
-        _randomX = Random.Range(-1, 2);
-        _randomY = Random.Range(-1, 2);
-        while (_randomX == 0 && _randomY == 0)
+    private void StartNextWave()
+    {
+        if (Time.timeSinceLevelLoad > 90 && isNextWave == false)
         {
-            _randomX = Random.Range(-1, 2);
-            _randomY = Random.Range(-1, 2);
+            this.isNextWave = true;
+            this._enemies.AddRange(this.second_wave);
         }
-        x += _randomX == 0 ? 0 : _randomX == 1 ? x : -x;
-        y += _randomY == 0 ? 0 : _randomY == 1 ? y : -y;
-        Vector2 coords = new Vector2(x, y);
-        Vector2 screenToWorldPosition = _camera.ScreenToWorldPoint(coords);
-        return screenToWorldPosition;
+    }
+
+    Vector2 LeftSpawn()
+    {
+        int x = 0;
+        int y = Random.Range(0, Screen.height);
+        return new Vector2(x, y);
+    }
+    Vector2 RightSpawn()
+    {
+        int x = Screen.width;
+        int y = Random.Range(0, Screen.height);
+        return new Vector2(x, y);
+    }
+    Vector2 TopSpawn()
+    {
+        int x = Random.Range(0, Screen.width);
+        int y = Screen.height;
+        return new Vector2(x, y);
+    }
+
+    Vector2 BottomSpawn()
+    {
+        int x = Random.Range(0, Screen.width);
+        int y = 0;
+        return new Vector2(x, y);
     }
 }

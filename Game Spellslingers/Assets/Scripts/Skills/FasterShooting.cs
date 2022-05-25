@@ -10,7 +10,7 @@ public class FasterShooting : Skill
     public override void Start()
     {
         base.Start();
-        this.shoot = PlayerObject.GetComponent<Shoot>();
+        this.shoot = Player.instance.gameObject.GetComponent<Shoot>();
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);

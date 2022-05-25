@@ -13,12 +13,12 @@ public class Entrench : Skill
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);
-            Health playerHealth = PlayerObject.GetComponent<Player>().Health;
+            Health playerHealth = Player.instance.Health;
             int increase = 20;
             playerHealth.MaxHealth += increase;
             playerHealth.CurrentHealth += increase;
 
-            Avoidance playerAvoidance = PlayerObject.GetComponent<Player>().Avoidance;
+            Avoidance playerAvoidance = Player.instance.Avoidance;
             playerAvoidance.setAvoidChance(playerAvoidance.getAvoidChance() + 3);
         });
     }

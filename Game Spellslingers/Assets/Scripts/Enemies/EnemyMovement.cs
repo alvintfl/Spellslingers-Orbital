@@ -12,8 +12,7 @@ public class EnemyMovement : Movement
 
     private void MoveToPlayer()
     {
-        Vector3 direction = GameObjectManager.instance.allObjects
-            .Find(x => x.CompareTag("Player")).gameObject.transform.position - transform.position;
+        Vector3 direction = Player.instance.gameObject.transform.position - transform.position;
         // for rotation
         // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         direction.Normalize();

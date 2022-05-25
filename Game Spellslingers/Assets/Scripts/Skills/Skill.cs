@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public abstract class Skill : MonoBehaviour 
 {
-    private GameObject playerObject;
     private Button button;
     private int level = 1;
     private int maxLevel = 1;
@@ -22,11 +21,9 @@ public abstract class Skill : MonoBehaviour
 
     public virtual void Start()
     {
-        this.playerObject = GameObjectManager.instance.allObjects.Find(x => x.CompareTag("Player"));
         this.button = gameObject.GetComponent<Button>();
     }
 
-    public GameObject PlayerObject { get { return this.playerObject; } }
     public Button Button { get { return this.button; } }
 
     protected virtual void OnSelected(EventArgs e)

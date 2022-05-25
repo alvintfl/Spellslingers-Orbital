@@ -12,7 +12,7 @@ public class Quickstep : Skill
         Button.onClick.AddListener(() =>
          {
              OnSelected(EventArgs.Empty);
-             Movement player = PlayerObject.GetComponent<Player>().Movement;
+             Movement player = Player.instance.Movement;
              float moveSpeedIncrease = player.GetMoveSpeed() * 0.03f;
              player.SetMoveSpeed(moveSpeedIncrease);
          }

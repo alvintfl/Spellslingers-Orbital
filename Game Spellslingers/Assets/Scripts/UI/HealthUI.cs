@@ -25,7 +25,7 @@ public class HealthUI : MonoBehaviour
     {
         GameObject healthbarCanvas = Instantiate(healthbarCanvasPrefab);
         this.healthbar = healthbarCanvas.GetComponentInChildren<HealthBar>();
-        GameObject playerObject = GameObjectManager.instance.allObjects.Find(x => x.CompareTag("Player"));
+        GameObject playerObject = Player.instance.gameObject;
         healthbarCanvas.transform.SetParent(playerObject.transform);
         healthbarCanvas.transform.position = playerObject.transform.position;
         healthbarCanvas.transform.position += new Vector3(0, -1, 0);

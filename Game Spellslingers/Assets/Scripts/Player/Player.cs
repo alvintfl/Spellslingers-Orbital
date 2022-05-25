@@ -17,7 +17,6 @@ public class Player : Character
         else
         {
             instance = this;
-            gameObject.AddComponent<GameObjectAutoAdd>();
         }
     }
 }
