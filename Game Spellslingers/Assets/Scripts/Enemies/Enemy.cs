@@ -70,6 +70,11 @@ public class Enemy : Character
         DropExpEventArgs args = new DropExpEventArgs();
         args.Exp = this.exp;
         DropExp?.Invoke(this, args);
+        Die();
+    }
+
+    public virtual void Die()
+    {
         Destroy(gameObject);
     }
 }

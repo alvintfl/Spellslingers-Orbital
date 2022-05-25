@@ -51,7 +51,10 @@ public class Health : MonoBehaviour
 
     public virtual void AnimateDeath()
     {
-        this.anim.SetTrigger("Death");
+        if (this.anim != null)
+        {
+            this.anim.SetTrigger("Death");
+        }
     }
 
     protected virtual void CheckStatus() 

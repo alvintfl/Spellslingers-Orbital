@@ -4,30 +4,20 @@ using UnityEngine;
 
 public class EnemyMovement : Movement
 {
-    private Transform player;
-    private Vector2 enemyMove;
-    public string PLAYER_TAG = "Player";
-    public EnemyMovement() : base(2.5f) { }
-
-    private void Start()
-    {
-        player = GameObject.FindWithTag(PLAYER_TAG).transform;
-    }
-
     public override void Update()
     {
-        Vector3 direction = player.position - transform.position;
+        MoveToPlayer();
+        base.Update();
+    }
+
+    private void MoveToPlayer()
+    {
+        Vector3 direction = GameObjectManager.instance.allObjects
+            .Find(x => x.CompareTag("Player")).gameObject.transform.position - transform.position;
         // for rotation
         // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         direction.Normalize();
-        enemyMove = direction;
-    }
-
-    public override void FixedUpdate()
-    {
-        moveEnemy(enemyMove);
-    }
-    void moveEnemy(Vector2 direction) {
-        this.GetRb().MovePosition((Vector2)transform.position + (direction * this.GetMoveSpeed() * Time.deltaTime));
+        SetX(direction.x);
+        SetY(direction.y);  
     }
 }
