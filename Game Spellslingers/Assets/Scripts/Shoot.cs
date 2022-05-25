@@ -15,8 +15,12 @@ public class Shoot : MonoBehaviour
     private float[] lastFirePoint;
     private float projectileSpacing;
 
+    private Vector3 target;
+    public GameObject playerObject;
+
     private void Start()
     {
+        this.playerObject = Player.instance.gameObject;
         this.poolSize = 16;
         this.rate = 2f;
         this.lastFirePoint = new float[] {0,0};
@@ -73,66 +77,20 @@ public class Shoot : MonoBehaviour
                     float coordinate = (float) (Math.Ceiling((double) i / 2) * this.projectileSpacing);
                     coordinate = i % 2 == 0 ? coordinate : -1 * coordinate;
 
-                    float x = Input.GetAxisRaw("Horizontal");
-                    float y = Input.GetAxisRaw("Vertical");
-                    if (x == 0 && y == 0)
-                    {
-                        x = lastFirePoint[0];
-                        y = lastFirePoint[1];
-                    }
-                    if (y > 0)
-                    {
-                        if (x > 0)
-                        {
-                            projectile.transform.eulerAngles = new Vector3(0, 0, 270f);
-                            v = new Vector3(1, 1, 0);
-                        }
-                        else if (x < 0)
-                        {
-                            projectile.transform.eulerAngles = new Vector3(0, 0, 360f);
-                            v = new Vector3(-1, 1, 0);
-                        }
-                        else
-                        {
-                            projectile.transform.eulerAngles = new Vector3(0, 0, 315f);
-                            v = new Vector3(0, 1, 0);
-                        }
-                        projectile.transform.position += new Vector3((float) coordinate, 0, 0);
-                    }
-                    else if (y < 0)
-                    {
-                        if (x > 0)
-                        {
-                            projectile.transform.eulerAngles = new Vector3(0, 0, 180f);
-                            v = new Vector3(1, -1, 0);
-                        }
-                        else if (x < 0)
-                        {
-                            projectile.transform.eulerAngles = new Vector3(0, 0, 90f);
-                            v = new Vector3(-1, -1, 0);
-                        }
-                        else
-                        {
-                            projectile.transform.eulerAngles = new Vector3(0, 0, 135f);
-                            v = new Vector3(0, -1, 0);
-                        }
-                        projectile.transform.position += new Vector3((float) coordinate, 0, 0);
-                    }
-                    else
-                    {
-                        if (x >= 0)
-                        {
-                            projectile.transform.eulerAngles = new Vector3(0, 0, 225f);
-                            v = new Vector3(1, 0, 0);
-                        }
-                        else if (x < 0)
-                        {
-                            projectile.transform.eulerAngles = new Vector3(0, 0, 45f);
-                            v = new Vector3(-1, 0, 0);
-                        }
-                        projectile.transform.position += new Vector3(0, (float) coordinate, 0);
-                    }
-                    rb.AddForce(v.normalized * speed, ForceMode2D.Impulse);
+
+                    target = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
+                        Input.mousePosition.y, transform.position.z));
+
+                    Vector3 difference = target - playerObject.transform.position;
+                    float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+                    float distance = difference.magnitude;
+                    Vector2 direction = difference / distance;
+                    direction.Normalize();
+
+                    projectile.transform.rotation = Quaternion.Euler(0, 0, rotationZ + 220);
+                    projectile.transform.position = playerObject.transform.position;
+                    rb.velocity = direction * 20f;
                 }
                 seen.Add(projectile, true);
             }
