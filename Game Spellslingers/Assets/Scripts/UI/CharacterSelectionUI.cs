@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class GameController : MonoBehaviour
+public class CharacterSelectionUI : MonoBehaviour
 {
-    public static GameController instance;
+    public static CharacterSelectionUI instance;
 
     [SerializeField]
     private GameObject[] characters;
 
 
-    public int _charIndex;
+    private int _charIndex;
     public int CharIndex
     {
         get { return _charIndex; }

@@ -598,7 +598,7 @@ GameObject:
   - component: {fileID: 2025755114}
   - component: {fileID: 2025755113}
   m_Layer: 0
-  m_Name: GameController
+  m_Name: CharacterSelectionUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -618,7 +618,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characters:
   - {fileID: 1489601786894410487, guid: ade9930e2c880d6468d1edc267f55441, type: 3}
-  _charIndex: 0
 --- !u!4 &2025755114
 Transform:
   m_ObjectHideFlags: 0
