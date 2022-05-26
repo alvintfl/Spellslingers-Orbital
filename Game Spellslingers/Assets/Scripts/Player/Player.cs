@@ -11,6 +11,7 @@ using UnityEngine;
 public class Player : Character
 {
     public static Player instance;
+    public string playerClass;
 
     public override void Awake()
     {

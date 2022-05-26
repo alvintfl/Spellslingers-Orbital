@@ -21,6 +21,9 @@ public class Quickstep : Skill
              Movement player = Player.instance.Movement;
              float moveSpeedIncrease = player.GetMoveSpeed() * 0.03f;
              player.SetMoveSpeed(moveSpeedIncrease);
+
+             Avoidance playerAvoidance = Player.instance.Avoidance;
+             playerAvoidance.setAvoidChance(playerAvoidance.getAvoidChance() + 5);
          }
          );
     }

@@ -13,7 +13,7 @@ using UnityEngine.UI;
  */
 public class Entrench : Skill
 {
-    public Entrench() : base(10) { }
+    public Entrench() : base(5) { }
     public override void Start()
     { 
         base.Start();
