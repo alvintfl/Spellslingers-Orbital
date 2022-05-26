@@ -31,7 +31,7 @@ public class Health : MonoBehaviour
     }
 
     public float MaxHealth { get { return maxHealth; }  set { this.maxHealth = value;  } }
-    public virtual void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         OnHealthChange(EventArgs.Empty);
@@ -41,7 +41,7 @@ public class Health : MonoBehaviour
         HealthChange?.Invoke(this, e);
         CheckStatus();
     }
-    public void DiesEvent()
+    private void DiesEvent()
     {
         // check function is subscribed
         if (DiedInfo != null)
@@ -49,7 +49,7 @@ public class Health : MonoBehaviour
             DiedInfo();
     }
 
-    public virtual void AnimateDeath()
+    private void AnimateDeath()
     {
         if (this.anim != null)
         {

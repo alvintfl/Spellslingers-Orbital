@@ -32,7 +32,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public virtual void FixedUpdate()
+    private void FixedUpdate()
     {
         UpdatePosition();
     }
@@ -56,7 +56,7 @@ public class Movement : MonoBehaviour
         return this.rb;
     }
 
-    public void AnimateMovement()
+    private void AnimateMovement()
     {
         if (this.movement.x > 0) 
         {
@@ -71,7 +71,7 @@ public class Movement : MonoBehaviour
         this.anim.SetFloat("Speed", this.movement.sqrMagnitude);
     }
 
-    public void UpdatePosition()
+    private void UpdatePosition()
     {
         rb.MovePosition(this.rb.position + 
             this.movement.normalized * this.moveSpeed * Time.fixedDeltaTime);

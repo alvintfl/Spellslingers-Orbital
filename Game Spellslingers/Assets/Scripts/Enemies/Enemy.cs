@@ -58,7 +58,7 @@ public class Enemy : Character
         }
     }
 
-    public void OnDropExp()
+    protected virtual void OnDropExp()
     {
         DropExpEventArgs args = new DropExpEventArgs();
         args.Exp = this.exp;
