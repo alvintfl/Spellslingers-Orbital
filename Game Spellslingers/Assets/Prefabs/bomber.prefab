@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5845486359984789566}
   - component: {fileID: 4108236132171444591}
   - component: {fileID: 2152696839227646429}
-  - component: {fileID: 3340248050093589150}
   - component: {fileID: 5221387229277859841}
   - component: {fileID: 5801511940331099810}
+  - component: {fileID: 5523803684157973330}
   m_Layer: 0
   m_Name: bomber
   m_TagString: Enemy
@@ -135,19 +135,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3340248050093589150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5845486359984789567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 266c730f36499e44c8a5a6d8a8b28194, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 4812981909668149301, guid: 6eec5b73dd649d3468b21aac3f5d7546, type: 3}
 --- !u!114 &5221387229277859841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,3 +162,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 30
+--- !u!114 &5523803684157973330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845486359984789567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c6be39224bb7640bf8396c4fa1fcfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 4812981909668149301, guid: 6eec5b73dd649d3468b21aac3f5d7546, type: 3}
