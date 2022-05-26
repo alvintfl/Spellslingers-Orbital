@@ -4,15 +4,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
+/**
+ * <summary>
+ * A class that is resposible for shooting.
+ * </summary>
+ */
 public class Shoot : MonoBehaviour
 {
+    /**
+     * <summary>
+     * The position the projectile was fired from.
+     * </summary>
+     */
     [SerializeField] private Transform firePoint;
+
+    /**
+     * <summary>
+     * The projectile to fire.
+     * </summary>
+     */
     [SerializeField] private GameObject projectilePrefab;
+
+    /**
+     * <summary>
+     * The object pool that stores all the projectiles.
+     * </summary>
+     */
     private ObjectPool<GameObject> projectilePool;
     private int poolSize;
     private int projectileCount;
     private float rate;
-    private float[] lastFirePoint;
     private float projectileSpacing;
 
     private Vector3 target;
@@ -23,7 +44,6 @@ public class Shoot : MonoBehaviour
         this.playerObject = Player.instance.gameObject;
         this.poolSize = 16;
         this.rate = 2f;
-        this.lastFirePoint = new float[] {0,0};
         this.projectileCount = 1;
         this.projectileSpacing = 0.2f;
         this.projectilePool = new ObjectPool<GameObject>(
@@ -43,16 +63,19 @@ public class Shoot : MonoBehaviour
         Player.instance.Health.DiedInfo += StopFiring;
         StartCoroutine("Fire");
     }
-    private void Update()
-    {
-        UpdateLastFirePoint();
-    }
 
     private void OnDestroy()
     {
         Player.instance.Health.DiedInfo -= StopFiring;
     }
 
+
+    /**
+     * <summary>
+     * Fire a projectile based on where the cursor
+     * is pointing at.
+     * </summary>
+     */
     private IEnumerator Fire()
     {
         while (true)
@@ -95,17 +118,6 @@ public class Shoot : MonoBehaviour
                 seen.Add(projectile, true);
             }
             yield return new WaitForSeconds(this.rate);
-        }
-    }
-
-    public void UpdateLastFirePoint()
-    {
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-        if (!(x == 0 && y == 0))
-        {
-            this.lastFirePoint[0] = x;
-            this.lastFirePoint[1] = y;
         }
     }
 

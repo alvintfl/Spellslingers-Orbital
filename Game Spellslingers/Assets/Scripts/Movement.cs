@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class responsible for movement.
+ * </summary>
+ */
 public class Movement : MonoBehaviour
 {
     [SerializeField] private Animator anim;
@@ -12,6 +17,11 @@ public class Movement : MonoBehaviour
 
     private Vector2 movement;
 
+    /**
+     * <summary>
+     * Adds a rigidbody2D that conforms to 2D physics.
+     * </summary>
+     */
     private void Awake()
     {
         this.rb = gameObject.AddComponent<Rigidbody2D>();
@@ -56,6 +66,12 @@ public class Movement : MonoBehaviour
         return this.rb;
     }
 
+    /**
+     * <summary>
+     * Ensures that the animation faces the correct direction
+     * and to animate based on movement.
+     * </summary>
+     */
     private void AnimateMovement()
     {
         if (this.movement.x > 0) 
@@ -71,6 +87,12 @@ public class Movement : MonoBehaviour
         this.anim.SetFloat("Speed", this.movement.sqrMagnitude);
     }
 
+    /**
+     * <summary>
+     * Ensures that the rigidbody is at the same position 
+     * where the character is at.
+     * </summary>
+     */
     private void UpdatePosition()
     {
         rb.MovePosition(this.rb.position + 

@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class that represents an arrow.
+ * </summary>
+ */
 public class Arrow : Projectile
 {
     private static int damage = 10;

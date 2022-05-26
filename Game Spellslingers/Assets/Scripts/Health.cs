@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class that is responsible for health.
+ * </summary>
+ */
 public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
@@ -21,8 +26,7 @@ public class Health : MonoBehaviour
         this.currentHealth = maxHealth;
     }
 
-    public float CurrentHealth { 
-        get { return currentHealth; } 
+    public float CurrentHealth { get { return currentHealth; } 
         set 
         { 
             this.currentHealth = value;

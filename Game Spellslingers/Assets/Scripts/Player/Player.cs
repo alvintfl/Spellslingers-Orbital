@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class that represents the player.
+ * </summary>
+ */
 public class Player : Character
 {
     public static Player instance;
@@ -10,7 +15,7 @@ public class Player : Character
     public override void Awake()
     {
         base.Awake();
-        if (instance != null && instance != this)
+        if (instance != null)
         {
             Destroy(this);
         }

@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/** 
+ * <summary>
+ * A class that manages 
+ * the gameplay UI.
+ * </summary>
+ */
 public class GameplayUIController : MonoBehaviour
 {
     public static GameplayUIController instance;

@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/** 
+ * <summary>
+ * A class that increases the 
+ * damage of the player's arrows.
+ * </summary>
+ */
 public class ViciousArrows : Skill
 {
     private Shoot shoot;

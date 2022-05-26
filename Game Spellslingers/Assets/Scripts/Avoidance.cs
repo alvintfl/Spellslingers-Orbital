@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class that is responsible for avoidance.
+ * </summary>
+ */
 public class Avoidance : MonoBehaviour
 {
     private int avoidChance = 0;
@@ -32,11 +37,4 @@ public class Avoidance : MonoBehaviour
         print("damage not avoided");
         return false;
     }
-    
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-} // class
+}

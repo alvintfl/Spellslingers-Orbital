@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/** 
+ * <summary>
+ * A class for enemies to manage
+ * their movement.
+ * </summary>
+ */
 public class EnemyMovement : Movement
 {
     public override void Update()

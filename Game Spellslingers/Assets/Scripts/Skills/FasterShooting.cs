@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/** 
+ * <summary>
+ * A class that increases the player's
+ * shooting rate.
+ * </summary>
+ */
 public class FasterShooting : Skill
 {
     private Shoot shoot;

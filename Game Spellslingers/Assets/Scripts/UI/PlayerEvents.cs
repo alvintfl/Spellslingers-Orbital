@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/** 
+ * <summary>
+ * A class that keeps track 
+ * of events that can happen to
+ * the player.
+ * </summary>
+ */
 public class PlayerEvents : MonoBehaviour
 {
     [SerializeField]

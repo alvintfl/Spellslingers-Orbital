@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/** 
+ * <summary>
+ * A class that allows the player's
+ * arrows to pierce enemies.
+ * </summary>
+ */
 public class PiercingShots : Skill
 {
     public PiercingShots() : base(5) { }

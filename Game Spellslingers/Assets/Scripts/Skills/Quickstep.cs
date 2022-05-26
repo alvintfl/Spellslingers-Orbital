@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/** 
+ * <summary>
+ * A class that increases the 
+ * player's movement speed.
+ * </summary>
+ */
 public class Quickstep : Skill
 {
     public Quickstep() : base(5) { }

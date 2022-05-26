@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
+/**
+ * <summary>
+ * A class that represents a projectile.
+ * </summary>
+ */
 public abstract class Projectile : MonoBehaviour
 {
     public Transform firePoint;
@@ -30,6 +35,13 @@ public abstract class Projectile : MonoBehaviour
     public Transform FirePoint { set { this.firePoint = value; } }
 
 
+    /**
+     * <summary>
+     * Returns the projectile back to the object pool
+     * when it is too far away from the original 
+     * position it was fired from.
+     * </summary>
+     */
     public virtual void AtMaxRange()
     {
         if (this.firePoint != null && gameObject.activeSelf && 
