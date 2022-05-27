@@ -21,7 +21,6 @@ public abstract class Projectile : MonoBehaviour
         this.speed = speed; 
     }
 
-
     private void Update()
     {
         AtMaxRange();
@@ -33,7 +32,6 @@ public abstract class Projectile : MonoBehaviour
     public float Speed { get { return this.speed; } }
 
     public Transform FirePoint { set { this.firePoint = value; } }
-
 
     /**
      * <summary>

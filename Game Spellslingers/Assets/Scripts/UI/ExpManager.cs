@@ -81,7 +81,6 @@ public class ExpManager : MonoBehaviour
     public void AddExp(object sender, DropExpEventArgs e)
     {
         this.exp += e.Exp;
-        Debug.Log(this.maxExp);
         OnGainExp(EventArgs.Empty); 
     }
 

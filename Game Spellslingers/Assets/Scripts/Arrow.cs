@@ -12,7 +12,13 @@ public class Arrow : Projectile
 {
     private static int damage = 10;
     private static int pierceMax = 0;
-    
+    private static bool isLifestealActive = false;
+    private bool isLifestealActivated = false;
+
+    private void Start()
+    {
+        gameObject.GetComponent<Lifesteal>().enabled = false;
+    }
     public static int getPierceMax()
     {
         return pierceMax;
@@ -21,7 +27,6 @@ public class Arrow : Projectile
     {
         pierceMax = value;
     }
-
 
     private int pierceCount = 0;
     public Arrow() : base(15f) { }
@@ -35,8 +40,6 @@ public class Arrow : Projectile
     {
         return Arrow.damage;
     }
-
-
 
     public override void OnTriggerEnter2D(Collider2D collision)
     {
@@ -67,6 +70,7 @@ public class Arrow : Projectile
                     }
                 }
             }
+            Lifesteal();
         }
     }
 
@@ -78,6 +82,20 @@ public class Arrow : Projectile
         {
             pierceCount = 0;
             OnCollided(EventArgs.Empty);
+        }
+    }
+
+    public static void ActivateLifeSteal()
+    {
+        Arrow.isLifestealActive = true;
+    }
+
+    private void Lifesteal()
+    {
+        if(!isLifestealActivated && isLifestealActive)
+        {
+            isLifestealActivated = true;
+            gameObject.GetComponent<Lifesteal>().enabled = true;
         }
     }
 }
