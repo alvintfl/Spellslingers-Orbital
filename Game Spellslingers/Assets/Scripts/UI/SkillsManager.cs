@@ -47,7 +47,7 @@ public class SkillsManager : MonoBehaviour
         {
             GameObject skillObject = Instantiate(skillPrefabs[i]);
             skillObject.SetActive(false);
-            skillObject.GetComponent<Skill>().MaxedOut += 
+            skillObject.GetComponentInChildren<Skill>().MaxedOut += 
                 (sender, e) => this.skillsLibrary.Remove(skillObject);
             this.skillsLibrary.Add(skillObject);
         }
