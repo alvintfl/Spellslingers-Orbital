@@ -25,7 +25,6 @@ public class Shoot : MonoBehaviour
         this.rate = 2f;
         this.lastFirePoint = new float[] {0,0};
         this.projectileCount = 1;
-        this.projectileSpacing = 0.2f;
         this.projectilePool = new ObjectPool<GameObject>(
         () => {
             GameObject projectileObject = Instantiate(projectilePrefab);
@@ -71,26 +70,28 @@ public class Shoot : MonoBehaviour
                     projectile.transform.position = this.firePoint.position;
                     Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
                     float speed = projectile.GetComponent<Projectile>().Speed;
-                    Vector3 v = new Vector3(1, 0, 0);
 
                     // Arranging the position of projectiles to be fired all at once.
-                    float coordinate = (float) (Math.Ceiling((double) i / 2) * this.projectileSpacing);
+                    float coordinate = (float) (Math.Ceiling((double) i / 2));
                     coordinate = i % 2 == 0 ? coordinate : -1 * coordinate;
-
 
                     target = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
                         Input.mousePosition.y, transform.position.z));
 
+                    // add rotation for additional arrows
                     Vector3 difference = target - playerObject.transform.position;
                     float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+                    rotationZ += (float)coordinate * 20;
 
                     float distance = difference.magnitude;
+                    
+                    // rotate direction of force added to additional arrows
                     Vector2 direction = difference / distance;
+                    direction = rotate(direction, coordinate * 20 * Mathf.Deg2Rad);
                     direction.Normalize();
-
                     projectile.transform.rotation = Quaternion.Euler(0, 0, rotationZ + 220);
                     projectile.transform.position = playerObject.transform.position;
-                    rb.velocity = direction * 20f;
+                    rb.AddForce(direction * speed, ForceMode2D.Impulse);
                 }
                 seen.Add(projectile, true);
             }
@@ -117,6 +118,7 @@ public class Shoot : MonoBehaviour
     public void AddProjectiles()
     {
         this.projectileCount++;
+        playerObject.GetComponent<Archer>().Projectiles += 1;
     }
 
     public void IncreaseRate(float decrease)
@@ -128,4 +130,13 @@ public class Shoot : MonoBehaviour
     {
         this.projectilePrefab.GetComponent<Projectile>().IncreaseDamage(damage);
     }
+
+    public static Vector2 rotate(Vector2 v, float delta)
+    {
+        return new Vector2(
+            v.x * Mathf.Cos(delta) - v.y * Mathf.Sin(delta),
+            v.x * Mathf.Sin(delta) + v.y * Mathf.Cos(delta)
+        );
+    }
+
 }
