@@ -2,21 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class that spawns enemies.
+ * </summary>
+ */
 public class SpawnManager : MonoBehaviour
 {
+    /**
+     * <summary>
+     * The list of enemies that can be spawned.
+     * </summary>
+     */
     [SerializeField] private List<GameObject> enemies;
-    [SerializeField] private Camera _camera;
+
+    /**
+     * <summary>
+     * Reserve list of enemies to be spawned when 
+     * the player gets stronger.
+     * </summary>
+     */
     [SerializeField] private List<GameObject> secondWave;
-    //[SerializeField] private int _offsetX;
-    //[SerializeField] private int _offsetY;
+    [SerializeField] private Camera _camera;
+
+    /**
+     * <summary>
+     * Current position with respect to the screen
+     * that spawner is spawning in.
+     * </summary>
+     */
     private int count;
+
+    /**
+     * <summary>
+     * An array containing numbers representing top, down, left and right.
+     * </summary>
+     */
     private int[] directions;
     private bool isNextWave;
-
-    GameObject spawnedEnemy;
-
-    //private int _randomX;
-    //private int _randomY;
 
     public delegate void SpawnDelegate(GameObject enemy);
     public static event SpawnDelegate spawned;
@@ -34,6 +57,13 @@ public class SpawnManager : MonoBehaviour
         StartNextWave();
     }
 
+    /**
+     * <summary>
+     * Spawns an enemy every random few seconds. Every 4 enemies
+     * are each spawned on top, bottom, left and right of the screen.
+     * However the order of which position to spawn is random.
+     * </summary>
+     */
     private IEnumerator Spawn()
     {
         if (count % 4 == 0)
@@ -64,7 +94,7 @@ public class SpawnManager : MonoBehaviour
                 ? RightSpawn() : direction == 2
                 ? TopSpawn() : BottomSpawn();
             Vector2 position = _camera.ScreenToWorldPoint(coords);
-            spawnedEnemy = Instantiate(enemies[randomEnemyID], position, Quaternion.identity) as GameObject;
+            GameObject spawnedEnemy = Instantiate(enemies[randomEnemyID], position, Quaternion.identity);
             spawned(spawnedEnemy);
             count++;
         }
@@ -72,7 +102,7 @@ public class SpawnManager : MonoBehaviour
 
     private void StartNextWave()
     {
-        if (Time.timeSinceLevelLoad > 90 && isNextWave == false)
+        if (Time.timeSinceLevelLoad > 50 && isNextWave == false)
         {
             this.isNextWave = true;
             this.enemies.AddRange(this.secondWave);

@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class that represents a character.
+ * </summary>
+ */
 public class Character : MonoBehaviour
 {
     private Movement movement;

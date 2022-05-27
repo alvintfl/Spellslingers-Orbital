@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/** 
+ * <summary>
+ * A class that increases the 
+ * number of projectiles the 
+ * player can shoot.
+ * </summary>
+ */
 public class MoreShots : Skill
 {
     private Shoot shoot;

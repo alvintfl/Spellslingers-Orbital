@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class responsible for creating and updating 
+ * the healthbar for all characters.
+ * </summary>
+ */
 public class HealthUI : MonoBehaviour
 {
     [SerializeField] private GameObject healthbarCanvasPrefab;
@@ -21,6 +27,11 @@ public class HealthUI : MonoBehaviour
         SpawnManager.spawned -= EnemyHealthBar;
     }
 
+    /**
+     * <summary>
+     * Create the player's healthbar.
+     * </summary>
+     */
     private void Start()
     {
         GameObject healthbarCanvas = Instantiate(healthbarCanvasPrefab);
@@ -35,6 +46,12 @@ public class HealthUI : MonoBehaviour
         this.playerHealth.HealthChange += UpdatePlayerHealth;
     }
 
+    /**
+     * <summary>
+     * Create the enemy's healthbar and update it 
+     * each time their health changes.
+     * </summary>
+     */
     void EnemyHealthBar(GameObject en) 
     {
         GameObject healthbarCanvas = Instantiate(enemyHealthbarCanvasPrefab);

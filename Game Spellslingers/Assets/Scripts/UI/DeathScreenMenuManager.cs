@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/** 
+ * <summary>
+ * A class that manages the death
+ * screen UI.
+ * </summary>
+ */
 public class DeathScreenMenuManager : MonoBehaviour
 {
     public static DeathScreenMenuManager instance;
@@ -12,7 +18,6 @@ public class DeathScreenMenuManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-
         }
         else
         {

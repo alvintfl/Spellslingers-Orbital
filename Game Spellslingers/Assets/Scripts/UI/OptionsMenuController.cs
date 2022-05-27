@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/** 
+ * <summary>
+ * A class that manages 
+ * the options menu.
+ * </summary>
+ */
 public class OptionsMenuController : MonoBehaviour
 {
     public static OptionsMenuController instance;

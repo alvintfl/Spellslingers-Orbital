@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/**
+ * <summary>
+ * A class that is responsible for pausing
+ * and resuming the game.
+ * </summary>
+ */
 public class PauseMenu : MonoBehaviour
 {
     public void Start()

@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+ * <summary>
+ * A class representing the
+ * health bar.
+ * </summary>
+ */
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Slider slider;

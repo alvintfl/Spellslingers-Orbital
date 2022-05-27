@@ -4,12 +4,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 
+/**
+ * <summary>
+ * A class that holds all of the skills that
+ * the player has not chosen and generates the 
+ * skills that the player can choose from upon 
+ * leveling up.
+ * </summary>
+ */
 public class SkillsManager : MonoBehaviour
 {
+    /**
+     * <summary>
+     * A list of all player skills.
+     * </summary>
+     */
     private List<GameObject> skillsLibrary;
+
+    /**
+     * <summary>
+     * An array of the 3 skills that a player 
+     * can choose from on leveling up.
+     * </summary>
+     */
     private GameObject[] selectedSkills;
     public event EventHandler SkillsGenerated;
 
+    /**
+     * <summary>
+     * Loads all skills from the resources folder into
+     * the skillsLibrary list and instantiates them.
+     * The skillsLibrary list also subscribes to the maxed out
+     * event of the skills, removing them from the list when
+     * they are maxed out.
+     * </summary>
+     */
     private void Awake()
     {
         GameObject[] skillPrefabs = Resources.LoadAll<GameObject>("Skills/");
@@ -33,6 +62,13 @@ public class SkillsManager : MonoBehaviour
 
     public GameObject[] SelectedSkills { get { return this.selectedSkills; } }
 
+    /**
+     * <summary>
+     * Shuffles the list of skills in skillsLibrary and randomly
+     * select 3 skills without replacement, storing them in 
+     * selectedSkills.
+     * </summary>
+     */
     private void GenerateSkills(object sender, EventArgs e)
     {
         //Fisher-Yates shuffle

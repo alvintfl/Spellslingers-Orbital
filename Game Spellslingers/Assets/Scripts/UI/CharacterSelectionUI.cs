@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+/** 
+ * <summary>
+ * A class that manages the character
+ * selection UI.
+ * </summary>
+ */
 public class CharacterSelectionUI : MonoBehaviour
 {
     public static CharacterSelectionUI instance;

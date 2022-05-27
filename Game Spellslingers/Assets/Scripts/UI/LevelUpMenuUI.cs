@@ -4,12 +4,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/**
+ * <summary>
+ * A class that is responsible for the UI
+ * when the player levels up.
+ * </summary>
+ */
 public class LevelUpMenuUI : MonoBehaviour
 {
     [SerializeField] private GameObject background;
     [SerializeField] private SkillsManager skillsManager;
+
+    /**
+     * <summary>
+     * An array of the 3 skills that a player 
+     * can choose from on leveling up.
+     * </summary>
+     */
     private GameObject[] selectedSkills;
 
+    /**
+     * <summary>
+     * Sets all skills to be a child of this UI.
+     * </summary>
+     */
     private void Start()
     {
         this.skillsManager.SkillsGenerated += DisplaySkills;
@@ -27,6 +45,12 @@ public class LevelUpMenuUI : MonoBehaviour
         Skill.Selected -= ResetSkills;
     }
 
+    /**
+     * <summary>
+     * Displays all the skills in selectedSkills
+     * and their repsective levels.
+     * </summary>
+     */
     private void DisplaySkills (object sender, EventArgs e)
     {
         this.selectedSkills = this.skillsManager.SelectedSkills;

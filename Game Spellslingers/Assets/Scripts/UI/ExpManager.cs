@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/** 
+ * <summary>
+ * A class that manages 
+ * the player's exp.
+ * </summary>
+ */
 public class ExpManager : MonoBehaviour
 {
     public static event EventHandler LevelUp;
@@ -34,6 +40,11 @@ public class ExpManager : MonoBehaviour
         Player.instance.Health.DiedInfo -= StopExp;
     }
 
+    /** 
+     * <summary>
+     * Check if the player has enough exp to level up.
+     * </summary>
+     */
     private void IsLevelUp()
     {
         if (this.exp >= this.maxExp)

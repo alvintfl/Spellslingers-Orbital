@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+ * <summary>
+ * A class resposible for the 
+ * UI for the exp bar.
+ * </summary>
+ */
 public class ExpUI : MonoBehaviour
 {
     [SerializeField] private Slider slider;
