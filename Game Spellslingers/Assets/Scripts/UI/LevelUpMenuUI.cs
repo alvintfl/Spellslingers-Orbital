@@ -35,6 +35,7 @@ public class LevelUpMenuUI : MonoBehaviour
         foreach (GameObject skill in skillsLibrary)
         {
             skill.transform.SetParent(this.transform);
+            skill.GetComponent<RectTransform>().localScale = Vector3.one;
         }
         Skill.Selected += ResetSkills;
     }
@@ -61,9 +62,9 @@ public class LevelUpMenuUI : MonoBehaviour
                 GameObject skill = this.selectedSkills[i];
                 if (skill != null)
                 {
-                    int yCoordinate = i == 0 ? 69 : i == 1 ? -64 : -197;
-                    skill.GetComponent<RectTransform>().anchoredPosition = new Vector2(33, yCoordinate);
+                    skill.transform.SetParent(this.background.transform.GetChild(i));
                     skill.GetComponentsInChildren<TextMeshProUGUI>()[3].text = skill.GetComponent<Skill>().ToString();
+                    skill.SetActive(true);
                 }
             }
         }
@@ -75,6 +76,7 @@ public class LevelUpMenuUI : MonoBehaviour
         foreach (GameObject skill in this.selectedSkills)
         {
             skill.SetActive(false);
+            skill.transform.SetParent(this.transform);
         }
         this.background.SetActive(false);   
     }
