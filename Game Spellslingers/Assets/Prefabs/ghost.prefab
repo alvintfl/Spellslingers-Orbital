@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4079560681455299224}
   - component: {fileID: 8958660910977612165}
   - component: {fileID: 8766874865652809519}
+  - component: {fileID: 92952564983487163}
   m_Layer: 7
   m_Name: ghost
   m_TagString: Enemy
@@ -152,4 +153,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
-  moveSpeed: 2.5
+  moveSpeed: 3
+--- !u!95 &92952564983487163
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894202517894858282}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c913e4cc290f707468995c290974e562, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
