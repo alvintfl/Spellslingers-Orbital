@@ -9,5 +9,5 @@ using UnityEngine;
  */
 public class EnemyBat : Enemy
 {
-    EnemyBat() : base(5.5f, 1) { }
+    EnemyBat() : base(6f, 1) { }
 }
