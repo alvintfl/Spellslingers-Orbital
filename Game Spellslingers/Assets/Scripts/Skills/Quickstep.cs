@@ -19,8 +19,9 @@ public class Quickstep : Skill
          {
              OnSelected(EventArgs.Empty);
              Movement player = Player.instance.Movement;
-             float moveSpeedIncrease = player.GetMoveSpeed() * 0.03f;
-             player.SetMoveSpeed(moveSpeedIncrease);
+             float moveSpeed = player.GetMoveSpeed();
+             float newMoveSpeed = moveSpeed + moveSpeed * 0.03f;
+             player.SetMoveSpeed(newMoveSpeed);
 
              Avoidance playerAvoidance = Player.instance.Avoidance;
              playerAvoidance.setAvoidChance(playerAvoidance.getAvoidChance() + 5);

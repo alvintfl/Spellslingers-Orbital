@@ -3,17 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Preparation : Skill
+public class FrostShots : Skill
 {
-    public Preparation() : base(5) { }
+    public FrostShots() : base(5) { }
     public override void Start()
     {
         base.Start();
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);
-            Arrow.ActivateLifeSteal();
-            Lifesteal.IncreaseHeal(0.05f);
+            Arrow.ActivateFrostArrow();
+            Slow.IncreaseSlow(0.05f);
+            Slow.IncreaseDuration(1f);
         });
     }
 }

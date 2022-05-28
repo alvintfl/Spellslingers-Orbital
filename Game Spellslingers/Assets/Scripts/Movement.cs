@@ -54,7 +54,7 @@ public class Movement : MonoBehaviour
 
     public void SetMoveSpeed(float movespeed)
     {
-        this.moveSpeed += movespeed;
+        this.moveSpeed = movespeed;
     }
 
     public void SetX(float f) { this.movement.x = f; }
@@ -66,12 +66,6 @@ public class Movement : MonoBehaviour
         return this.rb;
     }
 
-    /**
-     * <summary>
-     * Ensures that the animation faces the correct direction
-     * and to animate based on movement.
-     * </summary>
-     */
     private void AnimateMovement()
     {
         if (this.movement.x > 0) 
