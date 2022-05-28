@@ -9,5 +9,5 @@ using UnityEngine;
  */
 public class EnemyAshtoad : Enemy
 {
-    EnemyAshtoad() : base(10f, 3) { }
+    EnemyAshtoad() : base(20f, 3) { }
 }

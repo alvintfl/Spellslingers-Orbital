@@ -16,7 +16,7 @@ public class EnemyMovement : Movement
         base.Update();
     }
 
-    private void MoveToPlayer()
+    public virtual void MoveToPlayer()
     {
         Vector3 direction = Player.instance.gameObject.transform.position - transform.position;
         // for rotation

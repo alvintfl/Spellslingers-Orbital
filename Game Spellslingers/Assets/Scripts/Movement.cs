@@ -9,7 +9,7 @@ using UnityEngine;
  */
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
+    [SerializeField] public Animator anim;
     [SerializeField] private float moveSpeed;
 
     private Rigidbody2D rb;
