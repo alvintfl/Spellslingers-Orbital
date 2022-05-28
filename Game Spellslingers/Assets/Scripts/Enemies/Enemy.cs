@@ -22,7 +22,7 @@ public class Enemy : Character
     private bool IsCollidedStay;
     public static event EventHandler<DropExpEventArgs> DropExp;
 
-    private void Start()
+    public virtual void Start()
     {
         this.Health.DiedInfo += OnDropExp;
     }
