@@ -14,11 +14,11 @@ public class GameplayUIController : MonoBehaviour
     [SerializeField]
     private GameObject omc;
     [SerializeField]
-    private GameObject charSheet;
-    [SerializeField]
     private GameObject optionsButton;
     [SerializeField]
     private GameObject charSheetButton;
+    [SerializeField]
+    private GameObject charSheet;
 
     private void Awake()
     {
@@ -30,6 +30,11 @@ public class GameplayUIController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start() 
+    {
+        
     }
 
     private void Update() {

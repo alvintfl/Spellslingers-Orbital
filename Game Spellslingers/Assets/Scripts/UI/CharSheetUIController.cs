@@ -32,6 +32,7 @@ public class CharSheetUIController : MonoBehaviour
 
     void OnDisable()
     {
+
     }
 
     // Start is called before the first frame update

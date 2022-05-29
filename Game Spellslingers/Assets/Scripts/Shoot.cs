@@ -112,7 +112,7 @@ public class Shoot : MonoBehaviour
                     Vector2 direction = difference / distance;
                     direction = rotate(direction, coordinate * 20 * Mathf.Deg2Rad);
                     direction.Normalize();
-                    projectile.transform.rotation = Quaternion.Euler(0, 0, rotationZ + 220);
+                    projectile.transform.rotation = Quaternion.Euler(0, 0, rotationZ + 180);
                     projectile.transform.position = playerObject.transform.position;
                     rb.AddForce(direction * speed, ForceMode2D.Impulse);
                 }
