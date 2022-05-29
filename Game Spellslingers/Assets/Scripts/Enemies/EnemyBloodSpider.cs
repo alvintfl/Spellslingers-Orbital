@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class EnemyBloodSpider : Enemy
 {
-    EnemyBloodSpider() : base(20f, 1) { }
+    EnemyBloodSpider() : base(10f, 1) { }
 }
