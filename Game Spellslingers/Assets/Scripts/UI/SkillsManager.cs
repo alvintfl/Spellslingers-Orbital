@@ -103,8 +103,11 @@ public class SkillsManager : MonoBehaviour
             for (int i = 0; i < this.skillsLibrary.Count; i++)
             {
                 GameObject skillObject = this.skillsLibrary[i];
-                skillObject.SetActive(true);
-                this.selectedSkills[i] = skillObject;
+                if (skillObject != null)
+                {
+                    skillObject.SetActive(true);
+                    this.selectedSkills[i] = skillObject;
+                }
             }
         }
         OnSkillGenerated(EventArgs.Empty);

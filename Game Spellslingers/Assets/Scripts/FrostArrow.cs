@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class FrostArrow : MonoBehaviour
 {
-    private Slow slow;
-
-    private void Start()
-    {
-        this.slow = gameObject.GetComponent<Slow>();
-    }
+    [SerializeField] private Slow slowPrefab;
 
     public void Slow(Collider2D collision)
     {
-        StartCoroutine(
-            collision.gameObject.GetComponent<Character>().HandleStatusEffect(this.slow));
+        Slow slow = Instantiate(slowPrefab).GetComponent<Slow>();
+        if (collision != null)
+        {
+            StartCoroutine(collision.gameObject
+                .GetComponent<Character>().HandleStatusEffect(slow));
+        }
     }
 }

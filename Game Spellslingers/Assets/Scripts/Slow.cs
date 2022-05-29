@@ -1,40 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slow : MonoBehaviour, IStatusEffect
+public class Slow : StatusEffect
 {
-    private static float slowAmount = 0.9f;
-    private static float duration = 5f;
+    public Slow() : base(0.4f, 2f) { }
 
-    public static void IncreaseSlow(float slow)
+    public override IEnumerator StartEffect(Character character)
     {
-        Slow.slowAmount += slow;
-    }
+        if (character != null)
+        {
+            Activate();
+            float startTime = Time.time;
 
-    public static void IncreaseDuration(float duration)
-    {
-        Slow.duration += duration;
-    }
+            // Slow the character
+            Movement movement = character.Movement;
+            float normalMovespeed = movement.GetMoveSpeed();
+            float slowedMovespeed = normalMovespeed * (1 - Potency);
+            movement.SetMoveSpeed(slowedMovespeed);
 
-    public float GetDuration()
-    {
-        return Slow.duration;
-    }
+            // Wait until slow duration is up or the slow is deactivated
+            yield return new WaitWhile(() => Time.time - startTime < Duration && IsActive());
 
-    //private IEnumerator OnTriggerEnter2D(Collider2D collision)
-    //private void OnTriggerEnter2D(Collider2D collision)
-    public IEnumerator Activate(Character character)
-    {
-        Movement movement = character.Movement;
-        float normalMovespeed = movement.GetMoveSpeed();
-        float slowedMovespeed = normalMovespeed * (1 - Slow.slowAmount);
-        movement.SetMoveSpeed(slowedMovespeed);
-        Debug.Log(movement.GetMoveSpeed());
-        yield return new WaitForSeconds(Slow.duration);
-
-        movement.SetMoveSpeed(normalMovespeed);
-        Debug.Log(movement.GetMoveSpeed());
+            // Set movespeed back to normal
+            movement.SetMoveSpeed(normalMovespeed);
+            Deactivate();
+            OnStatusEffectEnd(EventArgs.Empty);
+        }
         yield return null;
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FrostShots : Skill
 {
-    public FrostShots() : base(5) { }
+    public FrostShots() : base(1) { }
     public override void Start()
     {
         base.Start();
@@ -13,8 +13,6 @@ public class FrostShots : Skill
         {
             OnSelected(EventArgs.Empty);
             Arrow.ActivateFrostArrow();
-            Slow.IncreaseSlow(0.05f);
-            Slow.IncreaseDuration(1f);
         });
     }
 }

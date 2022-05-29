@@ -75,8 +75,11 @@ public class LevelUpMenuUI : MonoBehaviour
     {
         foreach (GameObject skill in this.selectedSkills)
         {
-            skill.SetActive(false);
-            skill.transform.SetParent(this.transform);
+            if (skill != null)
+            {
+                skill.SetActive(false);
+                skill.transform.SetParent(this.transform);
+            }
         }
         this.background.SetActive(false);   
     }

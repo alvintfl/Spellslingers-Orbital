@@ -34,7 +34,7 @@ public class Arrow : Projectile
      * can slow.
      * </summary>
      */
-    private static bool isFrostArrowActive = true;
+    private static bool isFrostArrowActive = false;
 
     private void Awake()
     {
@@ -70,29 +70,23 @@ public class Arrow : Projectile
             {
                 pierceCount = 0;
                 base.OnTriggerEnter2D(collision);
-                if (collision.gameObject != null)
-                {
-                    Health enemyHealth = collision.gameObject.GetComponent<Health>();
-                    if (enemyHealth != null)
-                    {
-                        enemyHealth.TakeDamage(GetDamage());
-                    }
-                }
-            }
-            else
+            } else
             {
                 pierceCount += 1;
-                if (collision.gameObject != null)
+            }
+            if (collision.gameObject != null)
+            {
+                Health enemyHealth = collision.gameObject.GetComponent<Health>();
+                if (enemyHealth != null)
                 {
-                    Health enemyHealth = collision.gameObject.GetComponent<Health>();
-                    if (enemyHealth != null)
+                    enemyHealth.TakeDamage(GetDamage());
+                    if (enemyHealth.CurrentHealth > 0)
                     {
-                        enemyHealth.TakeDamage(GetDamage());
+                        FrostArrow(collision);
                     }
                 }
             }
             Lifesteal();
-            FrostArrow(collision);
         }
     }
 

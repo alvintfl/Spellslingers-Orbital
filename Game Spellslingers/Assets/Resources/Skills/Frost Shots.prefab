@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 3405341542532005906}
   - component: {fileID: 4702032113914425741}
   - component: {fileID: 1293334236020896629}
-  - component: {fileID: 3240512635176221658}
+  - component: {fileID: 3261207253185299122}
   m_Layer: 5
   m_Name: Frost Shots
   m_TagString: Untagged
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5d51d4316c86fa348be20532fb123df1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ae8e89accd255b64dacfb8c2f0b89d3c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ae74ecdf4e3974a9423544857f571d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3240512635176221658
+--- !u!114 &3261207253185299122
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3405341542532005904}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b165b7a9b6c877488f5a2656c46ce30, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e6ea5104010a834fa679fe85050a7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4191870645551326835
@@ -489,9 +489,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '-5% enemy movement speed.
-
-    +1s slow duration.'
+  m_text: "Your arrows now reduce enemy movement speed by \n-40% for 2s."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
