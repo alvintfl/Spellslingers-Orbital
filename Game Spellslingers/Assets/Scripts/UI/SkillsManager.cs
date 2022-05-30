@@ -47,8 +47,10 @@ public class SkillsManager : MonoBehaviour
         {
             GameObject skillObject = Instantiate(skillPrefabs[i]);
             skillObject.SetActive(false);
-            skillObject.GetComponentInChildren<Skill>().MaxedOut += 
+            Skill skill = skillObject.GetComponentInChildren<Skill>();
+            skill.MaxedOut += 
                 (sender, e) => this.skillsLibrary.Remove(skillObject);
+            skill.Reset();
             this.skillsLibrary.Add(skillObject);
         }
     }
@@ -97,12 +99,14 @@ public class SkillsManager : MonoBehaviour
                 seen.Add(j, true);
                 skillObject.SetActive(true);
                 this.selectedSkills[i] = skillObject;
+                //Debug.Log(skillObject.name);
             }
         } else
         {
             for (int i = 0; i < this.skillsLibrary.Count; i++)
             {
                 GameObject skillObject = this.skillsLibrary[i];
+                //Debug.Log(skillObject.name);
                 if (skillObject != null)
                 {
                     skillObject.SetActive(true);

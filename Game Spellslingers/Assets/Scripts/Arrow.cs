@@ -40,6 +40,7 @@ public class Arrow : Projectile
     {
         gameObject.GetComponent<Lifesteal>().enabled = false;
     }
+
     public static int getPierceMax()
     {
         return pierceMax;
@@ -105,6 +106,10 @@ public class Arrow : Projectile
     {
         Arrow.isLifestealActive = true;
     }
+    public static void DeactivateLifeSteal()
+    {
+        Arrow.isLifestealActive = false;
+    }
 
     private void Lifesteal()
     {
@@ -118,6 +123,10 @@ public class Arrow : Projectile
     {
         Arrow.isFrostArrowActive = true;
     }
+    public static void DeactivateFrostArrow()
+    {
+        Arrow.isFrostArrowActive = false;
+    }
 
     private void FrostArrow(Collider2D collision)
     {
@@ -128,5 +137,15 @@ public class Arrow : Projectile
             frostArrow.gameObject.SetActive(true);
             frostArrow.Slow(collision);
         }
+    }
+
+    public static void ResetDamage()
+    {
+        Arrow.damage = 10;
+    }
+
+    public static void ResetPierce()
+    {
+        Arrow.pierceMax = 0;
     }
 }

@@ -17,6 +17,11 @@ public class Lifesteal : MonoBehaviour
         Lifesteal.healAmount += heal;
     }
 
+    public static void Reset()
+    {
+        Lifesteal.healAmount = 0f;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))

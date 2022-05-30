@@ -16,4 +16,10 @@ public class BloodDrinker : Skill
             Lifesteal.IncreaseHeal(0.05f);
         });
     }
+
+    public override void Reset()
+    {
+        Arrow.DeactivateLifeSteal();
+        Lifesteal.Reset();
+    }
 }

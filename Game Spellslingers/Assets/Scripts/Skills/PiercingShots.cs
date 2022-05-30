@@ -22,5 +22,9 @@ public class PiercingShots : Skill
             Arrow.setPierceMax(Arrow.getPierceMax() + 1);
         });
     }
+    public override void Reset()
+    {
+        Arrow.ResetPierce();
+    }
 
 }

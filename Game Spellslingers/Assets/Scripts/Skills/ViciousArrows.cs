@@ -16,11 +16,16 @@ public class ViciousArrows : Skill
     public override void Start()
     {
         base.Start();
+        Arrow.ResetDamage();
         this.shoot = Player.instance.gameObject.GetComponent<Shoot>();
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);
             this.shoot.IncreaseDamage(10);
         });
+    }
+    public override void Reset()
+    {
+        Arrow.ResetDamage();
     }
 }

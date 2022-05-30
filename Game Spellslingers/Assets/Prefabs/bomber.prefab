@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 2152696839227646429}
-  moveSpeed: 4
+  moveSpeed: 6
 --- !u!114 &5801511940331099810
 MonoBehaviour:
   m_ObjectHideFlags: 0

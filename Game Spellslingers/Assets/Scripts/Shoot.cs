@@ -43,7 +43,7 @@ public class Shoot : MonoBehaviour
     {
         this.playerObject = Player.instance.gameObject;
         this.poolSize = 16;
-        this.rate = 2f;
+        this.rate = 1f;
         this.projectileCount = 1;
         this.projectilePool = new ObjectPool<GameObject>(
         () => {
@@ -67,7 +67,6 @@ public class Shoot : MonoBehaviour
     {
         Player.instance.Health.DiedInfo -= StopFiring;
     }
-
 
     /**
      * <summary>

@@ -32,6 +32,8 @@ public abstract class Skill : MonoBehaviour
         this.button = gameObject.GetComponent<Button>();
     }
 
+    public virtual void Reset() { }
+
     public Button Button { get { return this.button; } }
 
     /**

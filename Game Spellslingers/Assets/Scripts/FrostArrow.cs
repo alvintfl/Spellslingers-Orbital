@@ -11,8 +11,18 @@ public class FrostArrow : MonoBehaviour
         Slow slow = Instantiate(slowPrefab).GetComponent<Slow>();
         if (collision != null)
         {
-            StartCoroutine(collision.gameObject
-                .GetComponent<Character>().HandleStatusEffect(slow));
+            try
+            {
+                StartCoroutine(collision.gameObject
+                    .GetComponent<Character>().HandleStatusEffect(slow));
+            } catch(MissingReferenceException)
+            {
+                Debug.Log("Enemy died before slow activated.");
+            }
+            /*
+            collision.gameObject
+                .GetComponent<Character>().HandleStatusEffect(slow);
+            */
         }
     }
 }

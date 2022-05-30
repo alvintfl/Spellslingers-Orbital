@@ -28,21 +28,36 @@ public class Character : MonoBehaviour
 
     public IEnumerator HandleStatusEffect(StatusEffect statusEffect)
     {
-        StatusEffect existingStatusEffect = this.statusEffects.Find(x => x.Equals(statusEffect));
-        if (existingStatusEffect != null)
+        List<StatusEffect> existingStatusEffects = this.statusEffects.FindAll(x => x.Equals(statusEffect));
+        if (existingStatusEffects.Count != 0)
         {
-            statusEffect.Potency = 
-                Math.Max(statusEffect.Potency, existingStatusEffect.Potency);
-            existingStatusEffect.Deactivate();
-            yield return new WaitUntil(() => !existingStatusEffect.IsActive());
-        } 
+            /*
+            if (statusEffect.Potency <= existingStatusEffect.Potency)
+            {
+                existingStatusEffect.Refresh(statusEffect.Duration);
+                Destroy(statusEffect.gameObject);
+                return;
+            }
+            */
+            foreach (StatusEffect existingStatusEffect in existingStatusEffects)
+            {
+                statusEffect.Potency = 
+                    Math.Max(statusEffect.Potency, existingStatusEffect.Potency);
+                existingStatusEffect.Deactivate();
+                yield return new WaitUntil(() => !existingStatusEffect.IsActive());
+            }
+        }
+        Debug.Log("new effect" + this.statusEffects.Count);
         StartCoroutine(statusEffect.StartEffect(this));
         this.statusEffects.Add(statusEffect);
         statusEffect.StatusEffectEnd += (sender, e) =>
             {
-                this.statusEffects.Remove(statusEffect);
-                Destroy(statusEffect.gameObject);
+                if (this.statusEffects.Contains(statusEffect))
+                {
+                    this.statusEffects.Remove(statusEffect);
+                    Destroy(statusEffect.gameObject);
+                    //Debug.Log("Destoryed");
+                }
             };
-        yield return null;
     }
 }
