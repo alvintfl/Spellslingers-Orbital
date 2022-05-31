@@ -39,7 +39,7 @@ public class Arrow : Projectile
      * </summary>
      */
     private static bool isFrostArrowActive = false;
-    public Arrow() : base(7.5f, 15f) { }
+    public Arrow() : base(15f, 15f) { }
 
     private void Awake()
     {
