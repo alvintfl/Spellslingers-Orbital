@@ -147,7 +147,6 @@ GameObject:
   - component: {fileID: 4979023552183508029}
   - component: {fileID: 4979023552183508028}
   - component: {fileID: 3106294993815006627}
-  - component: {fileID: 8910907599664426843}
   - component: {fileID: 6554015463268646728}
   m_Layer: 5
   m_Name: Piercing Shots
@@ -262,18 +261,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8910907599664426843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4979023552183508030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ae74ecdf4e3974a9423544857f571d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6554015463268646728
 MonoBehaviour:
   m_ObjectHideFlags: 0

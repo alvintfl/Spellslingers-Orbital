@@ -15,4 +15,8 @@ public class FrostShots : Skill
             Arrow.ActivateFrostArrow();
         });
     }
+    public override void Reset()
+    {
+        Arrow.DeactivateFrostArrow();
+    }
 }

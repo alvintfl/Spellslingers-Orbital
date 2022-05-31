@@ -20,7 +20,7 @@ public class FasterShooting : Skill
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);
-            this.shoot.IncreaseRate(0.05f);
+            this.shoot.IncreaseRate(0.1f);
         });
     }
 

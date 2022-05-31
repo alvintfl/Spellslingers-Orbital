@@ -68,7 +68,6 @@ public class Shoot : MonoBehaviour
         Player.instance.Health.DiedInfo -= StopFiring;
     }
 
-
     /**
      * <summary>
      * Fire a projectile based on where the cursor

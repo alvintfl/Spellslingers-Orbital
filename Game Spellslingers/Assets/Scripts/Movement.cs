@@ -12,6 +12,8 @@ public class Movement : MonoBehaviour
     [SerializeField] public Animator anim;
     [SerializeField] private float moveSpeed;
 
+
+    private float baseMoveSpeed;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
 
@@ -32,6 +34,7 @@ public class Movement : MonoBehaviour
 
         this.sr = GetComponent<SpriteRenderer>();
         this.anim = GetComponent<Animator>();
+        this.baseMoveSpeed = moveSpeed;
     }
 
     public virtual void Update()
@@ -50,6 +53,16 @@ public class Movement : MonoBehaviour
     public float GetMoveSpeed() 
     {
         return this.moveSpeed;
+    }
+
+    public void ResetMoveSpeed()
+    {
+        this.moveSpeed = this.baseMoveSpeed;
+    }
+
+    public float GetBaseMoveSpeed()
+    {
+        return this.baseMoveSpeed;
     }
 
     public void SetMoveSpeed(float movespeed)
