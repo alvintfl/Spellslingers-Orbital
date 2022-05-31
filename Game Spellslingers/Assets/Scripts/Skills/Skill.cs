@@ -39,7 +39,7 @@ public abstract class Skill : MonoBehaviour
     /**
      * <summary>
      * If this skill is selected, increase its level.
-     * If the skill is maxed out, destory the object 
+     * If the skill is maxed out, destroy the object 
      * holding it.
      * </summary>
      */

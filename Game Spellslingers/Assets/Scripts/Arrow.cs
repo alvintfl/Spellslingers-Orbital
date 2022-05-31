@@ -10,8 +10,12 @@ using UnityEngine;
  */
 public class Arrow : Projectile
 {
+    [SerializeField] private Sprite arrowSprite;
+    [SerializeField] private Sprite frostArrow;
+    private SpriteRenderer spriteRenderer;
     private static int damage = 10;
-    private static int pierceMax = 0;
+    private static int pierceMax = 1;
+    private int pierceCount = 0;
 
     /**
      * <summary>
@@ -35,10 +39,31 @@ public class Arrow : Projectile
      * </summary>
      */
     private static bool isFrostArrowActive = false;
+    public Arrow() : base(7.5f, 15f) { }
 
     private void Awake()
     {
         gameObject.GetComponent<Lifesteal>().enabled = false;
+        this.spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        this.spriteRenderer.sprite = this.arrowSprite;
+    }
+
+    private void Start()
+    {
+        this.Collided += ResetPierce;
+    }
+
+    private void OnEnable()
+    {
+        if (isFrostArrowActive)
+        {
+            this.spriteRenderer.sprite = this.frostArrow;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        this.Collided -= ResetPierce;
     }
 
     public static int getPierceMax()
@@ -49,9 +74,6 @@ public class Arrow : Projectile
     {
         pierceMax = value;
     }
-
-    private int pierceCount = 0;
-    public Arrow() : base(15f) { }
 
     public override void IncreaseDamage(int damage)
     {
@@ -88,17 +110,6 @@ public class Arrow : Projectile
                 }
             }
             Lifesteal();
-        }
-    }
-
-    public override void AtMaxRange()
-    {
-        if (this.firePoint != null && gameObject.activeSelf &&
-                (Math.Abs(gameObject.transform.position.x - base.firePoint.position.x) > base.maxRange ||
-                 Math.Abs(gameObject.transform.position.y - base.firePoint.position.y) > base.maxRange))
-        {
-            pierceCount = 0;
-            OnCollided(EventArgs.Empty);
         }
     }
 
@@ -144,8 +155,13 @@ public class Arrow : Projectile
         Arrow.damage = 10;
     }
 
-    public static void ResetPierce()
+    public static void ResetPierceMax()
     {
         Arrow.pierceMax = 0;
+    }
+
+    private void ResetPierce(object sender, EventArgs e)
+    {
+        this.pierceCount = 0;
     }
 }

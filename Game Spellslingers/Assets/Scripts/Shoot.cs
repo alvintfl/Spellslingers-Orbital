@@ -32,18 +32,20 @@ public class Shoot : MonoBehaviour
      */
     private ObjectPool<GameObject> projectilePool;
     private int poolSize;
+
     private int projectileCount;
     private float rate;
-    private float projectileSpacing;
+    private WaitForSeconds wait;
 
     private Vector3 target;
-    public GameObject playerObject;
+    private GameObject playerObject;
 
     private void Start()
     {
         this.playerObject = Player.instance.gameObject;
         this.poolSize = 16;
         this.rate = 1f;
+        this.wait = new WaitForSeconds(this.rate);
         this.projectileCount = 1;
         this.projectilePool = new ObjectPool<GameObject>(
         () => {
@@ -109,7 +111,7 @@ public class Shoot : MonoBehaviour
                     
                     // rotate direction of force added to additional arrows
                     Vector2 direction = difference / distance;
-                    direction = rotate(direction, coordinate * 20 * Mathf.Deg2Rad);
+                    direction = Rotate(direction, coordinate * 20 * Mathf.Deg2Rad);
                     direction.Normalize();
                     projectile.transform.rotation = Quaternion.Euler(0, 0, rotationZ + 180);
                     projectile.transform.position = playerObject.transform.position;
@@ -117,7 +119,7 @@ public class Shoot : MonoBehaviour
                 }
                 seen.Add(projectile, true);
             }
-            yield return new WaitForSeconds(this.rate);
+            yield return this.wait;
         }
     }
 
@@ -135,6 +137,7 @@ public class Shoot : MonoBehaviour
     public void IncreaseRate(float decrease)
     {
         this.rate -= decrease;
+        this.wait = new WaitForSeconds(this.rate);
     }
 
     public void IncreaseDamage(int damage)
@@ -142,12 +145,11 @@ public class Shoot : MonoBehaviour
         this.projectilePrefab.GetComponent<Projectile>().IncreaseDamage(damage);
     }
 
-    public static Vector2 rotate(Vector2 v, float delta)
+    private Vector2 Rotate(Vector2 v, float delta)
     {
         return new Vector2(
             v.x * Mathf.Cos(delta) - v.y * Mathf.Sin(delta),
             v.x * Mathf.Sin(delta) + v.y * Mathf.Cos(delta)
         );
     }
-
 }

@@ -77,12 +77,12 @@ SpriteRenderer:
   m_SortingLayerID: 615526305
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dbeb382a062d3f64e89b0b4555746a2e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0ed7450cf82cb6443911c62f83e9df73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.28, y: 1.28}
+  m_Size: {x: 0.92, y: 0.92}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -126,8 +126,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 1.28}
-    newSize: {x: 1.28, y: 1.28}
+    oldSize: {x: 0.92, y: 0.92}
+    newSize: {x: 0.92, y: 0.92}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -147,9 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e744ecf73c86074193512791e616dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 0}
-  speed: 15
-  maxRange: 20
+  arrowSprite: {fileID: 21300000, guid: dbeb382a062d3f64e89b0b4555746a2e, type: 3}
+  frostArrow: {fileID: 21300000, guid: 0ed7450cf82cb6443911c62f83e9df73, type: 3}
 --- !u!114 &2812479588272646917
 MonoBehaviour:
   m_ObjectHideFlags: 0
