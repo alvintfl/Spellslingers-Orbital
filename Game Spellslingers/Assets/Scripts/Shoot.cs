@@ -44,7 +44,7 @@ public class Shoot : MonoBehaviour
     {
         this.playerObject = Player.instance.gameObject;
         this.poolSize = 16;
-        this.rate = 1f;
+        this.rate = 1.8f;
         this.wait = new WaitForSeconds(this.rate);
         this.projectileCount = 1;
         this.projectilePool = new ObjectPool<GameObject>(
