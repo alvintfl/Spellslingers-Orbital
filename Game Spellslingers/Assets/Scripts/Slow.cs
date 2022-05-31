@@ -18,14 +18,12 @@ public class Slow : StatusEffect
             Movement movement = character.Movement;
             float slowedMovespeed = movement.GetBaseMoveSpeed() * (1 - Potency);
             movement.SetMoveSpeed(slowedMovespeed);
-            Debug.Log(movement.GetMoveSpeed());
 
             // Wait until slow duration is up or the slow is deactivated
             yield return new WaitWhile(() => Time.time - startTime < Duration && IsActive());
 
             // Set movespeed back to normal
             movement.ResetMoveSpeed();
-            Debug.Log(movement.GetMoveSpeed());
             Deactivate();
             OnStatusEffectEnd(EventArgs.Empty);
         }

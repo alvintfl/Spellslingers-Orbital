@@ -184,7 +184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1489601785947990572}
   projectilePrefab: {fileID: 8438916434391917495, guid: 149b46b3251f4bf42be2b95a0cf2a961, type: 3}
-  playerObject: {fileID: 0}
 --- !u!114 &8148727754313355653
 MonoBehaviour:
   m_ObjectHideFlags: 0

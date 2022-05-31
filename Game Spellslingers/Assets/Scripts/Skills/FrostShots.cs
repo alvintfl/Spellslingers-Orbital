@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FrostShots : Skill
 {
+    [SerializeField] private Sprite arrow;
     public FrostShots() : base(1) { }
     public override void Start()
     {

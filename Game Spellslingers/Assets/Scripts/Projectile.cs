@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
 /**
  * <summary>
@@ -11,14 +10,15 @@ using UnityEngine.Pool;
  */
 public abstract class Projectile : MonoBehaviour
 {
-    public Transform firePoint;
-    public float speed;
-    public int maxRange = 20;
+    private Transform firePoint;
+    private float speed;
+    private float maxRange;
     public event EventHandler Collided;
 
-    public Projectile(float speed)
+    public Projectile(float speed, float maxRange)
     {
-        this.speed = speed; 
+        this.speed = speed;
+        this.maxRange = maxRange;
     }
 
     private void Update()
@@ -40,7 +40,7 @@ public abstract class Projectile : MonoBehaviour
      * position it was fired from.
      * </summary>
      */
-    public virtual void AtMaxRange()
+    public void AtMaxRange()
     {
         if (this.firePoint != null && gameObject.activeSelf && 
                 (Math.Abs(gameObject.transform.position.x - this.firePoint.position.x) > this.maxRange ||
