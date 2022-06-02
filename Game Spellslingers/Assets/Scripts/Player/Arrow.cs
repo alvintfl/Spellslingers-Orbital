@@ -39,7 +39,7 @@ public class Arrow : Projectile
      * </summary>
      */
     private static bool isFrostArrowActive = false;
-    public Arrow() : base(15f, 15f) { }
+    public Arrow() : base(15f, 250f) { }
 
     private void Awake()
     {
@@ -75,7 +75,7 @@ public class Arrow : Projectile
         pierceMax = value;
     }
 
-    public override void IncreaseDamage(int damage)
+    public static void IncreaseDamage(int damage)
     {
         Arrow.damage += damage;
     }
@@ -85,27 +85,27 @@ public class Arrow : Projectile
         return Arrow.damage;
     }
 
-    public override void OnTriggerEnter2D(Collider2D collision)
+    public override void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collider.gameObject.CompareTag("Enemy"))
         {
             if (pierceCount >= pierceMax)
             {
                 pierceCount = 0;
-                base.OnTriggerEnter2D(collision);
+                base.OnTriggerEnter2D(collider);
             } else
             {
                 pierceCount += 1;
             }
-            if (collision.gameObject != null)
+            if (collider.gameObject != null)
             {
-                Health enemyHealth = collision.gameObject.GetComponent<Health>();
+                Health enemyHealth = collider.gameObject.GetComponent<Health>();
                 if (enemyHealth != null)
                 {
                     enemyHealth.TakeDamage(GetDamage());
                     if (enemyHealth.CurrentHealth > 0)
                     {
-                        FrostArrow(collision);
+                        FrostArrow(collider);
                     }
                 }
             }
@@ -139,14 +139,14 @@ public class Arrow : Projectile
         Arrow.isFrostArrowActive = false;
     }
 
-    private void FrostArrow(Collider2D collision)
+    private void FrostArrow(Collider2D collider)
     {
         if(isFrostArrowActive)
         {
             FrostArrow frostArrow = Player.instance
                 .gameObject.GetComponentInChildren<FrostArrow>(true);
             frostArrow.gameObject.SetActive(true);
-            frostArrow.Slow(collision);
+            frostArrow.Slow(collider);
         }
     }
 

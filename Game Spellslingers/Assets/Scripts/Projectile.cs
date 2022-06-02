@@ -26,8 +26,6 @@ public abstract class Projectile : MonoBehaviour
         AtMaxRange();
     }
 
-    public abstract void IncreaseDamage(int damage);
-
     public abstract int GetDamage();
     public float Speed { get { return this.speed; } }
 
@@ -43,14 +41,13 @@ public abstract class Projectile : MonoBehaviour
     public void AtMaxRange()
     {
         if (this.firePoint != null && gameObject.activeSelf && 
-                (Math.Abs(gameObject.transform.position.x - this.firePoint.position.x) > this.maxRange ||
-                 Math.Abs(gameObject.transform.position.y - this.firePoint.position.y) > this.maxRange))
+            (gameObject.transform.position - this.firePoint.position).sqrMagnitude > this.maxRange)
         {
             OnCollided(EventArgs.Empty);
         }
     }
 
-    public virtual void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collider)
     {
         if (gameObject.activeSelf)
         {

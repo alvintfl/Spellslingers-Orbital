@@ -182,8 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b93590b173ea0c4ab9c904929fcb7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 1489601785947990572}
   projectilePrefab: {fileID: 8438916434391917495, guid: 149b46b3251f4bf42be2b95a0cf2a961, type: 3}
+  poolSize: 16
 --- !u!114 &8148727754313355653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438fd5769aacab8488a213454b62812a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
+  anim: {fileID: 1489601786894410472}
   moveSpeed: 6
 --- !u!114 &-177557709795728106
 MonoBehaviour:
