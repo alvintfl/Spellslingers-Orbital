@@ -11,11 +11,9 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] public Animator anim;
     [SerializeField] private float moveSpeed;
-
     private float baseMoveSpeed;
-    private Rigidbody2D rb;
-    private SpriteRenderer sr;
 
+    private Rigidbody2D rb;
     private Vector2 movement;
 
     /**
@@ -31,7 +29,6 @@ public class Movement : MonoBehaviour
         this.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         this.rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
-        this.sr = GetComponent<SpriteRenderer>();
         this.anim = GetComponent<Animator>();
         this.baseMoveSpeed = moveSpeed;
     }
@@ -83,11 +80,11 @@ public class Movement : MonoBehaviour
         }
         if (this.movement.x > 0) 
         {
-            sr.flipX = false;
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         if (this.movement.x < 0) 
         {
-            sr.flipX = true;
+            gameObject.transform.rotation = Quaternion.Euler(0, -180, 0);
         }
         this.anim.SetFloat("Speed", this.movement.sqrMagnitude);
     }

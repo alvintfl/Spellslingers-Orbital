@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 5884213362761270926}
   - component: {fileID: -8596858849020253146}
   - component: {fileID: -3660684299695326982}
+  - component: {fileID: 413935442743348240}
+  - component: {fileID: 8350196281271607001}
   m_Layer: 7
   m_Name: IceSnail
   m_TagString: Enemy
@@ -97,7 +99,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51714700934037781}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -189,3 +191,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 7829874989284695215}
   moveSpeed: 4
+--- !u!68 &413935442743348240
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51714700934037781}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.46652257, y: -0.63733053}
+  - {x: -0.4842975, y: -0.46737814}
+  - {x: 0.40097147, y: -0.39745378}
+  - {x: 0.6745488, y: 0.10067654}
+  - {x: 0.67703986, y: 0.54574823}
+  - {x: 0.77119863, y: 0.6827524}
+  - {x: 1.2269158, y: 0.6814761}
+  - {x: 1.2471586, y: 0.5231364}
+  - {x: 1.0810659, y: 0.43120742}
+  - {x: 1.1313074, y: 0.03391838}
+  - {x: 1.0902795, y: -0.24805951}
+  - {x: 0.9580903, y: -0.34766245}
+  - {x: 0.7758157, y: -0.6560731}
+  - {x: -0.45983744, y: -0.6545199}
+  - {x: -0.46862066, y: -0.64486396}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!58 &8350196281271607001
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51714700934037781}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.106455564, y: 0.13}
+  serializedVersion: 2
+  m_Radius: 0.56488335

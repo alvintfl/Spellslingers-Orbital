@@ -350,7 +350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5221387229277859841, guid: eb0b178529ef97e47a343a7ada1d1923, type: 3}
       propertyPath: moveSpeed
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5801511940331099810, guid: eb0b178529ef97e47a343a7ada1d1923, type: 3}
       propertyPath: maxHealth
@@ -406,7 +406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5845486359984789567, guid: eb0b178529ef97e47a343a7ada1d1923, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb0b178529ef97e47a343a7ada1d1923, type: 3}
@@ -423,11 +423,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3660684299695326982, guid: 014e8bab33320d349bc33ed8fcbd0776, type: 3}
       propertyPath: moveSpeed
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 51714700934037781, guid: 014e8bab33320d349bc33ed8fcbd0776, type: 3}
       propertyPath: m_Name
       value: IceSnail
+      objectReference: {fileID: 0}
+    - target: {fileID: 51714700934037781, guid: 014e8bab33320d349bc33ed8fcbd0776, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 51714700934037783, guid: 014e8bab33320d349bc33ed8fcbd0776, type: 3}
       propertyPath: m_RootOrder
@@ -605,7 +609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3082237518536786345, guid: ade9930e2c880d6468d1edc267f55441, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3082237518536786345, guid: ade9930e2c880d6468d1edc267f55441, type: 3}
       propertyPath: m_IsTrigger
@@ -623,7 +627,12 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 100
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7236197334775511977, guid: ade9930e2c880d6468d1edc267f55441, type: 3}
+      propertyPath: m_AutoTiling
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3082237518536786345, guid: ade9930e2c880d6468d1edc267f55441, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ade9930e2c880d6468d1edc267f55441, type: 3}
 --- !u!1001 &1436310219
 PrefabInstance:
