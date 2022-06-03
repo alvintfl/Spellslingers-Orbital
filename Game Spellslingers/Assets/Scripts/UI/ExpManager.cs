@@ -73,6 +73,7 @@ public class ExpManager : MonoBehaviour
 
     public void IncreaseMaxExp(object sender, EventArgs e)
     {
+        Player.instance.Level ++;
         this.exp -= this.maxExp;
         this.maxExp = (int) (this.maxExp * 1.2);
         OnGainMaxExp(EventArgs.Empty);

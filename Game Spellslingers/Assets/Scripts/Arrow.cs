@@ -17,6 +17,20 @@ public class Arrow : Projectile
     private static int pierceMax = 1;
     private int pierceCount = 0;
 
+
+    /**
+     * <summary>
+     * A float to multiply damage.
+     * </summary>
+     */
+    private float damageMulti = 1;
+    public float DamageMulti { get { return damageMulti; } }
+    public override void SetDamageMulti(int mult)
+    {
+        damageMulti = mult;
+    }
+
+
     /**
      * <summary>
      * A bool to let all arrows know they
@@ -39,6 +53,16 @@ public class Arrow : Projectile
      * </summary>
      */
     private static bool isFrostArrowActive = false;
+
+    /**
+     * <summary>
+     * A bool to let all arrows know they
+     * can stun.
+     * </summary>
+     */
+
+    private static bool isStunActive  = true;
+
     public Arrow() : base(15f, 15f) { }
 
     private void Awake()
@@ -102,10 +126,11 @@ public class Arrow : Projectile
                 Health enemyHealth = collision.gameObject.GetComponent<Health>();
                 if (enemyHealth != null)
                 {
-                    enemyHealth.TakeDamage(GetDamage());
+                    enemyHealth.TakeDamage(GetDamage() * DamageMulti);
                     if (enemyHealth.CurrentHealth > 0)
                     {
-                        FrostArrow(collision);
+                        SlowEnemy(collision);
+                        StunEnemy(collision);
                     }
                 }
             }
@@ -139,7 +164,17 @@ public class Arrow : Projectile
         Arrow.isFrostArrowActive = false;
     }
 
-    private void FrostArrow(Collider2D collision)
+    public static void ActivateStun()
+    {
+        Arrow.isStunActive = true;
+    }
+    public static void DeactivateStun()
+    {
+        Arrow.isStunActive = false;
+    }
+
+
+    private void SlowEnemy(Collider2D collision)
     {
         if(isFrostArrowActive)
         {
@@ -148,6 +183,18 @@ public class Arrow : Projectile
             frostArrow.gameObject.SetActive(true);
             frostArrow.Slow(collision);
         }
+    }
+
+    private void StunEnemy(Collider2D collision)
+    {
+        if (isStunActive)
+        {
+            PlayerStun stun = Player.instance
+                    .gameObject.GetComponentInChildren<PlayerStun>(true);
+            stun.gameObject.SetActive(true);
+            stun.Stun(collision);
+        }
+
     }
 
     public static void ResetDamage()

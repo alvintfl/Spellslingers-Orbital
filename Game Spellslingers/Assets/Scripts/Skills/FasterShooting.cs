@@ -5,7 +5,7 @@ using UnityEngine;
 
 /** 
  * <summary>
- * A class that increases the player's
+ * A skill that increases the player's
  * shooting rate.
  * </summary>
  */

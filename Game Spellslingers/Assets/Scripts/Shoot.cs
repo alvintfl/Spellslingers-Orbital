@@ -145,6 +145,11 @@ public class Shoot : MonoBehaviour
         this.projectilePrefab.GetComponent<Projectile>().IncreaseDamage(damage);
     }
 
+    public void SetDamageMulti(int mult)
+    {
+        this.projectilePrefab.GetComponent<Projectile>().SetDamageMulti(mult);
+    }
+
     private Vector2 Rotate(Vector2 v, float delta)
     {
         return new Vector2(
