@@ -26,9 +26,6 @@ public abstract class Projectile : MonoBehaviour
         AtMaxRange();
     }
 
-    public abstract void IncreaseDamage(int damage);
-    public abstract void SetDamageMulti(int mult);
-
     public abstract int GetDamage();
     public float Speed { get { return this.speed; } }
 

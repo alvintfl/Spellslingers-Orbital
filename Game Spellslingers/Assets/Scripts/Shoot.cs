@@ -56,10 +56,4 @@ public abstract class Shoot : MonoBehaviour
         StopAllCoroutines();
     }
 
-
-    public void SetDamageMulti(int mult)
-    {
-        this.projectilePrefab.GetComponent<Projectile>().SetDamageMulti(mult);
-    }
-
 }

@@ -23,13 +23,8 @@ public class Arrow : Projectile
      * A float to multiply damage.
      * </summary>
      */
-    private float damageMulti = 1;
-    public float DamageMulti { get { return damageMulti; } }
-    public override void SetDamageMulti(int mult)
-    {
-        damageMulti = mult;
-    }
-
+    private static float damageMulti = 1;
+    public static float DamageMulti { get { return damageMulti; } }
 
     /**
      * <summary>
@@ -53,7 +48,6 @@ public class Arrow : Projectile
      * </summary>
      */
     private static bool isFrostArrowActive = false;
-<<<<<<< HEAD:Game Spellslingers/Assets/Scripts/Arrow.cs
 
     /**
      * <summary>
@@ -62,7 +56,7 @@ public class Arrow : Projectile
      * </summary>
      */
 
-    private static bool isStunActive  = true;
+    private static bool isStunActive  = false;
 
 
     public Arrow() : base(15f, 250f) { }
@@ -102,6 +96,11 @@ public class Arrow : Projectile
         pierceMax = value;
     }
 
+    public static void SetDamageMulti(float mult)
+    {
+        Arrow.damageMulti = mult;
+    }
+
     public static void IncreaseDamage(int damage)
     {
         Arrow.damage += damage;
@@ -111,6 +110,8 @@ public class Arrow : Projectile
     {
         return Arrow.damage;
     }
+
+
 
     public override void OnTriggerEnter2D(Collider2D collider)
     {
@@ -130,10 +131,11 @@ public class Arrow : Projectile
                 if (enemyHealth != null)
                 {
                     enemyHealth.TakeDamage(GetDamage() * DamageMulti);
+                    print("damage multi = " + DamageMulti);
                     if (enemyHealth.CurrentHealth > 0)
                     {
-                        SlowEnemy(collision);
-                        StunEnemy(collision);
+                        SlowEnemy(collider);
+                        StunEnemy(collider);
                     }
                 }
             }

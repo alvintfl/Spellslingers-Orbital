@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -7029792797047785745}
   - component: {fileID: -3183990789433727006}
   - component: {fileID: 1089068189502011488}
-  - component: {fileID: -5929778662287177463}
+  - component: {fileID: 3645452410549742341}
   m_Layer: 0
   m_Name: BloodSpider
   m_TagString: Enemy
@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
---- !u!61 &-5929778662287177463
-BoxCollider2D:
+--- !u!60 &3645452410549742341
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -161,7 +161,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0067825317, y: 0.03315848}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -171,6 +171,31 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.25867748, y: 0.22099721}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.24, y: -0.099999994}
+      - {x: 0.24, y: -0.13}
+      - {x: 0.26, y: -0.14999999}
+      - {x: 0.29, y: -0.14999999}
+      - {x: 0.31, y: -0.14}
+      - {x: 0.31, y: 0.01}
+      - {x: 0.28109315, y: 0.09030985}
+      - {x: 0.15991801, y: 0.1896084}
+      - {x: 0.0010929201, y: 0.15249568}
+      - {x: -0.22515486, y: 0.1466395}
+      - {x: -0.29999998, y: 0.06}
+      - {x: -0.29999998, y: -0.06}
+      - {x: -0.25, y: -0.08}
+      - {x: -0.19694923, y: 0.071729615}
+      - {x: -0.22, y: -0.16}
+      - {x: -0.2085156, y: -0.16109292}
+      - {x: -0.14354134, y: -0.1388253}
+      - {x: -0.15323973, y: -0.03421998}
+      - {x: 0.036867253, y: -0.082414076}
+      - {x: 0.13703012, y: -0.06763518}
+      - {x: 0.24, y: -0.099999994}
+      - {x: 0.25, y: -0.08}
+    - - {x: 0.14, y: 0.12}
+      - {x: 0.14999999, y: 0.12}
+      - {x: 0.14999999, y: 0.11}
+      - {x: 0.14999999, y: 0.12}
