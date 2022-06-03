@@ -12,13 +12,17 @@ public class PlayerMovement : Movement
 {
     public override void Update()
     {
-        GetUserInput();
         base.Update();
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
+        GetUserInput(x, y);
     }
 
-    private void GetUserInput()
+    private void GetUserInput(float x, float y)
     {
-        SetX(Input.GetAxisRaw("Horizontal"));
-        SetY(Input.GetAxisRaw("Vertical"));
+        SetX(x);
+        SetY(y);
+        SetAnimParam("Horizontal", x);
+        SetAnimParam("Vertical", y);
     }
 }

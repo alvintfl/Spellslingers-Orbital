@@ -12,12 +12,12 @@ using UnityEngine;
  */
 public class MoreShots : Skill
 {
-    private Shoot shoot;
+    private PlayerShoot shoot;
     public MoreShots() : base(10) { }
     public override void Start()
     {
         base.Start();
-        this.shoot = Player.instance.gameObject.GetComponent<Shoot>();
+        this.shoot = Player.instance.gameObject.GetComponent<PlayerShoot>();
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);

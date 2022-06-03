@@ -13,6 +13,11 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Slider slider;
 
+    private void Update()
+    {
+        this.slider.transform.rotation = Quaternion.identity;
+    }
+
     public void SetMaxHealth(float health)
     {
         slider.maxValue = health;

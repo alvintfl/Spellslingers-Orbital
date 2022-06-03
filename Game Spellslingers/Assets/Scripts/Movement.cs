@@ -11,12 +11,9 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] public Animator anim;
     [SerializeField] private float moveSpeed;
-
-
     private float baseMoveSpeed;
-    private Rigidbody2D rb;
-    private SpriteRenderer sr;
 
+    private Rigidbody2D rb;
     private Vector2 movement;
 
     /**
@@ -32,17 +29,13 @@ public class Movement : MonoBehaviour
         this.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         this.rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
-        this.sr = GetComponent<SpriteRenderer>();
         this.anim = GetComponent<Animator>();
         this.baseMoveSpeed = moveSpeed;
     }
 
     public virtual void Update()
     {
-        if (this.anim != null)
-        {
-            AnimateMovement();
-        }
+        AnimateMovement();
     }
 
     private void FixedUpdate()
@@ -81,17 +74,30 @@ public class Movement : MonoBehaviour
 
     private void AnimateMovement()
     {
+        if (this.anim == null)
+        {
+            return;
+        }
         if (this.movement.x > 0) 
         {
-            sr.flipX = false;
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         if (this.movement.x < 0) 
         {
-            sr.flipX = true;
+            gameObject.transform.rotation = Quaternion.Euler(0, -180, 0);
         }
-        this.anim.SetFloat("Horizontal", this.movement.x);
-        this.anim.SetFloat("Vertical", this.movement.y);
         this.anim.SetFloat("Speed", this.movement.sqrMagnitude);
+    }
+
+    /**
+     * <summary>
+     * Give the animator extra conditions to animate 
+     * the character base on.
+     * </summary>
+     */
+    public void SetAnimParam(string s, float value)
+    {
+        this.anim.SetFloat(s, value);
     }
 
     /**
