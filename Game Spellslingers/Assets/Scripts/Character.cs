@@ -14,6 +14,15 @@ public class Character : MonoBehaviour
     private Health health;
     private Avoidance avoid;
     private List<StatusEffect> statusEffects;
+
+    // status effects
+    private bool isSlowed;
+    private bool isStunned; 
+
+    public bool IsSlowed { get { return isSlowed; } set { isSlowed = value; } }
+    public bool IsStunned { get { return isStunned; } set { isStunned = value;  } }
+
+
     public virtual void Awake()
     {
         this.movement = gameObject.GetComponent<Movement>();

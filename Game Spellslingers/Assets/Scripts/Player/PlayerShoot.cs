@@ -88,9 +88,15 @@ public class PlayerShoot : Shoot
         playerObject.GetComponent<Archer>().Projectiles += 1;
     }
 
-    public void IncreaseRate(float decrease)
+    public void IncreaseRate(float secs)
     {
-        this.rate -= decrease;
+        this.rate -= secs;
+        this.wait = new WaitForSeconds(this.rate);
+    }
+
+    public void DecreaseRate(float secs)
+    {
+        this.rate += secs;
         this.wait = new WaitForSeconds(this.rate);
     }
 
