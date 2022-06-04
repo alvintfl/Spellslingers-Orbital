@@ -41,7 +41,7 @@ public class Enemy : Character
      * player equals to this enemy's damage.
      * </summary>
      */
-    private void OnCollisionEnter2D(Collision2D collision)
+    public virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -61,7 +61,7 @@ public class Enemy : Character
      * player equals to this enemy's damage.
      * </summary>
      */
-    private IEnumerator OnCollisionStay2D(Collision2D collision)
+    public virtual IEnumerator OnCollisionStay2D(Collision2D collision)
     {
         if (!IsCollidedStay && collision.gameObject.CompareTag("Player"))
         {
@@ -78,7 +78,7 @@ public class Enemy : Character
         yield return null;
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    public virtual void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
