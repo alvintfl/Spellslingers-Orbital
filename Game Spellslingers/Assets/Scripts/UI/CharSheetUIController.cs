@@ -53,7 +53,7 @@ public class CharSheetUIController : MonoBehaviour
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[10].text = playerHealth.CurrentHealth.ToString() + " / " + playerHealth.MaxHealth.ToString();
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[11].text = arrow.GetComponent<Arrow>().GetDamage().ToString();
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[12].text = playerMovement.GetMoveSpeed().ToString("#.00");
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[13].text = playerAvoidance.getAvoidChance().ToString() + "%";
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[13].text = playerAvoidance.GetAvoidChance().ToString() + "%";
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[14].text = Arrow.getPierceMax().ToString();
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[15].text = archerProjectiles.ToString();
     }

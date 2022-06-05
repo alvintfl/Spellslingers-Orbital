@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 /**
  * <summary>
@@ -17,6 +19,15 @@ public class PlayerShoot : Shoot
     private Vector3 target;
     private GameObject playerObject;
 
+    /**
+    * <summary>
+    * A bool to check if skills have randmised direction.
+    * A float to assign a random angle between 0 and 360 to.
+    * </summary>
+    */
+    private bool randomiseAim;
+    private float randomRot;
+
     public override void Start()
     {
         base.Start();
@@ -24,6 +35,8 @@ public class PlayerShoot : Shoot
         this.rate = 1.8f;
         this.wait = new WaitForSeconds(this.rate);
         this.projectileCount = 1;
+        this.randomiseAim = false;
+        this.randomRot = 0;
         StartCoroutine(Fire());
     }
 
@@ -40,6 +53,12 @@ public class PlayerShoot : Shoot
             Dictionary<GameObject, bool> seen = new Dictionary<GameObject, bool>();
             for (int i = 0; i < this.projectileCount; i++)
             {
+                //check if projectiles have been randomised. If they are, randomise angles
+                if (randomiseAim) 
+                {
+                    randomRot = Random.Range(0, 360);
+                }
+
                 //GameObject projectile = this.projectilePool.Get();
                 GameObject projectile = GetProjectile();
                 
@@ -71,9 +90,9 @@ public class PlayerShoot : Shoot
                     
                     // rotate direction of force added to additional arrows
                     Vector2 direction = difference / distance;
-                    direction = Rotate(direction, coordinate * 20 * Mathf.Deg2Rad);
+                    direction = Rotate(direction, coordinate * 20 * Mathf.Deg2Rad + randomRot * Mathf.Deg2Rad);
                     direction.Normalize();
-                    projectile.transform.rotation = Quaternion.Euler(0, 0, rotationZ + 180);
+                    projectile.transform.rotation = Quaternion.Euler(0, 0, rotationZ + 180 + randomRot);
                     rb.AddForce(direction * speed, ForceMode2D.Impulse);
                 }
                 seen.Add(projectile, true);
@@ -82,10 +101,10 @@ public class PlayerShoot : Shoot
         }
     }
 
-    public void AddProjectiles()
+    public void AddProjectiles(int num)
     {
-        this.projectileCount++;
-        playerObject.GetComponent<Archer>().Projectiles += 1;
+        this.projectileCount += num;
+        playerObject.GetComponent<Archer>().Projectiles += num;
     }
 
     public void IncreaseRate(float secs)
@@ -106,5 +125,17 @@ public class PlayerShoot : Shoot
             v.x * Mathf.Cos(delta) - v.y * Mathf.Sin(delta),
             v.x * Mathf.Sin(delta) + v.y * Mathf.Cos(delta)
         );
+    }
+
+    public void  ToggleRandomiseProjectiles()
+    {
+        if (randomiseAim)
+        {
+            randomiseAim = false;
+        }
+        else 
+        {
+            randomiseAim = true;
+        }
     }
 }

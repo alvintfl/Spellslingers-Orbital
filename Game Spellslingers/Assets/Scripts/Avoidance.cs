@@ -9,17 +9,32 @@ using UnityEngine;
  */
 public class Avoidance : MonoBehaviour
 {
+    /**
+     * <summary>
+     * A bool to check if skills give restore life
+     * on avoiding attack.
+     * </summary>
+    */
+    private bool restoreOnAvoid = false;
+
+
+    /**
+     * <summary>
+     * An int to store chance to avoid
+     * </summary>
+    */
     private int avoidChance = 0;
+
     public Avoidance(int chance)
     {
         this.avoidChance = chance;
     }
 
-    public int getAvoidChance() 
+    public int GetAvoidChance() 
     {
         return avoidChance;
     }
-    public void setAvoidChance(int value) 
+    public void SetAvoidChance(int value) 
     {
         avoidChance = value;
     }
@@ -33,5 +48,15 @@ public class Avoidance : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public bool GetRestoreOnAvoid() 
+    {
+        return restoreOnAvoid;
+    }
+
+    public void SetRestoreOnAvoid(bool resBool)
+    {
+        restoreOnAvoid = resBool;
     }
 }
