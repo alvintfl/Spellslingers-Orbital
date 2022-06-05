@@ -18,11 +18,18 @@ public class EnemyMovement : Movement
 
     public virtual void MoveToPlayer()
     {
-        Vector3 direction = Player.instance.gameObject.transform.position - transform.position;
-        // for rotation
-        // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        direction.Normalize();
-        SetX(direction.x);
-        SetY(direction.y);  
+        if (GetMoveSpeed() == 0)
+        {
+            SetX(0);
+            SetY(0);
+        } else
+        {
+            Vector3 direction = Player.instance.gameObject.transform.position - transform.position;
+            // for rotation
+            // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            direction.Normalize();
+            SetX(direction.x);
+            SetY(direction.y);  
+        }
     }
 }

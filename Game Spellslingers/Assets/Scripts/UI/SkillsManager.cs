@@ -28,6 +28,21 @@ public class SkillsManager : MonoBehaviour
      * </summary>
      */
     private GameObject[] selectedSkills;
+
+    /**
+     * <summary>
+     * Total number of skills the player will have after 
+     * choosing the skills from GenerateSkills.
+     * </summary>
+     */
+    private int skillsCount;
+
+    /**
+     * <summary>
+     * The number of skills needed to obtain a signature skill.
+     * </summary>
+     */
+    private readonly int signatureSkillRequirement = 9;
     public event EventHandler SkillsGenerated;
 
     /**
@@ -58,8 +73,10 @@ public class SkillsManager : MonoBehaviour
     private void Start()
     {
         this.selectedSkills = new GameObject[3];
+        this.skillsCount = 0;   
         ExpManager.LevelUp += GenerateSkills;
     }
+
     public List<GameObject> SkillsLibrary { get { return this.skillsLibrary; } }
 
     public GameObject[] SelectedSkills { get { return this.selectedSkills; } }
@@ -73,6 +90,13 @@ public class SkillsManager : MonoBehaviour
      */
     private void GenerateSkills(object sender, EventArgs e)
     {
+        this.skillsCount++;
+        if (this.skillsCount == this.signatureSkillRequirement)
+        {
+            GenerateSignatureSkills();
+            return;
+        }
+
         //Fisher-Yates shuffle
         Random random = new Random();
         for (int i = this.skillsLibrary.Count - 1; i > 0; i--)
@@ -99,14 +123,12 @@ public class SkillsManager : MonoBehaviour
                 seen.Add(j, true);
                 skillObject.SetActive(true);
                 this.selectedSkills[i] = skillObject;
-                //Debug.Log(skillObject.name);
             }
         } else
         {
             for (int i = 0; i < this.skillsLibrary.Count; i++)
             {
                 GameObject skillObject = this.skillsLibrary[i];
-                //Debug.Log(skillObject.name);
                 if (skillObject != null)
                 {
                     skillObject.SetActive(true);
@@ -115,6 +137,11 @@ public class SkillsManager : MonoBehaviour
             }
         }
         OnSkillGenerated(EventArgs.Empty);
+    }
+
+    private void GenerateSignatureSkills()
+    {
+
     }
 
     private void OnDisable()
