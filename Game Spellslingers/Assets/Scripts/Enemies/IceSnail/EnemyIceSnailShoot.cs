@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class that manages the 
+ * ice snail's shooting.
+ * </summary>
+ */
 public class EnemyIceSnailShoot : Shoot
 {
     private WaitForSeconds wait;
@@ -16,6 +22,11 @@ public class EnemyIceSnailShoot : Shoot
         StartCoroutine(Fire());
     }
 
+    /**
+     * <summary>
+     * Fires 8 icicles in all directions.
+     * </summary>
+     */
     public override IEnumerator Fire()
     {
         while (true)

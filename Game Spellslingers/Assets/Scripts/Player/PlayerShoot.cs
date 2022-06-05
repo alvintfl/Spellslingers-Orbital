@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 /**
  * <summary>
- * A class that is resposible for shooting.
+ * The shooting class for player.
  * </summary>
  */
 public class PlayerShoot : Shoot

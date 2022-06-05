@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 /** 
  * <summary>
- * A class that increases the player's
+ * A skill that increases the player's
  * current health, max health and 
  * avoidance.
  * </summary>

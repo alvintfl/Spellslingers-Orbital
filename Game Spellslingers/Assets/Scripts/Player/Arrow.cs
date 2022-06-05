@@ -17,7 +17,6 @@ public class Arrow : Projectile
     private static int pierceMax = 1;
     private int pierceCount = 0;
 
-
     /**
      * <summary>
      * A float to multiply damage.
@@ -33,6 +32,7 @@ public class Arrow : Projectile
      * </summary>
      */
     private static bool isLifestealActive = false;
+
     /**
      * <summary>
      * A bool to let the arrow know they 
@@ -47,7 +47,7 @@ public class Arrow : Projectile
      * can slow.
      * </summary>
      */
-    private static bool isFrostArrowActive = false;
+    private static bool isSlowActive = false;
 
     /**
      * <summary>
@@ -55,7 +55,6 @@ public class Arrow : Projectile
      * can stun.
      * </summary>
      */
-
     private static bool isStunActive  = false;
 
 
@@ -76,7 +75,7 @@ public class Arrow : Projectile
 
     private void OnEnable()
     {
-        if (isFrostArrowActive)
+        if (isSlowActive)
         {
             this.spriteRenderer.sprite = this.frostArrow;
         }
@@ -162,11 +161,11 @@ public class Arrow : Projectile
     }
     public static void ActivateFrostArrow()
     {
-        Arrow.isFrostArrowActive = true;
+        Arrow.isSlowActive = true;
     }
     public static void DeactivateFrostArrow()
     {
-        Arrow.isFrostArrowActive = false;
+        Arrow.isSlowActive = false;
     }
 
     public static void ActivateStun()
@@ -181,12 +180,12 @@ public class Arrow : Projectile
 
     private void SlowEnemy(Collider2D collider)
     {
-        if(isFrostArrowActive)
+        if(isSlowActive)
         {
-            FrostArrow frostArrow = Player.instance
-                .gameObject.GetComponentInChildren<FrostArrow>(true);
-            frostArrow.gameObject.SetActive(true);
-            frostArrow.Slow(collider);
+            PlayerSlow slow = Player.instance
+                .gameObject.GetComponentInChildren<PlayerSlow>(true);
+            slow.gameObject.SetActive(true);
+            slow.Slow(collider);
         }
     }
 

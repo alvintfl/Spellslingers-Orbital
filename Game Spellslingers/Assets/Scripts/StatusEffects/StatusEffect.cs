@@ -3,11 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * The base class for status effects.
+ * </summary>
+ */
 public abstract class StatusEffect : MonoBehaviour
 {
     public event EventHandler StatusEffectEnd;
     private float potency;
     private float duration;
+
+    /**
+     * <summary>
+     * Bool for whether this status effect is already
+     * present on the character.
+     * </summary>
+     */
     private bool isActive;
 
     public StatusEffect(float potency, float duration)

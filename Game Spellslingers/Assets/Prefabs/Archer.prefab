@@ -359,7 +359,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2590685488990611183, guid: 23c1db82cfaf45e40a2d6720fec765e9, type: 3}
       propertyPath: m_Name
-      value: FrostArrow
+      value: PlayerSlow
       objectReference: {fileID: 0}
     - target: {fileID: 2590685488990611183, guid: 23c1db82cfaf45e40a2d6720fec765e9, type: 3}
       propertyPath: m_IsActive

@@ -5,7 +5,7 @@ using UnityEngine;
 
 /** 
  * <summary>
- * A class that increases the 
+ * A skill that increases the 
  * damage of the player's arrows.
  * </summary>
  */

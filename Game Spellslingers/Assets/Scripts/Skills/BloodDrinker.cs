@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A skill that lets the player heal
+ * from dealing damage with their arrows.
+ * </summary>
+ */
 public class BloodDrinker : Skill
 {
     public BloodDrinker() : base(5) { }

@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
+/**
+ * <summary>
+ * The base class for shooting.
+ * </summary>
+ */
 public abstract class Shoot : MonoBehaviour
 {
     /**
@@ -55,5 +60,4 @@ public abstract class Shoot : MonoBehaviour
     {
         StopAllCoroutines();
     }
-
 }

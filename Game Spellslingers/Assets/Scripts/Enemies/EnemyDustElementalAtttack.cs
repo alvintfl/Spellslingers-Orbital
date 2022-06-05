@@ -2,22 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class that represents the sandstorm 
+ * around the dust elemental.
+ * </summary>
+ */
 public class EnemyDustElementalAtttack : MonoBehaviour
 {
     private int damage;
 
     /** 
      * <summary>
-     * A bool to check if the collided object is still in contact
-     * after the initial onCollisionEnter2D.
+     * A bool to check if the triggered object is still in contact
+     * after the initial onTriggerEnter2D.
      * </summary>
      */
-    private bool IsCollidedStay;
+    private bool IsTriggeredStay;
 
     private void Start()
     {
         this.damage = 10;
-        this.IsCollidedStay = false;
+        this.IsTriggeredStay = false;
     }
 
     /**
@@ -29,12 +35,12 @@ public class EnemyDustElementalAtttack : MonoBehaviour
      * player equals to this enemy's damage.
      * </summary>
      */
-    public virtual IEnumerator OnTriggerStay2D(Collider2D collider)
+    private IEnumerator OnTriggerStay2D(Collider2D collider)
     {
-        if (!IsCollidedStay && collider.gameObject.CompareTag("Player"))
+        if (!IsTriggeredStay && collider.gameObject.CompareTag("Player"))
         {
-            IsCollidedStay = true;
-            while (IsCollidedStay)
+            IsTriggeredStay = true;
+            while (IsTriggeredStay)
             {
                 if (!Player.instance.Avoidance.avoidRoll()) 
                 { 
@@ -46,12 +52,12 @@ public class EnemyDustElementalAtttack : MonoBehaviour
         yield return null;
     }
 
-    public virtual void OnTriggerExit2D(Collider2D collider)
+    private void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player"))
         {
             StopAllCoroutines();
-            IsCollidedStay = false;
+            IsTriggeredStay = false;
         }
     }
 }

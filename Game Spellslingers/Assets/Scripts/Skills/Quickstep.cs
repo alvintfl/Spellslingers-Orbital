@@ -5,8 +5,9 @@ using UnityEngine;
 
 /** 
  * <summary>
- * A class that increases the 
- * player's movement speed.
+ * A skill that increases the 
+ * player's movement speed 
+ * and avoidance.
  * </summary>
  */
 public class Quickstep : Skill
