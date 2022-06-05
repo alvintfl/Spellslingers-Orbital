@@ -16,10 +16,17 @@ public class SkillsManager : MonoBehaviour
 {
     /**
      * <summary>
-     * A list of all player skills.
+     * A list of player skills.
      * </summary>
      */
     private List<GameObject> skillsLibrary;
+
+    /**
+     * <summary>
+     * A list of player skills.
+     * </summary>
+     */
+    private List<GameObject> signatureSkillsLibrary;
 
     /**
      * <summary>
@@ -47,17 +54,17 @@ public class SkillsManager : MonoBehaviour
 
     /**
      * <summary>
-     * Loads all skills from the resources folder into
-     * the skillsLibrary list and instantiates them.
-     * The skillsLibrary list also subscribes to the maxed out
-     * event of the skills, removing them from the list when
-     * they are maxed out.
+     * Loads all skills from the resources folder 
+     * into their respective skills libraries 
+     * and instantiates them. The skills libraries 
+     * remove the skills when they are maxed out.
      * </summary>
      */
     private void Awake()
     {
         GameObject[] skillPrefabs = Resources.LoadAll<GameObject>("Skills/");
         this.skillsLibrary = new List<GameObject>();
+        this.signatureSkillsLibrary = new List<GameObject>();
         for (int i = 0; i < skillPrefabs.Length; i++)
         {
             GameObject skillObject = Instantiate(skillPrefabs[i]);
@@ -66,7 +73,13 @@ public class SkillsManager : MonoBehaviour
             skill.MaxedOut += 
                 (sender, e) => this.skillsLibrary.Remove(skillObject);
             skill.Reset();
-            this.skillsLibrary.Add(skillObject);
+            if(skill.IsSignatureSkill())
+            {
+                this.signatureSkillsLibrary.Add(skillObject);
+            } else
+            {
+                this.skillsLibrary.Add(skillObject);
+            }
         }
     }
 
@@ -78,6 +91,7 @@ public class SkillsManager : MonoBehaviour
     }
 
     public List<GameObject> SkillsLibrary { get { return this.skillsLibrary; } }
+    public List<GameObject> SignatureSkillsLibrary { get { return this.signatureSkillsLibrary; } }
 
     public GameObject[] SelectedSkills { get { return this.selectedSkills; } }
 
@@ -91,8 +105,10 @@ public class SkillsManager : MonoBehaviour
     private void GenerateSkills(object sender, EventArgs e)
     {
         this.skillsCount++;
+        Debug.Log(skillsCount);
         if (this.skillsCount == this.signatureSkillRequirement)
         {
+            Debug.Log("Skillget");
             GenerateSignatureSkills();
             return;
         }
@@ -141,7 +157,16 @@ public class SkillsManager : MonoBehaviour
 
     private void GenerateSignatureSkills()
     {
-
+        for (int i = 0; i < this.signatureSkillsLibrary.Count; i++)
+        {
+            GameObject skillObject = this.signatureSkillsLibrary[i];
+            if (skillObject != null)
+            {
+                skillObject.SetActive(true);
+                this.selectedSkills[i] = skillObject;
+            }
+        }
+        OnSkillGenerated(EventArgs.Empty);
     }
 
     private void OnDisable()

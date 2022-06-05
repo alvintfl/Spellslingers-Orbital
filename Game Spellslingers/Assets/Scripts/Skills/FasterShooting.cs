@@ -24,4 +24,10 @@ public class FasterShooting : Skill
         });
     }
 
+    public override void Reset() { }
+
+    public override bool IsSignatureSkill()
+    {
+        return false;
+    }
 }

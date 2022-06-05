@@ -33,5 +33,10 @@ public class TheWeightoftheDraw : Skill
         Arrow.SetDamageMulti(1);
         Arrow.DeactivateStun();
     }
+    
+    public override bool IsSignatureSkill()
+    {
+        return true;
+    }
 }
 

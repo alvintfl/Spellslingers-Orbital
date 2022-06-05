@@ -27,4 +27,9 @@ public class PiercingShots : Skill
         Arrow.ResetPierceMax();
     }
 
+    public override bool IsSignatureSkill()
+    {
+        return false;
+    }
+
 }

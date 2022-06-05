@@ -32,11 +32,9 @@ public class LevelUpMenuUI : MonoBehaviour
     {
         this.skillsManager.SkillsGenerated += DisplaySkills;
         List<GameObject> skillsLibrary = this.skillsManager.SkillsLibrary;
-        foreach (GameObject skill in skillsLibrary)
-        {
-            skill.transform.SetParent(this.transform);
-            skill.GetComponent<RectTransform>().localScale = Vector3.one;
-        }
+        List<GameObject> signatureSkillsLibrary = this.skillsManager.SignatureSkillsLibrary;
+        SetParent(skillsLibrary);
+        SetParent(signatureSkillsLibrary);
         Skill.Selected += ResetSkills;
     }
 
@@ -44,6 +42,21 @@ public class LevelUpMenuUI : MonoBehaviour
     {
         this.skillsManager.SkillsGenerated -= DisplaySkills;
         Skill.Selected -= ResetSkills;
+    }
+
+    /**
+     * <summary>
+     * Sets the parent of all the skill game objects 
+     * in the list to this gameobject.
+     * </summary>
+     */
+    private void SetParent(List<GameObject> lst)
+    {
+        foreach (GameObject skill in lst)
+        {
+            skill.transform.SetParent(this.transform);
+            skill.GetComponent<RectTransform>().localScale = Vector3.one;
+        }
     }
 
     /**

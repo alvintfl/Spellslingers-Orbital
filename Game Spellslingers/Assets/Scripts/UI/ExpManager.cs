@@ -18,12 +18,11 @@ public class ExpManager : MonoBehaviour
 
     private int maxExp;
     private int exp;
-    private int level;
 
     private void Start()
     {
-        this.exp = 1;
-        this.maxExp = 1;
+        this.exp = 0;
+        this.maxExp = 5;
         ExpManager.LevelUp += IncreaseMaxExp;
         Enemy.DropExp += AddExp;
         Player.instance.Health.DiedInfo += StopExp;

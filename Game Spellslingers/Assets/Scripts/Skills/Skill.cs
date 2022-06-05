@@ -32,7 +32,8 @@ public abstract class Skill : MonoBehaviour
         this.button = gameObject.GetComponent<Button>();
     }
 
-    public virtual void Reset() { }
+    public abstract void Reset();
+    public abstract bool IsSignatureSkill();
 
     public Button Button { get { return this.button; } }
 

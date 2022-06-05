@@ -20,4 +20,9 @@ public class FrostShots : Skill
     {
         Arrow.DeactivateFrostArrow();
     }
+
+    public override bool IsSignatureSkill()
+    {
+        return false;
+    }
 }

@@ -29,4 +29,11 @@ public class Entrench : Skill
             playerAvoidance.SetAvoidChance(playerAvoidance.GetAvoidChance() + 3);
         });
     }
+
+    public override void Reset() { }
+
+    public override bool IsSignatureSkill()
+    {
+        return false;
+    }
 }

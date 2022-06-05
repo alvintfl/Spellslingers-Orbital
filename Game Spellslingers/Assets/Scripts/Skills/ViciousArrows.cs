@@ -27,4 +27,9 @@ public class ViciousArrows : Skill
     {
         Arrow.ResetDamage();
     }
+
+    public override bool IsSignatureSkill()
+    {
+        return false;
+    }
 }

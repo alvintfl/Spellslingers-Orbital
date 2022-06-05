@@ -131,7 +131,7 @@ public class Arrow : Projectile
                 if (enemyHealth != null)
                 {
                     enemyHealth.TakeDamage(GetDamage() * DamageMulti);
-                    print("damage multi = " + DamageMulti);
+                    //print("damage multi = " + DamageMulti);
                     if (enemyHealth.CurrentHealth > 0)
                     {
                         SlowEnemy(collider);

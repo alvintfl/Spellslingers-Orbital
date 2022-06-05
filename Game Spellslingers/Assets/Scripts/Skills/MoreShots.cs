@@ -24,4 +24,10 @@ public class MoreShots : Skill
             this.shoot.AddProjectiles(1);
         });
     }
+    public override void Reset() { }
+
+    public override bool IsSignatureSkill()
+    {
+        return false;
+    }
 }

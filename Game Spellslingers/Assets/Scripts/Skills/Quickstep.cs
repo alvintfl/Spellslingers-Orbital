@@ -28,4 +28,10 @@ public class Quickstep : Skill
          }
          );
     }
+    public override void Reset() { }
+
+    public override bool IsSignatureSkill()
+    {
+        return false;
+    }
 }

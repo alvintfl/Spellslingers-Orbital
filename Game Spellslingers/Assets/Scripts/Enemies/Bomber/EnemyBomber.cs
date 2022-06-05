@@ -10,7 +10,6 @@ using UnityEngine;
 public class EnemyBomber : Enemy
 {
     [SerializeField] private GameObject explosionPrefab;
-    public EnemyBomber() : base(3f, 1) { }
 
     /**
      * <summary>

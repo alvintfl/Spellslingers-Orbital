@@ -8,8 +8,6 @@ public class EnemyIceSnail : Enemy
     private Animator anim;
     private new Collider2D collider;
 
-    public EnemyIceSnail() : base(15, 10) { }
-
     public override void Start()
     {
         base.Start();

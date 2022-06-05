@@ -22,4 +22,9 @@ public class BloodDrinker : Skill
         Arrow.DeactivateLifeSteal();
         Lifesteal.Reset();
     }
+
+    public override bool IsSignatureSkill()
+    {
+        return false;
+    }
 }

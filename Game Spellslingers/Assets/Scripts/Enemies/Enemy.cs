@@ -10,8 +10,8 @@ using UnityEngine;
  */
 public class Enemy : Character
 {
-    private float enemyDamage;
-    private int exp;
+    [SerializeField] private float damage;
+    [SerializeField] private int exp;
 
     /** 
      * <summary>
@@ -25,12 +25,6 @@ public class Enemy : Character
     public virtual void Start()
     {
         this.Health.DiedInfo += OnDropExp;
-    }
-
-    public Enemy(float ed, int exp)
-    {
-        this.enemyDamage = ed;
-        this.exp = exp;
     }
 
     /**
@@ -51,7 +45,7 @@ public class Enemy : Character
             {
                 if (!Player.instance.Avoidance.avoidRoll())
                 {
-                    Player.instance.Health.TakeDamage(this.enemyDamage);
+                    Player.instance.Health.TakeDamage(this.damage);
                 }
                 else if (Player.instance.Avoidance.GetRestoreOnAvoid())
                 {
