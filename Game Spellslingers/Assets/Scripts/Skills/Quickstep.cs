@@ -24,7 +24,7 @@ public class Quickstep : Skill
              player.SetMoveSpeed(newMoveSpeed);
 
              Avoidance playerAvoidance = Player.instance.Avoidance;
-             playerAvoidance.setAvoidChance(playerAvoidance.getAvoidChance() + 5);
+             playerAvoidance.SetAvoidChance(playerAvoidance.GetAvoidChance() + 5);
          }
          );
     }

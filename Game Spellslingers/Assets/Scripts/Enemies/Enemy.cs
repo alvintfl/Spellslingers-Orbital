@@ -49,9 +49,13 @@ public class Enemy : Character
             IsCollidedStay = true;
             while (IsCollidedStay)
             {
-                if (!Player.instance.Avoidance.avoidRoll()) 
-                { 
+                if (!Player.instance.Avoidance.avoidRoll())
+                {
                     Player.instance.Health.TakeDamage(this.enemyDamage);
+                }
+                else if (Player.instance.Avoidance.GetRestoreOnAvoid())
+                {
+                    Player.instance.Health.TakeDamage(-10);
                 }
                 yield return new WaitForSeconds(1);
             }

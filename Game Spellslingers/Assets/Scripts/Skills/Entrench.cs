@@ -26,7 +26,7 @@ public class Entrench : Skill
             playerHealth.CurrentHealth += increase;
 
             Avoidance playerAvoidance = Player.instance.Avoidance;
-            playerAvoidance.setAvoidChance(playerAvoidance.getAvoidChance() + 3);
+            playerAvoidance.SetAvoidChance(playerAvoidance.GetAvoidChance() + 3);
         });
     }
 }
