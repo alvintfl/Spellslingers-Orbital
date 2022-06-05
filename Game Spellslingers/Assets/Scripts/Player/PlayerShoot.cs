@@ -23,7 +23,7 @@ public class PlayerShoot : Shoot
         this.playerObject = Player.instance.gameObject;
         this.rate = 1.8f;
         this.wait = new WaitForSeconds(this.rate);
-        this.projectileCount = 1;
+        this.projectileCount = 5;
         StartCoroutine(Fire());
     }
 

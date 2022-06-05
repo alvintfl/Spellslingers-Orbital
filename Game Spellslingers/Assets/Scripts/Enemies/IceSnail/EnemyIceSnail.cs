@@ -24,7 +24,7 @@ public class EnemyIceSnail : Enemy
 
     private void ToggleShell()
     {
-        if ((gameObject.transform.position - Player.instance.transform.position).sqrMagnitude <= 17.5)
+        if ((gameObject.transform.position - Player.instance.transform.position).sqrMagnitude <= 20)
         {
             this.anim.SetBool("Hide", false);
             this.collider.enabled = true;

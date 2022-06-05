@@ -204,7 +204,7 @@ public class Arrow : Projectile
 
     public static void ResetDamage()
     {
-        Arrow.damage = 10;
+        Arrow.damage = 20;
     }
 
     public static void ResetPierceMax()

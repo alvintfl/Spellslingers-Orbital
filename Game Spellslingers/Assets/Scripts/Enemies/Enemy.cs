@@ -35,25 +35,6 @@ public class Enemy : Character
 
     /**
      * <summary>
-     * Check if the game object that collided with this game object
-     * is the player. If yes, check the player's avoidance chance. 
-     * If true, the player takes no damage, else deal damage to the
-     * player equals to this enemy's damage.
-     * </summary>
-     */
-    public virtual void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            if (!Player.instance.Avoidance.avoidRoll())
-            {
-                Player.instance.Health.TakeDamage(this.enemyDamage);
-            }
-        }
-    }
-
-    /**
-     * <summary>
      * For every second in contact with this game object,
      * check if the game object in contact with this game object
      * is the player. If yes, check the player's avoidance chance. 
