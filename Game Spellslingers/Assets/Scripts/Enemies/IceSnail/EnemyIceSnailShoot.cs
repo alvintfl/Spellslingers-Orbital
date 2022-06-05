@@ -10,7 +10,7 @@ public class EnemyIceSnailShoot : Shoot
     public override void Start()
     {
         base.Start();
-        this.wait = new WaitForSeconds(2.5f);
+        this.wait = new WaitForSeconds(5f);
         this.directions = new int[,]
         { {0,1}, {1,1}, {1,0}, {1,-1}, {0,-1}, {-1,-1}, {-1,0}, {-1,1} };
         StartCoroutine(Fire());
