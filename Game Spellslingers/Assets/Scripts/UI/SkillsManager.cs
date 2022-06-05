@@ -105,10 +105,8 @@ public class SkillsManager : MonoBehaviour
     private void GenerateSkills(object sender, EventArgs e)
     {
         this.skillsCount++;
-        Debug.Log(skillsCount);
         if (this.skillsCount == this.signatureSkillRequirement)
         {
-            Debug.Log("Skillget");
             GenerateSignatureSkills();
             return;
         }
