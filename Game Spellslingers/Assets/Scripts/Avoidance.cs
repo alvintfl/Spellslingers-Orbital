@@ -25,6 +25,7 @@ public class Avoidance : MonoBehaviour
     */
     private int avoidChance = 0;
 
+
     public Avoidance(int chance)
     {
         this.avoidChance = chance;

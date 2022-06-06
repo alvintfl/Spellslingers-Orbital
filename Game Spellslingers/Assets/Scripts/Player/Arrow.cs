@@ -12,6 +12,7 @@ public class Arrow : Projectile
 {
     [SerializeField] private Sprite arrowSprite;
     [SerializeField] private Sprite frostArrow;
+    [SerializeField] private Sprite greatArrow;
     private SpriteRenderer spriteRenderer;
     private static int damage = 10;
     private static int pierceMax = 1;
@@ -79,6 +80,11 @@ public class Arrow : Projectile
         if (isFrostArrowActive)
         {
             this.spriteRenderer.sprite = this.frostArrow;
+        }
+
+        if (isStunActive)
+        {
+            this.spriteRenderer.sprite = this.greatArrow;
         }
     }
 
