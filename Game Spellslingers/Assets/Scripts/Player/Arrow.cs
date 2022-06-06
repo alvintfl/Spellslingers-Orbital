@@ -14,8 +14,10 @@ public class Arrow : Projectile
     [SerializeField] private Sprite frostArrow;
     private SpriteRenderer spriteRenderer;
     private static int damage = 10;
-    private static int pierceMax = 1;
+    private static int pierceMax = 0;
     private int pierceCount = 0;
+
+    public static event EventHandler<ArrowArgs> ArrowChange;
 
     /**
      * <summary>
@@ -90,9 +92,11 @@ public class Arrow : Projectile
     {
         return pierceMax;
     }
+
     public static void setPierceMax(int value)
     {
         pierceMax = value;
+        OnArrowChange();
     }
 
     public static void SetDamageMulti(float mult)
@@ -103,6 +107,7 @@ public class Arrow : Projectile
     public static void IncreaseDamage(int damage)
     {
         Arrow.damage += damage;
+        OnArrowChange();
     }
 
     public override int GetDamage()
@@ -215,4 +220,18 @@ public class Arrow : Projectile
     {
         this.pierceCount = 0;
     }
+
+    private static void OnArrowChange()
+    {
+        ArrowArgs args = new ArrowArgs();
+        args.Damage = Arrow.damage;
+        args.Pierce = Arrow.pierceMax;
+        ArrowChange?.Invoke(null, args);
+    }
+}
+
+public class ArrowArgs : EventArgs
+{
+    public int Damage { get; set; }
+    public int Pierce { get; set; }
 }

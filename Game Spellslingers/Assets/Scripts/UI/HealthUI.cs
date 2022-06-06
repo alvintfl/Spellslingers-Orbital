@@ -65,16 +65,16 @@ public class HealthUI : MonoBehaviour
         enemyHealthbar.SetMaxHealth(enemyHealth.MaxHealth);
         enemyHealthbar.SetHealth(enemyHealth.MaxHealth);
         enemyHealth.HealthChange +=
-            (object sender, EventArgs e) =>
+            (object sender, HealthArgs e) =>
             {
-                enemyHealthbar.SetMaxHealth(enemyHealth.MaxHealth);
-                enemyHealthbar.SetHealth(enemyHealth.CurrentHealth);
+                enemyHealthbar.SetMaxHealth(e.MaxHealth);
+                enemyHealthbar.SetHealth(e.CurrentHealth);
             };
     }
 
-    public void UpdatePlayerHealth(object sender, EventArgs e)
+    public void UpdatePlayerHealth(object sender, HealthArgs e)
     {
-        this.healthbar.SetMaxHealth(this.playerHealth.MaxHealth);
-        this.healthbar.SetHealth(playerHealth.CurrentHealth);
+        this.healthbar.SetMaxHealth(e.MaxHealth);
+        this.healthbar.SetHealth(e.CurrentHealth);
     }
 }

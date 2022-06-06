@@ -11,7 +11,7 @@ using UnityEngine;
  */
 public class Slow : StatusEffect
 {
-    public Slow() : base(0.4f, 2f) { }
+    public Slow() : base(0.4f, 10f) { }
 
     /**
      * <summary>

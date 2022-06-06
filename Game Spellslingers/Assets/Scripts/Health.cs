@@ -11,18 +11,14 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
-    private float currentHealth = 100f;
-    public event EventHandler HealthChange;
+    private float currentHealth;
+    public event EventHandler<HealthArgs> HealthChange;
     public delegate void Died();
     public event Died DiedInfo;
     private Animator anim;
 
     private void Awake() {
         this.anim = GetComponent<Animator>();
-    }
-
-    private void Start()
-    {
         this.currentHealth = maxHealth;
     }
 
@@ -30,7 +26,7 @@ public class Health : MonoBehaviour
         set 
         { 
             this.currentHealth = value;
-            OnHealthChange(EventArgs.Empty);
+            OnHealthChange();
         } 
     }
 
@@ -40,11 +36,14 @@ public class Health : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        OnHealthChange(EventArgs.Empty);
+        OnHealthChange();
     }
-    protected virtual void OnHealthChange(EventArgs e)
+    protected virtual void OnHealthChange()
     {
-        HealthChange?.Invoke(this, e);
+        HealthArgs args = new HealthArgs();
+        args.MaxHealth = this.MaxHealth;
+        args.CurrentHealth = this.currentHealth;
+        HealthChange?.Invoke(this, args);
         CheckStatus();
     }
     private void DiesEvent()
@@ -71,4 +70,9 @@ public class Health : MonoBehaviour
             this.DiesEvent();
         }
     }
+}
+public class HealthArgs : EventArgs
+{
+    public float MaxHealth { get; set; }
+    public float CurrentHealth { get; set; }
 }

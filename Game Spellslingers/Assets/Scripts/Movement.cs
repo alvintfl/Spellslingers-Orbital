@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class Movement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 movement;
+
+    public event EventHandler<MoveSpeedArgs> MoveSpeedChange;
 
     /**
      * <summary>
@@ -51,6 +54,7 @@ public class Movement : MonoBehaviour
     public void ResetMoveSpeed()
     {
         this.moveSpeed = this.baseMoveSpeed;
+        OnMoveSpeedChange();
     }
 
     public float GetBaseMoveSpeed()
@@ -61,6 +65,7 @@ public class Movement : MonoBehaviour
     public void SetMoveSpeed(float movespeed)
     {
         this.moveSpeed = movespeed;
+        OnMoveSpeedChange();
     }
 
     public void SetX(float f) { this.movement.x = f; }
@@ -111,4 +116,15 @@ public class Movement : MonoBehaviour
         rb.MovePosition(this.rb.position + 
             this.movement.normalized * this.moveSpeed * Time.fixedDeltaTime);
     }
+
+    protected virtual void OnMoveSpeedChange()
+    {
+        MoveSpeedArgs args = new MoveSpeedArgs();
+        args.MoveSpeed = this.moveSpeed;
+        MoveSpeedChange?.Invoke(this, args);
+    }
+}
+public class MoveSpeedArgs : EventArgs
+{
+    public float MoveSpeed { get; set; }
 }
