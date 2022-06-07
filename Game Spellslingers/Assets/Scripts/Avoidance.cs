@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class Avoidance : MonoBehaviour
      * </summary>
     */
     private int avoidChance = 0;
+    public event EventHandler<AvoidanceArgs> AvoidChanceChange;
 
 
     public Avoidance(int chance)
@@ -38,11 +40,12 @@ public class Avoidance : MonoBehaviour
     public void SetAvoidChance(int value) 
     {
         avoidChance = value;
+        OnAvoidChanceChange();
     }
 
     public bool avoidRoll()
     {
-        int roll = (int)Random.Range(1f, 100f);
+        int roll = (int) UnityEngine.Random.Range(1f, 100f);
         if (roll <= avoidChance)
         {
             print("damage avoided");
@@ -60,4 +63,16 @@ public class Avoidance : MonoBehaviour
     {
         restoreOnAvoid = resBool;
     }
+
+    public void OnAvoidChanceChange()
+    {
+        AvoidanceArgs args = new AvoidanceArgs();
+        args.AvoidChance = this.avoidChance;
+        AvoidChanceChange?.Invoke(this, args);
+    }
+}
+
+public class AvoidanceArgs : EventArgs
+{
+    public int AvoidChance { get; set; }
 }

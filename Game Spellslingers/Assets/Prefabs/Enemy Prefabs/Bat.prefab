@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3087973092160009045}
   - component: {fileID: 3087973092160009034}
-  - component: {fileID: 9017512112035854780}
   - component: {fileID: 1645632641069021547}
   - component: {fileID: 6135790805655535860}
   - component: {fileID: 1185009703947455186}
+  - component: {fileID: 4461200825876485254}
   m_Layer: 7
   m_Name: Bat
   m_TagString: Enemy
@@ -88,18 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9017512112035854780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3087973092160009033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f841cd6b97e07f3489bf431243666ce7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1645632641069021547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,3 +155,17 @@ PolygonCollider2D:
       - {x: 0.1257448, y: -0.0034981365}
       - {x: 0.12519649, y: 0.060566362}
       - {x: 0.11434062, y: 0.12875196}
+--- !u!114 &4461200825876485254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3087973092160009033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd3df889ddb0284098170464d2a3605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 6
+  exp: 1

@@ -2,7 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FrostArrow : MonoBehaviour
+/**
+ * <summary>
+ * A class that applies slow.
+ * </summary>
+ */
+public class PlayerSlow : MonoBehaviour
 {
     [SerializeField] private Slow slowPrefab;
 

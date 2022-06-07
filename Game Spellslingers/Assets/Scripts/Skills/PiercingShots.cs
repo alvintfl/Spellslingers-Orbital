@@ -5,7 +5,7 @@ using UnityEngine;
 
 /** 
  * <summary>
- * A class that allows the player's
+ * A skill that allows the player's
  * arrows to pierce enemies.
  * </summary>
  */
@@ -25,6 +25,11 @@ public class PiercingShots : Skill
     public override void Reset()
     {
         Arrow.ResetPierceMax();
+    }
+
+    public override bool IsSignatureSkill()
+    {
+        return false;
     }
 
 }

@@ -7,17 +7,19 @@ using Random = UnityEngine.Random;
 
 /**
  * <summary>
- * A class that is resposible for shooting.
+ * The shooting class for player.
  * </summary>
  */
 public class PlayerShoot : Shoot
 {
     private int projectileCount;
-    private float rate;
+    private float rate = 1.8f;
     private WaitForSeconds wait;
 
     private Vector3 target;
     private GameObject playerObject;
+
+    public event EventHandler<PlayerShootArgs> PlayerShootChange;
 
     /**
     * <summary>
@@ -28,15 +30,19 @@ public class PlayerShoot : Shoot
     private bool randomiseAim;
     private float randomRot;
 
-    public override void Start()
+    private void Awake()
     {
-        base.Start();
-        this.playerObject = Player.instance.gameObject;
-        this.rate = 1.8f;
+        this.rate = 0.5f;
         this.wait = new WaitForSeconds(this.rate);
         this.projectileCount = 1;
         this.randomiseAim = false;
         this.randomRot = 0;
+    }
+
+    public override void Start()
+    {
+        base.Start();
+        playerObject = Player.instance.gameObject;
         StartCoroutine(Fire());
     }
 
@@ -104,19 +110,32 @@ public class PlayerShoot : Shoot
     public void AddProjectiles(int num)
     {
         this.projectileCount += num;
-        playerObject.GetComponent<Archer>().Projectiles += num;
+        //playerObject.GetComponent<Archer>().Projectiles += num;
+        OnPlayerShootChange();
+    }
+
+    public int GetProjectileCount()
+    {
+        return this.projectileCount;
     }
 
     public void IncreaseRate(float secs)
     {
         this.rate -= secs;
         this.wait = new WaitForSeconds(this.rate);
+        OnPlayerShootChange();
     }
 
     public void DecreaseRate(float secs)
     {
         this.rate += secs;
         this.wait = new WaitForSeconds(this.rate);
+        OnPlayerShootChange();
+    }
+
+    public float GetRate()
+    {
+        return this.rate;
     }
 
     private Vector2 Rotate(Vector2 v, float delta)
@@ -138,4 +157,18 @@ public class PlayerShoot : Shoot
             randomiseAim = true;
         }
     }
+
+    protected virtual void OnPlayerShootChange()
+    {
+        PlayerShootArgs args = new PlayerShootArgs();
+        args.ProjectileCount = this.projectileCount - 1;
+        args.Rate = this.rate;
+        PlayerShootChange?.Invoke(this, args);
+    }
+}
+
+public class PlayerShootArgs : EventArgs
+{
+    public int ProjectileCount { get; set; }
+    public float Rate { get; set; } 
 }

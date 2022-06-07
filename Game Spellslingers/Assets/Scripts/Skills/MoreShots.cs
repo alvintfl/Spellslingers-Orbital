@@ -5,7 +5,7 @@ using UnityEngine;
 
 /** 
  * <summary>
- * A class that increases the 
+ * A skill that increases the 
  * number of projectiles the 
  * player can shoot.
  * </summary>
@@ -23,5 +23,11 @@ public class MoreShots : Skill
             OnSelected(EventArgs.Empty);
             this.shoot.AddProjectiles(1);
         });
+    }
+    public override void Reset() { }
+
+    public override bool IsSignatureSkill()
+    {
+        return false;
     }
 }

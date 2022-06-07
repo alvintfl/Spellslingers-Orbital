@@ -5,7 +5,7 @@ using UnityEngine;
 
 /** 
  * <summary>
- * A class that increases the 
+ * A skill that increases the 
  * damage of the player's arrows.
  * </summary>
  */
@@ -26,5 +26,10 @@ public class ViciousArrows : Skill
     public override void Reset()
     {
         Arrow.ResetDamage();
+    }
+
+    public override bool IsSignatureSkill()
+    {
+        return false;
     }
 }

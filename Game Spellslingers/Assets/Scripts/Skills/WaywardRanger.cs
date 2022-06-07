@@ -27,4 +27,10 @@ public class WaywardRanger : Skill
             this.shoot.ToggleRandomiseProjectiles();
         });
     }
+    public override void Reset() { }
+
+    public override bool IsSignatureSkill()
+    {
+        return true;
+    }
 }

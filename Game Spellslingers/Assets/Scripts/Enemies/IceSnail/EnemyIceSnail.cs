@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
+/**
+ * <summary>
+ * A class that represents an ice snail.
+ * </summary>
+ */
 public class EnemyIceSnail : Enemy
 {
     private Animator anim;
     private new Collider2D collider;
-
-    public EnemyIceSnail() : base(15, 10) { }
 
     public override void Start()
     {
@@ -21,6 +24,13 @@ public class EnemyIceSnail : Enemy
     {
         ToggleShell();
     }
+
+    /**
+     * <summary>
+     * Determine if the player is close enough for the ice snail
+     * to come out of it's shell.
+     * </summary>
+     */
 
     private void ToggleShell()
     {

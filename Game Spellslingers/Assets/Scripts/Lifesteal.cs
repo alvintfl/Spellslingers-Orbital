@@ -24,7 +24,7 @@ public class Lifesteal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (this.enabled && collision.gameObject.CompareTag("Enemy"))
         {
             Player.instance.Health.CurrentHealth += Lifesteal.healAmount;
         }

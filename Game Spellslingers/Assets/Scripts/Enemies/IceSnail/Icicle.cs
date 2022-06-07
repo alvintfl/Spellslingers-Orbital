@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class that represents the 
+ * icicle projectile.
+ * </summary>
+ */
 public class Icicle : Projectile
 {
     private int damage;

@@ -15,9 +15,10 @@ public class Arrow : Projectile
     [SerializeField] private Sprite greatArrow;
     private SpriteRenderer spriteRenderer;
     private static int damage = 10;
-    private static int pierceMax = 1;
+    private static int pierceMax = 0;
     private int pierceCount = 0;
 
+    public static event EventHandler<ArrowArgs> ArrowChange;
 
     /**
      * <summary>
@@ -34,6 +35,7 @@ public class Arrow : Projectile
      * </summary>
      */
     private static bool isLifestealActive = false;
+
     /**
      * <summary>
      * A bool to let the arrow know they 
@@ -48,7 +50,7 @@ public class Arrow : Projectile
      * can slow.
      * </summary>
      */
-    private static bool isFrostArrowActive = false;
+    private static bool isSlowActive = false;
 
     /**
      * <summary>
@@ -56,7 +58,6 @@ public class Arrow : Projectile
      * can stun.
      * </summary>
      */
-
     private static bool isStunActive  = false;
 
 
@@ -77,7 +78,7 @@ public class Arrow : Projectile
 
     private void OnEnable()
     {
-        if (isFrostArrowActive)
+        if (isSlowActive)
         {
             this.spriteRenderer.sprite = this.frostArrow;
         }
@@ -97,9 +98,11 @@ public class Arrow : Projectile
     {
         return pierceMax;
     }
+
     public static void setPierceMax(int value)
     {
         pierceMax = value;
+        OnArrowChange();
     }
 
     public static void SetDamageMulti(float mult)
@@ -110,6 +113,7 @@ public class Arrow : Projectile
     public static void IncreaseDamage(int damage)
     {
         Arrow.damage += damage;
+        OnArrowChange();
     }
 
     public override int GetDamage()
@@ -137,7 +141,7 @@ public class Arrow : Projectile
                 if (enemyHealth != null)
                 {
                     enemyHealth.TakeDamage(GetDamage() * DamageMulti);
-                    print("damage multi = " + DamageMulti);
+                    //print("damage multi = " + DamageMulti);
                     if (enemyHealth.CurrentHealth > 0)
                     {
                         SlowEnemy(collider);
@@ -168,11 +172,11 @@ public class Arrow : Projectile
     }
     public static void ActivateFrostArrow()
     {
-        Arrow.isFrostArrowActive = true;
+        Arrow.isSlowActive = true;
     }
     public static void DeactivateFrostArrow()
     {
-        Arrow.isFrostArrowActive = false;
+        Arrow.isSlowActive = false;
     }
 
     public static void ActivateStun()
@@ -187,12 +191,12 @@ public class Arrow : Projectile
 
     private void SlowEnemy(Collider2D collider)
     {
-        if(isFrostArrowActive)
+        if(isSlowActive)
         {
-            FrostArrow frostArrow = Player.instance
-                .gameObject.GetComponentInChildren<FrostArrow>(true);
-            frostArrow.gameObject.SetActive(true);
-            frostArrow.Slow(collider);
+            PlayerSlow slow = Player.instance
+                .gameObject.GetComponentInChildren<PlayerSlow>(true);
+            slow.gameObject.SetActive(true);
+            slow.Slow(collider);
         }
     }
 
@@ -210,7 +214,7 @@ public class Arrow : Projectile
 
     public static void ResetDamage()
     {
-        Arrow.damage = 20;
+        Arrow.damage = 10;
     }
 
     public static void ResetPierceMax()
@@ -222,4 +226,18 @@ public class Arrow : Projectile
     {
         this.pierceCount = 0;
     }
+
+    private static void OnArrowChange()
+    {
+        ArrowArgs args = new ArrowArgs();
+        args.Damage = Arrow.damage;
+        args.Pierce = Arrow.pierceMax;
+        ArrowChange?.Invoke(null, args);
+    }
+}
+
+public class ArrowArgs : EventArgs
+{
+    public int Damage { get; set; }
+    public int Pierce { get; set; }
 }

@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2072178966596833349}
   - component: {fileID: 2072178966596833346}
+  - component: {fileID: 2590814450390193031}
   - component: {fileID: 7852744049232916462}
   - component: {fileID: 7566946244315146564}
   - component: {fileID: 1288935923922570448}
   - component: {fileID: 4001360498887257059}
-  - component: {fileID: 2441198439195904832}
   m_Layer: 7
   m_Name: DustElemental
   m_TagString: Enemy
@@ -90,6 +90,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2590814450390193031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072178966596833345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd3df889ddb0284098170464d2a3605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  exp: 3
 --- !u!114 &7852744049232916462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,18 +184,6 @@ PolygonCollider2D:
       - {x: 0.42, y: -0.32999998}
       - {x: 0.42, y: 0.32999998}
       - {x: 0.32999998, y: 0.42}
---- !u!114 &2441198439195904832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072178966596833345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c9342a84b1d844a904e5c42b38293e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1200494870601402639
 PrefabInstance:
   m_ObjectHideFlags: 0

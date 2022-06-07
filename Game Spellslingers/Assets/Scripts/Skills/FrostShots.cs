@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A skill that allows arrows to slow.
+ * </summary>
+ */
 public class FrostShots : Skill
 {
     [SerializeField] private Sprite arrow;
@@ -19,5 +24,10 @@ public class FrostShots : Skill
     public override void Reset()
     {
         Arrow.DeactivateFrostArrow();
+    }
+
+    public override bool IsSignatureSkill()
+    {
+        return false;
     }
 }

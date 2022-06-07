@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9169607395776985757}
   - component: {fileID: 4606762920962013044}
   m_Layer: 0
-  m_Name: FrostArrow
+  m_Name: PlayerSlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

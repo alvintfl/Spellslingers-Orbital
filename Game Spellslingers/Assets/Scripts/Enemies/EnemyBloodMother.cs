@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyBloodMother : Enemy
 {
-    EnemyBloodMother() : base(15f, 5) { }
     [SerializeField]
     private GameObject bloodChildrenPrefab;
 

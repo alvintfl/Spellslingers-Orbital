@@ -19,4 +19,10 @@ public class WindDancer : Skill
             playerAvoidance.SetRestoreOnAvoid(true);
         });
     }
+    public override void Reset() { }
+
+    public override bool IsSignatureSkill()
+    {
+        return true;
+    }
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 /** 
  * <summary>
- * A class that increases the player's
+ * A skill that increases the player's
  * current health, max health and 
  * avoidance.
  * </summary>
@@ -28,5 +28,12 @@ public class Entrench : Skill
             Avoidance playerAvoidance = Player.instance.Avoidance;
             playerAvoidance.SetAvoidChance(playerAvoidance.GetAvoidChance() + 3);
         });
+    }
+
+    public override void Reset() { }
+
+    public override bool IsSignatureSkill()
+    {
+        return false;
     }
 }
