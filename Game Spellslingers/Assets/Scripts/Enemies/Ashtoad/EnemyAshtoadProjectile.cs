@@ -48,5 +48,6 @@ public class EnemyAshtoadProjectile : MonoBehaviour
     void DestroyProjectile() 
     {
         Destroy(gameObject);
+        anim.SetBool("Hit", false);
     }
 }

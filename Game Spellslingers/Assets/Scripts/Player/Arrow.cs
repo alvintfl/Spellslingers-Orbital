@@ -87,6 +87,11 @@ public class Arrow : Projectile
         {
             this.spriteRenderer.sprite = this.greatArrow;
         }
+
+        if (isSlowActive && isStunActive)
+        {
+            // sprite add here
+        }
     }
 
     private void OnDestroy()

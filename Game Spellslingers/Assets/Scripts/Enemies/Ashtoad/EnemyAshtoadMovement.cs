@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyAshtoadMovement : EnemyMovement
 {
     private float stoppingDistance;
-    private float retreatDistance;
 
     private float timeBtwShots;
     public float startTimeBtwShots;
@@ -27,7 +26,7 @@ public class EnemyAshtoadMovement : EnemyMovement
         Vector3 direction = Player.instance.gameObject.transform.position - transform.position;
         direction.Normalize();
 
-        // stop moving when in range and not in retreat distance
+        // stop moving when in range
         if (Vector2.Distance(transform.position, player.position) <= stoppingDistance)
         {
             anim.SetBool("InRange", true);

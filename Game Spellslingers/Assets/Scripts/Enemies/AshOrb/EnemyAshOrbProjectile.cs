@@ -11,6 +11,9 @@ public class EnemyAshOrbProjectile : MonoBehaviour
     [SerializeField]
     private float speed;
 
+    [SerializeField]
+    private GameObject ashOrbObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,7 @@ public class EnemyAshOrbProjectile : MonoBehaviour
             if (!Player.instance.Avoidance.avoidRoll())
             {
                 Player.instance.Health.TakeDamage(1f);
+
             }
         }
     }

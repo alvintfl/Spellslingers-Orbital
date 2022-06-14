@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5430439550188741858}
   m_Layer: 0
   m_Name: AshOrbWave
-  m_TagString: Enemy
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  ashOrbObject: {fileID: 5374439049706102656, guid: d0924138008ad6743a1c173e946f9dd6, type: 3}
 --- !u!60 &-5430439550188741858
 PolygonCollider2D:
   m_ObjectHideFlags: 0

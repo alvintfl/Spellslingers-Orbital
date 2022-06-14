@@ -9,7 +9,7 @@ using UnityEngine;
  * the player.
  * </summary>
  */
-public class PlayerEvents : MonoBehaviour
+public class DeathUIActivator : MonoBehaviour
 {
     [SerializeField]
     private GameObject dsc;

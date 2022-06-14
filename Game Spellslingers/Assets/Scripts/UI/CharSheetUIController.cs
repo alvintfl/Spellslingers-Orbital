@@ -6,15 +6,7 @@ using TMPro;
 
 public class CharSheetUIController : MonoBehaviour
 {
-    /*
-    private GameObject playerObject;
-    private Health playerHealth;
-    private Movement playerMovement;
-    private Avoidance playerAvoidance;
-    private int archerProjectiles;
-    */
 
-    //temporary variables
     [SerializeField]
     private GameObject arrow;
 
@@ -23,13 +15,7 @@ public class CharSheetUIController : MonoBehaviour
 
     private void Start()
     {
-        /*
-        playerObject = Archer.instance.gameObject;
-        playerHealth = playerObject.GetComponent<Health>();
-        playerMovement = playerObject.GetComponent<PlayerMovement>();
-        playerAvoidance = playerObject.GetComponent<Avoidance>();
-        archerProjectiles = playerObject.GetComponent<Archer>().Projectiles;
-        */
+
 
         GameObject playerObject = Archer.instance.gameObject;
         Health playerHealth = playerObject.GetComponent<Health>();
