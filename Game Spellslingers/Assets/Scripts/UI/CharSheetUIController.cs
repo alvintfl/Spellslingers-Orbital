@@ -6,96 +6,88 @@ using TMPro;
 
 public class CharSheetUIController : MonoBehaviour
 {
-
+    //temporary variables
     [SerializeField]
     private GameObject arrow;
 
-    [SerializeField] 
+    [SerializeField]
     private GameObject guc;
+
+    private enum Stats
+    {
+        Level = 9,
+        Health = 10,
+        Damage = 11,
+        MoveSpeed = 12,
+        AvoidChance = 13,
+        Pierce = 14,
+        Projectiles = 15,
+        Rate = 17
+    }
 
     private void Start()
     {
-
-
-        GameObject playerObject = Archer.instance.gameObject;
-        Health playerHealth = playerObject.GetComponent<Health>();
-        Movement playerMovement = playerObject.GetComponent<PlayerMovement>();
-        Avoidance playerAvoidance = playerObject.GetComponent<Avoidance>();
-        PlayerShoot playerShoot = playerObject.GetComponent<PlayerShoot>();
+        Archer player = (Archer)Player.instance;
 
         //Inital values for UI
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[9].text = "1";
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[10].text = playerHealth.CurrentHealth.ToString() + " / " + playerHealth.MaxHealth.ToString();
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[11].text = arrow.GetComponent<Arrow>().GetDamage().ToString();
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[12].text = playerMovement.GetMoveSpeed().ToString("#.00");
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[13].text = playerAvoidance.GetAvoidChance().ToString() + "%";
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[14].text = Arrow.getPierceMax().ToString();
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[15].text = (playerShoot.GetProjectileCount() - 1).ToString();
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[17].text = playerShoot.GetRate().ToString() + "s";
-        playerHealth.HealthChange += UpdatePlayerHealth;
-        playerMovement.MoveSpeedChange += UpdatePlayerMoveSpeed;
-        playerAvoidance.AvoidChanceChange += UpdatePlayerAvoidChance;
-        playerShoot.PlayerShootChange += UpdatePlayerShoot;
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Level].text = "1";
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Health].text = player.GetCurrentHealth().ToString() + " / " + player.GetMaxHealth().ToString();
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Damage].text = arrow.GetComponent<Arrow>().GetDamage().ToString();
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.MoveSpeed].text = player.GetMoveSpeed().ToString("#.00");
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.AvoidChance].text = player.GetAvoidChance().ToString() + "%";
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Pierce].text = Arrow.getPierceMax().ToString();
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Projectiles].text = (player.GetProjectileCount() - 1).ToString();
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Rate].text = player.GetRate().ToString() + "s";
+        player.HealthChange += UpdatePlayerHealth;
+        player.MoveSpeedChange += UpdatePlayerMoveSpeed;
+        player.AvoidChanceChange += UpdatePlayerAvoidChance;
+        player.ShootChange += UpdatePlayerShoot;
         ExpManager.LevelUp += UpdatePlayerLevel;
         Arrow.ArrowChange += UpdatePlayerArrow;
     }
 
     private void OnDestroy()
     {
-        if (Player.instance != null)
+        Archer player = (Archer)Player.instance;
+        if (player != null)
         {
-            Player.instance.Health.HealthChange -= UpdatePlayerHealth;   
-            Player.instance.Movement.MoveSpeedChange -= UpdatePlayerMoveSpeed;
-            Player.instance.Avoidance.AvoidChanceChange -= UpdatePlayerAvoidChance;
-            Player.instance.GetComponent<Archer>().Shoot.PlayerShootChange -= UpdatePlayerShoot;
+            player.HealthChange -= UpdatePlayerHealth;
+            player.MoveSpeedChange -= UpdatePlayerMoveSpeed;
+            player.AvoidChanceChange -= UpdatePlayerAvoidChance;
+            player.ShootChange -= UpdatePlayerShoot;
         }
         Arrow.ArrowChange -= UpdatePlayerArrow;
     }
 
-    void Update()
+    private void UpdatePlayerHealth(Character sender, EventArgs e)
     {
-        /*
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[10].text = playercHealth.CurrentHealth.ToString() + " / " + playerHealth.MaxHealth.ToString();
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[11].text = arrow.GetComponent<Arrow>().GetDamage().ToString();
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[12].text = playerMovement.GetMoveSpeed().ToString("#.00");
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[13].text = playerAvoidance.GetAvoidChance().ToString() + "%";
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[14].text = Arrow.getPierceMax().ToString();
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[15].text = archerProjectiles.ToString();
-        */
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Health].text = sender.GetCurrentHealth() + " / " + sender.GetMaxHealth();
     }
 
-    private void UpdatePlayerHealth(object sender, HealthArgs e)
+    private void UpdatePlayerMoveSpeed(Character sender, EventArgs e)
     {
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[10].text = e.CurrentHealth + " / " + e.MaxHealth;
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.MoveSpeed].text = sender.GetMoveSpeed().ToString("#.00");
     }
 
-    private void UpdatePlayerMoveSpeed(object sender, MoveSpeedArgs e)
+    private void UpdatePlayerAvoidChance(Player sender, EventArgs e)
     {
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[12].text = e.MoveSpeed.ToString("#.00");
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.AvoidChance].text = sender.GetAvoidChance().ToString() + "%";
     }
 
-    private void UpdatePlayerAvoidChance(object sender, AvoidanceArgs e)
+    private void UpdatePlayerShoot(Archer sender, EventArgs e)
     {
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[13].text = e.AvoidChance.ToString() + "%";
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Projectiles].text = (sender.GetProjectileCount() - 1).ToString();
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Rate].text = sender.GetRate().ToString() + "s";
     }
 
-    private void UpdatePlayerShoot(object sender, PlayerShootArgs e)
+    private void UpdatePlayerArrow(Arrow sender, ArrowArgs e)
     {
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[15].text = e.ProjectileCount.ToString();
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[17].text = e.Rate.ToString() + "s";
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Damage].text = e.Damage.ToString();
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Pierce].text = e.Pierce.ToString();
     }
 
-    private void UpdatePlayerArrow(object sender, ArrowArgs e)
+    private void UpdatePlayerLevel(ExpManager sender, EventArgs e)
     {
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[11].text = e.Damage.ToString();
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[14].text = e.Pierce.ToString();
-    }
-
-    private void UpdatePlayerLevel(object sender, EventArgs e) 
-    {
-        int level = Int32.Parse(
-            gameObject.GetComponentsInChildren<TextMeshProUGUI>()[9].text);
-        level++;
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[9].text = level.ToString();
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Level].text = sender.Level.ToString();
     }
 }

@@ -15,7 +15,7 @@ public class Explosion : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            Player.instance.Health.TakeDamage(this.damage);
+            Player.instance.TakeDamage(this.damage);
         }
     }
 }

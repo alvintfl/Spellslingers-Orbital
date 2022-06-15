@@ -135,6 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd90915ffe55c649b371ce6be78ddc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 15
+  exp: 5
   bloodChildrenPrefab: {fileID: 8414273325136495110, guid: a7e9c22fbee30654697c60f1077d46d2, type: 3}
 --- !u!114 &7235461948662355100
 MonoBehaviour:

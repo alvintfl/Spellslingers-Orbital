@@ -15,7 +15,7 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Player.instance.Health.CurrentHealth <= 0)
+        if (Player.instance.GetCurrentHealth() <= 0)
         {
             return;
         }

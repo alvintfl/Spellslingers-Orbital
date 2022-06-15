@@ -17,16 +17,15 @@ public class Quickstep : Skill
     {
         base.Start();
         Button.onClick.AddListener(() =>
-         {
-             OnSelected(EventArgs.Empty);
-             Movement player = Player.instance.Movement;
-             float moveSpeed = player.GetMoveSpeed();
-             float newMoveSpeed = moveSpeed + moveSpeed * 0.05f;
-             player.SetMoveSpeed(newMoveSpeed);
+        {
+            OnSelected(EventArgs.Empty);
+            Player player = Player.instance;
+            float moveSpeed = player.GetMoveSpeed();
+            float newMoveSpeed = moveSpeed + moveSpeed * 0.05f;
+            player.SetMoveSpeed(newMoveSpeed);
 
-             Avoidance playerAvoidance = Player.instance.Avoidance;
-             playerAvoidance.SetAvoidChance(playerAvoidance.GetAvoidChance() + 5);
-         }
+            player.SetAvoidChance(player.GetAvoidChance() + 5);
+        }
          );
     }
     public override void Reset() { }

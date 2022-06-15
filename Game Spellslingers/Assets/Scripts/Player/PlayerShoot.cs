@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-
 /**
  * <summary>
  * The shooting class for player.
@@ -13,13 +12,15 @@ using Random = UnityEngine.Random;
 public class PlayerShoot : Shoot
 {
     private int projectileCount;
-    private float rate = 1.8f;
+    private float rate;
+    private HashSet<GameObject> seen;
     private WaitForSeconds wait;
 
     private Vector3 target;
     private GameObject playerObject;
 
-    public event EventHandler<PlayerShootArgs> PlayerShootChange;
+    public delegate void ShootChangeEventHandler<T, U>(T sender, U eventArgs);
+    public event ShootChangeEventHandler<PlayerShoot, EventArgs> PlayerShootChange;
 
     /**
     * <summary>
@@ -32,11 +33,12 @@ public class PlayerShoot : Shoot
 
     private void Awake()
     {
-        this.rate = 0.5f;
+        this.rate = 1.8f;
         this.wait = new WaitForSeconds(this.rate);
         this.projectileCount = 1;
         this.randomiseAim = false;
         this.randomRot = 0;
+        this.seen = new HashSet<GameObject>();
     }
 
     public override void Start()
@@ -56,21 +58,20 @@ public class PlayerShoot : Shoot
     {
         while (true)
         {
-            Dictionary<GameObject, bool> seen = new Dictionary<GameObject, bool>();
             for (int i = 0; i < this.projectileCount; i++)
             {
                 //check if projectiles have been randomised. If they are, randomise angles
-                if (randomiseAim) 
+                if (randomiseAim)
                 {
                     randomRot = Random.Range(0, 360);
                 }
 
                 //GameObject projectile = this.projectilePool.Get();
                 GameObject projectile = GetProjectile();
-                
+
                 if (projectile != null)
                 {
-                    while (seen.ContainsKey(projectile))
+                    while (this.seen.Contains(projectile))
                     {
                         //projectile = this.projectilePool.Get();
                         projectile = GetProjectile();
@@ -81,7 +82,7 @@ public class PlayerShoot : Shoot
                     float speed = projectile.GetComponent<Projectile>().Speed;
 
                     // Arranging the position of projectiles to be fired all at once.
-                    float coordinate = (float) (Math.Ceiling((double) i / 2));
+                    float coordinate = (float)(Math.Ceiling((double)i / 2));
                     coordinate = i % 2 == 0 ? coordinate : -1 * coordinate;
 
                     target = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
@@ -93,7 +94,7 @@ public class PlayerShoot : Shoot
                     rotationZ += (float)coordinate * 20;
 
                     float distance = difference.magnitude;
-                    
+
                     // rotate direction of force added to additional arrows
                     Vector2 direction = difference / distance;
                     direction = Rotate(direction, coordinate * 20 * Mathf.Deg2Rad + randomRot * Mathf.Deg2Rad);
@@ -101,8 +102,9 @@ public class PlayerShoot : Shoot
                     projectile.transform.rotation = Quaternion.Euler(0, 0, rotationZ + 180 + randomRot);
                     rb.AddForce(direction * speed, ForceMode2D.Impulse);
                 }
-                seen.Add(projectile, true);
+                this.seen.Add(projectile);
             }
+            this.seen.Clear();
             yield return this.wait;
         }
     }
@@ -110,7 +112,6 @@ public class PlayerShoot : Shoot
     public void AddProjectiles(int num)
     {
         this.projectileCount += num;
-        //playerObject.GetComponent<Archer>().Projectiles += num;
         OnPlayerShootChange();
     }
 
@@ -146,13 +147,13 @@ public class PlayerShoot : Shoot
         );
     }
 
-    public void  ToggleRandomiseProjectiles()
+    public void ToggleRandomiseProjectiles()
     {
         if (randomiseAim)
         {
             randomiseAim = false;
         }
-        else 
+        else
         {
             randomiseAim = true;
         }
@@ -160,15 +161,6 @@ public class PlayerShoot : Shoot
 
     protected virtual void OnPlayerShootChange()
     {
-        PlayerShootArgs args = new PlayerShootArgs();
-        args.ProjectileCount = this.projectileCount - 1;
-        args.Rate = this.rate;
-        PlayerShootChange?.Invoke(this, args);
+        PlayerShootChange?.Invoke(this, EventArgs.Empty);
     }
-}
-
-public class PlayerShootArgs : EventArgs
-{
-    public int ProjectileCount { get; set; }
-    public float Rate { get; set; } 
 }

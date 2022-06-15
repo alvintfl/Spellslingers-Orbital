@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 /**
  * <summary>
@@ -11,10 +13,10 @@ public class SpawnManager : MonoBehaviour
 {
     /**
      * <summary>
-     * The list of enemies that can be spawned.
+     * The list of enemies that can be spawned in the current wave.
      * </summary>
      */
-    [SerializeField] private List<GameObject> enemies;
+    [SerializeField] private List<GameObject> currentWave;
 
     /**
      * <summary>
@@ -22,7 +24,7 @@ public class SpawnManager : MonoBehaviour
      * the player gets stronger.
      * </summary>
      */
-    [SerializeField] private List<GameObject> secondWave;
+    [SerializeField] private List<GameObject> nextWaves;
     [SerializeField] private Camera _camera;
 
     /**
@@ -39,22 +41,56 @@ public class SpawnManager : MonoBehaviour
      * </summary>
      */
     private int[] directions;
-    private bool isNextWave;
+
+    /**
+     * <summary>
+     * Minimum interval to spawn an enemy.
+     * </summary>
+     */
+    private int minSpawnTime;
+
+    /**
+     * <summary>
+     * Maximum interval to spawn an enemy.
+     * </summary>
+     */
+    private int maxSpawnTime;
+
+    /**
+     * <summary>
+     * Player level to start spawning faster.
+     * </summary>
+     */
+    private readonly int requiredLevel = 7;
 
     public delegate void SpawnDelegate(GameObject enemy);
     public static event SpawnDelegate spawned;
+
+    private enum Direction
+    {
+        Left = 0,
+        Right = 1,
+        Top = 2,
+        Bottom = 3,
+    }
 
     private void Start()
     {
         this.count = 0;
         this.directions = new int[] { 0, 1, 2, 3 };
-        this.isNextWave = false;
+        this.minSpawnTime = 2;
+        this.maxSpawnTime = 5;
+        ExpManager.LevelUp += StartNextWave;
+        ExpManager.LevelUp += IncreaseSpawnRate;
+        Player.instance.Death += StopSpawning;
         StartCoroutine(Spawn());
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        StartNextWave();
+        ExpManager.LevelUp -= StartNextWave;
+        ExpManager.LevelUp -= IncreaseSpawnRate;
+        Player.instance.Death -= StopSpawning;
     }
 
     /**
@@ -79,34 +115,67 @@ public class SpawnManager : MonoBehaviour
         }
         while (true)
         {
-            if (Time.timeSinceLevelLoad<90)
-            {
-                yield return new WaitForSeconds(Random.Range(2, 5));
-            }
-            else
-            {
-                yield return new WaitForSeconds(Random.Range(1, 3));
-            }
-            int randomEnemyID = Random.Range(0, enemies.Count);
+            yield return new WaitForSeconds(Random.Range(this.minSpawnTime, this.maxSpawnTime));
+            int randomEnemyID = Random.Range(0, currentWave.Count);
             int direction = this.directions[count % 4];
-            Vector2 coords = direction == 0
-                ? LeftSpawn() : direction == 1
-                ? RightSpawn() : direction == 2
-                ? TopSpawn() : BottomSpawn();
+            Vector2 coords;
+            switch (direction)
+            {
+                case (int)Direction.Left:
+                    coords = LeftSpawn();
+                    break;
+                case (int)Direction.Right:
+                    coords = RightSpawn();
+                    break;
+                case (int)Direction.Top:
+                    coords = TopSpawn();
+                    break;
+                case (int)Direction.Bottom:
+                    coords = BottomSpawn();
+                    break;
+                default:
+                    coords = LeftSpawn();
+                    break;
+            }
             Vector2 position = _camera.ScreenToWorldPoint(coords);
-            GameObject spawnedEnemy = Instantiate(enemies[randomEnemyID], position, Quaternion.identity);
+            GameObject spawnedEnemy = Instantiate(currentWave[randomEnemyID], position, Quaternion.identity);
             spawned(spawnedEnemy);
             count++;
         }
     }
 
-    private void StartNextWave()
+    /**
+     * <summary>
+     * Start spawning enemies for the next wave when the player
+     * reaches the required level.
+     * </summary>
+     */
+    private void StartNextWave(ExpManager sender, EventArgs e)
     {
-        if (Time.timeSinceLevelLoad > 50 && isNextWave == false)
+        if (this.nextWaves.Count != 0)
         {
-            this.isNextWave = true;
-            this.enemies.AddRange(this.secondWave);
+            GameObject waveObject = this.nextWaves[0];
+            EnemyWave wave = waveObject.GetComponent<EnemyWave>();
+            if (sender.Level == wave.Level)
+            {
+                this.currentWave.AddRange(wave.Enemies);
+                this.nextWaves.Remove(waveObject);
+            }
         }
+    }
+
+    private void IncreaseSpawnRate(ExpManager sender, EventArgs e)
+    {
+        if (sender.Level == this.requiredLevel)
+        {
+            this.minSpawnTime = 1;
+            this.maxSpawnTime = 3;
+        }
+    }
+
+    private void StopSpawning(Character sender, EventArgs e)
+    {
+        StopAllCoroutines();
     }
 
     Vector2 LeftSpawn()

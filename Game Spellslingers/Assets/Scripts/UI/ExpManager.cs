@@ -12,20 +12,25 @@ using UnityEngine.UI;
  */
 public class ExpManager : MonoBehaviour
 {
-    public static event EventHandler LevelUp;
-    public event EventHandler GainMaxExp;
-    public event EventHandler GainExp;
+    public delegate void ExpEventHandler<T, U>(T sender, U eventArgs);
+    public static event ExpEventHandler<ExpManager, EventArgs> LevelUp;
+    public event ExpEventHandler<ExpManager, EventArgs> GainMaxExp;
+    public event ExpEventHandler<ExpManager, EventArgs> GainExp;
 
     private int maxExp;
     private int exp;
+    private int level;
+    private double multiplier;
 
     private void Start()
     {
         this.exp = 0;
-        this.maxExp = 5;
+        this.maxExp = 3;
+        this.level = 1;
+        this.multiplier = 1.2;
         ExpManager.LevelUp += IncreaseMaxExp;
         Enemy.DropExp += AddExp;
-        Player.instance.Health.DiedInfo += StopExp;
+        Player.instance.Death += StopExp;
     }
 
     private void Update()
@@ -37,7 +42,7 @@ public class ExpManager : MonoBehaviour
     {
         ExpManager.LevelUp -= IncreaseMaxExp;
         Enemy.DropExp -= AddExp;
-        Player.instance.Health.DiedInfo -= StopExp;
+        Player.instance.Death -= StopExp;
     }
 
     /** 
@@ -55,9 +60,11 @@ public class ExpManager : MonoBehaviour
 
     public int MaxExp { get { return this.maxExp; } }
     public int Exp { get { return this.exp; } }
+    public int Level { get { return this.level; } }
 
     protected virtual void OnLevelUp(EventArgs e)
     {
+        this.level++;
         LevelUp?.Invoke(this, e);
     }
 
@@ -71,20 +78,20 @@ public class ExpManager : MonoBehaviour
         GainExp?.Invoke(this, e);
     }
 
-    public void IncreaseMaxExp(object sender, EventArgs e)
+    public void IncreaseMaxExp(ExpManager sender, EventArgs e)
     {
         this.exp -= this.maxExp;
-        this.maxExp = (int) (this.maxExp * 1.2);
+        this.maxExp = (int)Math.Ceiling(this.MaxExp * this.multiplier);
         OnGainMaxExp(EventArgs.Empty);
     }
 
-    public void AddExp(object sender, DropExpEventArgs e)
+    public void AddExp(Enemy sender, EventArgs e)
     {
-        this.exp += e.Exp;
-        OnGainExp(EventArgs.Empty); 
+        this.exp += sender.Exp;
+        OnGainExp(EventArgs.Empty);
     }
 
-    private void StopExp()
+    private void StopExp(Character sender, EventArgs e)
     {
         OnDisable();
     }

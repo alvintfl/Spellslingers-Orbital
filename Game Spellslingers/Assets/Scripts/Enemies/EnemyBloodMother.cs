@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,15 +18,15 @@ public class EnemyBloodMother : Enemy
     public override void Start()
     {
         base.Start();
-        this.Health.DiedInfo += SummonSpiders;
+        Death += SummonSpiders;
     }
     // on death effect
-    private void SummonSpiders() 
+    private void SummonSpiders(Character sender, EventArgs e)
     {
         for (int i = 0; i < 5; i++)
         {
-            spawnPosition = new Vector2(transform.position.x + Random.Range(-1, 1), 
-                transform.position.y + Random.Range(-1, 1));
+            spawnPosition = new Vector2(transform.position.x + UnityEngine.Random.Range(-1, 1),
+                transform.position.y + UnityEngine.Random.Range(-1, 1));
             GameObject spawnedSpiders = Instantiate(bloodChildrenPrefab, spawnPosition, Quaternion.identity);
             SpawnSpidersInfo(spawnedSpiders);
         }

@@ -15,18 +15,17 @@ public class Entrench : Skill
 {
     public Entrench() : base(5) { }
     public override void Start()
-    { 
+    {
         base.Start();
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);
-            Health playerHealth = Player.instance.Health;
+            Player player = Player.instance;
             int increase = 20;
-            playerHealth.MaxHealth += increase;
-            playerHealth.CurrentHealth += increase;
+            player.SetMaxHealth(player.GetMaxHealth() + increase);
+            player.SetCurrentHealth(player.GetCurrentHealth() + increase);
 
-            Avoidance playerAvoidance = Player.instance.Avoidance;
-            playerAvoidance.SetAvoidChance(playerAvoidance.GetAvoidChance() + 3);
+            player.SetAvoidChance(player.GetAvoidChance() + 3);
         });
     }
 

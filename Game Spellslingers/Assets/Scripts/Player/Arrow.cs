@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,7 +19,8 @@ public class Arrow : Projectile
     private static int pierceMax = 0;
     private int pierceCount = 0;
 
-    public static event EventHandler<ArrowArgs> ArrowChange;
+    public delegate void ArrowChangeEventHandler<T, U>(T sender, U eventArgs);
+    public static event ArrowChangeEventHandler<Arrow, ArrowArgs> ArrowChange;
 
     /**
      * <summary>
@@ -58,7 +60,7 @@ public class Arrow : Projectile
      * can stun.
      * </summary>
      */
-    private static bool isStunActive  = false;
+    private static bool isStunActive = false;
 
 
     public Arrow() : base(15f, 250f) { }
@@ -86,11 +88,6 @@ public class Arrow : Projectile
         if (isStunActive)
         {
             this.spriteRenderer.sprite = this.greatArrow;
-        }
-
-        if (isSlowActive && isStunActive)
-        {
-            // sprite add here
         }
     }
 
@@ -136,7 +133,8 @@ public class Arrow : Projectile
             {
                 pierceCount = 0;
                 base.OnTriggerEnter2D(collider);
-            } else
+            }
+            else
             {
                 pierceCount += 1;
             }
@@ -169,7 +167,7 @@ public class Arrow : Projectile
 
     private void Lifesteal()
     {
-        if(!isLifestealActivated && isLifestealActive)
+        if (!isLifestealActivated && isLifestealActive)
         {
             isLifestealActivated = true;
             gameObject.GetComponent<Lifesteal>().enabled = true;
@@ -196,7 +194,7 @@ public class Arrow : Projectile
 
     private void SlowEnemy(Collider2D collider)
     {
-        if(isSlowActive)
+        if (isSlowActive)
         {
             PlayerSlow slow = Player.instance
                 .gameObject.GetComponentInChildren<PlayerSlow>(true);

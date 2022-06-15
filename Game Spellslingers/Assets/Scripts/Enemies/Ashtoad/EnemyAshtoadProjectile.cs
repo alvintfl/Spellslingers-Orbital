@@ -34,20 +34,19 @@ public class EnemyAshtoadProjectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Player")) 
+        if (collider.CompareTag("Player"))
         {
-            if (!Player.instance.Avoidance.avoidRoll())
+            if (!Player.instance.AvoidRoll())
             {
-                Player.instance.Health.TakeDamage(20f);
+                Player.instance.TakeDamage(20f);
             }
         }
         anim.SetBool("Hit", true);
         Invoke("DestroyProjectile", 1.5f);
     }
 
-    void DestroyProjectile() 
+    void DestroyProjectile()
     {
         Destroy(gameObject);
-        anim.SetBool("Hit", false);
     }
 }

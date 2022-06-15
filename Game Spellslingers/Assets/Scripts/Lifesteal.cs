@@ -26,7 +26,8 @@ public class Lifesteal : MonoBehaviour
     {
         if (this.enabled && collision.gameObject.CompareTag("Enemy"))
         {
-            Player.instance.Health.CurrentHealth += Lifesteal.healAmount;
+            Player player = Player.instance;
+            player.SetCurrentHealth(player.GetCurrentHealth() + Lifesteal.healAmount);
         }
     }
 }

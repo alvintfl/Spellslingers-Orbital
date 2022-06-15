@@ -9,7 +9,7 @@ using UnityEngine.UI;
  * The base skill class.
  * </summary>
  */
-public abstract class Skill : MonoBehaviour 
+public abstract class Skill : MonoBehaviour
 {
     /**
      * <summary>
@@ -19,8 +19,9 @@ public abstract class Skill : MonoBehaviour
     private Button button;
     private int level = 1;
     private int maxLevel = 1;
-    public static event EventHandler Selected;
-    public event EventHandler MaxedOut;
+    public delegate void SkillEventHandler<T, U>(T sender, U eventArgs);
+    public static event SkillEventHandler<Skill, EventArgs> Selected;
+    public event SkillEventHandler<Skill, EventArgs> MaxedOut;
 
     public Skill(int maxLevel)
     {

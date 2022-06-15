@@ -12,40 +12,42 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
     private float currentHealth;
-    public event EventHandler<HealthArgs> HealthChange;
+    public delegate void HealthChangeEventHandler<T, U>(T sender, U eventArgs);
+    public event HealthChangeEventHandler<Health, EventArgs> HealthChange;
     public delegate void Died();
     public event Died DiedInfo;
     private Animator anim;
 
-    private void Awake() {
+    private void Awake()
+    {
         this.anim = GetComponent<Animator>();
         this.currentHealth = maxHealth;
     }
 
-    public float CurrentHealth { get { return currentHealth; } 
-        set 
-        { 
+    public float CurrentHealth
+    {
+        get { return currentHealth; }
+        set
+        {
             this.currentHealth = value;
             OnHealthChange();
-        } 
+        }
     }
 
-    public float MaxHealth { get { return maxHealth; }  set { this.maxHealth = value;  } }
-
+    public float MaxHealth { get { return maxHealth; } set { this.maxHealth = value; } }
     public Animator Animator { get { return this.anim; } }
     public virtual void TakeDamage(float damage)
     {
         currentHealth -= damage;
         OnHealthChange();
     }
+
     protected virtual void OnHealthChange()
     {
-        HealthArgs args = new HealthArgs();
-        args.MaxHealth = this.MaxHealth;
-        args.CurrentHealth = this.currentHealth;
-        HealthChange?.Invoke(this, args);
+        HealthChange?.Invoke(this, EventArgs.Empty);
         CheckStatus();
     }
+
     private void DiesEvent()
     {
         // check function is subscribed
@@ -61,18 +63,13 @@ public class Health : MonoBehaviour
         }
     }
 
-    protected virtual void CheckStatus() 
+    protected virtual void CheckStatus()
     {
         // health hits zero
-        if (CurrentHealth <= 0) 
+        if (CurrentHealth <= 0)
         {
             AnimateDeath();
             this.DiesEvent();
         }
     }
-}
-public class HealthArgs : EventArgs
-{
-    public float MaxHealth { get; set; }
-    public float CurrentHealth { get; set; }
 }

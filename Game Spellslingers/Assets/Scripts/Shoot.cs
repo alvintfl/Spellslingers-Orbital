@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,7 +33,7 @@ public abstract class Shoot : MonoBehaviour
             GameObject projectileObject = Instantiate(projectilePrefab);
             Projectile projectile = projectileObject.GetComponent<Projectile>();
             projectile.Collided +=
-                (sender, e) => this.projectilePool.Release(projectileObject);
+                (Projectile sender, EventArgs e) => this.projectilePool.Release(projectileObject);
             projectile.FirePoint = gameObject.transform;
             return projectileObject;
         },
@@ -41,7 +42,7 @@ public abstract class Shoot : MonoBehaviour
         x => Destroy(x),
         false, this.poolSize, this.poolSize + 1);
 
-        GetComponent<Character>().Health.DiedInfo += StopFiring;
+        GetComponent<Character>().Death += StopFiring;
     }
 
     public abstract IEnumerator Fire();
@@ -51,12 +52,12 @@ public abstract class Shoot : MonoBehaviour
         return this.projectilePool.Get();
     }
 
-    private void OnDestroy()
+    private void OnDsiable()
     {
-        GetComponent<Character>().Health.DiedInfo -= StopFiring;
+        GetComponent<Character>().Death -= StopFiring;
     }
 
-    private void StopFiring()
+    private void StopFiring(Character sender, EventArgs e)
     {
         StopAllCoroutines();
     }

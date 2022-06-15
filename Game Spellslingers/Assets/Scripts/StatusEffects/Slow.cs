@@ -11,7 +11,7 @@ using UnityEngine;
  */
 public class Slow : StatusEffect
 {
-    public Slow() : base(0.4f, 10f) { }
+    public Slow() : base(0.4f, 2f) { }
 
     /**
      * <summary>
@@ -26,15 +26,14 @@ public class Slow : StatusEffect
             float startTime = Time.time;
 
             // Slow the character
-            Movement movement = character.Movement;
-            float slowedMovespeed = movement.GetBaseMoveSpeed() * (1 - Potency);
-            movement.SetMoveSpeed(slowedMovespeed);
+            float slowedMovespeed = character.GetBaseMoveSpeed() * (1 - Potency);
+            character.SetMoveSpeed(slowedMovespeed);
 
             // Wait until slow duration is up or the slow is deactivated
             yield return new WaitWhile(() => Time.time - startTime < Duration && IsActive());
 
             // Set movespeed back to normal
-            movement.ResetMoveSpeed();
+            character.ResetMoveSpeed();
             Deactivate();
             OnStatusEffectEnd(EventArgs.Empty);
         }

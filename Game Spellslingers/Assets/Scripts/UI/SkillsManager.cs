@@ -38,19 +38,19 @@ public class SkillsManager : MonoBehaviour
 
     /**
      * <summary>
-     * Total number of skills the player will have after 
-     * choosing the skills from GenerateSkills.
+     * Prevent the same skills from being selected.
      * </summary>
      */
-    private int skillsCount;
+    private HashSet<int> seen;
 
     /**
      * <summary>
-     * The number of skills needed to obtain a signature skill.
+     * The level needed to obtain a signature skill.
      * </summary>
      */
-    private readonly int signatureSkillRequirement = 9;
-    public event EventHandler SkillsGenerated;
+    private readonly int signatureSkillRequirement = 10;
+    public delegate void SkillsEventHandler<T, U>(T sender, U eventArgs);
+    public event SkillsEventHandler<SkillsManager, EventArgs> SkillsGenerated;
 
     /**
      * <summary>
@@ -65,18 +65,20 @@ public class SkillsManager : MonoBehaviour
         GameObject[] skillPrefabs = Resources.LoadAll<GameObject>("Skills/");
         this.skillsLibrary = new List<GameObject>();
         this.signatureSkillsLibrary = new List<GameObject>();
+        this.seen = new HashSet<int>();
         for (int i = 0; i < skillPrefabs.Length; i++)
         {
             GameObject skillObject = Instantiate(skillPrefabs[i]);
             skillObject.SetActive(false);
             Skill skill = skillObject.GetComponentInChildren<Skill>();
-            skill.MaxedOut += 
-                (sender, e) => this.skillsLibrary.Remove(skillObject);
+            skill.MaxedOut +=
+                (Skill sender, EventArgs e) => this.skillsLibrary.Remove(skillObject);
             skill.Reset();
-            if(skill.IsSignatureSkill())
+            if (skill.IsSignatureSkill())
             {
                 this.signatureSkillsLibrary.Add(skillObject);
-            } else
+            }
+            else
             {
                 this.skillsLibrary.Add(skillObject);
             }
@@ -86,7 +88,6 @@ public class SkillsManager : MonoBehaviour
     private void Start()
     {
         this.selectedSkills = new GameObject[3];
-        this.skillsCount = 0;   
         ExpManager.LevelUp += GenerateSkills;
     }
 
@@ -102,10 +103,9 @@ public class SkillsManager : MonoBehaviour
      * selectedSkills.
      * </summary>
      */
-    private void GenerateSkills(object sender, EventArgs e)
+    private void GenerateSkills(ExpManager sender, EventArgs e)
     {
-        this.skillsCount++;
-        if (this.skillsCount == this.signatureSkillRequirement)
+        if (sender.Level == this.signatureSkillRequirement)
         {
             GenerateSignatureSkills();
             return;
@@ -124,21 +124,22 @@ public class SkillsManager : MonoBehaviour
         if (this.skillsLibrary.Count > 3)
         {
             // Select without replacement
-            Dictionary<int, bool> seen = new Dictionary<int, bool>();
             for (int i = 0; i < this.selectedSkills.Length; i++)
             {
                 int j = random.Next(0, this.skillsLibrary.Count - 1);
                 GameObject skillObject = this.skillsLibrary[j];
-                while (seen.ContainsKey(j))
+                while (this.seen.Contains(j))
                 {
                     j = random.Next(0, this.skillsLibrary.Count - 1);
                     skillObject = this.skillsLibrary[j];
                 }
-                seen.Add(j, true);
+                this.seen.Add(j);
                 skillObject.SetActive(true);
                 this.selectedSkills[i] = skillObject;
             }
-        } else
+            this.seen.Clear();
+        }
+        else
         {
             for (int i = 0; i < this.skillsLibrary.Count; i++)
             {

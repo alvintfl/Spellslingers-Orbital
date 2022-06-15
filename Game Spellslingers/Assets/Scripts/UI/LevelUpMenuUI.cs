@@ -65,7 +65,7 @@ public class LevelUpMenuUI : MonoBehaviour
      * and their repsective levels.
      * </summary>
      */
-    private void DisplaySkills (object sender, EventArgs e)
+    private void DisplaySkills(SkillsManager sender, EventArgs e)
     {
         this.selectedSkills = this.skillsManager.SelectedSkills;
         if (this.selectedSkills != null)
@@ -81,10 +81,10 @@ public class LevelUpMenuUI : MonoBehaviour
                 }
             }
         }
-        this.background.SetActive(true);   
+        this.background.SetActive(true);
     }
 
-    private void ResetSkills (object sender, EventArgs e)
+    private void ResetSkills(Skill sender, EventArgs e)
     {
         foreach (GameObject skill in this.selectedSkills)
         {
@@ -94,6 +94,6 @@ public class LevelUpMenuUI : MonoBehaviour
                 skill.transform.SetParent(this.transform);
             }
         }
-        this.background.SetActive(false);   
+        this.background.SetActive(false);
     }
 }

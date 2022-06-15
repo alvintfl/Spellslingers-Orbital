@@ -29,13 +29,13 @@ public class ExpUI : MonoBehaviour
         this.expManager.GainExp -= UpdateExp;
     }
 
-    public void UpdateMaxExp(object sender, EventArgs e)
+    public void UpdateMaxExp(ExpManager sender, EventArgs e)
     {
         this.slider.maxValue = this.expManager.MaxExp;
         this.slider.value = this.expManager.Exp;
     }
 
-    public void UpdateExp(object sender, EventArgs e)
+    public void UpdateExp(ExpManager sender, EventArgs e)
     {
         this.slider.value = this.expManager.Exp;
     }

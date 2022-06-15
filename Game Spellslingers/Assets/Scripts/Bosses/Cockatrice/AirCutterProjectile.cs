@@ -35,9 +35,9 @@ public class AirCutterProjectile : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            if (!Player.instance.Avoidance.avoidRoll())
+            if (!Player.instance.AvoidRoll())
             {
-                Player.instance.Health.TakeDamage(20f);
+                Player.instance.TakeDamage(20f);
             }
         }
         Invoke("DestroyProjectile", 1.5f);

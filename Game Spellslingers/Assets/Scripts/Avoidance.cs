@@ -25,27 +25,27 @@ public class Avoidance : MonoBehaviour
      * </summary>
     */
     private int avoidChance = 0;
-    public event EventHandler<AvoidanceArgs> AvoidChanceChange;
-
+    public delegate void AvoidChangeEventHandler<T, U>(T sender, U eventArgs);
+    public event AvoidChangeEventHandler<Avoidance, EventArgs> AvoidChanceChange;
 
     public Avoidance(int chance)
     {
         this.avoidChance = chance;
     }
 
-    public int GetAvoidChance() 
+    public int GetAvoidChance()
     {
         return avoidChance;
     }
-    public void SetAvoidChance(int value) 
+    public void SetAvoidChance(int value)
     {
         avoidChance = value;
         OnAvoidChanceChange();
     }
 
-    public bool avoidRoll()
+    public bool AvoidRoll()
     {
-        int roll = (int) UnityEngine.Random.Range(1f, 100f);
+        int roll = (int)UnityEngine.Random.Range(1f, 100f);
         if (roll <= avoidChance)
         {
             print("damage avoided");
@@ -54,7 +54,7 @@ public class Avoidance : MonoBehaviour
         return false;
     }
 
-    public bool GetRestoreOnAvoid() 
+    public bool GetRestoreOnAvoid()
     {
         return restoreOnAvoid;
     }
@@ -66,13 +66,6 @@ public class Avoidance : MonoBehaviour
 
     public void OnAvoidChanceChange()
     {
-        AvoidanceArgs args = new AvoidanceArgs();
-        args.AvoidChance = this.avoidChance;
-        AvoidChanceChange?.Invoke(this, args);
+        AvoidChanceChange?.Invoke(this, EventArgs.Empty);
     }
-}
-
-public class AvoidanceArgs : EventArgs
-{
-    public int AvoidChance { get; set; }
 }

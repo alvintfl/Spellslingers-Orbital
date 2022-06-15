@@ -20,11 +20,11 @@ public class Enemy : Character
      * </summary>
      */
     private bool IsCollidedStay;
-    public static event EventHandler<DropExpEventArgs> DropExp;
+    public static event ChangeEventHandler<Enemy, EventArgs> DropExp;
 
     public virtual void Start()
     {
-        this.Health.DiedInfo += OnDropExp;
+        Death += OnDropExp;
     }
 
     /**
@@ -43,13 +43,13 @@ public class Enemy : Character
             IsCollidedStay = true;
             while (IsCollidedStay)
             {
-                if (!Player.instance.Avoidance.avoidRoll())
+                if (!Player.instance.AvoidRoll())
                 {
-                    Player.instance.Health.TakeDamage(this.damage);
+                    Player.instance.TakeDamage(this.damage);
                 }
-                else if (Player.instance.Avoidance.GetRestoreOnAvoid())
+                else if (Player.instance.GetRestoreOnAvoid())
                 {
-                    Player.instance.Health.TakeDamage(-10);
+                    Player.instance.TakeDamage(-10);
                 }
                 yield return new WaitForSeconds(1);
             }
@@ -66,11 +66,11 @@ public class Enemy : Character
         }
     }
 
-    protected virtual void OnDropExp()
+    public int Exp { get { return this.exp; } }
+
+    protected virtual void OnDropExp(Character sender, EventArgs e)
     {
-        DropExpEventArgs args = new DropExpEventArgs();
-        args.Exp = this.exp;
-        DropExp?.Invoke(this, args);
+        DropExp?.Invoke(this, e);
         Die();
     }
 
@@ -78,15 +78,4 @@ public class Enemy : Character
     {
         Destroy(gameObject);
     }
-}
-
-/** 
- * <summary>
- * Class that stores the exp of an enemy
- * for the DropExp event.
- * </summary>
- */
-public class DropExpEventArgs : EventArgs
-{
-    public int Exp { get; set; }
 }

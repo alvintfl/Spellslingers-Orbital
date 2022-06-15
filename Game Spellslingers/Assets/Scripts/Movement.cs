@@ -17,7 +17,8 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
 
-    public event EventHandler<MoveSpeedArgs> MoveSpeedChange;
+    public delegate void MovementChangeEventHandler<T, U>(T sender, U eventArgs);
+    public event MovementChangeEventHandler<Movement, EventArgs> MoveSpeedChange;
 
     /**
      * <summary>
@@ -46,7 +47,9 @@ public class Movement : MonoBehaviour
         UpdatePosition();
     }
 
-    public float GetMoveSpeed() 
+    public float MoveSpeed { get { return this.moveSpeed; } set { this.moveSpeed = value; } }
+
+    public float GetMoveSpeed()
     {
         return this.moveSpeed;
     }
@@ -83,11 +86,11 @@ public class Movement : MonoBehaviour
         {
             return;
         }
-        if (this.movement.x > 0) 
+        if (this.movement.x > 0)
         {
             gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        if (this.movement.x < 0) 
+        if (this.movement.x < 0)
         {
             gameObject.transform.rotation = Quaternion.Euler(0, -180, 0);
         }
@@ -113,18 +116,12 @@ public class Movement : MonoBehaviour
      */
     private void UpdatePosition()
     {
-        rb.MovePosition(this.rb.position + 
+        rb.MovePosition(this.rb.position +
             this.movement.normalized * this.moveSpeed * Time.fixedDeltaTime);
     }
 
     protected virtual void OnMoveSpeedChange()
     {
-        MoveSpeedArgs args = new MoveSpeedArgs();
-        args.MoveSpeed = this.moveSpeed;
-        MoveSpeedChange?.Invoke(this, args);
+        MoveSpeedChange?.Invoke(this, EventArgs.Empty);
     }
-}
-public class MoveSpeedArgs : EventArgs
-{
-    public float MoveSpeed { get; set; }
 }

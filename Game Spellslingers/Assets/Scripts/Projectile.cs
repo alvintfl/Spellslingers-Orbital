@@ -13,7 +13,8 @@ public abstract class Projectile : MonoBehaviour
     private Transform firePoint;
     private float speed;
     private float maxRange;
-    public event EventHandler Collided;
+    public delegate void ProjectileEventHandler<T, U>(T sender, U eventArgs);
+    public event ProjectileEventHandler<Projectile, EventArgs> Collided;
 
     public Projectile(float speed, float maxRange)
     {
@@ -40,7 +41,7 @@ public abstract class Projectile : MonoBehaviour
      */
     public void AtMaxRange()
     {
-        if (this.firePoint != null && gameObject.activeSelf && 
+        if (this.firePoint != null && gameObject.activeSelf &&
             (gameObject.transform.position - this.firePoint.position).sqrMagnitude > this.maxRange)
         {
             OnCollided(EventArgs.Empty);
