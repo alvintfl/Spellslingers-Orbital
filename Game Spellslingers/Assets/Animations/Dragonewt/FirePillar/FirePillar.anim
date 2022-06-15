@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FirePillar
+  serializedVersion: 6
+  m_Legacy: 0
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_EulerCurves: []
+  m_PositionCurves: []
+  m_ScaleCurves: []
+  m_FloatCurves: []
+  m_PPtrCurves:
+  - curve:
+    - time: 0
+      value: {fileID: 21300000, guid: f8c013a23aad1784f9ecaee1a08654b2, type: 3}
+    - time: 0.25
+      value: {fileID: 21300000, guid: e619c53e08bcac640a27e5edb74143ce, type: 3}
+    - time: 0.5
+      value: {fileID: 21300000, guid: 4f104092c1b14b3409bbbafba8d89942, type: 3}
+    - time: 0.75
+      value: {fileID: 21300000, guid: e77db9a7d99f06e498dc004caaec7487, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: 1e1bd18663f123840ba430c1e6aba0e3, type: 3}
+    - time: 1.1666666
+      value: {fileID: 21300000, guid: cb65a85803d7d554ea147963403d7520, type: 3}
+    - time: 1.3333334
+      value: {fileID: 21300000, guid: 1d2e1b5ca67b14a40840ff62b9b0b79e, type: 3}
+    - time: 1.5
+      value: {fileID: 21300000, guid: 55382e0e7e8d85442a17c78d9e5a3a22, type: 3}
+    - time: 1.5833334
+      value: {fileID: 21300000, guid: c561dc5067f9d9447b7c3fa9728d2ec0, type: 3}
+    - time: 1.6666666
+      value: {fileID: 21300000, guid: 674957aea5c659642856f5ed80044683, type: 3}
+    - time: 1.75
+      value: {fileID: 21300000, guid: c561dc5067f9d9447b7c3fa9728d2ec0, type: 3}
+    - time: 1.8333334
+      value: {fileID: 21300000, guid: dde51f4a8354e014d8d664c6b71666ec, type: 3}
+    - time: 1.9166666
+      value: {fileID: 21300000, guid: da821e3c8fc52a541ab4545d3d7363fd, type: 3}
+    attribute: m_Sprite
+    path: 
+    classID: 212
+    script: {fileID: 0}
+  m_SampleRate: 12
+  m_WrapMode: 0
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_ClipBindingConstant:
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    pptrCurveMapping:
+    - {fileID: 21300000, guid: f8c013a23aad1784f9ecaee1a08654b2, type: 3}
+    - {fileID: 21300000, guid: e619c53e08bcac640a27e5edb74143ce, type: 3}
+    - {fileID: 21300000, guid: 4f104092c1b14b3409bbbafba8d89942, type: 3}
+    - {fileID: 21300000, guid: e77db9a7d99f06e498dc004caaec7487, type: 3}
+    - {fileID: 21300000, guid: 1e1bd18663f123840ba430c1e6aba0e3, type: 3}
+    - {fileID: 21300000, guid: cb65a85803d7d554ea147963403d7520, type: 3}
+    - {fileID: 21300000, guid: 1d2e1b5ca67b14a40840ff62b9b0b79e, type: 3}
+    - {fileID: 21300000, guid: 55382e0e7e8d85442a17c78d9e5a3a22, type: 3}
+    - {fileID: 21300000, guid: c561dc5067f9d9447b7c3fa9728d2ec0, type: 3}
+    - {fileID: 21300000, guid: 674957aea5c659642856f5ed80044683, type: 3}
+    - {fileID: 21300000, guid: c561dc5067f9d9447b7c3fa9728d2ec0, type: 3}
+    - {fileID: 21300000, guid: dde51f4a8354e014d8d664c6b71666ec, type: 3}
+    - {fileID: 21300000, guid: da821e3c8fc52a541ab4545d3d7363fd, type: 3}
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_AdditiveReferencePoseClip: {fileID: 0}
+    m_AdditiveReferencePoseTime: 0
+    m_StartTime: 0
+    m_StopTime: 2
+    m_OrientationOffsetY: 0
+    m_Level: 0
+    m_CycleOffset: 0
+    m_HasAdditiveReferencePose: 0
+    m_LoopTime: 0
+    m_LoopBlend: 0
+    m_LoopBlendOrientation: 0
+    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionXZ: 0
+    m_KeepOriginalOrientation: 0
+    m_KeepOriginalPositionY: 1
+    m_KeepOriginalPositionXZ: 0
+    m_HeightFromFeet: 0
+    m_Mirror: 0
+  m_EditorCurves: []
+  m_EulerEditorCurves: []
+  m_HasGenericRootTransform: 0
+  m_HasMotionFloatCurves: 0
+  m_Events:
+  - time: 1.5833334
+    functionName: Activate
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.8333334
+    functionName: Deactivate
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
