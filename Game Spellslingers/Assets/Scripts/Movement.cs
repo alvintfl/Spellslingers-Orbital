@@ -75,11 +75,6 @@ public class Movement : MonoBehaviour
 
     public void SetY(float f) { this.movement.y = f; }
 
-    public Rigidbody2D GetRb()
-    {
-        return this.rb;
-    }
-
     private void AnimateMovement()
     {
         if (this.anim == null)

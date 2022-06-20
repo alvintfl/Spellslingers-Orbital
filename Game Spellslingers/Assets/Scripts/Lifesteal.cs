@@ -22,12 +22,20 @@ public class Lifesteal : MonoBehaviour
         Lifesteal.healAmount = 0f;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (this.enabled && collision.gameObject.CompareTag("Enemy"))
+        if (this.enabled && collider.gameObject.CompareTag("Enemy"))
         {
             Player player = Player.instance;
-            player.SetCurrentHealth(player.GetCurrentHealth() + Lifesteal.healAmount);
+            float newHealth = player.GetCurrentHealth() + Lifesteal.healAmount;
+            if (newHealth > player.GetMaxHealth())
+            {
+                player.SetCurrentHealth(player.GetMaxHealth());
+            }
+            else
+            {
+                player.SetCurrentHealth(newHealth);
+            }
         }
     }
 }
