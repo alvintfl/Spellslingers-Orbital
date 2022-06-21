@@ -25,19 +25,10 @@ public class EnemyMovement : Movement
 
     public virtual void MoveToPlayer()
     {
-        /*
-        if (GetMoveSpeed() == 0)
-        {
-            SetX(0);
-            SetY(0);
-        } else
-        */
-        {
-            Vector3 direction = Player.instance.gameObject.transform.position - transform.position;
-            direction.Normalize();
-            SetX(direction.x);
-            SetY(direction.y);  
-        }
+        Vector3 direction = Player.instance.gameObject.transform.position - transform.position;
+        direction.Normalize();
+        SetX(direction.x);
+        SetY(direction.y);  
     }
 
     public override void AnimateMovement()
