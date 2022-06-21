@@ -8,9 +8,8 @@ using UnityEngine;
  * A class responsible for movement.
  * </summary>
  */
-public class Movement : MonoBehaviour
+public abstract class Movement : MonoBehaviour
 {
-    [SerializeField] public Animator anim;
     [SerializeField] private float moveSpeed;
     private float baseMoveSpeed;
 
@@ -25,20 +24,19 @@ public class Movement : MonoBehaviour
      * Adds a rigidbody2D that conforms to 2D physics.
      * </summary>
      */
-    private void Awake()
+    public virtual void Awake()
     {
         this.rb = gameObject.AddComponent<Rigidbody2D>();
         this.rb.gravityScale = 0;
         this.rb.bodyType = RigidbodyType2D.Dynamic;
         this.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         this.rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-
-        this.anim = GetComponent<Animator>();
         this.baseMoveSpeed = moveSpeed;
     }
 
     public virtual void Update()
     {
+        AnimateRotation();
         AnimateMovement();
     }
 
@@ -71,16 +69,17 @@ public class Movement : MonoBehaviour
         OnMoveSpeedChange();
     }
 
+    public float GetDirection()
+    {
+        return this.movement.sqrMagnitude;
+    }
+
     public void SetX(float f) { this.movement.x = f; }
 
     public void SetY(float f) { this.movement.y = f; }
-
-    private void AnimateMovement()
+    public abstract void AnimateMovement();
+    public virtual void AnimateRotation()
     {
-        if (this.anim == null)
-        {
-            return;
-        }
         if (this.movement.x > 0)
         {
             gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -89,18 +88,6 @@ public class Movement : MonoBehaviour
         {
             gameObject.transform.rotation = Quaternion.Euler(0, -180, 0);
         }
-        this.anim.SetFloat("Speed", this.movement.sqrMagnitude);
-    }
-
-    /**
-     * <summary>
-     * Give the animator extra conditions to animate 
-     * the character base on.
-     * </summary>
-     */
-    public void SetAnimParam(string s, float value)
-    {
-        this.anim.SetFloat(s, value);
     }
 
     /**

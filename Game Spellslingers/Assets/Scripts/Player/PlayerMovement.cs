@@ -10,6 +10,14 @@ using UnityEngine;
  */
 public class PlayerMovement : Movement
 {
+    private Animator anim;
+
+    public override void Awake()
+    {
+        base.Awake();
+        this.anim = GetComponent<Animator>();
+    }
+
     public override void Update()
     {
         base.Update();
@@ -22,7 +30,12 @@ public class PlayerMovement : Movement
     {
         SetX(x);
         SetY(y);
-        SetAnimParam("Horizontal", x);
-        SetAnimParam("Vertical", y);
+        this.anim.SetFloat("Horizontal", x);
+        this.anim.SetFloat("Vertical", y);
+    }
+
+    public override void AnimateMovement()
+    {
+        this.anim.SetFloat("Speed", GetDirection());
     }
 }

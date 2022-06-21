@@ -70,11 +70,9 @@ public class Minotaur : Enemy
             {
                 Player.instance.TakeDamage(10);
             }
-            //EndCharge();
         }
         if (collision.gameObject.CompareTag("Wall"))
         {
-            CancelInvoke();
             EndCharge();
         }
     }
@@ -111,15 +109,15 @@ public class Minotaur : Enemy
 
     private void EndCharge()
     {
-        EnableMovement();
         this.rb.velocity = Vector3.zero;
+        EnableMovement();
         if (this.collider.IsTouching(Player.instance.GetComponent<Collider2D>()))
         {
             ReverseCharge(this.playerDirection * -1);
             return;
         }
-        this.anim.SetTrigger("EndCharge");
         this.collider.isTrigger = false;
+        this.anim.SetTrigger("EndCharge");
         StopCasting();
     }
 

@@ -10,6 +10,13 @@ using UnityEngine;
  */
 public class EnemyMovement : Movement
 {
+    public Animator anim;
+    public override void Awake()
+    {
+        base.Awake();
+        this.anim = GetComponent<Animator>();
+    }
+
     public override void Update()
     {
         MoveToPlayer();
@@ -18,18 +25,23 @@ public class EnemyMovement : Movement
 
     public virtual void MoveToPlayer()
     {
+        /*
         if (GetMoveSpeed() == 0)
         {
             SetX(0);
             SetY(0);
         } else
+        */
         {
             Vector3 direction = Player.instance.gameObject.transform.position - transform.position;
-            // for rotation
-            // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             direction.Normalize();
             SetX(direction.x);
             SetY(direction.y);  
         }
+    }
+
+    public override void AnimateMovement()
+    {
+        this.anim.SetFloat("Speed", GetMoveSpeed());
     }
 }
