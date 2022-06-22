@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject LavaMapPrefab;
-    [SerializeField] private GameObject SnowMapPrefab;
-    [SerializeField] private GameObject AshMapPrefab;
+    [SerializeField] List<GameObject> maps;
 
     private void Start()
     {
-        Instantiate(LavaMapPrefab);
-        Instantiate(SnowMapPrefab);
-        Instantiate(AshMapPrefab);
+        foreach (GameObject map in maps)
+        {
+            Instantiate(map);
+        }
     }
 }

@@ -5,7 +5,9 @@ using UnityEngine;
 public class Dragonewt : Enemy
 {
     [SerializeField] private GameObject ringOfFirePrefab;
+    private GameObject ringOfFire;
     [SerializeField] private GameObject firePillarPrefab;
+    private GameObject firePillar;
     private Animator anim;
     private PolygonCollider2D bodyCollider;
     private EdgeCollider2D squatCollider;
@@ -20,6 +22,10 @@ public class Dragonewt : Enemy
         this.squatCollider = GetComponent<EdgeCollider2D>();
         this.isCasting = false;
         this.prev = -1;
+        this.ringOfFire = Instantiate(ringOfFirePrefab);
+        this.ringOfFire.SetActive(false);
+        this.firePillar = Instantiate(firePillarPrefab);    
+        this.firePillar.SetActive(false);
     }
 
     private void Update()
@@ -29,8 +35,8 @@ public class Dragonewt : Enemy
 
     private void StartCasting()
     {
-        if ( !isCasting &&
-            (gameObject.transform.position - Player.instance.transform.position).sqrMagnitude <= 20)
+        Vector3 playerDirection = Player.instance.transform.position - gameObject.transform.position;
+        if ( !isCasting && playerDirection.sqrMagnitude <= 20)
         {
             this.isCasting = true;
             SetMoveSpeed(0);
@@ -90,12 +96,12 @@ public class Dragonewt : Enemy
 
     private void SummonRingOfFire()
     {
-        GameObject ring = Instantiate(this.ringOfFirePrefab);
-        ring.transform.position = gameObject.transform.position;
+        this.ringOfFire.transform.position = gameObject.transform.position;
+        this.ringOfFire.SetActive(true);
     }
 
     private void SummonFirePillar()
     {
-        Instantiate(this.firePillarPrefab);
+        this.firePillar.SetActive(true);
     }
 }

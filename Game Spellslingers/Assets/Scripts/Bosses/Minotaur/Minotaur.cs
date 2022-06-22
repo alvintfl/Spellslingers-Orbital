@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class Minotaur : Enemy
 {
-    private bool isCasting;
-    //private int prev;
+    [SerializeField] private GameObject spikesPrefab;
+    private GameObject spikes;
+    private Animator anim;
     private Rigidbody2D rb;
     private new Collider2D collider;
     private Vector3 playerDirection;
-    private Animator anim;
+    private bool isCasting;
+    private int prev;
 
     public override void Awake()
     {
         base.Awake();
-        this.isCasting = false;
-        //this.prev = -1;
-        this.rb = GetComponent<Rigidbody2D>();
         this.collider = GetComponent<Collider2D>();
         this.playerDirection = Vector3.zero;
         this.anim = GetComponent<Animator>();
+        this.isCasting = false;
+        this.spikes = Instantiate(spikesPrefab);
+        this.spikes.SetActive(false);
+        this.prev = -1;
+    }
+
+    public override void Start()
+    {
+        base.Start();
+        this.rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -30,38 +39,33 @@ public class Minotaur : Enemy
     private void StartCasting()
     {
         Vector3 playerDirection = Player.instance.transform.position - gameObject.transform.position;
-        if ( !isCasting &&
-            playerDirection.sqrMagnitude <= 20)
+        if ( !isCasting && playerDirection.sqrMagnitude <= 20)
         {
             this.isCasting = true;
             SetMoveSpeed(0);
-            CastCharge();
-            //playerDirection.Normalize();
-            //Invoke("Charge", 1f);
-            //StartCoroutine(Charge());
-            //rb.AddForce(playerDirection * 10, ForceMode2D.Impulse);
-            //Debug.Log("Dashing");
-            //Invoke("EndCharge", 2f);
-            /*
-            int skill = Random.Range(0, 3);
+            int skill = Random.Range(0, 2);
             while (skill == this.prev)
             {
-                skill = Random.Range(0, 3);     
+                skill = Random.Range(0, 2);     
             }
             switch(skill)
             {
                 case 0:
+                    CastCharge();
                     break;
                 case 1:
+                    CastSlam();
                     break;
+                    /*
                 case 2:
                     break;
+                    */
             }
             this.prev = skill; 
-            */
         }
     }
 
+    #region Charge Methods
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -119,6 +123,21 @@ public class Minotaur : Enemy
         this.collider.isTrigger = false;
         this.anim.SetTrigger("EndCharge");
         StopCasting();
+    }
+    #endregion
+
+    private void CastSlam()
+    {
+        this.anim.SetTrigger("Slam");
+    }
+
+    private void SummonSpikes()
+    {
+        Vector3 playerDirection = Player.instance.transform.position - gameObject.transform.position;
+        this.spikes.transform.up = playerDirection;
+        playerDirection.Normalize();
+        this.spikes.transform.position = gameObject.transform.position + playerDirection * 15;
+        this.spikes.SetActive(true);
     }
 
     private void StopCasting()
