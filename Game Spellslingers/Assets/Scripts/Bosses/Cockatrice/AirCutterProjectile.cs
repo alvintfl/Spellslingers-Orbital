@@ -40,7 +40,7 @@ public class AirCutterProjectile : MonoBehaviour
                 Player.instance.TakeDamage(20f);
             }
         }
-        Invoke("DestroyProjectile", 1.5f);
+        DestroyProjectile();
     }
 
     void DestroyProjectile()

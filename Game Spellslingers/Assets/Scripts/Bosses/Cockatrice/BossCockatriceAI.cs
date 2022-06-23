@@ -18,7 +18,7 @@ public class BossCockatriceAI : EnemyMovement
     private int clawCastNum;
     private bool isCasting;
 
-    public void Start()
+    void Start()
     {
         meleeDistance = 5;
         resetDistance = 30;
