@@ -64,6 +64,16 @@ public class Character : MonoBehaviour
         return this.movement.GetBaseMoveSpeed();
     }
 
+    public void DisableMovement()
+    {
+        this.movement.enabled = false;
+    }
+
+    public void EnableMovement()
+    {
+        this.movement.enabled = true;
+    }
+
     private void OnCharacterMoveSpeedChange(Movement sender, EventArgs e)
     {
         MoveSpeedChange?.Invoke(this, e);

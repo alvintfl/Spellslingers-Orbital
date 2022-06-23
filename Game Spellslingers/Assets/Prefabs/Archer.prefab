@@ -139,7 +139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438fd5769aacab8488a213454b62812a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 1489601786894410472}
   moveSpeed: 6
 --- !u!114 &-177557709795728106
 MonoBehaviour:
@@ -178,7 +177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a503700271c8040a226c6f9c4d672d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerClass: 
 --- !u!60 &7236197334775511977
 PolygonCollider2D:
   m_ObjectHideFlags: 0

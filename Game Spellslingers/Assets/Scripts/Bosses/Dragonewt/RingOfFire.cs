@@ -13,6 +13,11 @@ public class RingOfFire : MonoBehaviour
         this.collider = GetComponent<Collider2D>();
     }
 
+    private void Deactivate()
+    {
+        gameObject.SetActive(false);
+    }
+
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("Player"))

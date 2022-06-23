@@ -66,14 +66,11 @@ public class PlayerShoot : Shoot
                     randomRot = Random.Range(0, 360);
                 }
 
-                //GameObject projectile = this.projectilePool.Get();
                 GameObject projectile = GetProjectile();
-
                 if (projectile != null)
                 {
                     while (this.seen.Contains(projectile))
                     {
-                        //projectile = this.projectilePool.Get();
                         projectile = GetProjectile();
                     }
                     // Position, direction and speed variables to fire projectile.

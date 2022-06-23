@@ -22,7 +22,7 @@ public class FirePillar : MonoBehaviour
     private void Deactivate()
     {
         this.collider.enabled = false;
-
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
