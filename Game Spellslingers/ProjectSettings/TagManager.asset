@@ -19,8 +19,8 @@ TagManager:
   - Enemy
   - Player
   - EnemyProjectile
-  - Obstacle
-  - 
+  - Wall
+  - Barrier
   - 
   - 
   - 

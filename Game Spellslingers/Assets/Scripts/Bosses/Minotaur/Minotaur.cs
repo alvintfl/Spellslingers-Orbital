@@ -5,6 +5,7 @@ using UnityEngine;
 public class Minotaur : Enemy
 {
     [SerializeField] private GameObject spikesPrefab;
+    [SerializeField] private GameObject loot;
     private GameObject spikes;
     private Animator anim;
     private Rigidbody2D rb;
@@ -144,5 +145,12 @@ public class Minotaur : Enemy
     {
         ResetMoveSpeed();
         this.isCasting = false;
+    }
+
+    public override void Die()
+    {
+        GameObject loot = Instantiate(this.loot);
+        loot.transform.position = this.transform.position;
+        base.Die();
     }
 }

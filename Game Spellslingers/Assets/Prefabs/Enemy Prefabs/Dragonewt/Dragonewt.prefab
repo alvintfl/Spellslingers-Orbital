@@ -78,7 +78,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 615526305
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f04162ce154635649a606e687accab1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -127,6 +127,7 @@ MonoBehaviour:
   exp: 0
   ringOfFirePrefab: {fileID: 4561307713453521281, guid: 9ffccafe00892274bb4bc46326b4695a, type: 3}
   firePillarPrefab: {fileID: 8365737993452310973, guid: b3a93197b9f7316489c9343391dfc895, type: 3}
+  loot: {fileID: 2720432797587972863, guid: 55010aa8e10781447beec58e64120361, type: 3}
 --- !u!114 &6749473690129414646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,8 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a168f0e55ba16044a80d837f8c10113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 4596628717553838870}
   moveSpeed: 10
+  anim: {fileID: 4596628717553838870}
 --- !u!114 &9217275299947523358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2fe0734887d61f4fb0dbfb240a10168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 60000
+  maxHealth: 1
 --- !u!114 &9191318754647377777
 MonoBehaviour:
   m_ObjectHideFlags: 0

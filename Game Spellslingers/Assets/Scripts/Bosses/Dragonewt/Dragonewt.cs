@@ -8,6 +8,7 @@ public class Dragonewt : Enemy
     private GameObject ringOfFire;
     [SerializeField] private GameObject firePillarPrefab;
     private GameObject firePillar;
+    [SerializeField] private GameObject loot;
     private Animator anim;
     private PolygonCollider2D bodyCollider;
     private EdgeCollider2D squatCollider;
@@ -103,5 +104,11 @@ public class Dragonewt : Enemy
     private void SummonFirePillar()
     {
         this.firePillar.SetActive(true);
+    }
+    public override void Die()
+    {
+        GameObject loot = Instantiate(this.loot);
+        loot.transform.position = this.transform.position;
+        base.Die();
     }
 }

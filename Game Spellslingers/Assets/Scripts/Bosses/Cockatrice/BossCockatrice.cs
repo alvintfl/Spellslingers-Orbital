@@ -11,10 +11,13 @@ public class BossCockatrice : Enemy
      * create projectiles for claw cast, storm call, frost breath/ice beam
      * 
      */
+    [SerializeField] private GameObject loot;
 
     public override void Die()
     {
         // play death animation
+        GameObject loot = Instantiate(this.loot);
+        loot.transform.position = this.transform.position;
         Destroy(gameObject);
     }
 }
