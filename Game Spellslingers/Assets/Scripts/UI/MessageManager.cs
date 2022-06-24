@@ -10,6 +10,7 @@ public class MessageManager : MonoBehaviour
     {
         Item.PickUp += Print;
         Barrier.Collide += Print;
+        SummoningCircle.Summon += Print;
         Invoke("EndPrint", 10f);
     }
 
@@ -17,6 +18,7 @@ public class MessageManager : MonoBehaviour
     {
         Item.PickUp -= Print;
         Barrier.Collide -= Print;
+        SummoningCircle.Summon -= Print;
     }
 
     private void Print(Item item, EventArgs e)
@@ -29,6 +31,13 @@ public class MessageManager : MonoBehaviour
     {
         CancelInvoke();
         gameObject.GetComponentInChildren<TextMeshProUGUI>().text = barrier.ToString();
+        Invoke("EndPrint", 10f);
+    }
+
+    private void Print(SummoningCircle summon, EventArgs e)
+    {
+        CancelInvoke();
+        gameObject.GetComponentInChildren<TextMeshProUGUI>().text = summon.ToString();
         Invoke("EndPrint", 10f);
     }
 
