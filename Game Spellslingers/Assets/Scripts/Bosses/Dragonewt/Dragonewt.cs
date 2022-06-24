@@ -111,4 +111,14 @@ public class Dragonewt : Enemy
         loot.transform.position = this.transform.position;
         base.Die();
     }
+    public override IEnumerator HandleStatusEffect(StatusEffect statusEffect)
+    {
+        if (statusEffect is Slow || statusEffect is Stun)
+        {
+            yield return null;
+        } else
+        {
+            yield return base.HandleStatusEffect(statusEffect);
+        }
+    }
 }

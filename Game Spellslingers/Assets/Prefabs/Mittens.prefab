@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3320670018471456489}
   - component: {fileID: 1847160981878526585}
   - component: {fileID: 6993713856655844467}
-  - component: {fileID: 9030240092249069885}
+  - component: {fileID: 3574684134462979978}
   m_Layer: 0
   m_Name: Mittens
   m_TagString: Untagged
@@ -113,7 +113,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3723232, y: 1.1697197}
   m_EdgeRadius: 0
---- !u!114 &9030240092249069885
+--- !u!114 &3574684134462979978
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 165259378927849083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fe46edb466c36648bfac133f237a896, type: 3}
+  m_Script: {fileID: 11500000, guid: 299331e63ad6513428030851573857bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3275862747317314522
