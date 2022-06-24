@@ -27,6 +27,8 @@ public class Dragonewt : Enemy
         this.ringOfFire.SetActive(false);
         this.firePillar = Instantiate(firePillarPrefab);    
         this.firePillar.SetActive(false);
+        Vector2 spawnPosition = new Vector2(507, -102);
+        gameObject.transform.position = spawnPosition;
     }
 
     private void Update()

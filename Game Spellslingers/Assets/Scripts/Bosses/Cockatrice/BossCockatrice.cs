@@ -12,6 +12,13 @@ public class BossCockatrice : Enemy
      */
     [SerializeField] private GameObject loot;
 
+    public override void Awake()
+    {
+        base.Awake();
+        Vector2 spawnPosition = new Vector2(-557, -11);
+        gameObject.transform.position = spawnPosition;
+    }
+
     public override void Die()
     {
         // play death animation

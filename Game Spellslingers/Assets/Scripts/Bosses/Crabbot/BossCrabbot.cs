@@ -27,6 +27,8 @@ public class BossCrabbot : Enemy
         base.Awake();
         resetDistance = 35;
         this.anim = GetComponent<Animator>();
+        Vector2 spawnPosition = new Vector2(-69, 243);
+        gameObject.transform.position = spawnPosition;
     }
 
     private void Update()

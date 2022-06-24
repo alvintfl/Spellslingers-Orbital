@@ -13,18 +13,21 @@ public class HealthUI : MonoBehaviour
 {
     [SerializeField] private GameObject healthbarCanvasPrefab;
     [SerializeField] private GameObject enemyHealthbarCanvasPrefab;
+    private GameObject bossHealthCanvas;
     private HealthBar healthbar;
 
-    void OnEnable()
+    private void OnEnable()
     {
         SpawnManager.spawned += EnemyHealthBar;
+        SpawnManager.spawnedBoss += BossHealthBar;
         EnemyBloodMother.SpawnSpidersInfo += EnemyHealthBar;
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         Player.instance.HealthChange -= UpdatePlayerHealth;
         SpawnManager.spawned -= EnemyHealthBar;
+        SpawnManager.spawnedBoss -= BossHealthBar;
         EnemyBloodMother.SpawnSpidersInfo -= EnemyHealthBar;
     }
 
@@ -45,6 +48,8 @@ public class HealthUI : MonoBehaviour
         this.healthbar.SetMaxHealth(player.GetMaxHealth());
         this.healthbar.SetHealth(player.GetMaxHealth());
         Player.instance.HealthChange += UpdatePlayerHealth;
+
+        this.bossHealthCanvas = gameObject.transform.GetChild(0).gameObject;
     }
 
     /**
@@ -53,13 +58,14 @@ public class HealthUI : MonoBehaviour
      * each time their health changes.
      * </summary>
      */
-    void EnemyHealthBar(GameObject en)
+    private void EnemyHealthBar(GameObject en)
     {
         GameObject healthbarCanvas = Instantiate(enemyHealthbarCanvasPrefab);
         HealthBar enemyHealthbar = healthbarCanvas.GetComponentInChildren<HealthBar>();
         healthbarCanvas.transform.SetParent(en.transform);
         healthbarCanvas.transform.position = en.transform.position;
-        healthbarCanvas.transform.position += new Vector3(0, -1, 0);
+        float y = en.GetComponent<SpriteRenderer>().bounds.size.y;
+        healthbarCanvas.transform.position += new Vector3(0, -1 * (float) Math.Sqrt(y), 0);
         Character character = en.GetComponent<Character>();
         enemyHealthbar.SetMaxHealth(character.GetMaxHealth());
         enemyHealthbar.SetHealth(character.GetMaxHealth());
@@ -71,7 +77,27 @@ public class HealthUI : MonoBehaviour
             };
     }
 
-    public void UpdatePlayerHealth(Character sender, EventArgs e)
+    private void BossHealthBar(GameObject boss)
+    {
+        HealthBar bossHealthbar = this.bossHealthCanvas.GetComponentInChildren<HealthBar>();
+        Character character = boss.GetComponent<Character>();
+        bossHealthbar.SetMaxHealth(character.GetMaxHealth());
+        bossHealthbar.SetHealth(character.GetMaxHealth());
+        character.HealthChange +=
+            (Character sender, EventArgs e) =>
+            {
+                bossHealthbar.SetMaxHealth(sender.GetMaxHealth());
+                bossHealthbar.SetHealth(sender.GetCurrentHealth());
+            };
+        character.Death += 
+            (Character sender, EventArgs e) =>
+            {
+                this.bossHealthCanvas.SetActive(false);
+            };
+        this.bossHealthCanvas.SetActive(true);
+    }
+
+    private void UpdatePlayerHealth(Character sender, EventArgs e)
     {
         this.healthbar.SetMaxHealth(sender.GetMaxHealth());
         this.healthbar.SetHealth(sender.GetCurrentHealth());

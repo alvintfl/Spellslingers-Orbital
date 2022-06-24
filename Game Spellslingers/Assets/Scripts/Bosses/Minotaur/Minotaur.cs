@@ -24,6 +24,8 @@ public class Minotaur : Enemy
         this.spikes = Instantiate(spikesPrefab);
         this.spikes.SetActive(false);
         this.prev = -1;
+        Vector2 spawnPosition = new Vector2(-24, -438);
+        gameObject.transform.position = spawnPosition;
     }
 
     public override void Start()
