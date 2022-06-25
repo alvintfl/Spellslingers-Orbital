@@ -34,7 +34,7 @@ public class Crabbot_ShootBullets : StateMachineBehaviour
             float angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
             Instantiate(projectilePrefab, crabbot.position, Quaternion.Euler(0f, 0f, angle));
             timeBtwShots = startTimeBtwShots;
-            projCount++;
+            projCount += 1;
 
         }
         else if (timeBtwShots > 0 && projCount < 25)

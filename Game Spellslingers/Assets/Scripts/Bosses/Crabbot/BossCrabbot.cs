@@ -40,11 +40,13 @@ public class BossCrabbot : Enemy
     {
         if (!isCasting && (gameObject.transform.position - Player.instance.transform.position).sqrMagnitude <= resetDistance)
         {
+            isCasting = true;
             int skill = Random.Range(0, 3);
             while (skill == this.prev)
             {
                 skill = Random.Range(0, 3);
             }
+            // Debug.Log("skill chosen" + skill);
             switch (skill)
             {
                 case 0:
@@ -79,11 +81,11 @@ public class BossCrabbot : Enemy
     private void Slash()
     {
         Collider2D[] damagedPlayer = Physics2D.OverlapCircleAll(slashPos.position, slashRadius, playerLayer);
-        if (damagedPlayer[0].CompareTag("Player"))
+        if (damagedPlayer.Length > 0)
         {
-            if (!Player.instance.AvoidRoll())
+            if (damagedPlayer[0].CompareTag("Player") && !Player.instance.AvoidRoll())
             {
-                Player.instance.TakeDamage(600f);
+                Player.instance.TakeDamage(50f);
             }
         }
     }
@@ -91,11 +93,18 @@ public class BossCrabbot : Enemy
     {
         Collider2D[] slamZone1 = Physics2D.OverlapCircleAll(slamPos1.position, slamRadius, playerLayer);
         Collider2D[] slamZone2 = Physics2D.OverlapCircleAll(slamPos2.position, slamRadius, playerLayer);
-        if (slamZone1[0].CompareTag("Player") || slamZone2[0].CompareTag("Player"))
+        if (slamZone1.Length > 0)
         {
-            if (!Player.instance.AvoidRoll())
+            if (slamZone1[0].CompareTag("Player") && !Player.instance.AvoidRoll())
             {
-                Player.instance.TakeDamage(600f);
+                Player.instance.TakeDamage(50f);                
+            }
+        }
+        if (slamZone2.Length > 0)
+        { 
+            if (slamZone2[0].CompareTag("Player") && !Player.instance.AvoidRoll())
+            {
+                Player.instance.TakeDamage(50f);
             }
         }
     }

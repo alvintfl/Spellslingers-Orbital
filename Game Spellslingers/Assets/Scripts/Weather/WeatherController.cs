@@ -15,7 +15,6 @@ public class WeatherController : MonoBehaviour
     void Update()
     {
         updateLocation = Player.instance.FindCurrentLocation();
-        Debug.Log(updateLocation);
         if (prevLocation != updateLocation)
         {
             if (!transform.GetChild(updateLocation).gameObject.activeSelf)
