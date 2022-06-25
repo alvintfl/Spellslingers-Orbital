@@ -6,7 +6,7 @@ public class SummonCrabbot : SummoningCircle
 {
     public override string ToString()
     {
-        return "			You feel a rumble from\n			deep within...";
+        return "\nYou feel a rumble from deep within...";
 
     }
 }
