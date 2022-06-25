@@ -36,6 +36,31 @@ public class Player : Character
         this.avoid.AvoidChanceChange -= OnPlayerAvoidChanceChange;
     }
 
+    public int FindCurrentLocation()
+    {
+        // Snow Biome
+        if (transform.position.x < -210f)
+        {
+            return 1;
+        }
+        // jungle biome
+        if (transform.position.y < -247.8f)
+        {
+            return 2;
+        }
+        // lava Biome
+        else if (transform.position.x > 155.9f)
+        {
+            return 3;
+        }
+        // ash biome
+        else if (transform.position.y > 33.23f)
+        {
+            return 4;
+        }
+        // starting location
+        else return 0;
+    }
 
 
     #region Avoidance Methods
