@@ -36,6 +36,8 @@ public class Player : Character
         this.avoid.AvoidChanceChange -= OnPlayerAvoidChanceChange;
     }
 
+
+
     #region Avoidance Methods
     public int GetAvoidChance()
     {
