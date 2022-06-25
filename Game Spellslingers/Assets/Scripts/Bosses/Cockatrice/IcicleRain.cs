@@ -7,7 +7,6 @@ public class IcicleRain : StateMachineBehaviour
     [SerializeField]
     private GameObject icicleRainPrefab;
 
-    [SerializeField]
     private Camera camera;
 
     private float timeBtwIcicles;
@@ -16,6 +15,7 @@ public class IcicleRain : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         timeBtwIcicles = 0.6f;
+        camera = Camera.main;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -27,7 +27,7 @@ public class IcicleRain : StateMachineBehaviour
                 for (int i = 0; i < 10; i++)
                 {
                     int icicleX = i * Screen.width / 8 + 200 + i * 10;
-                    Vector2 coords = new Vector2(icicleX, Screen.height+ 300);
+                    Vector2 coords = new Vector2(icicleX, Screen.height + 300);
                     Vector2 rainLocation = camera.ScreenToWorldPoint(coords);
                     Instantiate(icicleRainPrefab, rainLocation, Quaternion.identity);
                     animator.SetBool("WingFlap", false);
