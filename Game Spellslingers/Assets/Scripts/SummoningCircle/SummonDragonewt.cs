@@ -6,6 +6,6 @@ public class SummonDragonewt : SummoningCircle
 {
     public override string ToString()
     {
-        return "			You see a bright flash...";
+        return "\nYou see a bright flash...";
     }
 }

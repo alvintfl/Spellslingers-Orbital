@@ -11,10 +11,12 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     private Vector3 tempPos;
+    /*
     [SerializeField] private float 
         minXCentre, maxXCentre, minYCentre, maxYCentre,
         minXInBetween, maxXInBetween, minYInBetween, maxYInBetween,
         minX, maxX, minY, maxY;
+    */
 
     void LateUpdate()
     {
@@ -23,11 +25,10 @@ public class CameraFollow : MonoBehaviour
             return;
         }
         tempPos = transform.position;
-        /*
         tempPos.x = Player.instance.transform.position.x;
         tempPos.y = Player.instance.transform.position.y;
-        */
 
+        /*
         float playerX = Player.instance.transform.position.x;
         float playerY = Player.instance.transform.position.y;
 
@@ -139,6 +140,7 @@ public class CameraFollow : MonoBehaviour
                 }
             }
         }
+        */
         transform.position = tempPos;
     }
 }
