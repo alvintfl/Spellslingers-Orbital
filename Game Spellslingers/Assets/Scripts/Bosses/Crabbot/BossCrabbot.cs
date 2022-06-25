@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossCrabbot : Enemy
 {
 
+    [SerializeField] private GameObject loot;
     private bool isCasting;
     private int prev;
     private float resetDistance;
@@ -26,6 +27,8 @@ public class BossCrabbot : Enemy
         base.Awake();
         resetDistance = 35;
         this.anim = GetComponent<Animator>();
+        Vector2 spawnPosition = new Vector2(-69, 243);
+        gameObject.transform.position = spawnPosition;
     }
 
     private void Update()
@@ -99,6 +102,8 @@ public class BossCrabbot : Enemy
 
     public override void Die()
     {
+        GameObject loot = Instantiate(this.loot);
+        loot.transform.position = this.transform.position;
         // play death animation
         Destroy(gameObject);
     }
@@ -119,5 +124,15 @@ public class BossCrabbot : Enemy
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(slamPos1.position, slamRadius);
         Gizmos.DrawWireSphere(slamPos2.position, slamRadius);
+    }
+    public override IEnumerator HandleStatusEffect(StatusEffect statusEffect)
+    {
+        if (statusEffect is Slow || statusEffect is Stun)
+        {
+            yield return null;
+        } else
+        {
+            yield return base.HandleStatusEffect(statusEffect);
+        }
     }
 }

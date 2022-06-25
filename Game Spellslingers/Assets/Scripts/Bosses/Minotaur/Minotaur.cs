@@ -24,6 +24,8 @@ public class Minotaur : Enemy
         this.spikes = Instantiate(spikesPrefab);
         this.spikes.SetActive(false);
         this.prev = -1;
+        Vector2 spawnPosition = new Vector2(-24, -438);
+        gameObject.transform.position = spawnPosition;
     }
 
     public override void Start()
@@ -152,5 +154,16 @@ public class Minotaur : Enemy
         GameObject loot = Instantiate(this.loot);
         loot.transform.position = this.transform.position;
         base.Die();
+    }
+
+    public override IEnumerator HandleStatusEffect(StatusEffect statusEffect)
+    {
+        if (statusEffect is Slow || statusEffect is Stun)
+        {
+            yield return null;
+        } else
+        {
+            yield return base.HandleStatusEffect(statusEffect);
+        }
     }
 }

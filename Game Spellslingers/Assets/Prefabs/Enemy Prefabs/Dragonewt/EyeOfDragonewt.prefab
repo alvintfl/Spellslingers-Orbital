@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1787228604146931000}
   - component: {fileID: 6963575542915484606}
-  - component: {fileID: -5727705530432920413}
   - component: {fileID: 5888023304208519151}
+  - component: {fileID: 9097584041122455489}
   m_Layer: 0
   m_Name: EyeOfDragonewt
   m_TagString: Untagged
@@ -87,18 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-5727705530432920413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2720432797587972863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fe46edb466c36648bfac133f237a896, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &5888023304208519151
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -115,6 +103,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.0139727}
   serializedVersion: 2
   m_Radius: 0.6582163
+--- !u!114 &9097584041122455489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2720432797587972863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a6d485a28620e4f9fa6af3ac5f61ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8026887797392461541
 PrefabInstance:
   m_ObjectHideFlags: 0

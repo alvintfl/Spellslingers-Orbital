@@ -25,6 +25,7 @@ public class SpawnManager : MonoBehaviour
      * </summary>
      */
     [SerializeField] private List<GameObject> nextWaves;
+    [SerializeField] private List<GameObject> bossPrefabs;
     [SerializeField] private Camera _camera;
 
     /**
@@ -65,6 +66,7 @@ public class SpawnManager : MonoBehaviour
 
     public delegate void SpawnDelegate(GameObject enemy);
     public static event SpawnDelegate spawned;
+    public static event SpawnDelegate spawnedBoss;
 
     private enum Direction
     {
@@ -83,6 +85,7 @@ public class SpawnManager : MonoBehaviour
         ExpManager.LevelUp += StartNextWave;
         ExpManager.LevelUp += IncreaseSpawnRate;
         Player.instance.Death += StopSpawning;
+        SummoningCircle.Summon += SpawnBoss;
         StartCoroutine(Spawn());
     }
 
@@ -90,6 +93,7 @@ public class SpawnManager : MonoBehaviour
     {
         ExpManager.LevelUp -= StartNextWave;
         ExpManager.LevelUp -= IncreaseSpawnRate;
+        SummoningCircle.Summon -= SpawnBoss;
         Player.instance.Death -= StopSpawning;
     }
 
@@ -202,5 +206,16 @@ public class SpawnManager : MonoBehaviour
         int x = Random.Range(0, Screen.width);
         int y = 0;
         return new Vector2(x, y);
+    }
+
+    private void SpawnBoss(SummoningCircle summon, EventArgs e)
+    {
+        if (this.bossPrefabs.Count != 0)
+        {
+            GameObject bossObject = this.bossPrefabs[0];
+            GameObject boss = Instantiate(bossObject);
+            spawnedBoss(boss);
+            this.bossPrefabs.Remove(bossObject);
+        }
     }
 }

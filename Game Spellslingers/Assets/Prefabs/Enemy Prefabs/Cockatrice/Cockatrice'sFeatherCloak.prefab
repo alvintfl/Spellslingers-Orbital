@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6236582731031531472}
   - component: {fileID: 6093450657271146630}
-  - component: {fileID: -4840457989477470967}
   - component: {fileID: 8941456676287877991}
+  - component: {fileID: 2701583410681170600}
   m_Layer: 0
   m_Name: Cockatrice'sFeatherCloak
   m_TagString: Untagged
@@ -87,18 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-4840457989477470967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2580583935295418594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fe46edb466c36648bfac133f237a896, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!68 &8941456676287877991
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -131,6 +119,18 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &2701583410681170600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2580583935295418594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9ee992334242cd4ca34befbb08ab3ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5445702370725435971
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6603915538379745359}
   - component: {fileID: 1925552952686156645}
-  - component: {fileID: -976569636865929391}
   - component: {fileID: 6774184766733137029}
+  - component: {fileID: -9127595922022770309}
   m_Layer: 0
   m_Name: MinotaurLeather
   m_TagString: Untagged
@@ -87,18 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-976569636865929391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9111202426292213648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fe46edb466c36648bfac133f237a896, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &6774184766733137029
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -125,6 +113,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.060225, y: 1.2136903}
   m_EdgeRadius: 0
+--- !u!114 &-9127595922022770309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9111202426292213648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4acfc419e459e240a2f12c46701070f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &595626317604494624
 PrefabInstance:
   m_ObjectHideFlags: 0

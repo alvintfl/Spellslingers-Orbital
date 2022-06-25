@@ -27,6 +27,8 @@ public class Dragonewt : Enemy
         this.ringOfFire.SetActive(false);
         this.firePillar = Instantiate(firePillarPrefab);    
         this.firePillar.SetActive(false);
+        Vector2 spawnPosition = new Vector2(507, -102);
+        gameObject.transform.position = spawnPosition;
     }
 
     private void Update()
@@ -110,5 +112,15 @@ public class Dragonewt : Enemy
         GameObject loot = Instantiate(this.loot);
         loot.transform.position = this.transform.position;
         base.Die();
+    }
+    public override IEnumerator HandleStatusEffect(StatusEffect statusEffect)
+    {
+        if (statusEffect is Slow || statusEffect is Stun)
+        {
+            yield return null;
+        } else
+        {
+            yield return base.HandleStatusEffect(statusEffect);
+        }
     }
 }

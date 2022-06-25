@@ -12,11 +12,28 @@ public class BossCockatrice : Enemy
      */
     [SerializeField] private GameObject loot;
 
+    public override void Awake()
+    {
+        base.Awake();
+        Vector2 spawnPosition = new Vector2(-557, -11);
+        gameObject.transform.position = spawnPosition;
+    }
+
     public override void Die()
     {
         // play death animation
         GameObject loot = Instantiate(this.loot);
         loot.transform.position = this.transform.position;
         Destroy(gameObject);
+    }
+    public override IEnumerator HandleStatusEffect(StatusEffect statusEffect)
+    {
+        if (statusEffect is Slow || statusEffect is Stun)
+        {
+            yield return null;
+        } else
+        {
+            yield return base.HandleStatusEffect(statusEffect);
+        }
     }
 }

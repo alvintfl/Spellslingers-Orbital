@@ -106,6 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   exp: 30
+  loot: {fileID: 527237241313786918, guid: fe80446de2ed0524c8ce57a6ca522a7e, type: 3}
   slamPos1: {fileID: 8013018783463399135}
   slamPos2: {fileID: 7748479231961417063}
   slashPos: {fileID: 6701546072936227984}
@@ -159,8 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a168f0e55ba16044a80d837f8c10113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
   moveSpeed: 0
+  anim: {fileID: 0}
 --- !u!61 &502710964
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -117,7 +117,7 @@ public class Character : MonoBehaviour
     }
     #endregion
 
-    public IEnumerator HandleStatusEffect(StatusEffect statusEffect)
+    public virtual IEnumerator HandleStatusEffect(StatusEffect statusEffect)
     {
         List<StatusEffect> existingStatusEffects = this.statusEffects.FindAll(x => x.Equals(statusEffect));
         if (existingStatusEffects.Count != 0)
