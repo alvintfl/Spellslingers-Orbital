@@ -20,12 +20,15 @@ public class SpawnerManager : MonoBehaviour
 
     private void ActivateSpawner(ExpManager sender, EventArgs e)
     {
-        GameObject spawnerObject = this.spawnerList[0];
-        Spawner spawner = spawnerObject.GetComponent<Spawner>();
-        if (sender.Level == spawner.StartLevel)
+        if (this.spawnerList.Count != 0)
         {
-            Instantiate(spawner);
-            this.spawnerList.RemoveAt(0);
+            GameObject spawnerObject = this.spawnerList[0];
+            Spawner spawner = spawnerObject.GetComponent<Spawner>();
+            if (sender.Level == spawner.StartLevel)
+            {
+                Instantiate(spawner);
+                this.spawnerList.RemoveAt(0);
+            }
         }
     }
 
