@@ -23,7 +23,7 @@ public class TheWeightoftheDraw : Skill
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);
-            this.shoot.DecreaseRate(1f);
+            this.shoot.DecreaseRate(2f);
             Arrow.SetDamageMulti(3);
             Arrow.ActivateStun();
         });

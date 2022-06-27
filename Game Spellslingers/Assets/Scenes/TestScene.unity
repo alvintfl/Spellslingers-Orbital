@@ -203,6 +203,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cockatrice
       objectReference: {fileID: 0}
+    - target: {fileID: 280101356387483251, guid: 8bec00d5ad567a1499c832574a0758f9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 280101356387483262, guid: 8bec00d5ad567a1499c832574a0758f9, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1182,7 +1186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5801511940331099810, guid: eb0b178529ef97e47a343a7ada1d1923, type: 3}
       propertyPath: maxHealth
-      value: 10000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845486359984789565, guid: eb0b178529ef97e47a343a7ada1d1923, type: 3}
       propertyPath: m_RootOrder
@@ -1198,11 +1202,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5845486359984789565, guid: eb0b178529ef97e47a343a7ada1d1923, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.87
+      value: -7.86
       objectReference: {fileID: 0}
     - target: {fileID: 5845486359984789565, guid: eb0b178529ef97e47a343a7ada1d1923, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.31
+      value: 3.87
       objectReference: {fileID: 0}
     - target: {fileID: 5845486359984789565, guid: eb0b178529ef97e47a343a7ada1d1923, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1254,7 +1258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5845486359984789567, guid: eb0b178529ef97e47a343a7ada1d1923, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb0b178529ef97e47a343a7ada1d1923, type: 3}
@@ -1848,6 +1852,10 @@ PrefabInstance:
     - target: {fileID: 8414273325136495110, guid: a7e9c22fbee30654697c60f1077d46d2, type: 3}
       propertyPath: m_Name
       value: BloodSpider
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414273325136495110, guid: a7e9c22fbee30654697c60f1077d46d2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7e9c22fbee30654697c60f1077d46d2, type: 3}
