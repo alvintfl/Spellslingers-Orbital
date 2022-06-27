@@ -6,9 +6,6 @@ public class SwipeEvent : MonoBehaviour
 {
     void BossCockatriceSwipe()
     {
-        if (!Player.instance.AvoidRoll())
-        {
-            Player.instance.TakeDamage(20f);
-        }
+        Player.instance.TakeDamage(20f);
     }
 }

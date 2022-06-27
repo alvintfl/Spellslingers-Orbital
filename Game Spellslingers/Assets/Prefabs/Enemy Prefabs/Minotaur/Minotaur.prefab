@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  exp: 0
+  exp: 40
   spikesPrefab: {fileID: 4669232362019675960, guid: 2129dcd65f083294da004227b2e97d9f, type: 3}
   loot: {fileID: 9111202426292213648, guid: 2dfdc6483d5d58c4aa5e38f7ff9cd057, type: 3}
 --- !u!114 &8651703231889067568
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2fe0734887d61f4fb0dbfb240a10168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 40
+  maxHealth: 1100
 --- !u!95 &5398944068439502389
 Animator:
   serializedVersion: 4

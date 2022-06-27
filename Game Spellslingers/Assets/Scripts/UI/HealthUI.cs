@@ -18,16 +18,16 @@ public class HealthUI : MonoBehaviour
 
     private void OnEnable()
     {
-        SpawnManager.spawned += EnemyHealthBar;
-        SpawnManager.spawnedBoss += BossHealthBar;
+        Spawner.spawned += EnemyHealthBar;
+        Spawner.spawnedBoss += BossHealthBar;
         EnemyBloodMother.SpawnSpidersInfo += EnemyHealthBar;
     }
 
     private void OnDisable()
     {
         Player.instance.HealthChange -= UpdatePlayerHealth;
-        SpawnManager.spawned -= EnemyHealthBar;
-        SpawnManager.spawnedBoss -= BossHealthBar;
+        Spawner.spawned -= EnemyHealthBar;
+        Spawner.spawnedBoss -= BossHealthBar;
         EnemyBloodMother.SpawnSpidersInfo -= EnemyHealthBar;
     }
 

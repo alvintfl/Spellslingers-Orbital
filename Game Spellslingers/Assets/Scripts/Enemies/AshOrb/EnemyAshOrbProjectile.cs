@@ -36,11 +36,7 @@ public class EnemyAshOrbProjectile : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            if (!Player.instance.AvoidRoll())
-            {
-                Player.instance.TakeDamage(1f);
-
-            }
+            Player.instance.TakeDamage(1f);
         }
     }
 

@@ -62,6 +62,21 @@ public class Player : Character
         else return 0;
     }
 
+    /**
+     * <summary>
+     * Check the player's avoid chance and deal damage accordingly.
+     * </summary>
+     */
+    public override void TakeDamage(float damage)
+    {
+        if (this.avoid.AvoidRoll())
+        {
+            base.TakeDamage(damage);
+        } else if (GetRestoreOnAvoid())
+        {
+            SetCurrentHealth(GetCurrentHealth() + this.avoid.GetRestoreAmount());
+        }
+    }
 
     #region Avoidance Methods
     public int GetAvoidChance()
@@ -72,11 +87,6 @@ public class Player : Character
     public void SetAvoidChance(int value)
     {
         this.avoid.SetAvoidChance(value);
-    }
-
-    public bool AvoidRoll()
-    {
-        return this.avoid.AvoidRoll();
     }
 
     public bool GetRestoreOnAvoid()

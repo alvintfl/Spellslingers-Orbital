@@ -10,7 +10,7 @@ using UnityEngine;
  */
 public class EnemyDustElementalAtttack : MonoBehaviour
 {
-    private int damage;
+    [SerializeField] private int damage;
 
     /** 
      * <summary>
@@ -22,7 +22,6 @@ public class EnemyDustElementalAtttack : MonoBehaviour
 
     private void Start()
     {
-        this.damage = 10;
         this.IsTriggeredStay = false;
     }
 
@@ -42,10 +41,7 @@ public class EnemyDustElementalAtttack : MonoBehaviour
             IsTriggeredStay = true;
             while (IsTriggeredStay)
             {
-                if (!Player.instance.AvoidRoll()) 
-                { 
-                    Player.instance.TakeDamage(this.damage);
-                }
+                Player.instance.TakeDamage(this.damage);
                 yield return new WaitForSeconds(1);
             }
         }

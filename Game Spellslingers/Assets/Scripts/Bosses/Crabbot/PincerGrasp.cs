@@ -8,10 +8,7 @@ public class PincerGrasp : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            if (!Player.instance.AvoidRoll())
-            {
-                Player.instance.TakeDamage(20f);
-            }
+            Player.instance.TakeDamage(20f);
         }
     }
 

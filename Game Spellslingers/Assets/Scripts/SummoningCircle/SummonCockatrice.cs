@@ -6,6 +6,6 @@ public class SummonCockatrice : SummoningCircle
 {
     public override string ToString()
     {
-        return "\nYou feel the winds stir around you...";
+        return "You feel the winds\nstir around you...";
     }
 }

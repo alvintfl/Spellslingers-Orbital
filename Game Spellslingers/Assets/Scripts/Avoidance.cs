@@ -18,6 +18,7 @@ public class Avoidance : MonoBehaviour
     */
     private bool restoreOnAvoid = false;
 
+    private int restoreAmount;
 
     /**
      * <summary>
@@ -31,6 +32,7 @@ public class Avoidance : MonoBehaviour
     public Avoidance(int chance)
     {
         this.avoidChance = chance;
+        this.restoreAmount = 10;
     }
 
     public int GetAvoidChance()
@@ -48,7 +50,6 @@ public class Avoidance : MonoBehaviour
         int roll = (int)UnityEngine.Random.Range(1f, 100f);
         if (roll <= avoidChance)
         {
-            print("damage avoided");
             return true;
         }
         return false;
@@ -57,6 +58,11 @@ public class Avoidance : MonoBehaviour
     public bool GetRestoreOnAvoid()
     {
         return restoreOnAvoid;
+    }
+    
+    public int GetRestoreAmount()
+    {
+        return this.restoreAmount;
     }
 
     public void SetRestoreOnAvoid(bool resBool)

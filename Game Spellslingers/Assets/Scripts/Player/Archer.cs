@@ -35,34 +35,4 @@ public class Archer : Player
     {
         ShootChange?.Invoke(this, e);
     }
-
-    //public PlayerShoot Shoot { get { return this.shoot; } }
-    /*
-    private int projectiles;
-    private int pierces;
-
-    public int Projectiles 
-    { 
-        get
-        {
-            return projectiles;
-        }
-        set 
-        {
-            projectiles = value;
-        }
-    }
-
-    public int Pierces
-    {
-        get
-        {
-            return pierces;
-        }
-        set
-        {
-            pierces = value;
-        }
-    }
-    */
 }
