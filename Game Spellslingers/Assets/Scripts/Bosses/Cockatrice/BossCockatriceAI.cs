@@ -63,10 +63,10 @@ public class BossCockatriceAI : EnemyMovement
         else 
         {
             anim.SetBool("Aggro", false);
-            anim.SetBool("InRange", false);
+            //anim.SetBool("InRange", false);
             SetX(0);
             SetY(0);
-            ResetBoss();
+            //ResetBoss();
         }
 
     }
