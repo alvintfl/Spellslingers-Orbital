@@ -82,8 +82,6 @@ public class Spawner : MonoBehaviour
         this.count = 0;
         this.directions = new int[] { 0, 1, 2, 3 };
         this.camera = Camera.main;
-        //this.minSpawnTime = 2;
-        //this.maxSpawnTime = 5;
         ExpManager.LevelUp += StartNextWave;
         ExpManager.LevelUp += IncreaseSpawnRate;
         Player.instance.Death += StopSpawning;

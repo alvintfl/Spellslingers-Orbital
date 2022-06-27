@@ -83,7 +83,7 @@ public class BossCrabbot : Enemy
         Collider2D[] damagedPlayer = Physics2D.OverlapCircleAll(slashPos.position, slashRadius, playerLayer);
         if (damagedPlayer.Length > 0)
         {
-            if (damagedPlayer[0].CompareTag("Player") && !Player.instance.AvoidRoll())
+            if (damagedPlayer[0].CompareTag("Player"))
             {
                 Player.instance.TakeDamage(50f);
             }
@@ -95,14 +95,14 @@ public class BossCrabbot : Enemy
         Collider2D[] slamZone2 = Physics2D.OverlapCircleAll(slamPos2.position, slamRadius, playerLayer);
         if (slamZone1.Length > 0)
         {
-            if (slamZone1[0].CompareTag("Player") && !Player.instance.AvoidRoll())
+            if (slamZone1[0].CompareTag("Player"))
             {
                 Player.instance.TakeDamage(50f);                
             }
         }
         if (slamZone2.Length > 0)
         { 
-            if (slamZone2[0].CompareTag("Player") && !Player.instance.AvoidRoll())
+            if (slamZone2[0].CompareTag("Player"))
             {
                 Player.instance.TakeDamage(50f);
             }

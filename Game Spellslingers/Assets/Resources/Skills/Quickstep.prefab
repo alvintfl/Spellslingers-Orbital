@@ -615,7 +615,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: '+5% increased movement speed.
 
-    +3% chance to avoid enemy attacks.'
+    +5% chance to avoid enemy attacks.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5369dbb22cea614b9dcb90e824078e6, type: 2}
   m_sharedMaterial: {fileID: -4445380715108284224, guid: d5369dbb22cea614b9dcb90e824078e6, type: 2}

@@ -22,10 +22,7 @@ public class RingOfFire : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            if (!Player.instance.AvoidRoll())
-            {
-                Player.instance.TakeDamage(this.damage);
-            }
+            Player.instance.TakeDamage(this.damage);
         }
     }
 

@@ -28,10 +28,7 @@ public class Spikes : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            if (!Player.instance.AvoidRoll()) 
-            { 
-                Player.instance.TakeDamage(this.damage);
-            }
+            Player.instance.TakeDamage(this.damage);
         }
     }
 }

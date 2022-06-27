@@ -101,7 +101,7 @@ public class Character : MonoBehaviour
         this.health.MaxHealth = value;
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         this.health.TakeDamage(damage);
     }

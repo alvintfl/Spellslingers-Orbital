@@ -10,7 +10,7 @@ public class Fire : Projectile
 
     private void Start()
     {
-        this.damage = 20;
+        this.damage = 5;
     }
 
     public override int GetDamage()
@@ -22,10 +22,7 @@ public class Fire : Projectile
     {
         if (collider.CompareTag("Player")) 
         {
-            if (!Player.instance.AvoidRoll())
-            {
-                Player.instance.TakeDamage(this.damage);
-            }
+            Player.instance.TakeDamage(this.damage);
         }
         base.OnTriggerEnter2D(collider);
     }

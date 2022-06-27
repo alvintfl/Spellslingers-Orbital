@@ -27,6 +27,11 @@ public class MapManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        Item.PickUp -= AccessNewZone;
+    }
+
     private void AccessNewZone(Item item, EventArgs e)
     {
         if (this.maps.Count != 0)

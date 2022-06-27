@@ -9,8 +9,13 @@ public class FirePillar : MonoBehaviour
 
     private void Start()
     {
-        this.damage = 10;
+        this.damage = 30;
         this.collider = GetComponent<Collider2D>();
+        this.transform.position = Player.instance.transform.position;
+    }
+
+    private void OnEnable()
+    {
         this.transform.position = Player.instance.transform.position;
     }
 
@@ -29,10 +34,7 @@ public class FirePillar : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            if (!Player.instance.AvoidRoll()) 
-            { 
-                Player.instance.TakeDamage(this.damage);
-            }
+            Player.instance.TakeDamage(this.damage);
         }
     }
 }

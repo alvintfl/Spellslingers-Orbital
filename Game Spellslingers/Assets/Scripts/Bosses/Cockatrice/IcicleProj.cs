@@ -31,10 +31,7 @@ public class IcicleProj : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            if (!Player.instance.AvoidRoll())
-            {
-                Player.instance.TakeDamage(30f);
-            }
+            Player.instance.TakeDamage(30f);
         }
         Invoke("DestroyProjectile", 1.5f);
     }

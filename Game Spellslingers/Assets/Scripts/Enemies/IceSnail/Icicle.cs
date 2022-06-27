@@ -28,10 +28,7 @@ public class Icicle : Projectile
     {
         if (collider.CompareTag("Player")) 
         {
-            if (!Player.instance.AvoidRoll())
-            {
-                Player.instance.TakeDamage(this.damage);
-            }
+            Player.instance.TakeDamage(this.damage);
         }
         base.OnTriggerEnter2D(collider);
     }

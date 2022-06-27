@@ -41,10 +41,7 @@ public class EnemyDustElementalAtttack : MonoBehaviour
             IsTriggeredStay = true;
             while (IsTriggeredStay)
             {
-                if (!Player.instance.AvoidRoll()) 
-                { 
-                    Player.instance.TakeDamage(this.damage);
-                }
+                Player.instance.TakeDamage(this.damage);
                 yield return new WaitForSeconds(1);
             }
         }

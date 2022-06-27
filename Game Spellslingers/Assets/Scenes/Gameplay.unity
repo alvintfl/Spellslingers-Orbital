@@ -402,6 +402,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2659112158424600468, guid: 6d580bf35f6be914ab0533cf0b945b12, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4592831624372490955, guid: 6d580bf35f6be914ab0533cf0b945b12, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5180082285185416284, guid: 6d580bf35f6be914ab0533cf0b945b12, type: 3}
       propertyPath: m_RootOrder
       value: 11
