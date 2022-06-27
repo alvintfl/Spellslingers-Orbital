@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  exp: 3
+  exp: 5
 --- !u!114 &7852744049232916462
 MonoBehaviour:
   m_ObjectHideFlags: 0

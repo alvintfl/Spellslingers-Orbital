@@ -36,6 +36,7 @@ public class Slow : StatusEffect
             character.ResetMoveSpeed();
             Deactivate();
             OnStatusEffectEnd(EventArgs.Empty);
+            yield return new WaitForSeconds(Duration);
         }
         yield return null;
     }

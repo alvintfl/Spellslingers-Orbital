@@ -9,7 +9,7 @@ public class Spikes : MonoBehaviour
 
     private void Start()
     {
-        this.damage = 10;
+        this.damage = 20;
         this.collider = GetComponent<Collider2D>();
     }
 

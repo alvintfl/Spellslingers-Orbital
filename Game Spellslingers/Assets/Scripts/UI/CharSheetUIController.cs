@@ -42,6 +42,7 @@ public class CharSheetUIController : MonoBehaviour
         player.MoveSpeedChange += UpdatePlayerMoveSpeed;
         player.AvoidChanceChange += UpdatePlayerAvoidChance;
         player.ShootChange += UpdatePlayerShoot;
+        Arrow.ArrowChange += UpdatePlayerArrow;
         ExpManager.LevelUp += UpdatePlayerLevel;
 
     }
