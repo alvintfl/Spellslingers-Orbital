@@ -16,7 +16,7 @@ public class EnemyAshtoadMovement : EnemyMovement
 
     public void Start()
     {
-        stoppingDistance = 10;
+        stoppingDistance = 8;
         player = Player.instance.gameObject.transform;
         timeBtwShots = startTimeBtwShots;
     }
