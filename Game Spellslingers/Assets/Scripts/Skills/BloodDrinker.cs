@@ -19,7 +19,7 @@ public class BloodDrinker : Skill
         {
             OnSelected(EventArgs.Empty);
             Arrow.ActivateLifeSteal();
-            Lifesteal.IncreaseHeal(0.05f);
+            Lifesteal.IncreaseHeal(0.15f);
         });
     }
 

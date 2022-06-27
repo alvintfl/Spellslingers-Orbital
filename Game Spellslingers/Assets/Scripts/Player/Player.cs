@@ -69,7 +69,7 @@ public class Player : Character
      */
     public override void TakeDamage(float damage)
     {
-        if (this.avoid.AvoidRoll())
+        if (!this.avoid.AvoidRoll())
         {
             base.TakeDamage(damage);
         } else if (GetRestoreOnAvoid())

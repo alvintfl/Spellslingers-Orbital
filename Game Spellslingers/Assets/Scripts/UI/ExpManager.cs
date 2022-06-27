@@ -16,11 +16,23 @@ public class ExpManager : MonoBehaviour
     public static event ExpEventHandler<ExpManager, EventArgs> LevelUp;
     public event ExpEventHandler<ExpManager, EventArgs> GainMaxExp;
     public event ExpEventHandler<ExpManager, EventArgs> GainExp;
+    public static ExpManager instance;
 
     private int maxExp;
     private int exp;
     private int level;
     private double multiplier;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(this);
+        } else
+        {
+            instance = this;
+        }
+    }
 
     private void Start()
     {
