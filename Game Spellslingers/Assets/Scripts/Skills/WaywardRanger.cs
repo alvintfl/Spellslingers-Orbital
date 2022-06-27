@@ -23,7 +23,7 @@ public class WaywardRanger : Skill
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);
-            this.shoot.AddProjectiles(5);
+            this.shoot.AddProjectiles(8);
             this.shoot.ToggleRandomiseProjectiles();
         });
     }

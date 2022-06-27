@@ -9,7 +9,14 @@ using UnityEngine;
  */
 public class Explosion : MonoBehaviour
 {
-    private int damage = 30;
+    private int damage = 20;
+
+    private new Collider2D collider;
+
+    private void Start()
+    {
+        this.collider = GetComponent<Collider2D>();
+    }
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
@@ -17,5 +24,15 @@ public class Explosion : MonoBehaviour
         {
             Player.instance.TakeDamage(this.damage);
         }
+    }
+
+    public void Activate()
+    {
+        this.collider.enabled = true;
+    }
+
+    private void Deactivate()
+    {
+        this.collider.enabled = false;
     }
 }

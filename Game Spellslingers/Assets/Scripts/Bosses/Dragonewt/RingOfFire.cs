@@ -9,7 +9,7 @@ public class RingOfFire : MonoBehaviour
 
     private void Start()
     {
-        this.damage = 0;
+        this.damage = 30;
         this.collider = GetComponent<Collider2D>();
     }
 

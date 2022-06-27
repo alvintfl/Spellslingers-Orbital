@@ -10,7 +10,7 @@ public class Fire : Projectile
 
     private void Start()
     {
-        this.damage = 5;
+        this.damage = 8;
     }
 
     public override int GetDamage()

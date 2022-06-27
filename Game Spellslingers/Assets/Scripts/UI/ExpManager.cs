@@ -49,11 +49,6 @@ public class ExpManager : MonoBehaviour
         Skill.Selected += FinishLeveling;
     }
 
-    private void Update()
-    {
-        //IsLevelUp();
-    }
-
     private void OnDisable()
     {
         ExpManager.LevelUp -= IncreaseMaxExp;

@@ -613,7 +613,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Shoot 10 additional projectiles.
+  m_text: 'Shoot 8 additional projectiles.
 
     Projectiles fire in random directions.'
   m_isRightToLeft: 0

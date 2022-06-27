@@ -73,7 +73,7 @@ public class Minotaur : Enemy
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Player.instance.TakeDamage(30);
+            Player.instance.TakeDamage(15);
         }
         if (collision.gameObject.CompareTag("Wall"))
         {
