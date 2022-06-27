@@ -16,11 +16,24 @@ public class ExpManager : MonoBehaviour
     public static event ExpEventHandler<ExpManager, EventArgs> LevelUp;
     public event ExpEventHandler<ExpManager, EventArgs> GainMaxExp;
     public event ExpEventHandler<ExpManager, EventArgs> GainExp;
+    public static ExpManager instance;
 
+    private bool isLeveling;
     private int maxExp;
     private int exp;
     private int level;
     private double multiplier;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(this);
+        } else
+        {
+            instance = this;
+        }
+    }
 
     private void Start()
     {
@@ -28,14 +41,17 @@ public class ExpManager : MonoBehaviour
         this.maxExp = 3;
         this.level = 1;
         this.multiplier = 1.2;
+        this.isLeveling = false;
         ExpManager.LevelUp += IncreaseMaxExp;
         Enemy.DropExp += AddExp;
         Player.instance.Death += StopExp;
+        StartCoroutine(IsLevelUp());
+        Skill.Selected += FinishLeveling;
     }
 
     private void Update()
     {
-        IsLevelUp();
+        //IsLevelUp();
     }
 
     private void OnDisable()
@@ -45,16 +61,26 @@ public class ExpManager : MonoBehaviour
         Player.instance.Death -= StopExp;
     }
 
+    private void FinishLeveling(Skill skill, EventArgs e)
+    {
+        this.isLeveling = false;
+    }
+
     /** 
      * <summary>
      * Check if the player has enough exp to level up.
      * </summary>
      */
-    private void IsLevelUp()
+    private IEnumerator IsLevelUp()
     {
-        if (this.exp >= this.maxExp)
+        while(true)
         {
-            OnLevelUp(EventArgs.Empty);
+            yield return new WaitUntil(() => !isLeveling);
+            if (this.exp >= this.maxExp)
+            {
+                OnLevelUp(EventArgs.Empty);
+            }
+            yield return null;
         }
     }
 
@@ -64,6 +90,7 @@ public class ExpManager : MonoBehaviour
 
     protected virtual void OnLevelUp(EventArgs e)
     {
+        this.isLeveling = true;
         this.level++;
         LevelUp?.Invoke(this, e);
     }

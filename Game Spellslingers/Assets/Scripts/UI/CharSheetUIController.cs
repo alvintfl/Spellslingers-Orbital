@@ -30,7 +30,7 @@ public class CharSheetUIController : MonoBehaviour
         Archer player = (Archer)Player.instance;
 
         //Inital values for UI
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Level].text = "1";
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Level].text = ExpManager.instance.Level.ToString();
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Health].text = player.GetCurrentHealth().ToString() + " / " + player.GetMaxHealth().ToString();
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Damage].text = arrow.GetComponent<Arrow>().GetDamage().ToString();
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.MoveSpeed].text = player.GetMoveSpeed().ToString("#.00");
@@ -42,8 +42,9 @@ public class CharSheetUIController : MonoBehaviour
         player.MoveSpeedChange += UpdatePlayerMoveSpeed;
         player.AvoidChanceChange += UpdatePlayerAvoidChance;
         player.ShootChange += UpdatePlayerShoot;
-        ExpManager.LevelUp += UpdatePlayerLevel;
         Arrow.ArrowChange += UpdatePlayerArrow;
+        ExpManager.LevelUp += UpdatePlayerLevel;
+
     }
 
     private void OnDestroy()
@@ -57,6 +58,7 @@ public class CharSheetUIController : MonoBehaviour
             player.ShootChange -= UpdatePlayerShoot;
         }
         Arrow.ArrowChange -= UpdatePlayerArrow;
+        ExpManager.LevelUp -= UpdatePlayerLevel;
     }
 
     private void UpdatePlayerHealth(Character sender, EventArgs e)

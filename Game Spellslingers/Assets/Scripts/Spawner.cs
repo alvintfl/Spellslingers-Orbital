@@ -86,7 +86,9 @@ public class Spawner : MonoBehaviour
         ExpManager.LevelUp += IncreaseSpawnRate;
         Player.instance.Death += StopSpawning;
         SummoningCircle.Summon += SpawnBoss;
-        StartCoroutine(Spawn());
+        SummoningCircle.Summon += StopSpawning;
+        Item.Spawned += Spawn;
+        //StartCoroutine(Spawn());
     }
 
     private void OnDestroy()
@@ -94,7 +96,9 @@ public class Spawner : MonoBehaviour
         ExpManager.LevelUp -= StartNextWave;
         ExpManager.LevelUp -= IncreaseSpawnRate;
         SummoningCircle.Summon -= SpawnBoss;
+        SummoningCircle.Summon -= StopSpawning;
         Player.instance.Death -= StopSpawning;
+        Item.Spawned -= Spawn;
     }
 
     public int StartLevel { get { return this.startLevel; } }
@@ -150,6 +154,11 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    private void Spawn(Item item, EventArgs e)
+    {
+        StartCoroutine(Spawn());
+    }
+
     /**
      * <summary>
      * Start spawning enemies for the next wave when the player
@@ -179,7 +188,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void StopSpawning(Character sender, EventArgs e)
+    private void StopSpawning(object sender, EventArgs e)
     {
         StopAllCoroutines();
     }

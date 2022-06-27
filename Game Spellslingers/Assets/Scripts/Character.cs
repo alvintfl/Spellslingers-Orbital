@@ -137,7 +137,7 @@ public class Character : MonoBehaviour
             if (this.statusEffects.Contains(statusEffect))
             {
                 this.statusEffects.Remove(statusEffect);
-                Destroy(statusEffect.gameObject);
+                //Destroy(statusEffect.gameObject);
             }
         };
         yield return null;

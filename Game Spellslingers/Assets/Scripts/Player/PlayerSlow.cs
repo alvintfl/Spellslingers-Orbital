@@ -9,11 +9,10 @@ using UnityEngine;
  */
 public class PlayerSlow : MonoBehaviour
 {
-    [SerializeField] private Slow slowPrefab;
+    [SerializeField] private Slow slow;
 
     public void Slow(Collider2D collision)
     {
-        Slow slow = Instantiate(slowPrefab).GetComponent<Slow>();
         if (collision != null)
         {
             try

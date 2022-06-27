@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369bf2409d20a864f959a62367eb06dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 10
+  level: 15
   enemies:
   - {fileID: 5374439049706102656, guid: d0924138008ad6743a1c173e946f9dd6, type: 3}
   - {fileID: 2003596440403235938, guid: 932e34b40b4d42e4f9fb51cd26604e89, type: 3}
