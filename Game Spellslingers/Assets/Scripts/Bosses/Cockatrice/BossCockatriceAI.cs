@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,7 +21,7 @@ public class BossCockatriceAI : EnemyMovement
     void Start()
     {
         meleeDistance = 5;
-        resetDistance = 30;
+        resetDistance = 50;
         stoppingDistance = 10;
         player = Player.instance.gameObject.transform;
         clawCastNum = 0;
@@ -63,8 +63,10 @@ public class BossCockatriceAI : EnemyMovement
         else 
         {
             anim.SetBool("Aggro", false);
+            anim.SetBool("InRange", false);
             SetX(0);
             SetY(0);
+            ResetBoss();
         }
 
     }
