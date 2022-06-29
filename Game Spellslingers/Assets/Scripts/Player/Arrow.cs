@@ -140,12 +140,11 @@ public class Arrow : Projectile
             }
             if (collider.gameObject != null)
             {
-                Health enemyHealth = collider.gameObject.GetComponent<Health>();
-                if (enemyHealth != null)
+                Enemy enemy = collider.gameObject.GetComponent<Enemy>();
+                if (enemy != null)
                 {
-                    enemyHealth.TakeDamage(GetDamage() * DamageMulti);
-                    //print("damage multi = " + DamageMulti);
-                    if (enemyHealth.CurrentHealth > 0)
+                    enemy.TakeDamage(GetDamage() * DamageMulti);
+                    if (enemy.GetCurrentHealth() > 0)
                     {
                         SlowEnemy(collider);
                         StunEnemy(collider);
