@@ -3,27 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/** 
- * <summary>
- * A skill that increases the 
- * damage of the player's arrows.
- * </summary>
- */
-public class ViciousArrows : Skill
+public class SoulDrain : Skill
 {
-    public ViciousArrows() : base(10) { }
+    public SoulDrain() : base(5) { }
+    
     public override void Start()
     {
         base.Start();
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);
-            Arrow.IncreaseDamage(10);
+            HealOnEnemyDeath heal = Player.instance.GetComponent<HealOnEnemyDeath>();
+            heal.enabled = true;
+            heal.IncreaseHeal(2);
         });
     }
+
     public override void Reset()
     {
-        Arrow.ResetDamage();
+        /*
+        HealOnEnemyDeath heal = Player.instance.GetComponent<HealOnEnemyDeath>();
+        heal.enabled = false;
+        heal.Reset();
+        */
     }
 
     public override bool IsSignatureSkill()

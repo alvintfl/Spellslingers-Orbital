@@ -17,9 +17,10 @@ GameObject:
   - component: {fileID: 5494577232689472099}
   - component: {fileID: 7726707726332128497}
   - component: {fileID: 4784461756372180870}
+  - component: {fileID: 5928755617685229018}
   m_Layer: 8
   m_Name: Mage
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d15ca99f4f9144e95d1340a88d1c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightningBallPrefab: {fileID: 4760103366642291488, guid: d6da9243290ff15429f1f383cc3a4e3c, type: 3}
 --- !u!60 &7726707726332128497
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -256,6 +258,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4183e4607338a464f940f9f39ae04d06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5928755617685229018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544716519196781817}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac7cecd6ec3b5aa49ac988ed04371b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4419604158914261768

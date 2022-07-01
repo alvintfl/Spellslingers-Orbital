@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerCast : MonoBehaviour
 {
     private GameObject lightningObject;
+    [SerializeField] private GameObject lightningBallPrefab;
     private Lightning lightning;
     private float rate;
     private WaitForSeconds wait;
+    private float directionMagnitude;
 
     private void Start()
     {
@@ -19,7 +21,10 @@ public class PlayerCast : MonoBehaviour
 
         this.rate = 1.8f;
         this.wait = new WaitForSeconds(this.rate);
+        this.directionMagnitude = 3.5f;
         StartCoroutine(Cast());
+        GameObject lightningBall = Instantiate(this.lightningBallPrefab);
+        lightningBall.transform.SetParent(Camera.main.transform);
     }
 
     private IEnumerator Cast()
@@ -32,7 +37,7 @@ public class PlayerCast : MonoBehaviour
             mouseDirection.Normalize();
             float angle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg - 90;
             this.lightningObject.transform.rotation = Quaternion.Euler(0, 0, angle);
-            this.lightningObject.transform.position = playerPosition + mouseDirection * 3.5f;
+            this.lightningObject.transform.position = playerPosition + mouseDirection * this.directionMagnitude;
             this.lightningObject.SetActive(true);
             yield return this.wait;
         }
@@ -53,6 +58,10 @@ public class PlayerCast : MonoBehaviour
     {
         return this.lightning.Damage;
     }
-
-
+    
+    public void IncreaseRange(float multiplier)
+    {
+        this.lightningObject.transform.localScale *= multiplier;
+        this.directionMagnitude += 0.25f;
+    }
 }

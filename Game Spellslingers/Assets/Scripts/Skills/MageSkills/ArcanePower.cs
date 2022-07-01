@@ -3,28 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/** 
- * <summary>
- * A skill that increases the 
- * damage of the player's arrows.
- * </summary>
- */
-public class ViciousArrows : Skill
+public class ArcanePower : Skill
 {
-    public ViciousArrows() : base(10) { }
+    public ArcanePower() : base(10) { }
+    
     public override void Start()
     {
         base.Start();
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);
-            Arrow.IncreaseDamage(10);
+            Mage mage = (Mage) Player.instance;
+            mage.SetLightningDamage(mage.GetLightningDamage() + 10);
         });
     }
-    public override void Reset()
-    {
-        Arrow.ResetDamage();
-    }
+
+    public override void Reset() { }
 
     public override bool IsSignatureSkill()
     {

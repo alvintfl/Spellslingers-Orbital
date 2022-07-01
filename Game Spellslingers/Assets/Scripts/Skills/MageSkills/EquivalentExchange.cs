@@ -3,28 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/** 
- * <summary>
- * A skill that increases the 
- * damage of the player's arrows.
- * </summary>
- */
-public class ViciousArrows : Skill
+public class EquivalentExchange : Skill
 {
-    public ViciousArrows() : base(10) { }
+    public EquivalentExchange() : base(5) { }
+    
     public override void Start()
     {
         base.Start();
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);
-            Arrow.IncreaseDamage(10);
+            Mage mage = (Mage) Player.instance;
+            mage.SetDamageTakenMultiplier(mage.GetDamageTakenMultiplier() * 1.1f);
+            mage.SetDamageDealtMultiplier(mage.GetDamageDealtMultiplier() * 1.1f);
         });
     }
-    public override void Reset()
-    {
-        Arrow.ResetDamage();
-    }
+
+    public override void Reset() { }
 
     public override bool IsSignatureSkill()
     {
