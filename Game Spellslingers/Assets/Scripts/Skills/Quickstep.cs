@@ -19,12 +19,12 @@ public class Quickstep : Skill
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);
-            Player player = Player.instance;
-            float moveSpeed = player.GetMoveSpeed();
+            Archer archer = (Archer) Player.instance;
+            float moveSpeed = archer.GetMoveSpeed();
             float newMoveSpeed = moveSpeed + moveSpeed * 0.05f;
-            player.SetMoveSpeed(newMoveSpeed);
+            archer.SetMoveSpeed(newMoveSpeed);
 
-            player.SetAvoidChance(player.GetAvoidChance() + 5);
+            archer.SetAvoidChance(archer.GetAvoidChance() + 5);
         }
          );
     }

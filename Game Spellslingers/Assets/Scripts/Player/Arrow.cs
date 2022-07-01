@@ -123,7 +123,7 @@ public class Arrow : Projectile
         return Arrow.damage;
     }
 
-
+    public static int Damage { get { return Arrow.damage; } }
 
     public override void OnTriggerEnter2D(Collider2D collider)
     {

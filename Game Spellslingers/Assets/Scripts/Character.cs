@@ -17,8 +17,8 @@ public class Character : MonoBehaviour
     //events
     public delegate void ChangeEventHandler<T, U>(T sender, U eventArgs);
     public event ChangeEventHandler<Character, EventArgs> HealthChange;
-    public event ChangeEventHandler<Character, EventArgs> Death;
     public event ChangeEventHandler<Character, EventArgs> MoveSpeedChange;
+    public event ChangeEventHandler<Character, EventArgs> Death;
 
     // status effects
     private bool isSlowed;
@@ -137,7 +137,6 @@ public class Character : MonoBehaviour
             if (this.statusEffects.Contains(statusEffect))
             {
                 this.statusEffects.Remove(statusEffect);
-                //Destroy(statusEffect.gameObject);
             }
         };
         yield return null;

@@ -12,9 +12,9 @@ public class WindDancer : Skill
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);
-            Player player = Player.instance;
-            player.SetAvoidChance(player.GetAvoidChance() + 30);
-            player.SetRestoreOnAvoid(true);
+            Archer archer = (Archer) Player.instance;
+            archer.SetAvoidChance(archer.GetAvoidChance() + 30);
+            archer.SetRestoreOnAvoid(true);
         });
     }
     public override void Reset() { }
