@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Lightning : MonoBehaviour
 {
-    private int damage;
+    private float damage;
     private new Collider2D collider;
 
     private void Start()
@@ -33,4 +33,6 @@ public class Lightning : MonoBehaviour
         this.collider.enabled = false;
         gameObject.SetActive(false);
     }
+
+    public float Damage { get { return this.damage; } set { this.damage = value; } }
 }

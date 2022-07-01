@@ -35,10 +35,17 @@ public class LevelUpMenuUI : MonoBehaviour
         Skill.Selected += ResetSkills;
     }
 
+    private void Start()
+    {
+        Player.instance.Death += StopDisplaySkills;
+    }
+
     private void OnDestroy()
     {
+        this.skillsManager.SkillsLoaded -= SetParents;
         this.skillsManager.SkillsGenerated -= DisplaySkills;
         Skill.Selected -= ResetSkills;
+        Player.instance.Death -= StopDisplaySkills;
     }
 
     private void SetParents(SkillsManager sender, EventArgs e)
@@ -100,5 +107,10 @@ public class LevelUpMenuUI : MonoBehaviour
             }
         }
         this.background.SetActive(false);
+    }
+
+    private void StopDisplaySkills(Character sender, EventArgs e)
+    {
+        gameObject.SetActive(false);
     }
 }

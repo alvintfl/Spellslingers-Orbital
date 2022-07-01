@@ -82,7 +82,6 @@ public class SkillsManager : MonoBehaviour
     } 
     private void SelectMageSkills(CharacterSelectionUI sender, EventArgs e)
     {
-        Debug.Log("Mage Skills Loaded");
         GameObject[] skillPrefabs = Resources.LoadAll<GameObject>("MageSkills/");
         LoadSkills(skillPrefabs);
     } 

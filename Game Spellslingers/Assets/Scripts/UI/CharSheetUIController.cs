@@ -122,9 +122,15 @@ public class CharSheetUIController : MonoBehaviour
             player.MoveSpeedChange -= UpdatePlayerMoveSpeed;
         }
         ExpManager.LevelUp -= UpdatePlayerLevel;
+
         DestroyArcherStats?.Invoke(this, EventArgs.Empty);
         DestroyMageStats?.Invoke(this, EventArgs.Empty);
         DestroyWarriorStats?.Invoke(this, EventArgs.Empty);
+
+        CharacterSelectionUI charSelect = CharacterSelectionUI.instance;
+        charSelect.ArcherSelected -= InitialiseArcherStats;
+        charSelect.MageSelected -= InitialiseMageStats;
+        charSelect.WarriorSelected -= InitialiseWarriorStats;
     }
 
     private void UnsubscribeArcher(CharSheetUIController sender, EventArgs e)

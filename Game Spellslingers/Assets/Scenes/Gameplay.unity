@@ -2283,7 +2283,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &973248317
 GameObject:
@@ -2911,7 +2911,7 @@ RectTransform:
   - {fileID: 13535674}
   - {fileID: 973248318}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3779,7 +3779,7 @@ RectTransform:
   - {fileID: 569754852}
   - {fileID: 141138851}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5550,6 +5550,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4628236989539215568, guid: 75049460c0cb53b4faf87f79bab97d19, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4628236989539215572, guid: 75049460c0cb53b4faf87f79bab97d19, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5638,6 +5642,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 760807549}
+    - target: {fileID: 4628236989539215575, guid: 75049460c0cb53b4faf87f79bab97d19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6892384659249702681, guid: 75049460c0cb53b4faf87f79bab97d19, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -6035,7 +6043,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: -948493703
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &4865414241239455133
 RectTransform:
@@ -6054,7 +6062,7 @@ RectTransform:
   - {fileID: 1876641481}
   - {fileID: 1969599296}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6324,7 +6332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7764572410979550788, guid: ab790e03bd2968a48beb6ce975120ee2, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7764572410979550788, guid: ab790e03bd2968a48beb6ce975120ee2, type: 3}
       propertyPath: m_AnchorMax.x

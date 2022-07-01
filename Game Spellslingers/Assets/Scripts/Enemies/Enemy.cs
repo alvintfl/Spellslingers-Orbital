@@ -20,7 +20,7 @@ public class Enemy : Character
      * </summary>
      */
     private bool IsCollidedStay;
-    public static event ChangeEventHandler<Enemy, EventArgs> DropExp;
+    public static event ChangeEventHandler<Enemy, EventArgs> EnemyDeath;
 
     public virtual void Start()
     {
@@ -63,7 +63,7 @@ public class Enemy : Character
 
     protected virtual void OnDropExp(Character sender, EventArgs e)
     {
-        DropExp?.Invoke(this, e);
+        EnemyDeath?.Invoke(this, e);
         Die();
     }
 
