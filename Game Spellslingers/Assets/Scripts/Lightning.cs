@@ -12,6 +12,8 @@ public class Lightning : MonoBehaviour
         this.damage = 10;
         this.collider = GetComponent<Collider2D>();
         this.collider.enabled = false;
+        transform.SetParent(Camera.main.transform);
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collider)

@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d15ca99f4f9144e95d1340a88d1c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightningBallPrefab: {fileID: 4760103366642291488, guid: d6da9243290ff15429f1f383cc3a4e3c, type: 3}
+  lightningOrbPrefab: {fileID: 4760103366642291488, guid: d6da9243290ff15429f1f383cc3a4e3c, type: 3}
 --- !u!60 &7726707726332128497
 PolygonCollider2D:
   m_ObjectHideFlags: 0

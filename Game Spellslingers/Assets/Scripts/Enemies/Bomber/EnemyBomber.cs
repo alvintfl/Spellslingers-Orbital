@@ -11,11 +11,6 @@ public class EnemyBomber : Enemy
 {
     [SerializeField] private GameObject explosionPrefab;
 
-    private void Update()
-    {
-        Debug.Log(GetCurrentHealth());
-    }
-
     /**
      * <summary>
      * Create an explosion when the bomber dies.

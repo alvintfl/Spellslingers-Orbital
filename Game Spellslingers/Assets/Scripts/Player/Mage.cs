@@ -7,7 +7,6 @@ public class Mage : Player
 {
     private PlayerCast cast;
     private float damageTakenMultiplier;
-    private float damageDealtMultiplier;
     public event ChangeEventHandler<Mage, EventArgs> CastChange;
 
     public override void Awake()
@@ -15,7 +14,6 @@ public class Mage : Player
         base.Awake();
         this.cast = GetComponent<PlayerCast>();
         this.damageTakenMultiplier = 1;
-        this.damageDealtMultiplier = 1;
     }
 
     public override void TakeDamage(float damage)
@@ -26,14 +24,12 @@ public class Mage : Player
 
     public void SetDamageDealtMultiplier(float multiplier)
     {
-        this.damageDealtMultiplier = multiplier;
-        float lightningDamageWithMultiplier = GetLightningDamage() * this.damageDealtMultiplier;
-        this.cast.SetLightningDamage(lightningDamageWithMultiplier);
+        this.cast.SetDamageDealtMultiplier(multiplier);
     }
 
     public float GetDamageDealtMultiplier()
     {
-        return this.damageDealtMultiplier;
+        return this.cast.GetDamageDealtMultiplier();
     }
 
     public void SetDamageTakenMultiplier(float multiplier)
@@ -46,16 +42,14 @@ public class Mage : Player
         return this.damageTakenMultiplier;
     }
 
-    public void SetLightningDamage(float damage)
+    public void IncreaseLightningDamage()
     {
-        this.cast.SetLightningDamage(damage);
-        float lightningDamageWithMultiplier = GetLightningDamage() * this.damageDealtMultiplier;
-        this.cast.SetLightningDamage(lightningDamageWithMultiplier);
+        this.cast.IncreaseLightningDamage();
     }
 
-    public float GetLightningDamage()
+    public void IncreaseLightningOrbDamage()
     {
-        return this.cast.GetLightningDamage();
+        this.cast.IncreaseLightningOrbDamage();
     }
 
     public void IncreaseRate(float secs)
@@ -67,6 +61,11 @@ public class Mage : Player
     public void IncreaseRange(float range)
     {
         this.cast.IncreaseRange(range);
+    }
+
+    public void CastLightningOrb()
+    {
+        this.cast.CastLightningOrb();
     }
 
     private void OnCastChange()

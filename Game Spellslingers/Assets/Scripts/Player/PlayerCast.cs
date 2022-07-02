@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerCast : MonoBehaviour
 {
     private GameObject lightningObject;
-    [SerializeField] private GameObject lightningBallPrefab;
     private Lightning lightning;
+    [SerializeField] private GameObject lightningOrbPrefab;
+    private LightningOrb lightningOrb;
     private float rate;
     private WaitForSeconds wait;
     private float directionMagnitude;
+    private float damageDealtMultiplier;
 
     private void Start()
     {
@@ -22,12 +24,11 @@ public class PlayerCast : MonoBehaviour
         this.rate = 1.8f;
         this.wait = new WaitForSeconds(this.rate);
         this.directionMagnitude = 3.5f;
-        StartCoroutine(Cast());
-        GameObject lightningBall = Instantiate(this.lightningBallPrefab);
-        lightningBall.transform.SetParent(Camera.main.transform);
+        this.damageDealtMultiplier = 1;
+        StartCoroutine(CastLightning());
     }
 
-    private IEnumerator Cast()
+    private IEnumerator CastLightning()
     {
         while (true)
         {
@@ -43,25 +44,66 @@ public class PlayerCast : MonoBehaviour
         }
     }
 
+    public void CastLightningOrb()
+    {
+        GameObject lightningOrbObject = Instantiate(this.lightningOrbPrefab);
+        this.lightningOrb = lightningOrbObject.GetComponent<LightningOrb>();
+    }
+
     public void IncreaseRate(float secs)
     {
         this.rate -= secs;
         this.wait = new WaitForSeconds(this.rate);
     }
 
-    public void SetLightningDamage(float damage)
+    public void IncreaseLightningDamage()
     {
-        this.lightning.Damage = damage;
+        int damageIncrease = 10;
+        float lightningDamageWithMultiplier = 
+            (GetBaseLightningDamage() + damageIncrease) * this.damageDealtMultiplier;
+        this.lightning.Damage = lightningDamageWithMultiplier;
     }
 
-    public float GetLightningDamage()
+    private float GetBaseLightningDamage()
     {
-        return this.lightning.Damage;
+        return this.lightning.Damage / this.damageDealtMultiplier;
     }
     
     public void IncreaseRange(float multiplier)
     {
         this.lightningObject.transform.localScale *= multiplier;
         this.directionMagnitude += 0.25f;
+    }
+    public void IncreaseLightningOrbDamage()
+    {
+        int damageIncrease = 2;
+        float lightningDamageWithMultiplier = 
+            (GetBaseLightningOrbDamage() + damageIncrease) * this.damageDealtMultiplier;
+        LightningOrb.Damage = lightningDamageWithMultiplier;
+    }
+
+    private float GetBaseLightningOrbDamage()
+    {
+        return LightningOrb.Damage / this.damageDealtMultiplier;
+    }
+
+    public void SetDamageDealtMultiplier(float multiplier)
+    {
+        // Get base values without multiplier
+        float baseLightningDamage = GetBaseLightningDamage();
+        float baseLightningOrbDamage = GetBaseLightningOrbDamage();
+
+        this.damageDealtMultiplier = multiplier;
+
+        // Calculate new values with new multiplier
+        float lightningDamageWithMultiplier = baseLightningDamage * this.damageDealtMultiplier;
+        this.lightning.Damage = lightningDamageWithMultiplier;
+        float lightningOrbDamageWithMultiplier = baseLightningOrbDamage * this.damageDealtMultiplier;
+        LightningOrb.Damage = lightningOrbDamageWithMultiplier;
+        
+    }
+    public float GetDamageDealtMultiplier()
+    {
+        return this.damageDealtMultiplier;
     }
 }

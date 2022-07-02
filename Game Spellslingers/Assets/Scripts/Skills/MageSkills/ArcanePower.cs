@@ -14,7 +14,7 @@ public class ArcanePower : Skill
         {
             OnSelected(EventArgs.Empty);
             Mage mage = (Mage) Player.instance;
-            mage.SetLightningDamage(mage.GetLightningDamage() + 10);
+            mage.IncreaseLightningDamage();
         });
     }
 
