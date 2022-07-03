@@ -28,20 +28,32 @@ public class LevelUpMenuUI : MonoBehaviour
      * Sets all skills to be a child of this UI.
      * </summary>
      */
+    private void Awake()
+    {
+        this.skillsManager.SkillsLoaded += SetParents;
+        this.skillsManager.SkillsGenerated += DisplaySkills;
+        Skill.Selected += ResetSkills;
+    }
+
     private void Start()
     {
-        this.skillsManager.SkillsGenerated += DisplaySkills;
+        Player.instance.Death += StopDisplaySkills;
+    }
+
+    private void OnDestroy()
+    {
+        this.skillsManager.SkillsLoaded -= SetParents;
+        this.skillsManager.SkillsGenerated -= DisplaySkills;
+        Skill.Selected -= ResetSkills;
+        Player.instance.Death -= StopDisplaySkills;
+    }
+
+    private void SetParents(SkillsManager sender, EventArgs e)
+    {
         List<GameObject> skillsLibrary = this.skillsManager.SkillsLibrary;
         List<GameObject> signatureSkillsLibrary = this.skillsManager.SignatureSkillsLibrary;
         SetParent(skillsLibrary);
         SetParent(signatureSkillsLibrary);
-        Skill.Selected += ResetSkills;
-    }
-
-    private void OnDisable()
-    {
-        this.skillsManager.SkillsGenerated -= DisplaySkills;
-        Skill.Selected -= ResetSkills;
     }
 
     /**
@@ -95,5 +107,10 @@ public class LevelUpMenuUI : MonoBehaviour
             }
         }
         this.background.SetActive(false);
+    }
+
+    private void StopDisplaySkills(Character sender, EventArgs e)
+    {
+        gameObject.SetActive(false);
     }
 }

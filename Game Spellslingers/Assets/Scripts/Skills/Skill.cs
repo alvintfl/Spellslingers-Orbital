@@ -37,6 +37,8 @@ public abstract class Skill : MonoBehaviour
     public abstract bool IsSignatureSkill();
 
     public Button Button { get { return this.button; } }
+    
+    public int Level { get { return this.level; } }
 
     /**
      * <summary>

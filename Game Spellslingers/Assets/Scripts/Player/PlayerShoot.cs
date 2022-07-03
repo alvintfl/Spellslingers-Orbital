@@ -16,9 +16,6 @@ public class PlayerShoot : Shoot
     private HashSet<GameObject> seen;
     private WaitForSeconds wait;
 
-    private Vector3 target;
-    private GameObject playerObject;
-
     public delegate void ShootChangeEventHandler<T, U>(T sender, U eventArgs);
     public event ShootChangeEventHandler<PlayerShoot, EventArgs> PlayerShootChange;
 
@@ -44,7 +41,6 @@ public class PlayerShoot : Shoot
     public override void Start()
     {
         base.Start();
-        playerObject = Player.instance.gameObject;
         StartCoroutine(Fire());
     }
 
@@ -74,6 +70,7 @@ public class PlayerShoot : Shoot
                         projectile = GetProjectile();
                     }
                     // Position, direction and speed variables to fire projectile.
+                    GameObject playerObject = Player.instance.gameObject;
                     projectile.transform.position = playerObject.transform.position;
                     Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
                     float speed = projectile.GetComponent<Projectile>().Speed;
@@ -82,7 +79,7 @@ public class PlayerShoot : Shoot
                     float coordinate = (float)(Math.Ceiling((double)i / 2));
                     coordinate = i % 2 == 0 ? coordinate : -1 * coordinate;
 
-                    target = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
+                    Vector3 target = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
                         Input.mousePosition.y, transform.position.z));
 
                     // add rotation for additional arrows

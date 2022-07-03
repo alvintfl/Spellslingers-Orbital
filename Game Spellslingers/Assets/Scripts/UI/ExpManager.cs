@@ -43,7 +43,7 @@ public class ExpManager : MonoBehaviour
         this.multiplier = 1.2;
         this.isLeveling = false;
         ExpManager.LevelUp += IncreaseMaxExp;
-        Enemy.DropExp += AddExp;
+        Enemy.EnemyDeath += AddExp;
         Player.instance.Death += StopExp;
         StartCoroutine(IsLevelUp());
         Skill.Selected += FinishLeveling;
@@ -52,7 +52,7 @@ public class ExpManager : MonoBehaviour
     private void OnDisable()
     {
         ExpManager.LevelUp -= IncreaseMaxExp;
-        Enemy.DropExp -= AddExp;
+        Enemy.EnemyDeath -= AddExp;
         Player.instance.Death -= StopExp;
     }
 

@@ -10,7 +10,7 @@ using UnityEngine;
  */
 public class GameplayUIController : MonoBehaviour
 {
-    public static GameplayUIController instance;
+    public static GameplayUIController instance { get; private set; }
     [SerializeField]
     private GameObject omc;
     [SerializeField]
@@ -30,11 +30,6 @@ public class GameplayUIController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Start() 
-    {
-        
     }
 
     private void Update() {

@@ -50,6 +50,7 @@ public class SkillsManager : MonoBehaviour
      */
     private readonly int signatureSkillRequirement = 10;
     public delegate void SkillsEventHandler<T, U>(T sender, U eventArgs);
+    public event SkillsEventHandler<SkillsManager, EventArgs> SkillsLoaded;
     public event SkillsEventHandler<SkillsManager, EventArgs> SkillsGenerated;
 
     /**
@@ -62,7 +63,36 @@ public class SkillsManager : MonoBehaviour
      */
     private void Awake()
     {
-        GameObject[] skillPrefabs = Resources.LoadAll<GameObject>("Skills/");
+        CharacterSelectionUI charSelect = CharacterSelectionUI.instance;
+        charSelect.ArcherSelected += SelectArcherSkills;
+        charSelect.MageSelected += SelectMageSkills;
+        charSelect.WarriorSelected += SelectWarriorSkills;
+    }
+
+    private void Start()
+    {
+        this.selectedSkills = new GameObject[3];
+        ExpManager.LevelUp += GenerateSkills;
+    }
+
+    private void SelectArcherSkills(CharacterSelectionUI sender, EventArgs e)
+    {
+        GameObject[] skillPrefabs = Resources.LoadAll<GameObject>("ArcherSkills/");
+        LoadSkills(skillPrefabs);
+    } 
+    private void SelectMageSkills(CharacterSelectionUI sender, EventArgs e)
+    {
+        GameObject[] skillPrefabs = Resources.LoadAll<GameObject>("MageSkills/");
+        LoadSkills(skillPrefabs);
+    } 
+    private void SelectWarriorSkills(CharacterSelectionUI sender, EventArgs e)
+    {
+        GameObject[] skillPrefabs = Resources.LoadAll<GameObject>("WarriorSkills/");
+        LoadSkills(skillPrefabs);
+    } 
+
+    private void LoadSkills(GameObject[] skillPrefabs)
+    {
         this.skillsLibrary = new List<GameObject>();
         this.signatureSkillsLibrary = new List<GameObject>();
         this.seen = new HashSet<int>();
@@ -83,12 +113,7 @@ public class SkillsManager : MonoBehaviour
                 this.skillsLibrary.Add(skillObject);
             }
         }
-    }
-
-    private void Start()
-    {
-        this.selectedSkills = new GameObject[3];
-        ExpManager.LevelUp += GenerateSkills;
+        OnSkillsLoaded();
     }
 
     public List<GameObject> SkillsLibrary { get { return this.skillsLibrary; } }
@@ -151,7 +176,7 @@ public class SkillsManager : MonoBehaviour
                 }
             }
         }
-        OnSkillGenerated(EventArgs.Empty);
+        OnSkillsGenerated(EventArgs.Empty);
     }
 
     private void GenerateSignatureSkills()
@@ -165,15 +190,23 @@ public class SkillsManager : MonoBehaviour
                 this.selectedSkills[i] = skillObject;
             }
         }
-        OnSkillGenerated(EventArgs.Empty);
+        OnSkillsGenerated(EventArgs.Empty);
     }
 
     private void OnDisable()
     {
         ExpManager.LevelUp -= GenerateSkills;
+        CharacterSelectionUI charSelect = CharacterSelectionUI.instance;
+        charSelect.ArcherSelected -= SelectArcherSkills;
+        charSelect.MageSelected -= SelectMageSkills;
+        charSelect.WarriorSelected -= SelectWarriorSkills;
+    }
+    private void OnSkillsLoaded()
+    {
+        SkillsLoaded?.Invoke(this, EventArgs.Empty);
     }
 
-    private void OnSkillGenerated(EventArgs e)
+    private void OnSkillsGenerated(EventArgs e)
     {
         SkillsGenerated?.Invoke(this, e);
     }

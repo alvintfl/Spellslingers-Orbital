@@ -20,12 +20,12 @@ public class Entrench : Skill
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);
-            Player player = Player.instance;
+            Archer archer = (Archer) Player.instance;
             int increase = 20;
-            player.SetMaxHealth(player.GetMaxHealth() + increase);
-            player.SetCurrentHealth(player.GetCurrentHealth() + increase);
+            archer.SetMaxHealth(archer.GetMaxHealth() + increase);
+            archer.SetCurrentHealth(archer.GetCurrentHealth() + increase);
 
-            player.SetAvoidChance(player.GetAvoidChance() + 3);
+            archer.SetAvoidChance(archer.GetAvoidChance() + 3);
         });
     }
 
