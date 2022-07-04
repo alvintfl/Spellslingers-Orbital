@@ -20,13 +20,12 @@ public class Warrior : Player
     private float armour;
     private float regen;
 
-    public delegate void SlamAreaInc(float increment);
-    public static event SlamAreaInc slamAreaIncInfo;
 
     void OnEnable()
     {
         HammerSlamEvent.slamEventInfo += ExecuteAttack;
         regen = 0;
+        InvokeRepeating("Regen", 0, 1.0f);
     }
 
     void OnDisable()
@@ -38,11 +37,7 @@ public class Warrior : Player
      * A method that damages enemies in a circle.
      * </summary> 
      */
-    private void Update()
-    {
-        // regenerates
-        health.TakeDamage(-regen);
-    }
+
 
     private void ExecuteAttack()
     {
@@ -57,7 +52,10 @@ public class Warrior : Player
     public void IncreaseSlamArea(float increment)
     {
         aoe += increment;
-        slamAreaIncInfo(increment);
+    }
+    public float GetSlamArea()
+    {
+        return aoe;
     }
 
     public void IncreaseArmour(float increment)
@@ -83,6 +81,26 @@ public class Warrior : Player
     public float GetAttack()
     {
         return attack;
+    }
+
+
+    /**
+     * <summary>
+     * Passively regenerates health
+     * </summary>
+     */
+
+    private void Regen()
+    {
+        // regenerates
+        if (health.CurrentHealth < health.MaxHealth)
+        {
+            health.TakeDamage(-regen);
+            if (health.CurrentHealth > health.MaxHealth)
+            {
+                health.CurrentHealth = health.MaxHealth;
+            }
+        }
     }
 
     void OnDrawGizmosSelected()

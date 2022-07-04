@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -859859095969875467}
   - component: {fileID: 8972300419537913812}
   - component: {fileID: 1930118568975866749}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ashtoad
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 615526305
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 366210c395cfae44b92a1b73e5180e1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4133c01a4471eaa4b94c7d045c625a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
   moveSpeed: 2
+  anim: {fileID: 0}
   startTimeBtwShots: 2
   projectilePrefab: {fileID: 2394190371500103570, guid: 381c656fde39ad1449175699c03d13a5, type: 3}
 --- !u!60 &1930118568975866749

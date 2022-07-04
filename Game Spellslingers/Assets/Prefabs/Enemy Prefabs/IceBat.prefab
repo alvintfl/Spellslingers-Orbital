@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2668709668244564669}
   - component: {fileID: 9094498891806543600}
   - component: {fileID: 6665075621242980358}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: IceBat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a168f0e55ba16044a80d837f8c10113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
   moveSpeed: 5
+  anim: {fileID: 0}
 --- !u!114 &4341843820096337719
 MonoBehaviour:
   m_ObjectHideFlags: 0

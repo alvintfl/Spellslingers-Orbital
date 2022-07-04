@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3183990789433727006}
   - component: {fileID: 1089068189502011488}
   - component: {fileID: 3645452410549742341}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BloodSpider
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 615526305
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0a36e2e251445b046a737ea1fe29e5ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -135,8 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a168f0e55ba16044a80d837f8c10113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
   moveSpeed: 6
+  anim: {fileID: 0}
 --- !u!114 &1089068189502011488
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6266822670009580848}
   - component: {fileID: 3904127054318117718}
   - component: {fileID: 3351702023497757129}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AshOrb
   m_TagString: Enemy
   m_Icon: {fileID: 0}
