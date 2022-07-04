@@ -26,7 +26,6 @@ public class Spawner : MonoBehaviour
      */
     [SerializeField] private List<GameObject> nextWaves;
     [SerializeField] private List<GameObject> bossPrefabs;
-    private new Camera camera;
 
     /**
      * <summary>
@@ -81,7 +80,6 @@ public class Spawner : MonoBehaviour
     {
         this.count = 0;
         this.directions = new int[] { 0, 1, 2, 3 };
-        this.camera = Camera.main;
         ExpManager.LevelUp += StartNextWave;
         ExpManager.LevelUp += IncreaseSpawnRate;
         Player.instance.Death += StopSpawning;
@@ -147,7 +145,7 @@ public class Spawner : MonoBehaviour
                     coords = LeftSpawn();
                     break;
             }
-            Vector2 position = camera.ScreenToWorldPoint(coords);
+            Vector2 position = Camera.main.ScreenToWorldPoint(coords);
             GameObject spawnedEnemy = Instantiate(currentWave[randomEnemyID], position, Quaternion.identity);
             spawned(spawnedEnemy);
             count++;

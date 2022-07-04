@@ -14,7 +14,7 @@ public class Overreach : Skill
         {
             OnSelected(EventArgs.Empty);
             Mage mage = (Mage) Player.instance;
-            mage.IncreaseRange(1.1f);
+            mage.IncreaseLightningRange();
         });
     }
 

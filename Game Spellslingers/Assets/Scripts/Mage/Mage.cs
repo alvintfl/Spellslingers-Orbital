@@ -58,14 +58,24 @@ public class Mage : Player
         OnCastChange();
     }
 
-    public void IncreaseRange(float range)
+    public void IncreaseLightningRange()
     {
-        this.cast.IncreaseRange(range);
+        this.cast.IncreaseLightningRange();
+    }
+
+    public void IncreaseLightningStormRange()
+    {
+        this.cast.IncreaseLightningStormRange();
     }
 
     public void CastLightningOrb()
     {
         this.cast.CastLightningOrb();
+    }
+
+    public void CastLightningStorm()
+    {
+        this.cast.CastLightningStorm();
     }
 
     private void OnCastChange()

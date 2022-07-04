@@ -4,26 +4,30 @@ using UnityEngine;
 
 public class PlayerCast : MonoBehaviour
 {
+    [SerializeField] private GameObject lightningPrefab;
     private GameObject lightningObject;
     private Lightning lightning;
+
     [SerializeField] private GameObject lightningOrbPrefab;
     private LightningOrb lightningOrb;
+
+    [SerializeField] private GameObject lightningBoltPrefab;
+    private GameObject lightningBoltObject;
+    private LightningBolt lightningBolt;
+
     private float rate;
-    private WaitForSeconds wait;
-    private float directionMagnitude;
+    private WaitForSeconds lightningWait;
+    private WaitForSeconds lightningBoltWait;
     private float damageDealtMultiplier;
 
     private void Start()
     {
-        GameObject lightningPrefab = transform.GetChild(0).gameObject;
-        this.lightningObject = Instantiate(lightningPrefab);
-        this.lightningObject.transform.SetParent(gameObject.transform);
-        this.lightningObject.SetActive(false);
+        this.lightningObject = Instantiate(this.lightningPrefab);
         this.lightning = lightningObject.GetComponent<Lightning>();
 
         this.rate = 1.8f;
-        this.wait = new WaitForSeconds(this.rate);
-        this.directionMagnitude = 3.5f;
+        this.lightningWait = new WaitForSeconds(this.rate);
+        this.lightningBoltWait = new WaitForSeconds(10f);
         this.damageDealtMultiplier = 1;
         StartCoroutine(CastLightning());
     }
@@ -32,15 +36,8 @@ public class PlayerCast : MonoBehaviour
     {
         while (true)
         {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 playerPosition = gameObject.transform.position;
-            Vector2 mouseDirection = mousePosition - playerPosition;
-            mouseDirection.Normalize();
-            float angle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg - 90;
-            this.lightningObject.transform.rotation = Quaternion.Euler(0, 0, angle);
-            this.lightningObject.transform.position = playerPosition + mouseDirection * this.directionMagnitude;
             this.lightningObject.SetActive(true);
-            yield return this.wait;
+            yield return this.lightningWait;
         }
     }
 
@@ -50,10 +47,26 @@ public class PlayerCast : MonoBehaviour
         this.lightningOrb = lightningOrbObject.GetComponent<LightningOrb>();
     }
 
+    public void CastLightningStorm()
+    {
+        this.lightningBoltObject = Instantiate(this.lightningBoltPrefab);
+        this.lightningBolt = lightningBoltObject.GetComponent<LightningBolt>();
+        StartCoroutine(CastLightningBolt());
+    }
+
+    private IEnumerator CastLightningBolt()
+    {
+        while (true)
+        {
+            this.lightningBoltObject.SetActive(true);
+            yield return this.lightningBoltWait;
+        }
+    }
+
     public void IncreaseRate(float secs)
     {
         this.rate -= secs;
-        this.wait = new WaitForSeconds(this.rate);
+        this.lightningWait = new WaitForSeconds(this.rate);
     }
 
     public void IncreaseLightningDamage()
@@ -69,11 +82,16 @@ public class PlayerCast : MonoBehaviour
         return this.lightning.Damage / this.damageDealtMultiplier;
     }
     
-    public void IncreaseRange(float multiplier)
+    public void IncreaseLightningRange()
     {
-        this.lightningObject.transform.localScale *= multiplier;
-        this.directionMagnitude += 0.25f;
+        this.lightning.IncreaseRange();
     }
+
+    public void IncreaseLightningStormRange()
+    {
+        this.lightningBolt.IncreaseRange();
+    }
+
     public void IncreaseLightningOrbDamage()
     {
         int damageIncrease = 2;
