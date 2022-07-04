@@ -34,10 +34,6 @@ public class CharacterSelectionUI : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else 
-        {
-            Destroy(gameObject);        
-        }
     }
 
     private void OnEnable()
@@ -52,16 +48,8 @@ public class CharacterSelectionUI : MonoBehaviour
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) 
     {
         if (scene.name == "Gameplay") {
+            print("yea");
             GameObject character = Instantiate(characters[CharIndex]);
-
-            // Remove once select screen done
-            if (character.GetComponent<Mage>() != null)
-            {
-                OnMageSelected();
-            } else if (character.GetComponent<Archer>() != null)
-            {
-                OnArcherSelected();
-            }
         }
     }
 
@@ -77,4 +65,27 @@ public class CharacterSelectionUI : MonoBehaviour
     {
         WarriorSelected?.Invoke(this, EventArgs.Empty);
     }
+
+    public void SelectArcher()
+    {
+        OnArcherSelected();
+        CharIndex = 0;
+        SceneManager.LoadScene("Gameplay");
+        Debug.Log("help");
+    }
+    public void SelectWarrior()
+    {
+        OnWarriorSelected();
+        CharIndex = 1;
+        SceneManager.LoadScene("Gameplay");
+        Debug.Log("help");
+    }
+    public void SelectMage()
+    {
+        OnMageSelected();
+        CharIndex = 2;
+        SceneManager.LoadScene("Gameplay");
+        Debug.Log("help");
+    }
+
 }

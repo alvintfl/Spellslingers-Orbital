@@ -16,9 +16,8 @@ public class MainMenuController : MonoBehaviour
     {
         // change when more classes are added to the game, maybe class select screen
         // int clickedButton = int.Parse(UnityEngine.EventSystems.EventSysytem.current.currentSelectedGameObject.name);
-        int clickedButton = 0;
-        SceneManager.LoadScene("Gameplay");
-        CharacterSelectionUI.instance.CharIndex = clickedButton;
+        SceneManager.LoadScene("CharSelectScreen");
+        
     }
 
     public void OpenSettings() 
@@ -29,6 +28,5 @@ public class MainMenuController : MonoBehaviour
     public void ExitGame() 
     {
         Application.Quit();
-        print("Quit?");
     }   
 }
