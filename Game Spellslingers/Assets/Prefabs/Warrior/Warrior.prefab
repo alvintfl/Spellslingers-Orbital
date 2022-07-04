@@ -454,7 +454,7 @@ MonoBehaviour:
   enLayer:
     serializedVersion: 2
     m_Bits: 128
-  aoe: 1.5
+  aoe: 2
   slamPos: {fileID: 9209856894177195194}
   slamGroundEffect: {fileID: 2645642506659948930, guid: 3c11831edc73a1f4e99d4c6cce75bd8e, type: 3}
   attack: 13
