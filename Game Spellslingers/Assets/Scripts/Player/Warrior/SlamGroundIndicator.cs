@@ -23,7 +23,8 @@ public class SlamGroundIndicator : MonoBehaviour
 
     void SetIndicatorSize(float increment)
     {
-        sprRend.size += new Vector2(2 * increment, 2* increment);
+        Debug.Log("indicator aoe changed");
+        sprRend.size += new Vector2(2 * increment, 2 * increment);
     }
 
     void DestroyThis()

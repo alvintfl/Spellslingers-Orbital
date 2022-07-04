@@ -11,7 +11,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     private Movement movement;
-    private Health health;
+    protected Health health;
     private List<StatusEffect> statusEffects;
 
     //events
