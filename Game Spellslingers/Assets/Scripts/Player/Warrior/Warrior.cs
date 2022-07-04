@@ -20,12 +20,20 @@ public class Warrior : Player
     private float armour;
     private float regen;
 
+    // skills
+    private bool earthquakeEnabled;
+    private Vector2 aftershockLocation;
+    [SerializeField] private GameObject aftershockPrefab;
+
+    // final damage
+    private float finalDamage;
 
     void OnEnable()
     {
         HammerSlamEvent.slamEventInfo += ExecuteAttack;
         regen = 0;
         InvokeRepeating("Regen", 0, 1.0f);
+        earthquakeEnabled = false;
     }
 
     void OnDisable()
@@ -41,12 +49,27 @@ public class Warrior : Player
 
     private void ExecuteAttack()
     {
+        finalDamage = this.attack;
+        if (earthquakeEnabled)
+        {
+            finalDamage -= 20;
+            // final damage cannot be < 0.
+            if (finalDamage < 0)
+            {
+                finalDamage = 0;
+            }
+            aftershockLocation = new Vector2(slamPos.position.x, slamPos.position.y);
+            Invoke("CreateAftershock", 2f);
+        }
+
         Collider2D[] areaSlam = Physics2D.OverlapCircleAll(slamPos.position, aoe, enLayer);
         for (int i = 0; i < areaSlam.Length; i++)
         {
-            areaSlam[i].GetComponent<Health>().TakeDamage(this.attack);
+            areaSlam[i].GetComponent<Health>().TakeDamage(finalDamage);
         }
         Instantiate(slamGroundEffect, slamPos.position, Quaternion.identity);
+
+        
     }
 
     public void IncreaseSlamArea(float increment)
@@ -81,6 +104,21 @@ public class Warrior : Player
     public float GetAttack()
     {
         return attack;
+    }
+
+    /**
+     * <summary>
+     * Signature Earthquake skill
+     * </summary>
+     */
+    public void ActivateEarthquake()
+    {
+        earthquakeEnabled = true;
+    }
+
+    private void CreateAftershock()
+    {
+        Instantiate(aftershockPrefab, aftershockLocation, Quaternion.identity);
     }
 
 

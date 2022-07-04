@@ -458,6 +458,7 @@ MonoBehaviour:
   slamPos: {fileID: 9209856894177195194}
   slamGroundEffect: {fileID: 2645642506659948930, guid: 3c11831edc73a1f4e99d4c6cce75bd8e, type: 3}
   attack: 13
+  aftershockPrefab: {fileID: 6010381832508531795, guid: 5c2a40d3a033012469bc89cb38f2b0d8, type: 3}
 --- !u!114 &7540397553200079896
 MonoBehaviour:
   m_ObjectHideFlags: 0
