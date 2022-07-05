@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LightningField : MonoBehaviour
 {
-    private float damage;
+    public float Damage { get; set; } = 2f;
     private float activeTime;
     private WaitForSeconds rate;
     private new Collider2D collider;
@@ -12,7 +12,6 @@ public class LightningField : MonoBehaviour
 
     private void Awake()
     {
-        this.damage = 2f;
         this.activeTime = 5f;
         this.isActivated = false;
         this.rate = new WaitForSeconds(1f);
@@ -31,7 +30,7 @@ public class LightningField : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(this.damage);
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(this.Damage);
         }
     }
 
@@ -67,13 +66,8 @@ public class LightningField : MonoBehaviour
         gameObject.transform.localScale *= 1.05f;
     }
 
-    public void IncreaseDamage()
+    public void IncreaseDuration()
     {
-        this.damage++;
-    }
-
-    public void IncreaseRate(float secs)
-    {
-        this.activeTime += secs;
+        this.activeTime++;
     }
 }

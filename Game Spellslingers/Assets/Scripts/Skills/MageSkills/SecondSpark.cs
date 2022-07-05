@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoulDrain : Skill
+public class SecondSpark : Skill
 {
-    public SoulDrain() : base(5) { }
+    public SecondSpark() : base(1) { }
     
     public override void Start()
     {
@@ -13,9 +13,8 @@ public class SoulDrain : Skill
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);
-            HealOnEnemyDeath heal = Player.instance.GetComponent<HealOnEnemyDeath>();
-            heal.enabled = true;
-            heal.IncreaseHeal(0.5f);
+            Mage mage = (Mage) Player.instance;
+            mage.UpgradeLightning();
         });
     }
 
@@ -23,6 +22,6 @@ public class SoulDrain : Skill
 
     public override bool IsSignatureSkill()
     {
-        return false;
+        return true;
     }
 }

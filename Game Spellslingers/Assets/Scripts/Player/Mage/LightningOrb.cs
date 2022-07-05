@@ -7,25 +7,28 @@ public class LightningOrb : MonoBehaviour
     private static int count;
     private static GameObject northBall;
     private static float rotationSpeed = 100f;
+    private static int magnitude = 4;
     public static float Damage { get; set; } = 5f;
     private Vector3 direction;
 
     private enum Position
     {
-        North, South, East, West
+        North, South, East, West,
+        NorthEast, NorthWest, SouthEast, SouthWest
     }
 
     private void Awake()
     {
         this.direction = new Vector3(0, 0, 1);
         SetPosition();
-        LightningOrb.count++;  
+        LightningOrb.count++;
         transform.SetParent(Camera.main.transform);
     }
 
     private void Update()
     {
         transform.RotateAround(Player.instance.transform.position, this.direction, LightningOrb.rotationSpeed * Time.deltaTime);
+        Debug.Log(LightningOrb.Damage);
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -40,26 +43,26 @@ public class LightningOrb : MonoBehaviour
     private void SetPosition()
     {
         Vector2 playerPosition = Player.instance.transform.position;
-        switch(LightningOrb.count)
+        switch (LightningOrb.count)
         {
-            case (int) Position.North:
-                gameObject.transform.position = playerPosition + new Vector2(0, 4);
+            case (int)Position.North:
+                gameObject.transform.position = playerPosition + new Vector2(0, LightningOrb.magnitude);
                 LightningOrb.northBall = gameObject;
                 break;
-            case (int) Position.South:
+            case (int)Position.South:
                 Vector2 northBallPosition = LightningOrb.northBall.transform.position;
-                Vector2 direction = playerPosition - northBallPosition;
-                gameObject.transform.position = playerPosition + direction;
+                Vector2 southDirection = playerPosition - northBallPosition;
+                gameObject.transform.position = playerPosition + southDirection;
                 break;
-            case (int) Position.East:
+            case (int)Position.East:
                 northBallPosition = LightningOrb.northBall.transform.position;
-                direction = Quaternion.Euler(0, 0, 90) * (playerPosition - northBallPosition);
-                gameObject.transform.position = playerPosition + direction;
+                Vector2 eastDirection = Quaternion.Euler(0, 0, 90) * (playerPosition - northBallPosition);
+                gameObject.transform.position = playerPosition + eastDirection;
                 break;
-            case (int) Position.West:
+            case (int)Position.West:
                 northBallPosition = LightningOrb.northBall.transform.position;
-                direction = Quaternion.Euler(0, 0, -90) * (playerPosition - northBallPosition);
-                gameObject.transform.position = playerPosition + direction;
+                Vector2 westDirection = Quaternion.Euler(0, 0, -90) * (playerPosition - northBallPosition);
+                gameObject.transform.position = playerPosition + westDirection;
                 break;
         }
     }

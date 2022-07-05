@@ -19,19 +19,21 @@ public class LightningStorm : Skill
                 mage.CastLightningStorm();
                 GameObject skillDescription = gameObject.transform.GetChild(1).gameObject;
                 skillDescription.GetComponent<TextMeshProUGUI>().text =
-                    "+5% Electric field range.\n+1s Electric field duration.";
+                    "+5% Lightning field range.\n+1s Lightning field duration.";
             } else if (Level <= 5)
             {
                 mage.IncreaseLightningStormRange();
+                mage.IncreaseLightningStormDuration();
                 if (Level == 5)
                 {
                     GameObject skillDescription = gameObject.transform.GetChild(1).gameObject;
                     skillDescription.GetComponent<TextMeshProUGUI>().text =
-                        "+5% Electric Field range\n+1 Electric Field damage.";
+                        "+5% Lightning Field range\n+1 Lightning Field damage.";
                 }
             } else 
             {
                 mage.IncreaseLightningStormRange();
+                mage.IncreaseLightningStormDamage();
             }
             OnSelected(EventArgs.Empty);
         });
@@ -41,7 +43,7 @@ public class LightningStorm : Skill
     {
         GameObject skillDescription = gameObject.transform.GetChild(1).gameObject;
         skillDescription.GetComponent<TextMeshProUGUI>().text =
-            "Every 10 seconds, lightning stikes the ground, creating an electric field that damages enemies.";
+            "Every 10 seconds, lightning stikes the ground, creating a lightning field that damages enemies.";
     }
 
     public override bool IsSignatureSkill()

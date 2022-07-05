@@ -5,15 +5,23 @@ using UnityEngine;
 public class Lightning : MonoBehaviour
 {
     private float damage;
+    private float damageReduction;
     private new Collider2D collider;
     private float directionMagnitude;
+    private Animator anim;
+    private bool isUpgraded;
+    private bool isFirstAttack;
 
-    private void Start()
+    private void Awake()
     {
         this.damage = 10;
+        this.damageReduction = 1;
         this.collider = GetComponent<Collider2D>();
         this.collider.enabled = false;
         this.directionMagnitude = 3.5f;
+        this.isUpgraded = false;
+        this.isFirstAttack = true;
+        this.anim = GetComponent<Animator>();
         transform.SetParent(Camera.main.transform);
         gameObject.SetActive(false);
     }
@@ -36,6 +44,13 @@ public class Lightning : MonoBehaviour
         float angle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg - 90;
         gameObject.transform.rotation = Quaternion.Euler(0, 0, angle);
         gameObject.transform.position = playerPosition + mouseDirection * this.directionMagnitude;
+        if (isFirstAttack)
+        {
+            this.anim.SetBool("isFirstAttack", true);
+        } else
+        {
+            this.anim.SetBool("isFirstAttack", false);
+        }
     }
 
     private void Activate()
@@ -47,6 +62,17 @@ public class Lightning : MonoBehaviour
     {
         this.collider.enabled = false;
         gameObject.SetActive(false);
+        if (isUpgraded)
+        {
+            if (isFirstAttack)
+            {
+                isFirstAttack = false;
+                gameObject.SetActive(true);
+            } else
+            {
+                isFirstAttack = true;
+            }
+        }
     }
 
     public void IncreaseRange()
@@ -55,5 +81,20 @@ public class Lightning : MonoBehaviour
         this.directionMagnitude += 0.25f;
     }
 
-    public float Damage { get { return this.damage; } set { this.damage = value; } }
+    public void Upgrade()
+    {
+        this.isUpgraded = true;
+        this.damageReduction = 0.8f;
+        this.Damage = this.damage;
+    }
+
+    public float Damage { 
+        get { return this.damage; } 
+        set { this.damage = value * this.damageReduction; }
+    }
+
+    public float GetBaseDamage()
+    {
+        return this.damage / this.damageReduction; 
+    }
 }

@@ -11,8 +11,6 @@ using UnityEngine;
  */
 public class Slow : StatusEffect
 {
-    public Slow() : base(0.4f, 2f) { }
-
     /**
      * <summary>
      * Slow the character for a set amount of time.
