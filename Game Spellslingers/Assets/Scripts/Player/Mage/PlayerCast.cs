@@ -79,7 +79,7 @@ public class PlayerCast : MonoBehaviour
 
     private float GetBaseLightningDamage()
     {
-        return this.lightning.Damage / this.damageDealtMultiplier;
+        return this.lightning.GetBaseDamage() / this.damageDealtMultiplier;
     }
     
     public void IncreaseLightningRange()
@@ -89,7 +89,25 @@ public class PlayerCast : MonoBehaviour
 
     public void IncreaseLightningStormRange()
     {
-        this.lightningBolt.IncreaseRange();
+        this.lightningBolt.IncreaseLightningFieldRange();
+    }
+
+    public void IncreaseLightningStormDuration()
+    {
+        this.lightningBolt.IncreaseLightningFieldDuration();
+    }
+
+    public void IncreaseLightningStormDamage()
+    {
+        int damageIncrease = 1;
+        float lightningStormDamageWithMultiplier = 
+            (GetBaseLightningStormDamage() + damageIncrease) * this.damageDealtMultiplier;
+        this.lightningBolt.SetLightningFieldDamage(lightningStormDamageWithMultiplier);
+    }
+
+    private float GetBaseLightningStormDamage()
+    {
+        return this.lightningBolt.GetLightningFieldDamage() / this.damageDealtMultiplier;
     }
 
     public void IncreaseLightningOrbDamage()
@@ -105,20 +123,31 @@ public class PlayerCast : MonoBehaviour
         return LightningOrb.Damage / this.damageDealtMultiplier;
     }
 
+    public void UpgradeLightning()
+    {
+        this.lightning.Upgrade();
+    }
+
     public void SetDamageDealtMultiplier(float multiplier)
     {
         // Get base values without multiplier
         float baseLightningDamage = GetBaseLightningDamage();
         float baseLightningOrbDamage = GetBaseLightningOrbDamage();
+        float baseLightningStormDamage = this.lightningBolt != null ? GetBaseLightningStormDamage() : 0;
 
         this.damageDealtMultiplier = multiplier;
 
-        // Calculate new values with new multiplier
         float lightningDamageWithMultiplier = baseLightningDamage * this.damageDealtMultiplier;
         this.lightning.Damage = lightningDamageWithMultiplier;
+
         float lightningOrbDamageWithMultiplier = baseLightningOrbDamage * this.damageDealtMultiplier;
         LightningOrb.Damage = lightningOrbDamageWithMultiplier;
-        
+
+        if (this.lightningBolt != null)
+        {
+            float lightningStormDamageWithMultiplier = baseLightningStormDamage * this.damageDealtMultiplier;
+            this.lightningBolt.SetLightningFieldDamage(lightningStormDamageWithMultiplier);
+        }
     }
     public float GetDamageDealtMultiplier()
     {

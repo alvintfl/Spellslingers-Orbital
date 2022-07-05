@@ -11,8 +11,8 @@ using UnityEngine;
 public abstract class StatusEffect : MonoBehaviour
 {
     public event EventHandler StatusEffectEnd;
-    private float potency;
-    private float duration;
+    [SerializeField] private float potency;
+    [SerializeField] private float duration;
 
     /**
      * <summary>
@@ -22,11 +22,13 @@ public abstract class StatusEffect : MonoBehaviour
      */
     private bool isActive;
 
+    /*
     public StatusEffect(float potency, float duration)
     {
         this.potency = potency;
         this.duration = duration;
     }
+    */
 
     public abstract IEnumerator StartEffect(Character character);
 

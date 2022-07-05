@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lightning
+  m_Name: UpgradedLightning
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,9 +20,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: e21080a4ca9ac2240a984f33a3dc3f0e, type: 3}
+      value: {fileID: 21300000, guid: 57eda960f1549f640bddec11d467e6d5, type: 3}
     - time: 0.05882353
-      value: {fileID: 21300000, guid: 848ac866bf6944b4caaf7f3dcf39976e, type: 3}
+      value: {fileID: 21300000, guid: 64cc13b4cecef2342ba5eebdc91ee68d, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -42,8 +42,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: e21080a4ca9ac2240a984f33a3dc3f0e, type: 3}
-    - {fileID: 21300000, guid: 848ac866bf6944b4caaf7f3dcf39976e, type: 3}
+    - {fileID: 21300000, guid: 57eda960f1549f640bddec11d467e6d5, type: 3}
+    - {fileID: 21300000, guid: 64cc13b4cecef2342ba5eebdc91ee68d, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

@@ -42,8 +42,23 @@ public class LightningBolt : MonoBehaviour
         this.lightningFieldObject.SetActive(true);
     }
 
-    public void IncreaseRange()
+    public void IncreaseLightningFieldRange()
     {
         this.lightningField.IncreaseRange();
+    }
+
+    public void IncreaseLightningFieldDuration()
+    {
+        this.lightningField.IncreaseDuration();
+    }
+
+    public void SetLightningFieldDamage(float damage)
+    {
+        this.lightningField.Damage = damage;
+    }
+
+    public float GetLightningFieldDamage()
+    {
+        return this.lightningField.Damage;
     }
 }

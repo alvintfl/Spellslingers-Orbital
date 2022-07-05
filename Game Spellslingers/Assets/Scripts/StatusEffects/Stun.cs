@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class Stun : StatusEffect
 {
-    public Stun() : base(1f, 1f) { }
-
-
     public override IEnumerator StartEffect(Character character)
     {
         if (character != null)

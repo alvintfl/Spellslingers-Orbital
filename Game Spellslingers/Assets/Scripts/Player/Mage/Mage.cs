@@ -68,6 +68,16 @@ public class Mage : Player
         this.cast.IncreaseLightningStormRange();
     }
 
+    public void IncreaseLightningStormDuration()
+    {
+        this.cast.IncreaseLightningStormDuration();
+    }
+
+    public void IncreaseLightningStormDamage()
+    {
+        this.cast.IncreaseLightningStormDamage();
+    }
+
     public void CastLightningOrb()
     {
         this.cast.CastLightningOrb();
@@ -76,6 +86,11 @@ public class Mage : Player
     public void CastLightningStorm()
     {
         this.cast.CastLightningStorm();
+    }
+
+    public void UpgradeLightning()
+    {
+        this.cast.UpgradeLightning();
     }
 
     private void OnCastChange()

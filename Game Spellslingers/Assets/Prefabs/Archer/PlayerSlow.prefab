@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82a13b61fcc98d645a8a0d7ab0c38b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowPrefab: {fileID: 4424913931765787421, guid: 74f0e65be7c66774080d7bad5bd30c56, type: 3}
+  slow: {fileID: 4424913931765787421, guid: 74f0e65be7c66774080d7bad5bd30c56, type: 3}
