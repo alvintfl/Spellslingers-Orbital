@@ -10,6 +10,7 @@ using UnityEngine;
  */
 public class Player : Character
 {
+    public string playerClass;
     public static Player instance { get; private set; }
 
     public override void Awake()

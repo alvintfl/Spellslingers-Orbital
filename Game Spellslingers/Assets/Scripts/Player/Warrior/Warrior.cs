@@ -21,6 +21,8 @@ public class Warrior : Player
     private float regen;
 
     // skills
+    private bool frenzyEnabled;
+    private bool cullEnabled;
     private bool earthquakeEnabled;
     private Vector2 aftershockLocation;
     [SerializeField] private GameObject aftershockPrefab;
@@ -34,6 +36,7 @@ public class Warrior : Player
         regen = 0;
         InvokeRepeating("Regen", 0, 1.0f);
         earthquakeEnabled = false;
+        cullEnabled = false;
     }
 
     void OnDisable()
@@ -65,7 +68,22 @@ public class Warrior : Player
         Collider2D[] areaSlam = Physics2D.OverlapCircleAll(slamPos.position, aoe, enLayer);
         for (int i = 0; i < areaSlam.Length; i++)
         {
-            areaSlam[i].GetComponent<Health>().TakeDamage(finalDamage);
+            if (cullEnabled)
+            {
+                if (areaSlam[i].GetComponent<Health>().CurrentHealth / areaSlam[i].GetComponent<Health>().MaxHealth < 0.1f)
+                {
+                    areaSlam[i].GetComponent<Health>().TakeDamage(99999);
+                    Debug.Log(areaSlam[i].GetComponent<Health>().CurrentHealth);
+                }
+                else
+                {
+                    areaSlam[i].GetComponent<Health>().TakeDamage(finalDamage);
+                }
+            }
+            else
+            {
+                areaSlam[i].GetComponent<Health>().TakeDamage(finalDamage);
+            }
         }
         Instantiate(slamGroundEffect, slamPos.position, Quaternion.identity);
 
@@ -105,7 +123,7 @@ public class Warrior : Player
     {
         return attack;
     }
-
+    #region Earthquake methods
     /**
      * <summary>
      * Signature Earthquake skill
@@ -120,8 +138,49 @@ public class Warrior : Player
     {
         Instantiate(aftershockPrefab, aftershockLocation, Quaternion.identity);
     }
+    #endregion
 
+    #region Executioner methods
+    /**
+     * <summary>
+     * Signature Executioner skill
+     * </summary>
+     */
+    public void ActivateCull()
+    {
+        cullEnabled = true;
+    }
+    #endregion
 
+    #region Frenzy methods
+    /**
+     * <summary>
+     * Signature Frenzy skill
+     * </summary>
+     */
+    public bool IsFrenzy()
+    {
+        return frenzyEnabled;
+    }
+    public void ActivateFrenzy()
+    {
+        frenzyEnabled = true;
+        health.CurrentHealth = health.CurrentHealth / 2;
+        health.MaxHealth = health.MaxHealth / 2;
+        this.attack = this.attack + 100f;
+        GameObject healthUI = transform.GetChild(2).gameObject;
+        healthUI.SetActive(false);
+    }
+    public void DeactivateFrenzy()
+    {
+        frenzyEnabled = false;
+        //GameObject healthUI = transform.GetChild(2).gameObject;
+        //healthUI.SetActive(true);
+    }
+
+    #endregion
+
+    #region Regeneration methods
     /**
      * <summary>
      * Passively regenerates health
@@ -130,6 +189,10 @@ public class Warrior : Player
 
     private void Regen()
     {
+        if (frenzyEnabled)
+        {
+            return;
+        }
         // regenerates
         if (health.CurrentHealth < health.MaxHealth)
         {
@@ -140,6 +203,7 @@ public class Warrior : Player
             }
         }
     }
+    #endregion
 
     void OnDrawGizmosSelected()
     {
@@ -147,6 +211,7 @@ public class Warrior : Player
         Gizmos.DrawWireSphere(slamPos.position, aoe);
     }
 
+    #region Defences and damage taking
     /**
      * <summary>
      * Check the warrior's defences and deal damage accordingly.
@@ -157,5 +222,11 @@ public class Warrior : Player
         // aim for this formula is to make armour more effective vs smaller hits
         // and less effective against larger hits
         base.TakeDamage(damage * damage / (armour + damage));
+    }
+    #endregion
+
+    private void DestroyHammerOnDeath()
+    {
+        Destroy(transform.Find("Hammer").gameObject);
     }
 }

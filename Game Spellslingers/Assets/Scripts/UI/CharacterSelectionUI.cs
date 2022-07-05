@@ -49,12 +49,15 @@ public class CharacterSelectionUI : MonoBehaviour
             {
                 case 0:
                     OnArcherSelected();
+                    Player.instance.playerClass = "Archer";
                     break;
                 case 1:
                     OnWarriorSelected();
+                    Player.instance.playerClass = "Warrior";
                     break;
                 case 2:
                     OnMageSelected();
+                    Player.instance.playerClass = "Mage";
                     break;
             }
         }

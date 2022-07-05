@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Frenzy
+  m_text: Executioner
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5369dbb22cea614b9dcb90e824078e6, type: 2}
   m_sharedMaterial: {fileID: -4445380715108284224, guid: d5369dbb22cea614b9dcb90e824078e6, type: 2}
@@ -473,9 +473,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Maximum land current health is halved. \nAll future increases to health
-    is halved.\nYou cannot regenerate health.\nYou cannot see your health bar.\n+100
-    to attack.\n50% increased movement speed.\n"
+  m_text: Execute all enemies below 15% health.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5369dbb22cea614b9dcb90e824078e6, type: 2}
   m_sharedMaterial: {fileID: -4445380715108284224, guid: d5369dbb22cea614b9dcb90e824078e6, type: 2}
@@ -502,8 +500,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17
-  m_fontSizeBase: 17
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -556,9 +554,9 @@ GameObject:
   - component: {fileID: 8833083091238933893}
   - component: {fileID: 8833083091238933892}
   - component: {fileID: 1483838328881488923}
-  - component: {fileID: -4093415626116752166}
+  - component: {fileID: 1045393664769979633}
   m_Layer: 5
-  m_Name: Frenzy
+  m_Name: Executioner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -616,7 +614,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a2da517f9299ae94181794c42bd4dee8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b5d7ea9c27696a3458239b596993684d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -670,7 +668,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &-4093415626116752166
+--- !u!114 &1045393664769979633
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -679,6 +677,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8833083091238933894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2676516bdcc04084995d0185fafeee2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 22f1e20734d3b264b867dea760c949a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

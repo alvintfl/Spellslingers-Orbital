@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Earthquake : Skill
+public class Steadfast : Skill
 {
-    public Earthquake() : base(1) { }
+    public Steadfast() : base(1) { }
     public override void Start()
     {
         base.Start();
@@ -13,15 +13,17 @@ public class Earthquake : Skill
         {
             OnSelected(EventArgs.Empty);
             Warrior warrior = (Warrior)Player.instance;
-            warrior.IncreaseSlamArea(-2f);
-            warrior.ActivateEarthquake();
+            warrior.IncreaseArmour(100);
+            warrior.IncreaseRegen(10);
+            float moveSpeed = warrior.GetMoveSpeed();
+            float newMoveSpeed = moveSpeed - moveSpeed * 0.2f;
+
         });
     }
-
     public override void Reset() { }
 
     public override bool IsSignatureSkill()
     {
-        return false;
+        return true;
     }
 }

@@ -14,6 +14,10 @@ public class Vitality : Skill
             OnSelected(EventArgs.Empty);
             Warrior warrior = (Warrior)Player.instance;
             int increase = 20;
+            if (warrior.IsFrenzy())
+            {
+                increase = increase / 2;
+            }
             warrior.SetMaxHealth(warrior.GetMaxHealth() + increase);
             warrior.SetCurrentHealth(warrior.GetCurrentHealth() + increase);
 

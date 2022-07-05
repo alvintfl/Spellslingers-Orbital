@@ -15,8 +15,8 @@ public class Juggernaut : Skill
             OnSelected(EventArgs.Empty);
             Warrior warrior = (Warrior)Player.instance;
             float moveSpeed = warrior.GetMoveSpeed();
-            float newMoveSpeed = moveSpeed - moveSpeed * 0.015f;
-            warrior.IncreaseArmour(2);
+            float newMoveSpeed = moveSpeed + moveSpeed * 0.01f;
+            warrior.IncreaseArmour(5);
         });
     }
 

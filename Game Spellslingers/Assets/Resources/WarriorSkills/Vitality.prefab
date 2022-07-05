@@ -475,7 +475,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Gain 30 maximum life.
 
-    Regenerate 1 additional life per second
+    Regenerate 1 additional health per second.
 
 '
   m_isRightToLeft: 0

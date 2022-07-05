@@ -44,7 +44,7 @@ public class HealthUI : MonoBehaviour
         GameObject playerObject = player.gameObject;
         healthbarCanvas.transform.SetParent(playerObject.transform);
         healthbarCanvas.transform.position = playerObject.transform.position;
-        healthbarCanvas.transform.position += new Vector3(0, -1, 0);
+        healthbarCanvas.transform.position += new Vector3(0, -1.3f, 0);
         this.healthbar.SetMaxHealth(player.GetMaxHealth());
         this.healthbar.SetHealth(player.GetMaxHealth());
         Player.instance.HealthChange += UpdatePlayerHealth;
@@ -101,5 +101,10 @@ public class HealthUI : MonoBehaviour
     {
         this.healthbar.SetMaxHealth(sender.GetMaxHealth());
         this.healthbar.SetHealth(sender.GetCurrentHealth());
+    }
+
+    public void DisableHealthUI()
+    {
+        gameObject.SetActive(false);
     }
 }

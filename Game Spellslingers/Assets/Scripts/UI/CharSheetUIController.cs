@@ -39,7 +39,6 @@ public class CharSheetUIController : MonoBehaviour
 
         //Inital values for player of any class
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Level].text = ExpManager.instance.Level.ToString();
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Health].text = player.GetCurrentHealth().ToString() + " / " + player.GetMaxHealth().ToString();
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Damage].text = Arrow.Damage.ToString();
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.MoveSpeed].text = player.GetMoveSpeed().ToString("#.00");
         player.HealthChange += UpdatePlayerHealth;
@@ -55,12 +54,13 @@ public class CharSheetUIController : MonoBehaviour
     private void InitialiseArcherStats(CharacterSelectionUI sender, EventArgs e)
     {
         Archer archer = (Archer) Player.instance;
-
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Health].text = archer.GetCurrentHealth().ToString() + " / " + archer.GetMaxHealth().ToString();
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.AvoidChance].text = archer.GetAvoidChance().ToString() + "%";
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Pierce].text = Arrow.getPierceMax().ToString();
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Projectiles].text = (archer.GetProjectileCount() - 1).ToString();
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Rate].text = archer.GetRate().ToString() + "s";
 
+        archer.HealthChange += UpdatePlayerHealth;
         archer.AvoidChanceChange += UpdatePlayerAvoidChance;
         archer.ShootChange += UpdatePlayerShoot;
         Arrow.ArrowChange += UpdatePlayerArrow;
@@ -69,18 +69,44 @@ public class CharSheetUIController : MonoBehaviour
 
     private void InitialiseMageStats(CharacterSelectionUI sender, EventArgs e)
     {
+        Mage mage = (Mage)Player.instance;
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Health].text = mage.GetCurrentHealth().ToString() + " / " + mage.GetMaxHealth().ToString();
+
+        mage.HealthChange += UpdatePlayerHealth;
         this.DestroyMageStats += UnsubscribeMage;
     }
 
     private void InitialiseWarriorStats(CharacterSelectionUI sender, EventArgs e)
     {
+        Warrior warrior = (Warrior)Player.instance;
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Health].text = warrior.GetCurrentHealth().ToString() + " / " + warrior.GetMaxHealth().ToString();
+
+
+        warrior.HealthChange += UpdatePlayerHealth;
         this.DestroyWarriorStats += UnsubscribeWarrior;
+        
     }
 
     #region Update player stats
     private void UpdatePlayerHealth(Character sender, EventArgs e)
     {
-        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Health].text = sender.GetCurrentHealth() + " / " + sender.GetMaxHealth();
+        Player player = Player.instance;
+        if (player.playerClass == "Warrior")
+        {
+            Warrior warrior = (Warrior)Player.instance;
+            if (warrior.IsFrenzy())
+            {
+                gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Health].text = "??? / ???";
+            }
+            else
+            {
+                gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Health].text = sender.GetCurrentHealth() + " / " + sender.GetMaxHealth();
+            }
+        }
+        else
+        {
+            gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Health].text = sender.GetCurrentHealth() + " / " + sender.GetMaxHealth();
+        }
     }
 
     private void UpdatePlayerMoveSpeed(Character sender, EventArgs e)
@@ -110,6 +136,18 @@ public class CharSheetUIController : MonoBehaviour
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Damage].text = e.Damage.ToString();
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)Stats.Pierce].text = e.Pierce.ToString();
     }
+    #endregion
+
+    #region Update warrior stats
+
+
+
+    #endregion
+
+    #region Update mage stats
+
+
+
     #endregion
 
     #region Unsubscribe

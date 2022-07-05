@@ -473,9 +473,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '1.5% reduced movement speed
+  m_text: '1% increased movement speed
 
-    +2 to armour
+    +5 to armour
 
 '
   m_isRightToLeft: 0

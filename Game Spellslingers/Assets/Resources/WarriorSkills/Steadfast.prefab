@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Frenzy
+  m_text: Steadfast
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5369dbb22cea614b9dcb90e824078e6, type: 2}
   m_sharedMaterial: {fileID: -4445380715108284224, guid: d5369dbb22cea614b9dcb90e824078e6, type: 2}
@@ -442,8 +442,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 61, y: -39.2}
-  m_SizeDelta: {x: 343.9971, y: 97.5761}
+  m_AnchoredPosition: {x: 93.691, y: -34.776}
+  m_SizeDelta: {x: 409.38, y: 106.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2413665072413120796
 CanvasRenderer:
@@ -473,9 +473,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Maximum land current health is halved. \nAll future increases to health
-    is halved.\nYou cannot regenerate health.\nYou cannot see your health bar.\n+100
-    to attack.\n50% increased movement speed.\n"
+  m_text: 'Regenerate 10 additional health per second.
+
+    +100 to armour.
+
+    20%
+    reduced movement speed.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5369dbb22cea614b9dcb90e824078e6, type: 2}
   m_sharedMaterial: {fileID: -4445380715108284224, guid: d5369dbb22cea614b9dcb90e824078e6, type: 2}
@@ -502,8 +505,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17
-  m_fontSizeBase: 17
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -538,7 +541,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -9.175903, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -556,9 +559,9 @@ GameObject:
   - component: {fileID: 8833083091238933893}
   - component: {fileID: 8833083091238933892}
   - component: {fileID: 1483838328881488923}
-  - component: {fileID: -4093415626116752166}
+  - component: {fileID: -3446600990780586363}
   m_Layer: 5
-  m_Name: Frenzy
+  m_Name: Steadfast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -616,7 +619,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a2da517f9299ae94181794c42bd4dee8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5e2cb6c948e3d8b44ba6c02c766a322a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -670,7 +673,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &-4093415626116752166
+--- !u!114 &-3446600990780586363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -679,6 +682,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8833083091238933894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2676516bdcc04084995d0185fafeee2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 01dfd0f7edd1428468cd59e13c255ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

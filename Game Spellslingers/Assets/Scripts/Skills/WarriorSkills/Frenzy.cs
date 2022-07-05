@@ -13,10 +13,16 @@ public class Frenzy : Skill
         {
             OnSelected(EventArgs.Empty);
             Warrior warrior = (Warrior)Player.instance;
-            
+            float moveSpeed = warrior.GetMoveSpeed();
+            float newMoveSpeed = moveSpeed + moveSpeed * 0.5f;
+            warrior.ActivateFrenzy();
         });
     }
-    public override void Reset() { }
+    public override void Reset() 
+    {
+        Warrior warrior = (Warrior)Player.instance;
+        warrior.DeactivateFrenzy();
+    }
 
     public override bool IsSignatureSkill()
     {
