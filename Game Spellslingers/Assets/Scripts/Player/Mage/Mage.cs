@@ -12,16 +12,25 @@ public class Mage : Player
     private float damageTakenMultiplier;
     public event ChangeEventHandler<Mage, EventArgs> CastChange;
 
+    // audio control
+    private float timeBtwAudio;
+
     public override void Awake()
     {
         base.Awake();
         this.cast = GetComponent<PlayerCast>();
         this.damageTakenMultiplier = 1;
-        AudioManager.instance.Play("One");
+        //AudioManager.instance.Play("One");
     }
 
     public override void TakeDamage(float damage)
     {
+        if (timeBtwAudio <= 0)
+        {
+            AudioManager.instance.Play("mage_hit");
+            timeBtwAudio = 1f;
+        }
+
         if (this.arcaneShield != null)
         {
             if (this.arcaneShield.activeSelf)
@@ -34,6 +43,11 @@ public class Mage : Player
         }
         float increasedDamageTaken = damage * damageTakenMultiplier;
         base.TakeDamage(increasedDamageTaken);
+    }
+
+    void Update()
+    {
+        timeBtwAudio -= Time.deltaTime;
     }
 
     public void SetDamageDealtMultiplier(float multiplier)

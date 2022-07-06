@@ -10,6 +10,9 @@ public class Archer : Player
     public event ChangeEventHandler<Archer, EventArgs> ShootChange;
     public event ChangeEventHandler<Archer, EventArgs> AvoidChanceChange;
 
+    // audio control
+    private float timeBtwAudio;
+
     public override void Awake()
     {
         base.Awake();
@@ -17,6 +20,11 @@ public class Archer : Player
         this.shoot.PlayerShootChange += OnArcherShootChange;
         this.avoid = gameObject.GetComponent<Avoidance>();
         this.avoid.AvoidChanceChange += OnPlayerAvoidChanceChange;
+    }
+
+    void Update()
+    {
+        timeBtwAudio -= Time.deltaTime;
     }
 
     public override void OnDestroy()
@@ -35,6 +43,11 @@ public class Archer : Player
     {
         if (!this.avoid.AvoidRoll())
         {
+            if (timeBtwAudio <= 0)
+            {
+                AudioManager.instance.Play("archer_hit");
+                timeBtwAudio = 1f;
+            }
             base.TakeDamage(damage);
         } else if (GetRestoreOnAvoid())
         {

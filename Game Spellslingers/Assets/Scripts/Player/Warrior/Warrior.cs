@@ -30,6 +30,9 @@ public class Warrior : Player
     // final damage
     private float finalDamage;
 
+    // audio control
+    private float timeBtwAudio;
+
     void OnEnable()
     {
         HammerSlamEvent.slamEventInfo += ExecuteAttack;
@@ -37,6 +40,7 @@ public class Warrior : Player
         InvokeRepeating("Regen", 0, 1.0f);
         earthquakeEnabled = false;
         cullEnabled = false;
+        timeBtwAudio = 0f;
     }
 
     void OnDisable()
@@ -48,10 +52,14 @@ public class Warrior : Player
      * A method that damages enemies in a circle.
      * </summary> 
      */
-
+    void Update()
+    {
+        timeBtwAudio -= Time.deltaTime;
+    }
 
     private void ExecuteAttack()
     {
+        AudioManager.instance.Play("slam_sfx");
         finalDamage = this.attack;
         if (earthquakeEnabled)
         {
@@ -221,6 +229,11 @@ public class Warrior : Player
     {
         // aim for this formula is to make armour more effective vs smaller hits
         // and less effective against larger hits
+        if (timeBtwAudio <= 0)
+        {
+            AudioManager.instance.Play("warrior_hit");
+            timeBtwAudio = 1f;
+        }
         base.TakeDamage(damage * damage / (armour + damage));
     }
     #endregion
