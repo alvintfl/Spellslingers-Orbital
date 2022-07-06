@@ -117,6 +117,11 @@ public class Character : MonoBehaviour
     }
     #endregion
 
+    public void StartHandleStatusEffect(StatusEffect statusEffect)
+    {
+        StartCoroutine(HandleStatusEffect(statusEffect));
+    }
+
     public virtual IEnumerator HandleStatusEffect(StatusEffect statusEffect)
     {
         List<StatusEffect> existingStatusEffects = this.statusEffects.FindAll(x => x.Equals(statusEffect));

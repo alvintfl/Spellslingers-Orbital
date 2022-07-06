@@ -10,15 +10,8 @@ public class PlayerStun : MonoBehaviour
     {
         if (collision != null)
         {
-            try
-            {
-                StartCoroutine(collision.gameObject
-                    .GetComponent<Character>().HandleStatusEffect(stun));
-            }
-            catch (MissingReferenceException)
-            {
-                Debug.Log("Enemy died before stun activated.");
-            }
+            Character character = collision.GetComponent<Character>();
+            character.StartHandleStatusEffect(this.stun);
         }
     }
 }

@@ -15,14 +15,8 @@ public class PlayerSlow : MonoBehaviour
     {
         if (collision != null)
         {
-            try
-            {
-                StartCoroutine(collision.gameObject
-                    .GetComponent<Character>().HandleStatusEffect(slow));
-            } catch(MissingReferenceException)
-            {
-                Debug.Log("Enemy died before slow activated.");
-            }
+            Character character = collision.GetComponent<Character>();
+            character.StartHandleStatusEffect(this.slow);
         }
     }
 }

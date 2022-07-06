@@ -24,6 +24,7 @@ public class Player : Character
         {
             instance = this;
         }
+        //AudioManager.instance.Play("")
     }
 
     public int FindCurrentLocation()

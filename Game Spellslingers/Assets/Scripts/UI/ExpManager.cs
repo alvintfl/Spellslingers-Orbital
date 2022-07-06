@@ -37,7 +37,7 @@ public class ExpManager : MonoBehaviour
 
     private void Start()
     {
-        this.exp = 300;
+        this.exp = 3;
         this.maxExp = 3;
         this.level = 1;
         this.multiplier = 1.2;

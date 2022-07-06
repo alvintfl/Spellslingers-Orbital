@@ -71,9 +71,4 @@ public class Enemy : Character
     {
         Destroy(gameObject);
     }
-
-    private void Update()
-    {
-        Debug.Log(GetMoveSpeed());
-    }
 }

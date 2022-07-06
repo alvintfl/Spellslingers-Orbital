@@ -6,6 +6,9 @@ using UnityEngine;
 public class Mage : Player
 {
     private PlayerCast cast;
+    [SerializeField] GameObject arcaneShieldPrefab;
+    private GameObject arcaneShield;
+    private WaitForSeconds arcaneShieldWait;
     private float damageTakenMultiplier;
     public event ChangeEventHandler<Mage, EventArgs> CastChange;
 
@@ -14,10 +17,21 @@ public class Mage : Player
         base.Awake();
         this.cast = GetComponent<PlayerCast>();
         this.damageTakenMultiplier = 1;
+        AudioManager.instance.Play("One");
     }
 
     public override void TakeDamage(float damage)
     {
+        if (this.arcaneShield != null)
+        {
+            if (this.arcaneShield.activeSelf)
+            {
+                Debug.Log("ActivateShield");
+                this.arcaneShield.SetActive(false);
+                StartCoroutine(RefreshArcaneShield());
+                return;
+            }
+        }
         float increasedDamageTaken = damage * damageTakenMultiplier;
         base.TakeDamage(increasedDamageTaken);
     }
@@ -86,6 +100,18 @@ public class Mage : Player
     public void CastLightningStorm()
     {
         this.cast.CastLightningStorm();
+    }
+
+    public void CastArcaneShield()
+    {
+        this.arcaneShield = Instantiate(this.arcaneShieldPrefab);
+        this.arcaneShieldWait = new WaitForSeconds(5f);
+    }
+
+    public IEnumerator RefreshArcaneShield()
+    {
+        yield return this.arcaneShieldWait;
+        this.arcaneShield.SetActive(true);
     }
 
     public void UpgradeLightning()
