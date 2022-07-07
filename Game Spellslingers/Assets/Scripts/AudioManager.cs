@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
     public void Play(string name)
     {
         Sound sound = this.soundsDictionary[name];
-        if (sound != null)
+        if (sound != null && !sound.IsPlaying())
         {
             sound.Play();
         }

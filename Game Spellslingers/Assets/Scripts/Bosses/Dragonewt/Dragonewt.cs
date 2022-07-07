@@ -29,6 +29,7 @@ public class Dragonewt : Enemy
         this.firePillar.SetActive(false);
         Vector2 spawnPosition = new Vector2(507, -102);
         gameObject.transform.position = spawnPosition;
+        AudioManager.instance.Play("DragonewtSpawn");
     }
 
     private void Update()
@@ -73,6 +74,7 @@ public class Dragonewt : Enemy
     private void CastRingOfFire()
     {
         this.anim.SetTrigger("RingOfFire");
+        AudioManager.instance.Play("CastRingOfFire");
     }
 
     private void CastFireStomp()
@@ -83,6 +85,7 @@ public class Dragonewt : Enemy
     private void CastFirePillar()
     {
         this.anim.SetTrigger("FirePillar");
+        AudioManager.instance.Play("FirePillar");
     }
 
     private void StartSquating()
@@ -101,6 +104,7 @@ public class Dragonewt : Enemy
     {
         this.ringOfFire.transform.position = gameObject.transform.position;
         this.ringOfFire.SetActive(true);
+        AudioManager.instance.Play("FireCast");
     }
 
     private void SummonFirePillar()
@@ -109,6 +113,7 @@ public class Dragonewt : Enemy
     }
     public override void Die()
     {
+        AudioManager.instance.Play("DragonewtDeath");
         GameObject loot = Instantiate(this.loot);
         loot.transform.position = this.transform.position;
         base.Die();

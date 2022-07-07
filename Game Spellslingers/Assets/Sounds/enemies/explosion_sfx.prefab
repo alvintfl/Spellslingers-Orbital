@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundName: Explosion
   clip: {fileID: 8300000, guid: ba98e0329a212b34490e1c85f5d90e33, type: 3}
-  volume: 0.1
+  volume: 0.05
   pitch: 1
   loop: 0

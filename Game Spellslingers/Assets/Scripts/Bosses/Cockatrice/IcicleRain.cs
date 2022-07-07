@@ -16,6 +16,7 @@ public class IcicleRain : StateMachineBehaviour
     {
         timeBtwIcicles = 0.6f;
         camera = Camera.main;
+        AudioManager.instance.Play("CockatriceWingFlap");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -24,6 +25,7 @@ public class IcicleRain : StateMachineBehaviour
         {
             if (timeBtwIcicles <= 0)
             {
+                AudioManager.instance.Play("CockatriceIcicleRain");
                 for (int i = 0; i < 10; i++)
                 {
                     int icicleX = i * Screen.width / 8 + 200 + i * 10;
@@ -31,7 +33,6 @@ public class IcicleRain : StateMachineBehaviour
                     Vector2 rainLocation = camera.ScreenToWorldPoint(coords);
                     Instantiate(icicleRainPrefab, rainLocation, Quaternion.identity);
                     animator.SetBool("WingFlap", false);
-
                 }
                 timeBtwIcicles = startTimeBtwIcicles;
             }

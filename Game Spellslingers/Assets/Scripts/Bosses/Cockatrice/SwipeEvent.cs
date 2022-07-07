@@ -7,5 +7,6 @@ public class SwipeEvent : MonoBehaviour
     void BossCockatriceSwipe()
     {
         Player.instance.TakeDamage(20f);
+        AudioManager.instance.Play("CockatriceSwipe");
     }
 }

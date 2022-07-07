@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundName: LightningBolt
   clip: {fileID: 8300000, guid: 1c21e6c4cbc1d794fb45b2b39266f9f7, type: 3}
-  volume: 0.2
+  volume: 0.1
   pitch: 1
   loop: 0

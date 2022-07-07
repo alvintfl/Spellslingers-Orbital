@@ -25,12 +25,14 @@ public class MessageManager : MonoBehaviour
     {
         CancelInvoke();
         gameObject.GetComponentInChildren<TextMeshProUGUI>().text = item.ToString();
+        PlaySound();
         Invoke("EndPrint", 20f);
     }
     private void Print(Barrier barrier, EventArgs e)
     {
         CancelInvoke();
         gameObject.GetComponentInChildren<TextMeshProUGUI>().text = barrier.ToString();
+        PlaySound();
         Invoke("EndPrint", 10f);
     }
 
@@ -38,7 +40,13 @@ public class MessageManager : MonoBehaviour
     {
         CancelInvoke();
         gameObject.GetComponentInChildren<TextMeshProUGUI>().text = summon.ToString();
+        PlaySound();
         Invoke("EndPrint", 10f);
+    }
+
+    private void PlaySound()
+    {
+        AudioManager.instance.Play("UI_buttonclick");
     }
 
     private void EndPrint()

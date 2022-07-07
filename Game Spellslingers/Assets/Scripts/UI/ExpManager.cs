@@ -73,6 +73,7 @@ public class ExpManager : MonoBehaviour
             yield return new WaitUntil(() => !isLeveling);
             if (this.exp >= this.maxExp)
             {
+                AudioManager.instance.Play("LevelUp");
                 OnLevelUp(EventArgs.Empty);
             }
             yield return null;

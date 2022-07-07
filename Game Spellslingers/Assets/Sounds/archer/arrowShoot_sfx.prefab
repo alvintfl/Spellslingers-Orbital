@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundName: ArrowShoot
   clip: {fileID: 8300000, guid: 231170a19f088bf438d6eada5932d6f3, type: 3}
-  volume: 0.3
+  volume: 0.2
   pitch: 1
   loop: 0

@@ -23,6 +23,7 @@ public class EnemyBloodMother : Enemy
     // on death effect
     private void SummonSpiders(Character sender, EventArgs e)
     {
+        AudioManager.instance.Play("BloodMotherDeath");
         for (int i = 0; i < 5; i++)
         {
             spawnPosition = new Vector2(transform.position.x + UnityEngine.Random.Range(-1, 1),

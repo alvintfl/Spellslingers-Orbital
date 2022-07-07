@@ -32,6 +32,7 @@ public class Minotaur : Enemy
     {
         base.Start();
         this.rb = GetComponent<Rigidbody2D>();
+        AudioManager.instance.Play("MinotaurSpawn");
     }
 
     private void Update()
@@ -59,10 +60,6 @@ public class Minotaur : Enemy
                 case 1:
                     CastSlam();
                     break;
-                    /*
-                case 2:
-                    break;
-                    */
             }
             this.prev = skill; 
         }
@@ -84,6 +81,7 @@ public class Minotaur : Enemy
     private void CastCharge()
     {
         this.anim.SetTrigger("StartCharge");
+        AudioManager.instance.Play("MinotaurFeetDrag");
     }
 
     private void Charge()
@@ -94,6 +92,7 @@ public class Minotaur : Enemy
         this.collider.isTrigger = true;
         rb.AddForce(this.playerDirection * 15, ForceMode2D.Impulse);
         this.anim.SetTrigger("Charge");
+        AudioManager.instance.Play("MinotaurCharge");
     }
 
     private void ReverseCharge(Vector3 direction)
@@ -122,6 +121,7 @@ public class Minotaur : Enemy
         }
         this.collider.isTrigger = false;
         this.anim.SetTrigger("EndCharge");
+        AudioManager.instance.Stop("MinotaurCharge");
         StopCasting();
     }
     #endregion
@@ -133,6 +133,8 @@ public class Minotaur : Enemy
 
     private void SummonSpikes()
     {
+        AudioManager.instance.Play("MinotaurSlam");
+        AudioManager.instance.Play("MinotaurRumble");
         Vector3 playerDirection = Player.instance.transform.position - gameObject.transform.position;
         this.spikes.transform.up = playerDirection;
         playerDirection.Normalize();
@@ -148,6 +150,8 @@ public class Minotaur : Enemy
 
     public override void Die()
     {
+        AudioManager.instance.Stop("MinotaurCharge");
+        AudioManager.instance.Play("MinotaurDeath");
         GameObject loot = Instantiate(this.loot);
         loot.transform.position = this.transform.position;
         base.Die();

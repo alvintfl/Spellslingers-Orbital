@@ -28,13 +28,12 @@ public class CrabbotUnder : StateMachineBehaviour
     {
         if (timeBtwAttack <= 0 && attackNum < 6)
         {
-            Debug.Log(timeBtwAttack);
             randomOffsetX = Random.Range(-5, 5);
             randomOffsetY = Random.Range(-5, 5);
 
             Vector2 targetLocation = new Vector2(Player.instance.transform.position.x + randomOffsetX, Player.instance.transform.position.y + randomOffsetY);
             Instantiate(pincerGraspPrefab, targetLocation, Quaternion.identity);
-            Debug.Log(attackNum);
+            AudioManager.instance.Play("CrabbotPincerGrasp");
             timeBtwAttack = startTimeBtwAttack;
             attackNum += 1;
         }

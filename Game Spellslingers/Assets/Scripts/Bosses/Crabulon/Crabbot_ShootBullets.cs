@@ -35,7 +35,7 @@ public class Crabbot_ShootBullets : StateMachineBehaviour
             Instantiate(projectilePrefab, crabbot.position, Quaternion.Euler(0f, 0f, angle));
             timeBtwShots = startTimeBtwShots;
             projCount += 1;
-
+            AudioManager.instance.Play("CrabbotBulletRain");
         }
         else if (timeBtwShots > 0 && projCount < 25)
         {

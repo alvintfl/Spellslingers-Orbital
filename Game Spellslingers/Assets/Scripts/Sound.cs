@@ -32,6 +32,11 @@ public class Sound : MonoBehaviour
         this.source?.Stop();
     }
 
+    public bool IsPlaying()
+    {
+        return this.source.isPlaying;
+    }
+
 
     public override string ToString()
     {
