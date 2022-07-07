@@ -10,6 +10,7 @@ public class Aftershock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.instance.Play("Aftershock");
         Warrior warrior = (Warrior)Player.instance;
         damage = warrior.GetAttack() * 1.5f;
         aoe = warrior.GetSlamArea();

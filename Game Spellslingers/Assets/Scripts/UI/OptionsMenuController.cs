@@ -43,17 +43,20 @@ public class OptionsMenuController : MonoBehaviour
 
     public void ContinueGame() 
     {
+        AudioManager.instance.Play("UI_buttonclick");
         gameObject.SetActive(false);
     }
 
     public void QuitGame() 
     {
+        AudioManager.instance.Play("UI_buttonclick");
         gameObject.SetActive(false);
         SceneManager.LoadScene("MainMenu");
     }
 
     public void RestartGame()
     {
+        AudioManager.instance.Play("UI_buttonclick");
         gameObject.SetActive(false);
         SceneManager.LoadScene("Gameplay");
     }

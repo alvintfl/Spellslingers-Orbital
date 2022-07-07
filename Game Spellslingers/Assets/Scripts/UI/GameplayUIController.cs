@@ -41,12 +41,13 @@ public class GameplayUIController : MonoBehaviour
 
     public void OpenOptionsMenu()
     {
+        AudioManager.instance.Play("UI_buttonclick");
         omc.SetActive(true);
     }
 
     public void OpenCharSheet()
     {
-
+        AudioManager.instance.Play("UI_buttonclick");
 
         if (charSheet.activeSelf)
         {

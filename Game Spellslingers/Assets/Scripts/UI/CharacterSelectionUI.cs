@@ -45,6 +45,7 @@ public class CharacterSelectionUI : MonoBehaviour
     {
         if (scene.name == "Gameplay") {
             GameObject character = Instantiate(characters[CharIndex]);
+            AudioManager.instance.Stop("bgm_mainmenu");
             switch (CharIndex)
             {
                 case 0:
@@ -78,16 +79,19 @@ public class CharacterSelectionUI : MonoBehaviour
 
     public void SelectArcher()
     {
+        AudioManager.instance.Play("UI_buttonclick");
         CharIndex = 0;
         SceneManager.LoadScene("Gameplay");
     }
     public void SelectWarrior()
     {
+        AudioManager.instance.Play("UI_buttonclick");
         CharIndex = 1;
         SceneManager.LoadScene("Gameplay");
     }
     public void SelectMage()
     {
+        AudioManager.instance.Play("UI_buttonclick");
         CharIndex = 2;
         SceneManager.LoadScene("Gameplay");
     }

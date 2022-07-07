@@ -26,11 +26,13 @@ public class DeathScreenMenuManager : MonoBehaviour
     }
     public void RestartGame()
     {
+        AudioManager.instance.Play("UI_buttonclick");
         //DontDestroyOnLoad(Player.instance);
         SceneManager.LoadScene("Gameplay");
     }
     public void ReturnToMainMenu()
     {
+        AudioManager.instance.Play("UI_buttonclick");
         SceneManager.LoadScene("MainMenu");
     }
 }

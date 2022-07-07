@@ -29,27 +29,30 @@ public class Player : Character
 
     public int FindCurrentLocation()
     {
-        // Snow Biome
+        // Snowfields
         if (transform.position.x < -210f)
         {
             return 1;
         }
-        // jungle biome
+        // jungle
         if (transform.position.y < -247.8f)
         {
             return 2;
         }
-        // lava Biome
+        // Volcano
         else if (transform.position.x > 155.9f)
         {
             return 3;
         }
-        // ash biome
+        // ash basin
         else if (transform.position.y > 33.23f)
         {
             return 4;
         }
-        // starting location
-        else return 0;
+        // dry sea
+        else
+        {
+            return 0;
+        }
     }
 }

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[System.Serializable]
 public class Sound : MonoBehaviour 
 {
     [SerializeField] private string soundName;
@@ -27,8 +29,9 @@ public class Sound : MonoBehaviour
 
     public void Stop()
     {
-        this.source?.Stop(); 
+        this.source?.Stop();
     }
+
 
     public override string ToString()
     {

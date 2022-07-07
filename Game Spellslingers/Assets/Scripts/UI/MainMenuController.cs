@@ -12,21 +12,31 @@ using UnityEngine.SceneManagement;
  */
 public class MainMenuController : MonoBehaviour
 {
+    private void Awake()
+    {
+        AudioManager.instance.Play("bgm_mainmenu");
+    }
     public void PlayGame() 
     {
         // change when more classes are added to the game, maybe class select screen
         // int clickedButton = int.Parse(UnityEngine.EventSystems.EventSysytem.current.currentSelectedGameObject.name);
         SceneManager.LoadScene("CharSelectScreen");
-        
+        AudioManager.instance.Play("UI_buttonclick");
     }
 
     public void OpenSettings() 
     {
-    
+        AudioManager.instance.Play("UI_buttonclick");
     }
 
     public void ExitGame() 
     {
+        AudioManager.instance.Play("UI_buttonclick");
         Application.Quit();
-    }   
+    }
+
+    public void OpenCredits()
+    {
+        AudioManager.instance.Play("UI_buttonclick");
+    }
 }
