@@ -29,6 +29,7 @@ public class Explosion : MonoBehaviour
     public void Activate()
     {
         this.collider.enabled = true;
+        AudioManager.instance.Play("Explosion");
     }
 
     private void Deactivate()

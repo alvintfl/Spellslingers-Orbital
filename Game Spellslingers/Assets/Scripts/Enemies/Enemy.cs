@@ -59,6 +59,12 @@ public class Enemy : Character
         }
     }
 
+    public override void TakeDamage(float damage)
+    {
+        AudioManager.instance.Play("EnemyTakeDamage");
+        base.TakeDamage(damage);
+    }
+
     public int Exp { get { return this.exp; } }
 
     protected virtual void OnDropExp(Character sender, EventArgs e)

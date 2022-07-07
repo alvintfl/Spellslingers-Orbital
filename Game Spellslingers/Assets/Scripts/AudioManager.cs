@@ -36,4 +36,13 @@ public class AudioManager : MonoBehaviour
             sound.Play();
         }
     }
+
+    public void Stop(string name)
+    {
+        Sound sound = this.soundsDictionary[name];
+        if (sound != null)
+        {
+            sound.Stop();
+        }
+    }
 }

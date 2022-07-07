@@ -24,6 +24,7 @@ public class LightningField : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(Activate());
         Invoke("Deactivate", this.activeTime);
+        AudioManager.instance.Play("LightningField");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -56,6 +57,7 @@ public class LightningField : MonoBehaviour
 
     private void Deactivate()
     {
+        AudioManager.instance.Stop("LightningField");
         this.isActivated = false;
         StopDealDamage();
         gameObject.SetActive(false);

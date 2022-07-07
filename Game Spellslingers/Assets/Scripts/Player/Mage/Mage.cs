@@ -17,7 +17,6 @@ public class Mage : Player
         base.Awake();
         this.cast = GetComponent<PlayerCast>();
         this.damageTakenMultiplier = 1;
-        AudioManager.instance.Play("One");
     }
 
     public override void TakeDamage(float damage)

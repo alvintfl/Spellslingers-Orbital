@@ -28,7 +28,6 @@ public class LightningOrb : MonoBehaviour
     private void Update()
     {
         transform.RotateAround(Player.instance.transform.position, this.direction, LightningOrb.rotationSpeed * Time.deltaTime);
-        Debug.Log(LightningOrb.Damage);
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
