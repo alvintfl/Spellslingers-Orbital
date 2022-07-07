@@ -99,6 +99,8 @@ public class DragonewtShoot : Shoot
                 }
             }
         }
+        AudioManager.instance.Play("DragonewtStomp");
+        AudioManager.instance.Play("FireCast");
         this.seen.Clear();
         yield return null;
     }

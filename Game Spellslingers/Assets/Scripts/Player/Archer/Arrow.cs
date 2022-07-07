@@ -129,6 +129,7 @@ public class Arrow : Projectile
     {
         if (collider.gameObject.CompareTag("Enemy"))
         {
+            AudioManager.instance.Play("ArrowHit");
             if (pierceCount >= pierceMax)
             {
                 pierceCount = 0;

@@ -29,6 +29,7 @@ public class BossCrabbot : Enemy
         this.anim = GetComponent<Animator>();
         Vector2 spawnPosition = new Vector2(-69, 243);
         gameObject.transform.position = spawnPosition;
+        AudioManager.instance.Play("CrabbotSpawn");
     }
 
     private void Update()
@@ -91,6 +92,7 @@ public class BossCrabbot : Enemy
     }
     private void Slam()
     {
+        AudioManager.instance.Play("CrabbotSlam");
         Collider2D[] slamZone1 = Physics2D.OverlapCircleAll(slamPos1.position, slamRadius, playerLayer);
         Collider2D[] slamZone2 = Physics2D.OverlapCircleAll(slamPos2.position, slamRadius, playerLayer);
         if (slamZone1.Length > 0)
@@ -111,6 +113,7 @@ public class BossCrabbot : Enemy
 
     public override void Die()
     {
+        AudioManager.instance.Play("CrabbotDeath");
         GameObject loot = Instantiate(this.loot);
         loot.transform.position = this.transform.position;
         // play death animation
@@ -126,7 +129,6 @@ public class BossCrabbot : Enemy
         this.isCasting = false;
         this.anim.SetBool("Slam", false);
     }
-
 
     void OnDrawGizmosSelected()
     {

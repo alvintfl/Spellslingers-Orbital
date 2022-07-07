@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icicleRainPrefab: {fileID: 1387019956950304436, guid: 455b3ff10cbacdc40aea6811a50d3ecf, type: 3}
-  camera: {fileID: 5994746000020049838, guid: e0f2e38fdb7f7984191612fad0984167, type: 3}
   startTimeBtwIcicles: 2
 --- !u!1101 &-7645742312669173885
 AnimatorStateTransition:
@@ -267,6 +266,12 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: Aggro
     m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Death
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0

@@ -17,10 +17,12 @@ public class BossCockatrice : Enemy
         base.Awake();
         Vector2 spawnPosition = new Vector2(-557, -11);
         gameObject.transform.position = spawnPosition;
+        AudioManager.instance.Play("CockatriceSpawn");
     }
 
     public override void Die()
     {
+        AudioManager.instance.Play("CockatriceDeath");
         // play death animation
         GameObject loot = Instantiate(this.loot);
         loot.transform.position = this.transform.position;

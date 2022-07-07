@@ -99,6 +99,7 @@ public class PlayerShoot : Shoot
                 this.seen.Add(projectile);
             }
             this.seen.Clear();
+            AudioManager.instance.Play("ArrowShoot");
             yield return this.wait;
         }
     }

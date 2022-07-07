@@ -51,6 +51,7 @@ public class Lightning : MonoBehaviour
         {
             this.anim.SetBool("isFirstAttack", false);
         }
+        AudioManager.instance.Play("Lightning");
     }
 
     private void Activate()

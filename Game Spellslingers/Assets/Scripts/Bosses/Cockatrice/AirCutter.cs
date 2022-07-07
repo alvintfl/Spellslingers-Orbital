@@ -32,6 +32,7 @@ public class AirCutter : StateMachineBehaviour
             diff.Normalize();
             float angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
             Instantiate(projectilePrefab, cockatrice.position, Quaternion.Euler(0f, 0f, angle));
+            AudioManager.instance.Play("CockatriceAirCutter");
             animator.SetBool("ClawCast", false);
             timeBtwShots = startTimeBtwShots;
 

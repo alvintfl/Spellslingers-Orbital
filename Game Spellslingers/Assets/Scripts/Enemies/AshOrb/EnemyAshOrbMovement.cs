@@ -50,6 +50,7 @@ public class EnemyAshOrbMovement : EnemyMovement
         if (timeBtwShots <= 0)
         {
             Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            AudioManager.instance.Play("AshOrbAttack");
             timeBtwShots = startTimeBtwShots;
         }
         else

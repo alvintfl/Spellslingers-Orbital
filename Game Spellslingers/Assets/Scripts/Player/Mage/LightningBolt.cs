@@ -25,6 +25,7 @@ public class LightningBolt : MonoBehaviour
         Vector2 worldPosition = Camera.main.ScreenToWorldPoint(coords);
         gameObject.transform.position = worldPosition + this.height / 2;
         SetLightningField(worldPosition);
+        AudioManager.instance.Play("LightningBolt");
     }
 
     private void Deactivate()

@@ -16,6 +16,7 @@ public class Spikes : MonoBehaviour
     private void Activate()
     {
         this.collider.enabled = true;
+        AudioManager.instance.Play("Spikes");
     }
 
     private void Deactivate()

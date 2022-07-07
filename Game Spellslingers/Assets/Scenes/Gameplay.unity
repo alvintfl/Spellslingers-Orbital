@@ -2027,21 +2027,37 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4376153593446148063, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
-      propertyPath: currentWave.Array.size
-      value: 1
+      propertyPath: bossPrefabs.Array.size
+      value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4376153593446148063, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
+      propertyPath: currentWave.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376153593446148063, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
+      propertyPath: bossPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 280101356387483251, guid: 8bec00d5ad567a1499c832574a0758f9, type: 3}
+    - target: {fileID: 4376153593446148063, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
+      propertyPath: bossPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 5110930758426967949, guid: acd1fafe78523d344990bb80580422b7, type: 3}
+    - target: {fileID: 4376153593446148063, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
+      propertyPath: bossPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 4386495424406815358, guid: 3c797741101eb034fa09d5436497fc48, type: 3}
+    - target: {fileID: 4376153593446148063, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
+      propertyPath: bossPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 970968693969993899, guid: 528e38dad62a12e44867a9efce76c84a, type: 3}
     - target: {fileID: 4376153593446148063, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
       propertyPath: currentWave.Array.data[0]
       value: 
-      objectReference: {fileID: 4367491063118518831, guid: aceaefddcf6090d4fac74b5d239561d3, type: 3}
+      objectReference: {fileID: 3087973092160009033, guid: 16d28f1b15170b44ebd34149bf6a2112, type: 3}
     - target: {fileID: 4376153593446148063, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
       propertyPath: currentWave.Array.data[1]
       value: 
-      objectReference: {fileID: 3071330383064899483, guid: f86aa6dcc5c8c7442ab92afe33118e7a, type: 3}
-    - target: {fileID: 4376153593446148063, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
-      propertyPath: currentWave.Array.data[2]
-      value: 
-      objectReference: {fileID: 3549937524947524386, guid: 4a022e09e6478564db50e7b412da6343, type: 3}
+      objectReference: {fileID: 894202517894858282, guid: e867de88d1df53d4f9690834de977de0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
 --- !u!1 &900303844

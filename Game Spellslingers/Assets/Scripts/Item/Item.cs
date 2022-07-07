@@ -24,6 +24,7 @@ public class Item : MonoBehaviour
 
     protected virtual void OnPickUp()
     {
+        AudioManager.instance.Play("ItemPickUp");
         PickUp?.Invoke(this, EventArgs.Empty);
         Destroy(gameObject);
     }

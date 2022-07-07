@@ -14,6 +14,7 @@ public class CrabbotResurface : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("Tunnel", false);
+        AudioManager.instance.Play("CrabbotTunnel");
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
