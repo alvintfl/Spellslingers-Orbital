@@ -2028,16 +2028,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4376153593446148063, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
       propertyPath: currentWave.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4376153593446148063, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
       propertyPath: currentWave.Array.data[0]
       value: 
-      objectReference: {fileID: 4499487847850320642, guid: 7b90ee90220dd1447864f80fcd27a155, type: 3}
+      objectReference: {fileID: 3087973092160009033, guid: 16d28f1b15170b44ebd34149bf6a2112, type: 3}
     - target: {fileID: 4376153593446148063, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
       propertyPath: currentWave.Array.data[1]
       value: 
-      objectReference: {fileID: 3087973092160009033, guid: 16d28f1b15170b44ebd34149bf6a2112, type: 3}
+      objectReference: {fileID: 894202517894858282, guid: e867de88d1df53d4f9690834de977de0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
 --- !u!1 &900303844
