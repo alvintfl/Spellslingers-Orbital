@@ -60,6 +60,7 @@ public class Warrior : Player
     private void ExecuteAttack()
     {
         AudioManager.instance.Play("slam_sfx");
+
         finalDamage = this.attack;
         if (earthquakeEnabled)
         {

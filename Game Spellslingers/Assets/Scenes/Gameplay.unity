@@ -2058,6 +2058,10 @@ PrefabInstance:
       propertyPath: currentWave.Array.data[1]
       value: 
       objectReference: {fileID: 894202517894858282, guid: e867de88d1df53d4f9690834de977de0, type: 3}
+    - target: {fileID: 4376153593446148063, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
+      propertyPath: currentWave.Array.data[2]
+      value: 
+      objectReference: {fileID: 4367491063118518831, guid: aceaefddcf6090d4fac74b5d239561d3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
 --- !u!1 &900303844

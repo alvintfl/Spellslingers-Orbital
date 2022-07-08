@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundName: Aftershock
   clip: {fileID: 8300000, guid: d167a630c7aaffb4f8ff0f83ef06811b, type: 3}
-  volume: 1
+  volume: 0.2
   pitch: 0.9
   loop: 0

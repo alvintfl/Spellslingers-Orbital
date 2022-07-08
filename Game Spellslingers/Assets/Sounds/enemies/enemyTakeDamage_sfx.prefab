@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundName: EnemyTakeDamage
   clip: {fileID: 8300000, guid: 254cb44c65c10a3468ba344164afd403, type: 3}
-  volume: 0.2
+  volume: 0.1
   pitch: 1
   loop: 0

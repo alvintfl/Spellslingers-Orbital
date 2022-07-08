@@ -6,7 +6,6 @@ public class EnemySnowThingAI : EnemyMovement
 {
     private Transform player;
     private float stoppingDistance;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -45,10 +44,12 @@ public class EnemySnowThingAI : EnemyMovement
     private void SetMoveOriginal()
     {
         SetMoveSpeed(10);
+        AudioManager.instance.Play("SnowFootstep");
     }
 
 
     private void AttackPlayer()
     {
+        AudioManager.instance.Play("SnowCrunch");
     }
 }
