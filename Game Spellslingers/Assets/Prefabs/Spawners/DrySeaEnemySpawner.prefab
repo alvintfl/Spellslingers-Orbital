@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4376153593446148060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4376153593446148062}
+  - component: {fileID: 4376153593446148063}
+  m_Layer: 0
+  m_Name: DrySeaEnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4376153593446148062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376153593446148060}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -23.987503, y: -2.382124, z: -0.26143822}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4376153593446148063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376153593446148060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac76df82b0fffa42a7ad11d73ffb137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWave:
+  - {fileID: 3087973092160009033, guid: 16d28f1b15170b44ebd34149bf6a2112, type: 3}
+  - {fileID: 894202517894858282, guid: e867de88d1df53d4f9690834de977de0, type: 3}
+  nextWaves:
+  - {fileID: 6188402216139078149, guid: d30d170aeb22b994faf10e9c22da2e1c, type: 3}
+  - {fileID: 4753018363203620433, guid: 0cb58aca11067d546bbd5ba9911d6e1c, type: 3}
+  bossPrefabs:
+  - {fileID: 280101356387483251, guid: 8bec00d5ad567a1499c832574a0758f9, type: 3}
+  - {fileID: 5110930758426967949, guid: acd1fafe78523d344990bb80580422b7, type: 3}
+  - {fileID: 4386495424406815358, guid: 3c797741101eb034fa09d5436497fc48, type: 3}
+  - {fileID: 970968693969993899, guid: 528e38dad62a12e44867a9efce76c84a, type: 3}
+  minSpawnTime: 2
+  maxSpawnTime: 5
+  requiredLevel: 10
+  startLevel: 1

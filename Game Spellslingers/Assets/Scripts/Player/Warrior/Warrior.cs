@@ -19,9 +19,14 @@ public class Warrior : Player
     [SerializeField] private float attack;
     private float armour;
     private float regen;
+    private float finalRegen;
 
     // skills
+    private bool sanctuaryEnabled;
+
+
     private bool frenzyEnabled;
+    private bool demonEnabled;
     private bool cullEnabled;
     private bool earthquakeEnabled;
     private Vector2 aftershockLocation;
@@ -40,6 +45,10 @@ public class Warrior : Player
         InvokeRepeating("Regen", 0, 1.0f);
         earthquakeEnabled = false;
         cullEnabled = false;
+        demonEnabled = false;
+        frenzyEnabled = false;
+        sanctuaryEnabled = false;
+
         timeBtwAudio = 0f;
     }
 
@@ -92,6 +101,14 @@ public class Warrior : Player
             else
             {
                 areaSlam[i].GetComponent<Health>().TakeDamage(finalDamage);
+            }
+            if (demonEnabled)
+            {
+                health.CurrentHealth += regen * 1.5f;
+                if (health.CurrentHealth > health.MaxHealth)
+                {
+                    health.CurrentHealth = health.MaxHealth;
+                }
             }
         }
         Instantiate(slamGroundEffect, slamPos.position, Quaternion.identity);
@@ -189,6 +206,24 @@ public class Warrior : Player
 
     #endregion
 
+    #region Demon methods
+
+    public void ActivateDemon()
+    {
+        demonEnabled = true;
+    }
+
+    #endregion
+
+    #region Sanctuary methods
+
+    public void ActivateSanctuary()
+    {
+        sanctuaryEnabled = true;
+    }
+
+    #endregion
+
     #region Regeneration methods
     /**
      * <summary>
@@ -198,14 +233,19 @@ public class Warrior : Player
 
     private void Regen()
     {
-        if (frenzyEnabled)
+        if (frenzyEnabled || demonEnabled)
         {
             return;
         }
         // regenerates
         if (health.CurrentHealth < health.MaxHealth)
         {
-            health.TakeDamage(-regen);
+            finalRegen = regen;
+            if (sanctuaryEnabled)
+            {
+                finalRegen = health.MaxHealth * regen / 100;
+            }
+            health.TakeDamage(-finalRegen);
             if (health.CurrentHealth > health.MaxHealth)
             {
                 health.CurrentHealth = health.MaxHealth;
@@ -213,6 +253,8 @@ public class Warrior : Player
         }
     }
     #endregion
+
+
 
     void OnDrawGizmosSelected()
     {

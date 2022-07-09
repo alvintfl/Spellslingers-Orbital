@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnerList:
   - {fileID: 4376153593446148060, guid: f6806316b6eb96247bca339eedecc91d, type: 3}
+  - {fileID: 4197657009675938199, guid: f18087d534955fb4e90204c3fc4959b1, type: 3}
