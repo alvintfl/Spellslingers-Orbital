@@ -34,6 +34,7 @@ public class PlayerCast : MonoBehaviour
 
     private IEnumerator CastLightning()
     {
+        yield return new WaitForSeconds(0.5f);
         while (true)
         {
             this.lightningObject.SetActive(true);

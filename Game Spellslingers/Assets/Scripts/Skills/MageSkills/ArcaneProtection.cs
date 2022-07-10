@@ -22,6 +22,6 @@ public class ArcaneProtection : Skill
 
     public override bool IsSignatureSkill()
     {
-        return false;
+        return true;
     }
 }

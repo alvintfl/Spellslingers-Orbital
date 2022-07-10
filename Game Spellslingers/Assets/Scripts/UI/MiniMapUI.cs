@@ -38,7 +38,7 @@ public class MiniMapUI : MonoBehaviour
         this.bossIcon = transform.GetChild(2).gameObject;
         this.bossIcon.GetComponent<Image>().enabled = true;
         this.bossIcon.SetActive(false);
-        AddItemIcon(this.progressionCount);
+        AddBossIcon(this.progressionCount);
     }
 
     private void OnDestroy()

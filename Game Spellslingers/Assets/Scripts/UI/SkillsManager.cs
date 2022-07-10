@@ -16,6 +16,13 @@ public class SkillsManager : MonoBehaviour
 {
     /**
      * <summary>
+     * The default skill to display when there are no skills left.
+     * </summary>
+     */
+    private List<GameObject> defaultSkillsLibrary;
+
+    /**
+     * <summary>
      * A list of player skills.
      * </summary>
      */
@@ -67,6 +74,8 @@ public class SkillsManager : MonoBehaviour
         charSelect.ArcherSelected += SelectArcherSkills;
         charSelect.MageSelected += SelectMageSkills;
         charSelect.WarriorSelected += SelectWarriorSkills;
+        GameObject[] skillPrefabs = Resources.LoadAll<GameObject>("DefaultSkills/");
+        LoadDefaultSkills(skillPrefabs);
     }
 
     private void Start()
@@ -90,6 +99,19 @@ public class SkillsManager : MonoBehaviour
         GameObject[] skillPrefabs = Resources.LoadAll<GameObject>("WarriorSkills/");
         LoadSkills(skillPrefabs);
     } 
+
+    private void LoadDefaultSkills(GameObject[] skillPrefabs)
+    {
+        this.defaultSkillsLibrary = new List<GameObject>();
+        for (int i = 0; i < skillPrefabs.Length; i++)
+        {
+            GameObject skillObject = Instantiate(skillPrefabs[i]);
+            skillObject.SetActive(false);
+            Skill skill = skillObject.GetComponentInChildren<Skill>();
+            skill.Reset();
+            this.defaultSkillsLibrary.Add(skillObject);
+        }
+    }
 
     private void LoadSkills(GameObject[] skillPrefabs)
     {
@@ -116,6 +138,7 @@ public class SkillsManager : MonoBehaviour
         OnSkillsLoaded();
     }
 
+    public List<GameObject> DefaultSkillsLibrary { get { return this.defaultSkillsLibrary; } }
     public List<GameObject> SkillsLibrary { get { return this.skillsLibrary; } }
     public List<GameObject> SignatureSkillsLibrary { get { return this.signatureSkillsLibrary; } }
 
@@ -145,7 +168,7 @@ public class SkillsManager : MonoBehaviour
             this.skillsLibrary[i] = this.skillsLibrary[j];
             this.skillsLibrary[j] = temp;
         }
-
+        
         if (this.skillsLibrary.Count > 3)
         {
             // Select without replacement
@@ -166,6 +189,11 @@ public class SkillsManager : MonoBehaviour
         }
         else
         {
+            if (this.skillsLibrary.Count == 0)
+            {
+                this.selectedSkills[0] = this.defaultSkillsLibrary[0];
+            }
+
             for (int i = 0; i < this.skillsLibrary.Count; i++)
             {
                 GameObject skillObject = this.skillsLibrary[i];

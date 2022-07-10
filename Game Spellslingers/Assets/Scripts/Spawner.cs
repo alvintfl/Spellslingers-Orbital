@@ -154,7 +154,6 @@ public class Spawner : MonoBehaviour
 
     private void Spawn(Item item, EventArgs e)
     {
-        Debug.Log("??el el");
         StartCoroutine(Spawn());
     }
 

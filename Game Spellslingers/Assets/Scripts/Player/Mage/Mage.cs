@@ -20,7 +20,6 @@ public class Mage : Player
         base.Awake();
         this.cast = GetComponent<PlayerCast>();
         this.damageTakenMultiplier = 1;
-        //AudioManager.instance.Play("One");
     }
 
     public override void TakeDamage(float damage)
@@ -35,7 +34,6 @@ public class Mage : Player
         {
             if (this.arcaneShield.activeSelf)
             {
-                Debug.Log("ActivateShield");
                 this.arcaneShield.SetActive(false);
                 StartCoroutine(RefreshArcaneShield());
                 return;
@@ -119,7 +117,7 @@ public class Mage : Player
     public void CastArcaneShield()
     {
         this.arcaneShield = Instantiate(this.arcaneShieldPrefab);
-        this.arcaneShieldWait = new WaitForSeconds(5f);
+        this.arcaneShieldWait = new WaitForSeconds(4f);
     }
 
     public IEnumerator RefreshArcaneShield()
