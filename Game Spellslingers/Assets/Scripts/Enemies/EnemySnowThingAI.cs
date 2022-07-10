@@ -6,10 +6,12 @@ public class EnemySnowThingAI : EnemyMovement
 {
     private Transform player;
     private float stoppingDistance;
+    private bool moving;
+
     // Start is called before the first frame update
     void Start()
     {
-        stoppingDistance = 1;
+        stoppingDistance = 2;
         player = Player.instance.gameObject.transform;
     }
 
@@ -21,11 +23,10 @@ public class EnemySnowThingAI : EnemyMovement
         // stop moving when in range and not in retreat distance
         if (Vector2.Distance(transform.position, player.position) <= stoppingDistance)
         {
+            AudioManager.instance.Play("SnowCrunch");
             anim.SetBool("InRange", true);
             SetX(0);
             SetY(0);
-            AttackPlayer();
-
         }
         else if (Vector2.Distance(transform.position, player.position) > stoppingDistance)
         {
@@ -33,7 +34,6 @@ public class EnemySnowThingAI : EnemyMovement
             SetX(direction.x);
             SetY(direction.y);
         }
-
     }
 
     private void SetMoveZero()
@@ -43,13 +43,7 @@ public class EnemySnowThingAI : EnemyMovement
 
     private void SetMoveOriginal()
     {
-        SetMoveSpeed(10);
         AudioManager.instance.Play("SnowFootstep");
-    }
-
-
-    private void AttackPlayer()
-    {
-        AudioManager.instance.Play("SnowCrunch");
+        SetMoveSpeed(8);
     }
 }

@@ -13,7 +13,7 @@ public class Vitality : Skill
         {
             OnSelected(EventArgs.Empty);
             Warrior warrior = (Warrior)Player.instance;
-            int increase = 20;
+            int increase = 30;
             if (warrior.IsFrenzy())
             {
                 increase = increase / 2;

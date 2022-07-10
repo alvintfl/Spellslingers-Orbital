@@ -86,7 +86,7 @@ public class Spawner : MonoBehaviour
         SummoningCircle.Summon += SpawnBoss;
         SummoningCircle.Summon += StopSpawning;
         Item.Spawned += Spawn;
-        //StartCoroutine(Spawn());
+        StartCoroutine(Spawn());
     }
 
     private void OnDestroy()
@@ -154,6 +154,7 @@ public class Spawner : MonoBehaviour
 
     private void Spawn(Item item, EventArgs e)
     {
+        Debug.Log("??el el");
         StartCoroutine(Spawn());
     }
 
