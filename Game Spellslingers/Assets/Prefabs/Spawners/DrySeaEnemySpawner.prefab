@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWave:
-  - {fileID: 3087973092160009033, guid: 16d28f1b15170b44ebd34149bf6a2112, type: 3}
   - {fileID: 894202517894858282, guid: e867de88d1df53d4f9690834de977de0, type: 3}
+  - {fileID: 3087973092160009033, guid: 16d28f1b15170b44ebd34149bf6a2112, type: 3}
   nextWaves:
   - {fileID: 6188402216139078149, guid: d30d170aeb22b994faf10e9c22da2e1c, type: 3}
   - {fileID: 4753018363203620433, guid: 0cb58aca11067d546bbd5ba9911d6e1c, type: 3}

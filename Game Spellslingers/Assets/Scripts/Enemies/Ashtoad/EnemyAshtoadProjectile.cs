@@ -28,7 +28,7 @@ public class EnemyAshtoadProjectile : MonoBehaviour
         if (transform.position.x == target.x && transform.position.y == target.y)
         {
             anim.SetBool("Hit", true);
-            Invoke("DestroyProjectile", 1.5f);
+            Invoke("DestroyProjectile", 0.5f);
         }
     }
 
@@ -39,7 +39,7 @@ public class EnemyAshtoadProjectile : MonoBehaviour
             Player.instance.TakeDamage(20f);
         }
         anim.SetBool("Hit", true);
-        Invoke("DestroyProjectile", 1.5f);
+        Invoke("DestroyProjectile", 0.5f);
     }
 
     void DestroyProjectile()

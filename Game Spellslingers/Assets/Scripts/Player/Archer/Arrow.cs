@@ -14,10 +14,12 @@ public class Arrow : Projectile
     [SerializeField] private Sprite arrowSprite;
     [SerializeField] private Sprite frostArrow;
     [SerializeField] private Sprite greatArrow;
+    [SerializeField] private GameObject explosionPrefab;
     private SpriteRenderer spriteRenderer;
     private static int damage = 10;
     private static int pierceMax = 0;
     private int pierceCount = 0;
+    private static bool explosionEnabled;
 
     public delegate void ArrowChangeEventHandler<T, U>(T sender, U eventArgs);
     public static event ArrowChangeEventHandler<Arrow, ArrowArgs> ArrowChange;
@@ -76,6 +78,7 @@ public class Arrow : Projectile
     private void Start()
     {
         this.Collided += ResetPierce;
+        explosionEnabled = true;
     }
 
     private void OnEnable()
@@ -130,7 +133,7 @@ public class Arrow : Projectile
         if (collider.gameObject.CompareTag("Enemy"))
         {
             AudioManager.instance.Play("ArrowHit");
-            if (pierceCount >= pierceMax)
+            if (pierceCount >= pierceMax || explosionEnabled)
             {
                 pierceCount = 0;
                 base.OnTriggerEnter2D(collider);
@@ -139,12 +142,21 @@ public class Arrow : Projectile
             {
                 pierceCount += 1;
             }
+
             if (collider.gameObject != null)
             {
                 Enemy enemy = collider.gameObject.GetComponent<Enemy>();
                 if (enemy != null)
                 {
-                    enemy.TakeDamage(GetDamage() * DamageMulti);
+                    if (explosionEnabled)
+                    {
+                        //explosionPrefab
+                        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+                    }
+                    else
+                    {
+                        enemy.TakeDamage(GetDamage() * DamageMulti);
+                    }
                     if (enemy.GetCurrentHealth() > 0)
                     {
                         SlowEnemy(collider);
@@ -237,6 +249,17 @@ public class Arrow : Projectile
         args.Pierce = Arrow.pierceMax;
         ArrowChange?.Invoke(null, args);
     }
+
+    public static void ActivateExplosion()
+    {
+        Arrow.explosionEnabled = true;
+    }
+
+    public static void DeactivateExplosion()
+    {
+        Arrow.explosionEnabled = false;
+    }
+
 }
 
 public class ArrowArgs : EventArgs

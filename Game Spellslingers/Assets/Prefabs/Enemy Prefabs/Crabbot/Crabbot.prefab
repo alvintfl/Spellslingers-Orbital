@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 970968693969993888}
   - component: {fileID: 970968693969993889}
   - component: {fileID: 502710964}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Crabbot
   m_TagString: Enemy
   m_Icon: {fileID: 0}

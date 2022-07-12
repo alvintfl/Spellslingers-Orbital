@@ -13,7 +13,7 @@ public abstract class Movement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     private float baseMoveSpeed;
 
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
     private Vector2 movement;
 
     public delegate void MovementChangeEventHandler<T, U>(T sender, U eventArgs);
@@ -40,7 +40,7 @@ public abstract class Movement : MonoBehaviour
         AnimateMovement();
     }
 
-    private void FixedUpdate()
+    public virtual void FixedUpdate()
     {
         UpdatePosition();
     }

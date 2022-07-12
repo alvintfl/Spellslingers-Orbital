@@ -28,6 +28,6 @@ public class FrostShots : Skill
 
     public override bool IsSignatureSkill()
     {
-        return false;
+        return true;
     }
 }

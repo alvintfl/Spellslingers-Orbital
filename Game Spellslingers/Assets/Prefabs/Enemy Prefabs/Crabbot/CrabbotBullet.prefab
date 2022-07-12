@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 738642931774048223}
   - component: {fileID: 3006901641607777434}
   - component: {fileID: 1524369633244453726}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CrabbotBullet
   m_TagString: Projectile
   m_Icon: {fileID: 0}
