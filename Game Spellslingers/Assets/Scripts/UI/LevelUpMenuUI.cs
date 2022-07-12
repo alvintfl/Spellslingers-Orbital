@@ -50,8 +50,10 @@ public class LevelUpMenuUI : MonoBehaviour
 
     private void SetParents(SkillsManager sender, EventArgs e)
     {
+        List<GameObject> defaultSkillsLibrary = this.skillsManager.DefaultSkillsLibrary;
         List<GameObject> skillsLibrary = this.skillsManager.SkillsLibrary;
         List<GameObject> signatureSkillsLibrary = this.skillsManager.SignatureSkillsLibrary;
+        SetParent(defaultSkillsLibrary);
         SetParent(skillsLibrary);
         SetParent(signatureSkillsLibrary);
     }

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mittens : Item
+public class SummonBombKing : SummoningCircle
 {
     public override string ToString()
     {
-        return "You are no longer bothered by the cold.\nFields of snow to the west is now available.";
+        return "You see a\nbright flash...";
     }
 }

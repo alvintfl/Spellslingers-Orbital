@@ -52,7 +52,7 @@ public abstract class Shoot : MonoBehaviour
         return this.projectilePool.Get();
     }
 
-    private void OnDsiable()
+    private void OnDisable()
     {
         GetComponent<Character>().Death -= StopFiring;
     }

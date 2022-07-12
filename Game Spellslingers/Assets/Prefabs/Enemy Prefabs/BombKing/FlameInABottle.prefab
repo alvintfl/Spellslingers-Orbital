@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6993713856655844467}
   - component: {fileID: 3574684134462979978}
   m_Layer: 0
-  m_Name: Mittens
+  m_Name: FlameInABottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: -880583473
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d9949d20baad92642893d3ba39fa1116, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf721f5cc7f3df34f93e704c76234976, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
