@@ -78,7 +78,7 @@ public class Arrow : Projectile
     private void Start()
     {
         this.Collided += ResetPierce;
-        explosionEnabled = true;
+        explosionEnabled = false;
     }
 
     private void OnEnable()
