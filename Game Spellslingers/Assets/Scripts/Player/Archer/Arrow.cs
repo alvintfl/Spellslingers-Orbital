@@ -164,20 +164,21 @@ public class Arrow : Projectile
                     }
                 }
             }
-            Lifesteal();
+            StartLifesteal();
         }
     }
 
     public static void ActivateLifeSteal()
     {
         Arrow.isLifestealActive = true;
+        OnArrowChange();
     }
     public static void DeactivateLifeSteal()
     {
         Arrow.isLifestealActive = false;
     }
 
-    private void Lifesteal()
+    private void StartLifesteal()
     {
         if (!isLifestealActivated && isLifestealActive)
         {
@@ -247,6 +248,7 @@ public class Arrow : Projectile
         ArrowArgs args = new ArrowArgs();
         args.Damage = Arrow.damage;
         args.Pierce = Arrow.pierceMax;
+        args.LifeSteal = Lifesteal.healAmount;
         ArrowChange?.Invoke(null, args);
     }
 
@@ -266,4 +268,6 @@ public class ArrowArgs : EventArgs
 {
     public int Damage { get; set; }
     public int Pierce { get; set; }
+
+    public float LifeSteal { get; set; }
 }

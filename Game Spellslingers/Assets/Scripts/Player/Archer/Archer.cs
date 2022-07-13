@@ -58,7 +58,15 @@ public class Archer : Player
             }
             else if (GetRestoreOnAvoid())
             {
-                SetCurrentHealth(GetCurrentHealth() + this.avoid.GetRestoreAmount());
+                float newHealth = GetCurrentHealth() + this.avoid.GetRestoreAmount();
+                float maxHealth = GetMaxHealth();
+                if (newHealth >= maxHealth)
+                {
+                    SetCurrentHealth(maxHealth);
+                } else
+                {
+                    SetCurrentHealth(newHealth);
+                }
             }
         }
         else 
@@ -113,4 +121,9 @@ public class Archer : Player
         AvoidChanceChange?.Invoke(this, EventArgs.Empty);
     }
     #endregion
+
+    public override string ToString()
+    {
+        return "Archer";
+    }
 }

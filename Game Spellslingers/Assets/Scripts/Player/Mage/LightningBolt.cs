@@ -15,6 +15,7 @@ public class LightningBolt : MonoBehaviour
         this.lightningFieldObject = Instantiate(LightningFieldPrefab);
         this.lightningField = lightningFieldObject.GetComponent<LightningField>();
         this.height = new Vector2(0, GetComponent<SpriteRenderer>().bounds.size.y);
+        gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -61,5 +62,15 @@ public class LightningBolt : MonoBehaviour
     public float GetLightningFieldDamage()
     {
         return this.lightningField.Damage;
+    }
+
+    public float GetLightningFieldRange()
+    {
+        return this.lightningField.GetRange();
+    }
+
+    public float GetLightningFieldDuration()
+    {
+        return this.lightningField.ActiveTime;
     }
 }

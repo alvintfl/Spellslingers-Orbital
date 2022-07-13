@@ -15,18 +15,31 @@ public class PlayerCast : MonoBehaviour
     private GameObject lightningBoltObject;
     private LightningBolt lightningBolt;
 
+    [SerializeField] private GameObject healOnEnemyPrefab;
+    private GameObject healOnEnemyObject;
+    private HealOnEnemyKill healOnEnemyKill;
+
     private float rate;
     private WaitForSeconds lightningWait;
     private WaitForSeconds lightningBoltWait;
     private float damageDealtMultiplier;
 
+
     private bool perfectStormEnabled;
     private bool critRecently;
 
-    private void Start()
+
+
+    private void Awake()
     {
         this.lightningObject = Instantiate(this.lightningPrefab);
         this.lightning = lightningObject.GetComponent<Lightning>();
+
+        this.lightningBoltObject = Instantiate(this.lightningBoltPrefab);
+        this.lightningBolt = lightningBoltObject.GetComponent<LightningBolt>();
+
+        this.healOnEnemyObject = Instantiate(this.healOnEnemyPrefab);
+        this.healOnEnemyKill = healOnEnemyObject.GetComponent<HealOnEnemyKill>();
 
         this.rate = 1.8f;
         this.lightningWait = new WaitForSeconds(this.rate);
@@ -81,8 +94,6 @@ public class PlayerCast : MonoBehaviour
 
     public void CastLightningStorm()
     {
-        this.lightningBoltObject = Instantiate(this.lightningBoltPrefab);
-        this.lightningBolt = lightningBoltObject.GetComponent<LightningBolt>();
         StartCoroutine(CastLightningBolt());
     }
 
@@ -95,12 +106,19 @@ public class PlayerCast : MonoBehaviour
         }
     }
 
+
     public void IncreaseRate(float secs)
     {
         this.rate -= secs;
         this.lightningWait = new WaitForSeconds(this.rate);
     }
 
+    public float GetRate()
+    {
+        return this.rate;
+    }
+
+    #region Lightning Methods
     public void IncreaseLightningDamage()
     {
         int damageIncrease = 10;
@@ -109,9 +127,15 @@ public class PlayerCast : MonoBehaviour
         this.lightning.Damage = lightningDamageWithMultiplier;
     }
 
+
     public void DecreaseLightningDamage()
     {
         this.lightning.Damage = (GetBaseLightningDamage() - 10) * this.damageDealtMultiplier;
+
+    public float GetLightningDamage()
+    {
+        return this.lightning.Damage;
+
     }
 
     private float GetBaseLightningDamage()
@@ -124,10 +148,24 @@ public class PlayerCast : MonoBehaviour
         this.lightning.IncreaseRange();
     }
 
+
     public void DecreaseLightningRange()
     {
         this.lightning.DecreaseRange();
     }
+
+
+    public float GetLightningRange()
+    {
+        return this.lightning.GetRange();
+    }
+    public void UpgradeLightning()
+    {
+        this.lightning.Upgrade();
+    }
+    #endregion
+
+    #region LightningStorm Methods
 
     public void IncreaseLightningStormRange()
     {
@@ -147,11 +185,32 @@ public class PlayerCast : MonoBehaviour
         this.lightningBolt.SetLightningFieldDamage(lightningStormDamageWithMultiplier);
     }
 
+    public float GetLightningStormDamage()
+    {
+        return this.lightningBolt.GetLightningFieldDamage();
+    }
+
     private float GetBaseLightningStormDamage()
     {
         return this.lightningBolt.GetLightningFieldDamage() / this.damageDealtMultiplier;
     }
 
+    public float GetLightningStormRange()
+    {
+        return this.lightningBolt.GetLightningFieldRange();
+    }
+
+    public float GetLightningStormDuration()
+    {
+        return this.lightningBolt.GetLightningFieldDuration();
+    }
+    #endregion
+
+    #region LightningOrb Methods
+    public int GetLightningOrbCount()
+    {
+        return LightningOrb.Count;
+    }
     public void IncreaseLightningOrbDamage()
     {
         int damageIncrease = 2;
@@ -160,15 +219,38 @@ public class PlayerCast : MonoBehaviour
         LightningOrb.Damage = lightningDamageWithMultiplier;
     }
 
+    public float GetLightningOrbRotationSpeed()
+    {
+        return LightningOrb.RotationSpeed;
+    }
+
+    public float GetLightningOrbDamage()
+    {
+        return LightningOrb.Damage;
+    }
+
     private float GetBaseLightningOrbDamage()
     {
         return LightningOrb.Damage / this.damageDealtMultiplier;
     }
+    #endregion
 
-    public void UpgradeLightning()
+    #region Heal On Kill Methods
+    public void CastHealOnKill()
     {
-        this.lightning.Upgrade();
+        this.healOnEnemyObject.SetActive(true);
     }
+
+    public void IncreaseHealOnKill(float heal)
+    {
+        this.healOnEnemyKill.IncreaseHeal(heal);
+    }
+
+    public float GetHealOnKill()
+    {
+        return this.healOnEnemyKill.HealAmount;
+    }
+    #endregion
 
     public void SetDamageDealtMultiplier(float multiplier)
     {

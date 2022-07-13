@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class LightningOrb : MonoBehaviour
 {
-    private static int count;
+    public static int Count { get; private set; } = 0;
     private static GameObject northBall;
-    private static float rotationSpeed = 100f;
+    public static float RotationSpeed { get; private set; } = 100f;
     private static int magnitude = 4;
     public static float Damage { get; set; } = 5f;
     private Vector3 direction;
@@ -21,13 +21,13 @@ public class LightningOrb : MonoBehaviour
     {
         this.direction = new Vector3(0, 0, 1);
         SetPosition();
-        LightningOrb.count++;
+        LightningOrb.Count++;
         transform.SetParent(Camera.main.transform);
     }
 
     private void Update()
     {
-        transform.RotateAround(Player.instance.transform.position, this.direction, LightningOrb.rotationSpeed * Time.deltaTime);
+        transform.RotateAround(Player.instance.transform.position, this.direction, LightningOrb.RotationSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -42,7 +42,7 @@ public class LightningOrb : MonoBehaviour
     private void SetPosition()
     {
         Vector2 playerPosition = Player.instance.transform.position;
-        switch (LightningOrb.count)
+        switch (LightningOrb.Count)
         {
             case (int)Position.North:
                 gameObject.transform.position = playerPosition + new Vector2(0, LightningOrb.magnitude);
@@ -68,14 +68,14 @@ public class LightningOrb : MonoBehaviour
 
     public static void IncreaseRotationSpeed()
     {
-        LightningOrb.rotationSpeed *= 1.1f;
+        LightningOrb.RotationSpeed *= 1.1f;
     }
 
     public static void Reset()
     {
-        LightningOrb.count = 0;
+        LightningOrb.Count = 0;
         LightningOrb.northBall = null;
-        LightningOrb.rotationSpeed = 100f;
+        LightningOrb.RotationSpeed = 100f;
         LightningOrb.Damage = 5f;
     }
 }

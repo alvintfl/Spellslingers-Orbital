@@ -10,7 +10,6 @@ using UnityEngine;
  */
 public class Player : Character
 {
-    public string playerClass;
     public static Player instance { get; private set; }
 
     public override void Awake()
@@ -24,7 +23,6 @@ public class Player : Character
         {
             instance = this;
         }
-        //AudioManager.instance.Play("")
     }
 
     public int FindCurrentLocation()
@@ -54,5 +52,10 @@ public class Player : Character
         {
             return 0;
         }
+    }
+
+    public override string ToString()
+    {
+        return "Player";
     }
 }

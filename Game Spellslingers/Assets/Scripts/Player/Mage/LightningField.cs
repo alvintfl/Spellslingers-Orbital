@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class LightningField : MonoBehaviour
 {
-    public float Damage { get; set; } = 2f;
-    private float activeTime;
+    public float Damage { get; set; }
+    public float ActiveTime { get; private set; }
     private WaitForSeconds rate;
     private new Collider2D collider;
     private bool isActivated;
 
     private void Awake()
     {
-        this.activeTime = 5f;
+        this.Damage = 2f;
+        this.ActiveTime = 5f;
         this.isActivated = false;
         this.rate = new WaitForSeconds(1f);
         this.collider = GetComponent<Collider2D>();
@@ -23,8 +24,13 @@ public class LightningField : MonoBehaviour
     {
         StopAllCoroutines();
         StartCoroutine(Activate());
-        Invoke("Deactivate", this.activeTime);
+        Invoke("Deactivate", this.ActiveTime);
         AudioManager.instance.Play("LightningField");
+    }
+
+    private void OnDestroy()
+    {
+        AudioManager.instance.Stop("LightningField");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -70,6 +76,11 @@ public class LightningField : MonoBehaviour
 
     public void IncreaseDuration()
     {
-        this.activeTime++;
+        this.ActiveTime++;
+    }
+
+    public float GetRange()
+    {
+        return gameObject.transform.localScale.x;
     }
 }

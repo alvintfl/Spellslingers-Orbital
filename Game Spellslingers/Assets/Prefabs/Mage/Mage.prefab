@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 5494577232689472099}
   - component: {fileID: 7726707726332128497}
   - component: {fileID: 4784461756372180870}
-  - component: {fileID: 5928755617685229018}
   m_Layer: 8
   m_Name: Mage
   m_TagString: Player
@@ -165,6 +164,7 @@ MonoBehaviour:
   lightningPrefab: {fileID: 3818608620612697218, guid: c600512f55a505f468406f43940c1be7, type: 3}
   lightningOrbPrefab: {fileID: 4760103366642291488, guid: d6da9243290ff15429f1f383cc3a4e3c, type: 3}
   lightningBoltPrefab: {fileID: 9095728891866414597, guid: ad3df412ec57823428517362652f717a, type: 3}
+  healOnEnemyPrefab: {fileID: 5768665891853701374, guid: a14b3dbd69ed10c4d9ad4a90f42051b4, type: 3}
 --- !u!60 &7726707726332128497
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -264,17 +264,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4183e4607338a464f940f9f39ae04d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerClass: 
   arcaneShieldPrefab: {fileID: 2362172920727866519, guid: 50b396f10da84d248afd859cbd56ec70, type: 3}
---- !u!114 &5928755617685229018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 544716519196781817}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac7cecd6ec3b5aa49ac988ed04371b3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
