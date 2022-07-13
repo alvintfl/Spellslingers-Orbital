@@ -52,10 +52,11 @@ public class SkillsManager : MonoBehaviour
 
     /**
      * <summary>
-     * The level needed to obtain a signature skill.
+     * The level needed to obtain a signature skill. 10, 20, 30
      * </summary>
      */
-    private readonly int signatureSkillRequirement = 10;
+    // private readonly int signatureSkillRequirement = 10;
+
     public delegate void SkillsEventHandler<T, U>(T sender, U eventArgs);
     public event SkillsEventHandler<SkillsManager, EventArgs> SkillsLoaded;
     public event SkillsEventHandler<SkillsManager, EventArgs> SkillsGenerated;
@@ -153,7 +154,7 @@ public class SkillsManager : MonoBehaviour
      */
     private void GenerateSkills(ExpManager sender, EventArgs e)
     {
-        if (sender.Level == this.signatureSkillRequirement)
+        if (sender.Level == 10 || sender.Level == 20 || sender.Level == 30)
         {
             GenerateSignatureSkills();
             return;
@@ -209,6 +210,7 @@ public class SkillsManager : MonoBehaviour
 
     private void GenerateSignatureSkills()
     {
+        /*
         for (int i = 0; i < this.signatureSkillsLibrary.Count; i++)
         {
             GameObject skillObject = this.signatureSkillsLibrary[i];
@@ -218,6 +220,49 @@ public class SkillsManager : MonoBehaviour
                 this.selectedSkills[i] = skillObject;
             }
         }
+        */
+
+        //Fisher-Yates shuffle
+        Random random = new Random();
+        for (int i = this.signatureSkillsLibrary.Count - 1; i > 0; i--)
+        {
+            int j = random.Next(0, i + 1);
+            GameObject temp = this.signatureSkillsLibrary[i];
+            this.signatureSkillsLibrary[i] = this.signatureSkillsLibrary[j];
+            this.signatureSkillsLibrary[j] = temp;
+        }
+
+        if (this.skillsLibrary.Count > 3)
+        {
+            // Select without replacement
+            for (int i = 0; i < this.selectedSkills.Length; i++)
+            {
+                int j = random.Next(0, this.signatureSkillsLibrary.Count - 1);
+                GameObject skillObject = this.signatureSkillsLibrary[j];
+                while (this.seen.Contains(j))
+                {
+                    j = random.Next(0, this.signatureSkillsLibrary.Count - 1);
+                    skillObject = this.signatureSkillsLibrary[j];
+                }
+                this.seen.Add(j);
+                skillObject.SetActive(true);
+                this.selectedSkills[i] = skillObject;
+            }
+            this.seen.Clear();
+        }
+        else
+        {
+            for (int i = 0; i < this.signatureSkillsLibrary.Count; i++)
+            {
+                GameObject skillObject = this.signatureSkillsLibrary[i];
+                if (skillObject != null)
+                {
+                    skillObject.SetActive(true);
+                    this.selectedSkills[i] = skillObject;
+                }
+            }
+        }
+
         OnSkillsGenerated(EventArgs.Empty);
     }
 

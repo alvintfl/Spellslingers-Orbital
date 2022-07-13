@@ -49,6 +49,7 @@ MonoBehaviour:
   - {fileID: 4337051125129301399, guid: dfa7d4ed944432e4c8e353cdc0b07072, type: 3}
   - {fileID: 51714700934037781, guid: 014e8bab33320d349bc33ed8fcbd0776, type: 3}
   - {fileID: 3549937524947524386, guid: 4a022e09e6478564db50e7b412da6343, type: 3}
+  - {fileID: 5192160574805142956, guid: 7f140bee957ef9e4d87b8dd5d3f873fd, type: 3}
   nextWaves: []
   bossPrefabs: []
   minSpawnTime: 2

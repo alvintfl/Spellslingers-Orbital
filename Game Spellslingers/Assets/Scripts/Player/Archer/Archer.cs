@@ -10,6 +10,8 @@ public class Archer : Player
     public event ChangeEventHandler<Archer, EventArgs> ShootChange;
     public event ChangeEventHandler<Archer, EventArgs> AvoidChanceChange;
 
+    private bool unwaveringEnabled;
+
     // audio control
     private float timeBtwAudio;
 
@@ -20,6 +22,8 @@ public class Archer : Player
         this.shoot.PlayerShootChange += OnArcherShootChange;
         this.avoid = gameObject.GetComponent<Avoidance>();
         this.avoid.AvoidChanceChange += OnPlayerAvoidChanceChange;
+
+        unwaveringEnabled = false;
     }
 
     void Update()
@@ -41,25 +45,25 @@ public class Archer : Player
      */
     public override void TakeDamage(float damage)
     {
-        if (!this.avoid.AvoidRoll())
+        if (!unwaveringEnabled)
         {
-            if (timeBtwAudio <= 0)
+            if (!this.avoid.AvoidRoll())
             {
-                AudioManager.instance.Play("archer_hit");
-                timeBtwAudio = 1f;
+                if (timeBtwAudio <= 0)
+                {
+                    AudioManager.instance.Play("archer_hit");
+                    timeBtwAudio = 1f;
+                }
+                base.TakeDamage(damage);
             }
-            base.TakeDamage(damage);
-        } else if (GetRestoreOnAvoid())
+            else if (GetRestoreOnAvoid())
+            {
+                SetCurrentHealth(GetCurrentHealth() + this.avoid.GetRestoreAmount());
+            }
+        }
+        else 
         {
-            float newHealth = GetCurrentHealth() + this.avoid.GetRestoreAmount();
-            float maxHealth = GetMaxHealth();
-            if (newHealth >= maxHealth)
-            {
-                SetCurrentHealth(maxHealth);
-            } else
-            {
-                SetCurrentHealth(newHealth);
-            }
+            base.TakeDamage(damage * damage / (avoid.GetAvoidChance() + damage));
         }
     }
 
@@ -76,6 +80,11 @@ public class Archer : Player
     private void OnArcherShootChange(PlayerShoot sender, EventArgs e)
     {
         ShootChange?.Invoke(this, e);
+    }
+
+    public void ActivateUnwaveringInstinct()
+    {
+        unwaveringEnabled = true;
     }
 
     #region Avoidance Methods
