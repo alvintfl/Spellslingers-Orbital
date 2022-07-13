@@ -38,6 +38,9 @@ public class Warrior : Player
     // audio control
     private float timeBtwAudio;
 
+    public event ChangeEventHandler<Warrior, EventArgs> SlamChange;
+    public event ChangeEventHandler<Warrior, EventArgs> WarriorChange;
+
     void OnEnable()
     {
         HammerSlamEvent.slamEventInfo += ExecuteAttack;
@@ -119,6 +122,7 @@ public class Warrior : Player
     public void IncreaseSlamArea(float increment)
     {
         aoe += increment;
+        OnSlamChange();
     }
     public float GetSlamArea()
     {
@@ -138,11 +142,18 @@ public class Warrior : Player
     public void IncreaseRegen(float increment)
     {
         regen += increment;
+        OnWarriorChange();
+    }
+
+    public float GetRegen()
+    {
+        return regen;
     }
 
     public void SetAttack(float newAtk)
     {
         attack = newAtk;
+        OnSlamChange();
     }
 
     public float GetAttack()
@@ -280,6 +291,16 @@ public class Warrior : Player
         base.TakeDamage(damage * damage / (armour + damage));
     }
     #endregion
+
+    protected virtual void OnSlamChange()
+    {
+        SlamChange?.Invoke(this, EventArgs.Empty);
+    }
+
+    protected virtual void OnWarriorChange()
+    {
+        WarriorChange?.Invoke(this, EventArgs.Empty);
+    }
 
     private void DestroyHammerOnDeath()
     {

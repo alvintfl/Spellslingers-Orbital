@@ -31,6 +31,12 @@ public class CharSheetUIController : MonoBehaviour
         LifeStealText = 19, LifeSteal = 20,
     }
 
+    private enum WarriorStats
+    {
+        AoeText = 13, Aoe = 14,
+        RegenText = 15, Regen = 16,
+    }
+
     private enum MageStats
     {
         LightningRangeText = 13, LightningRange = 14, 
@@ -137,11 +143,19 @@ public class CharSheetUIController : MonoBehaviour
     {
         Warrior warrior = (Warrior)Player.instance;
         gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)PlayerStats.Health].text = warrior.GetCurrentHealth().ToString() + " / " + warrior.GetMaxHealth().ToString();
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)PlayerStats.AttackDamageText].text = "Slam Damage";
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)PlayerStats.AttackDamage].text = warrior.GetAttack().ToString();
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)PlayerStats.AttackSpeed].text = "1s";
 
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)WarriorStats.AoeText].text = "Area of Effect";
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)WarriorStats.Aoe].text = warrior.GetSlamArea().ToString();
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)WarriorStats.RegenText].text = "Regeneration";
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)WarriorStats.Regen].text = warrior.GetRegen().ToString();
 
         warrior.HealthChange += UpdatePlayerHealth;
+        warrior.WarriorChange += UpdateWarrior;
+        warrior.SlamChange += UpdateWarriorSlam;
         this.DestroyWarriorStats += UnsubscribeWarrior;
-        
     }
 
     #region Update player stats
@@ -197,8 +211,16 @@ public class CharSheetUIController : MonoBehaviour
     #endregion
 
     #region Update warrior stats
+    private void UpdateWarrior(Warrior sender, EventArgs e)
+    {
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)WarriorStats.Regen].text = sender.GetRegen().ToString();
+    }
 
-
+    private void UpdateWarriorSlam(Warrior sender, EventArgs e)
+    {
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)PlayerStats.AttackDamage].text = sender.GetAttack().ToString();
+        gameObject.GetComponentsInChildren<TextMeshProUGUI>()[(int)WarriorStats.Aoe].text = sender.GetSlamArea().ToString();
+    }
 
     #endregion
 
@@ -265,6 +287,12 @@ public class CharSheetUIController : MonoBehaviour
 
     private void UnsubscribeWarrior(CharSheetUIController sender, EventArgs e)
     {
+        Warrior warrior = (Warrior) Player.instance;
+        if (warrior != null)
+        {
+            warrior.WarriorChange -= UpdateWarrior;
+            warrior.SlamChange -= UpdateWarriorSlam;
+        }
         this.DestroyWarriorStats -= UnsubscribeWarrior;
     }
     #endregion
