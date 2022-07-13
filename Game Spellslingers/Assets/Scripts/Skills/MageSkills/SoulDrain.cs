@@ -12,10 +12,13 @@ public class SoulDrain : Skill
         base.Start();
         Button.onClick.AddListener(() =>
         {
+            Mage mage = (Mage)Player.instance;
+            if (Level == 1)
+            {
+                mage.CastHealOnKill();
+            }
+            mage.IncreaseHealOnKill(2f);
             OnSelected(EventArgs.Empty);
-            HealOnEnemyDeath heal = Player.instance.GetComponent<HealOnEnemyDeath>();
-            heal.enabled = true;
-            heal.IncreaseHeal(2f);
         });
     }
 

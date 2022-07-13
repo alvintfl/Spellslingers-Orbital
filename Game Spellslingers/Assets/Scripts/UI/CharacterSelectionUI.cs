@@ -50,15 +50,12 @@ public class CharacterSelectionUI : MonoBehaviour
             {
                 case 0:
                     OnArcherSelected();
-                    Player.instance.playerClass = "Archer";
                     break;
                 case 1:
                     OnWarriorSelected();
-                    Player.instance.playerClass = "Warrior";
                     break;
                 case 2:
                     OnMageSelected();
-                    Player.instance.playerClass = "Mage";
                     break;
             }
         }
@@ -80,19 +77,19 @@ public class CharacterSelectionUI : MonoBehaviour
     public void SelectArcher()
     {
         AudioManager.instance.Play("UI_buttonclick");
-        CharIndex = 0;
+        CharacterSelectionUI.instance.CharIndex = 0;
         SceneManager.LoadScene("Gameplay");
     }
     public void SelectWarrior()
     {
         AudioManager.instance.Play("UI_buttonclick");
-        CharIndex = 1;
+        CharacterSelectionUI.instance.CharIndex = 1;
         SceneManager.LoadScene("Gameplay");
     }
     public void SelectMage()
     {
         AudioManager.instance.Play("UI_buttonclick");
-        CharIndex = 2;
+        CharacterSelectionUI.instance.CharIndex = 2;
         SceneManager.LoadScene("Gameplay");
     }
 }

@@ -285,4 +285,9 @@ public class Warrior : Player
     {
         Destroy(transform.Find("Hammer").gameObject);
     }
+
+    public override string ToString()
+    {
+        return "Warrior";
+    }
 }

@@ -3,9 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealOnEnemyDeath : MonoBehaviour
+public class HealOnEnemyKill : MonoBehaviour
 {
-    private float healAmount = 0f;
+    public float HealAmount { get; private set; }
+
+    private void Awake()
+    {
+        this.HealAmount = 0f;
+        gameObject.SetActive(false);
+    }
 
     private void Start()
     {
@@ -20,7 +26,7 @@ public class HealOnEnemyDeath : MonoBehaviour
     private void Heal(Enemy sender, EventArgs e)
     {
         Player player = Player.instance;
-        float newHealth = player.GetCurrentHealth() + this.healAmount;
+        float newHealth = player.GetCurrentHealth() + this.HealAmount;
         if (newHealth > player.GetMaxHealth())
         {
             player.SetCurrentHealth(player.GetMaxHealth());
@@ -33,11 +39,6 @@ public class HealOnEnemyDeath : MonoBehaviour
 
     public void IncreaseHeal(float heal)
     {
-        this.healAmount += heal;
-    }
-
-    public void Reset()
-    {
-        this.healAmount = 0f;
+        this.HealAmount += heal;
     }
 }

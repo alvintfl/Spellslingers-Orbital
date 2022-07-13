@@ -10,7 +10,7 @@ using UnityEngine;
  */
 public class Lifesteal : MonoBehaviour
 {
-    private static float healAmount = 0f;
+    public static float healAmount { get; private set; } = 0f;
 
     public static void IncreaseHeal(float heal)
     {

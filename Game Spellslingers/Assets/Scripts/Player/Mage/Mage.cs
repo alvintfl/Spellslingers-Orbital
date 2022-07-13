@@ -51,6 +51,7 @@ public class Mage : Player
     public void SetDamageDealtMultiplier(float multiplier)
     {
         this.cast.SetDamageDealtMultiplier(multiplier);
+        OnCastChange();
     }
 
     public float GetDamageDealtMultiplier()
@@ -61,6 +62,7 @@ public class Mage : Player
     public void SetDamageTakenMultiplier(float multiplier)
     {
         this.damageTakenMultiplier = multiplier;
+        OnCastChange();
     }
 
     public float GetDamageTakenMultiplier()
@@ -68,14 +70,21 @@ public class Mage : Player
         return this.damageTakenMultiplier;
     }
 
+    #region Lightning Methods
+    public float GetLightningDamage()
+    {
+        return this.cast.GetLightningDamage();
+    }
+
     public void IncreaseLightningDamage()
     {
         this.cast.IncreaseLightningDamage();
+        OnCastChange();
     }
 
-    public void IncreaseLightningOrbDamage()
+    public void UpgradeLightning()
     {
-        this.cast.IncreaseLightningOrbDamage();
+        this.cast.UpgradeLightning();
     }
 
     public void IncreaseRate(float secs)
@@ -84,34 +93,107 @@ public class Mage : Player
         OnCastChange();
     }
 
+    public float GetRate()
+    {
+        return this.cast.GetRate();
+    }
+
     public void IncreaseLightningRange()
     {
         this.cast.IncreaseLightningRange();
+        OnCastChange();
+    }
+
+    public float GetLightningRange()
+    {
+        return this.cast.GetLightningRange();
+    }
+    #endregion
+
+    #region LightningStorm Methods
+    public void CastLightningStorm()
+    {
+        this.cast.CastLightningStorm();
+        OnCastChange();
     }
 
     public void IncreaseLightningStormRange()
     {
         this.cast.IncreaseLightningStormRange();
+        OnCastChange();
     }
 
     public void IncreaseLightningStormDuration()
     {
         this.cast.IncreaseLightningStormDuration();
+        OnCastChange();
     }
 
     public void IncreaseLightningStormDamage()
     {
         this.cast.IncreaseLightningStormDamage();
+        OnCastChange();
     }
 
+    public float GetLightningStormDamage()
+    {
+        return this.cast.GetLightningStormDamage();
+    }
+
+    public float GetLightningStormRange()
+    {
+        return this.cast.GetLightningStormRange();
+    }
+
+    public float GetLightningStormDuration()
+    {
+        return this.cast.GetLightningStormDuration();
+    }
+    #endregion
+
+    #region LightningOrb Methods
     public void CastLightningOrb()
     {
         this.cast.CastLightningOrb();
+        OnCastChange();
     }
 
-    public void CastLightningStorm()
+    public int GetLightningOrbCount()
     {
-        this.cast.CastLightningStorm();
+        return this.cast.GetLightningOrbCount();
+    }
+
+    public float GetLightningOrbDamage()
+    {
+        return this.cast.GetLightningOrbDamage();
+    }
+
+    public float GetLightningOrbRotationSpeed()
+    {
+        return this.cast.GetLightningOrbRotationSpeed();
+    }
+
+    public void IncreaseLightningOrbDamage()
+    {
+        this.cast.IncreaseLightningOrbDamage();
+        OnCastChange();
+    }
+    #endregion
+
+    public void CastHealOnKill()
+    {
+        this.cast.CastHealOnKill();
+    }
+
+    public void IncreaseHealOnKill(float heal)
+    {
+        this.cast.IncreaseHealOnKill(heal);
+        OnCastChange();
+    }
+
+    public float GetHealOnKill()
+    {
+        return this.cast.GetHealOnKill();
     }
 
     public void CastArcaneShield()
@@ -126,13 +208,14 @@ public class Mage : Player
         this.arcaneShield.SetActive(true);
     }
 
-    public void UpgradeLightning()
-    {
-        this.cast.UpgradeLightning();
-    }
 
     private void OnCastChange()
     {
         CastChange?.Invoke(this, EventArgs.Empty);
+    }
+
+    public override string ToString()
+    {
+        return "Mage";
     }
 }

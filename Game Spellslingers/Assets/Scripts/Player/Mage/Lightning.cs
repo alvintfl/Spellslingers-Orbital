@@ -82,6 +82,11 @@ public class Lightning : MonoBehaviour
         this.directionMagnitude += 0.25f;
     }
 
+    public float GetRange()
+    {
+        return gameObject.transform.localScale.x;
+    }
+
     public void Upgrade()
     {
         this.isUpgraded = true;

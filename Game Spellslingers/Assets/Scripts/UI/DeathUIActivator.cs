@@ -28,15 +28,16 @@ public class DeathUIActivator : MonoBehaviour
 
     void PlayerDiedListener(Character sender, EventArgs e) 
     {
-        if (Player.instance.playerClass == "Mage")
+        string s = Player.instance.ToString();
+        if (s == "Mage")
         {
             AudioManager.instance.Play("mage_death");
         }
-        if (Player.instance.playerClass == "Archer")
+        if (s == "Archer")
         {
             AudioManager.instance.Play("archer_death");
         }
-        if (Player.instance.playerClass == "Warrior")
+        if (s == "Warrior")
         {
             AudioManager.instance.Play("warrior_death");
         }

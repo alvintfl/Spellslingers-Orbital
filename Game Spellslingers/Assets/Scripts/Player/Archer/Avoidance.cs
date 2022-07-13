@@ -16,7 +16,7 @@ public class Avoidance : MonoBehaviour
      * on avoiding attack.
      * </summary>
     */
-    private bool restoreOnAvoid = false;
+    private bool restoreOnAvoid;
 
     private int restoreAmount;
 
@@ -29,9 +29,9 @@ public class Avoidance : MonoBehaviour
     public delegate void AvoidChangeEventHandler<T, U>(T sender, U eventArgs);
     public event AvoidChangeEventHandler<Avoidance, EventArgs> AvoidChanceChange;
 
-    public Avoidance(int chance)
+    private void Awake()
     {
-        this.avoidChance = chance;
+        this.restoreOnAvoid = false;
         this.restoreAmount = 10;
     }
 
