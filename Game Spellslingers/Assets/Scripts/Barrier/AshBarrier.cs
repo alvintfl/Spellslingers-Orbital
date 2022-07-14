@@ -6,6 +6,6 @@ public class AshBarrier : Barrier
 {
     public override string ToString()
     {
-        return "\nYou cannot see clearly up ahead.";
+        return "You cannot see clearly up ahead.";
     }
 }

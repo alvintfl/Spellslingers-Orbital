@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,11 +24,22 @@ public class LightningOrb : MonoBehaviour
         SetPosition();
         LightningOrb.Count++;
         transform.SetParent(Camera.main.transform);
+        Player.instance.Death += Destroy;
     }
 
     private void Update()
     {
         transform.RotateAround(Player.instance.transform.position, this.direction, LightningOrb.RotationSpeed * Time.deltaTime);
+    }
+
+    private void Destroy(Character sender, EventArgs e)
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        Player.instance.Death -= Destroy;
     }
 
     private void OnTriggerEnter2D(Collider2D collider)

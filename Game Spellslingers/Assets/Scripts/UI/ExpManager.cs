@@ -45,8 +45,8 @@ public class ExpManager : MonoBehaviour
         ExpManager.LevelUp += IncreaseMaxExp;
         Enemy.EnemyDeath += AddExp;
         Player.instance.Death += StopExp;
-        StartCoroutine(IsLevelUp());
         Skill.Selected += FinishLeveling;
+        StartCoroutine(IsLevelUp());
     }
 
     private void OnDisable()
@@ -54,6 +54,7 @@ public class ExpManager : MonoBehaviour
         ExpManager.LevelUp -= IncreaseMaxExp;
         Enemy.EnemyDeath -= AddExp;
         Player.instance.Death -= StopExp;
+        Skill.Selected -= FinishLeveling;
     }
 
     private void FinishLeveling(Skill skill, EventArgs e)

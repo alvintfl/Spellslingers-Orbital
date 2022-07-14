@@ -49,3 +49,4 @@ MonoBehaviour:
   volume: 0.04
   pitch: 1
   loop: 0
+  output: {fileID: -1566100151256129249, guid: b0f40b09b2a9c50438693655b6aea502, type: 2}

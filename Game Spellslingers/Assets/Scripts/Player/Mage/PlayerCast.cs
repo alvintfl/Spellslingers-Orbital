@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,6 +41,16 @@ public class PlayerCast : MonoBehaviour
         this.lightningBoltWait = new WaitForSeconds(10f);
         this.damageDealtMultiplier = 1;
         StartCoroutine(CastLightning());
+    }
+
+    private void Start()
+    {
+        Player.instance.Death += StopCasting;
+    }
+
+    private void OnDestroy()
+    {
+        Player.instance.Death -= StopCasting;
     }
 
     private IEnumerator CastLightning()
@@ -228,5 +239,10 @@ public class PlayerCast : MonoBehaviour
     public float GetDamageDealtMultiplier()
     {
         return this.damageDealtMultiplier;
+    }
+
+    private void StopCasting(Character sender, EventArgs e)
+    {
+        StopAllCoroutines();
     }
 }

@@ -20,11 +20,11 @@ public class AudioManager : MonoBehaviour
                 sound.InitialiseSource(source);
                 this.soundsDictionary.Add(sound.ToString(), sound);
             }
+            DontDestroyOnLoad(gameObject);
         } else
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
     }
 
 

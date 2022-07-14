@@ -27,6 +27,7 @@ public class MainMenuController : MonoBehaviour
     public void OpenSettings() 
     {
         AudioManager.instance.Play("UI_buttonclick");
+        SceneManager.LoadScene("Settings");
     }
 
     public void ExitGame() 
