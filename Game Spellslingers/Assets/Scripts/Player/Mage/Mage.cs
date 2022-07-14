@@ -15,11 +15,21 @@ public class Mage : Player
     // audio control
     private float timeBtwAudio;
 
+    // apex form variables
+    private bool apexFormEnabled;
+    private bool inApex;
+    private float armour;
+    private float avoid;
+    private float degenCooldown;
+    private SpriteRenderer sr;
+
     public override void Awake()
     {
         base.Awake();
         this.cast = GetComponent<PlayerCast>();
+        this.sr = GetComponent<SpriteRenderer>();
         this.damageTakenMultiplier = 1;
+        this.apexFormEnabled = true;
     }
 
     public override void TakeDamage(float damage)
@@ -46,6 +56,52 @@ public class Mage : Player
     void Update()
     {
         timeBtwAudio -= Time.deltaTime;
+
+        //Debug.Log(inApex);
+        // activates Apex form
+        if (apexFormEnabled && Input.GetKeyDown("space") && !inApex)
+        {
+
+            sr.color = new Color (251f/255f, 137f/255f, 70f/255f, 1f);
+            this.inApex = true;
+            // increase damage, cast speed
+            IncreaseLightningDamage();
+            IncreaseLightningDamage();
+            IncreaseLightningDamage();
+            IncreaseRate(0.5f);
+
+            // Increase movespeed
+            SetMoveSpeed(GetMoveSpeed() * 1.2f);
+
+        }
+        // deactivates Apex form
+        else if (apexFormEnabled && Input.GetKeyDown("space") && inApex)
+        {
+            sr.color = Color.white;
+            this.inApex = false;
+
+            // decrease damage, cast speed
+            DecreaseLightningDamage();
+            DecreaseLightningDamage();
+            DecreaseLightningDamage();
+            IncreaseRate(-0.5f);
+
+            // decrease movespeed
+            SetMoveSpeed(GetMoveSpeed() / 1.2f);
+        }
+
+        // Apex form effects
+        if (inApex) 
+        {
+            // degen
+            if (degenCooldown <= 0f)
+            {
+                float increasedDamageTaken = 5 * damageTakenMultiplier;
+                base.TakeDamage(increasedDamageTaken);
+                degenCooldown = 1f;
+            }
+            else degenCooldown -= Time.deltaTime; 
+        }
     }
 
     public void SetDamageDealtMultiplier(float multiplier)
@@ -80,6 +136,11 @@ public class Mage : Player
     {
         this.cast.IncreaseLightningDamage();
         OnCastChange();
+    }
+
+    public void DecreaseLightningDamage()
+    {
+        this.cast.DecreaseLightningDamage();
     }
 
     public void UpgradeLightning()
@@ -138,6 +199,16 @@ public class Mage : Player
     public float GetLightningStormDamage()
     {
         return this.cast.GetLightningStormDamage();
+    }
+
+    public void ActivatePerfectStorm()
+    {
+        this.cast.ActivatePerfectStorm();
+    }
+
+    public void ActivateApexForm()
+    {
+        this.apexFormEnabled = true;
     }
 
     public float GetLightningStormRange()
@@ -214,6 +285,15 @@ public class Mage : Player
         CastChange?.Invoke(this, EventArgs.Empty);
     }
 
+    public bool GetInApex()
+    {
+        return this.inApex;
+    }
+
+    public void SetInApex(bool apexFormState)
+    {
+        this.inApex = apexFormState;
+    }
     public override string ToString()
     {
         return "Mage";

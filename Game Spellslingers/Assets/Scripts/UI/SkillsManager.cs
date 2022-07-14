@@ -92,6 +92,11 @@ public class SkillsManager : MonoBehaviour
     } 
     private void SelectMageSkills(CharacterSelectionUI sender, EventArgs e)
     {
+        Mage mage = (Mage) Player.instance;
+        if (mage.GetInApex())
+        {
+            mage.SetInApex(false);
+        }
         GameObject[] skillPrefabs = Resources.LoadAll<GameObject>("MageSkills/");
         LoadSkills(skillPrefabs);
     } 

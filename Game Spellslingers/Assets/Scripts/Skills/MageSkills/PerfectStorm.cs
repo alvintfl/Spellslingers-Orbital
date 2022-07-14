@@ -14,7 +14,7 @@ public class PerfectStorm : Skill
         {
             OnSelected(EventArgs.Empty);
             Mage mage = (Mage)Player.instance;
-            //mage.ActivatePerfectStorm();
+            mage.ActivatePerfectStorm();
         });
     }
 

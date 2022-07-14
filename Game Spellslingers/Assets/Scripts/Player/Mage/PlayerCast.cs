@@ -25,6 +25,12 @@ public class PlayerCast : MonoBehaviour
     private WaitForSeconds lightningBoltWait;
     private float damageDealtMultiplier;
 
+
+    private bool perfectStormEnabled;
+    private bool critRecently;
+
+
+
     private void Awake()
     {
         this.lightningObject = Instantiate(this.lightningPrefab);
@@ -41,6 +47,9 @@ public class PlayerCast : MonoBehaviour
         this.lightningBoltWait = new WaitForSeconds(10f);
         this.damageDealtMultiplier = 1;
         StartCoroutine(CastLightning());
+
+        perfectStormEnabled = false;
+        critRecently = false;
     }
 
     private void Start()
@@ -58,6 +67,30 @@ public class PlayerCast : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         while (true)
         {
+            if (perfectStormEnabled)
+            {
+                if (critRecently)
+                {
+                    this.DecreaseLightningRange();
+                    this.DecreaseLightningRange();
+                    this.DecreaseLightningRange();
+                }
+                if (Random.value < 0.5f)
+                {
+                    this.lightning.DecideCrit(true);
+                    this.IncreaseLightningRange();
+                    this.IncreaseLightningRange();
+                    this.IncreaseLightningRange();
+                    this.lightningObject.SetActive(true);
+                    critRecently = true;
+                }
+                else
+                {
+                    this.lightning.DecideCrit(false);
+                    this.lightningObject.SetActive(true);
+                    critRecently = false;
+                }
+            }
             this.lightningObject.SetActive(true);
             yield return this.lightningWait;
         }
@@ -104,9 +137,15 @@ public class PlayerCast : MonoBehaviour
         this.lightning.Damage = lightningDamageWithMultiplier;
     }
 
+
+    public void DecreaseLightningDamage()
+    {
+        this.lightning.Damage = (GetBaseLightningDamage() - 10) * this.damageDealtMultiplier;
+    }
     public float GetLightningDamage()
     {
         return this.lightning.Damage;
+
     }
 
     private float GetBaseLightningDamage()
@@ -119,6 +158,11 @@ public class PlayerCast : MonoBehaviour
         this.lightning.IncreaseRange();
     }
 
+
+    public void DecreaseLightningRange()
+    {
+        this.lightning.DecreaseRange();
+    }
     public float GetLightningRange()
     {
         return this.lightning.GetRange();
@@ -129,7 +173,9 @@ public class PlayerCast : MonoBehaviour
     }
     #endregion
 
+
     #region LightningStorm Methods
+
     public void IncreaseLightningStormRange()
     {
         this.lightningBolt.IncreaseLightningFieldRange();
@@ -174,6 +220,7 @@ public class PlayerCast : MonoBehaviour
     {
         return LightningOrb.Count;
     }
+
     public void IncreaseLightningOrbDamage()
     {
         int damageIncrease = 2;
@@ -241,6 +288,11 @@ public class PlayerCast : MonoBehaviour
         return this.damageDealtMultiplier;
     }
 
+    public void ActivatePerfectStorm()
+    {
+        perfectStormEnabled = true;
+    }
+    
     private void StopCasting(Character sender, EventArgs e)
     {
         StopAllCoroutines();

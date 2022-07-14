@@ -12,8 +12,11 @@ public class Lightning : MonoBehaviour
     private bool isUpgraded;
     private bool isFirstAttack;
 
+    private float critMulti;
+
     private void Awake()
     {
+        this.critMulti = 1f;
         this.damage = 10;
         this.damageReduction = 1;
         this.collider = GetComponent<Collider2D>();
@@ -31,7 +34,7 @@ public class Lightning : MonoBehaviour
         if (collider.gameObject.CompareTag("Enemy"))
         {
             Enemy enemy = collider.gameObject.GetComponent<Enemy>();
-            enemy.TakeDamage(this.damage);
+            enemy.TakeDamage(this.damage * critMulti);
         }
     }
 
@@ -82,6 +85,12 @@ public class Lightning : MonoBehaviour
         this.directionMagnitude += 0.25f;
     }
 
+    public void DecreaseRange()
+    {
+        gameObject.transform.localScale /= 1.1f;
+        this.directionMagnitude -= 0.25f;
+    }
+
     public float GetRange()
     {
         return gameObject.transform.localScale.x;
@@ -102,5 +111,15 @@ public class Lightning : MonoBehaviour
     public float GetBaseDamage()
     {
         return this.damage / this.damageReduction; 
+    }
+
+    public void DecideCrit(bool isCrit)
+    {
+        if (isCrit)
+        {
+            this.critMulti = 2f;
+        }
+        else 
+            this.critMulti = 1f;
     }
 }
