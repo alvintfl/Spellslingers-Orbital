@@ -131,7 +131,7 @@ public class PlayerCast : MonoBehaviour
     public void DecreaseLightningDamage()
     {
         this.lightning.Damage = (GetBaseLightningDamage() - 10) * this.damageDealtMultiplier;
-
+    }
     public float GetLightningDamage()
     {
         return this.lightning.Damage;
@@ -153,8 +153,6 @@ public class PlayerCast : MonoBehaviour
     {
         this.lightning.DecreaseRange();
     }
-
-
     public float GetLightningRange()
     {
         return this.lightning.GetRange();
@@ -164,6 +162,7 @@ public class PlayerCast : MonoBehaviour
         this.lightning.Upgrade();
     }
     #endregion
+
 
     #region LightningStorm Methods
 
@@ -211,6 +210,7 @@ public class PlayerCast : MonoBehaviour
     {
         return LightningOrb.Count;
     }
+
     public void IncreaseLightningOrbDamage()
     {
         int damageIncrease = 2;

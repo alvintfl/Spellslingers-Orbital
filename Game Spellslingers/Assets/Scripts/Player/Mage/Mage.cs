@@ -138,16 +138,9 @@ public class Mage : Player
         OnCastChange();
     }
 
-    }
-
     public void DecreaseLightningDamage()
     {
         this.cast.DecreaseLightningDamage();
-    }
-
-    public void IncreaseLightningOrbDamage()
-    {
-        this.cast.IncreaseLightningOrbDamage();
     }
 
     public void UpgradeLightning()
@@ -234,11 +227,6 @@ public class Mage : Player
     {
         this.cast.CastLightningOrb();
         OnCastChange();
-    }
-
-    public void CastLightningStorm()
-    {
-        this.cast.CastLightningStorm();
     }
 
     public int GetLightningOrbCount()
