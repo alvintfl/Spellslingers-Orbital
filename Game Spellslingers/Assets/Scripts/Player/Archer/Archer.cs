@@ -49,7 +49,7 @@ public class Archer : Player
         {
             if (!this.avoid.AvoidRoll())
             {
-                if (timeBtwAudio <= 0)
+                if (timeBtwAudio <= 0 && GetCurrentHealth() > 0)
                 {
                     AudioManager.instance.Play("archer_hit");
                     timeBtwAudio = 1f;
@@ -71,7 +71,10 @@ public class Archer : Player
         }
         else 
         {
-            base.TakeDamage(damage * damage / (avoid.GetAvoidChance() + damage));
+            if (damage != 0)
+            {
+                base.TakeDamage(damage * damage / (avoid.GetAvoidChance() + damage));
+            }
         }
     }
 

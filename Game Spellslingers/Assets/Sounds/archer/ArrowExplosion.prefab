@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundName: ArrowExplosion
   clip: {fileID: 8300000, guid: 26bc74fbe83505f41827a908fc08eef4, type: 3}
-  volume: 0.2
+  volume: 0.05
   pitch: 1
   loop: 0
   output: {fileID: -1566100151256129249, guid: b0f40b09b2a9c50438693655b6aea502, type: 2}

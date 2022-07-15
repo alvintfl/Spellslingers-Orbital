@@ -34,7 +34,7 @@ public class Mage : Player
 
     public override void TakeDamage(float damage)
     {
-        if (timeBtwAudio <= 0)
+        if (timeBtwAudio <= 0 && GetCurrentHealth() > 0)
         {
             AudioManager.instance.Play("mage_hit");
             timeBtwAudio = 1f;

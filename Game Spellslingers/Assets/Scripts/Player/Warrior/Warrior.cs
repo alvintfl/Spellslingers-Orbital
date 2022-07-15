@@ -283,12 +283,15 @@ public class Warrior : Player
     {
         // aim for this formula is to make armour more effective vs smaller hits
         // and less effective against larger hits
-        if (timeBtwAudio <= 0)
+        if (timeBtwAudio <= 0 && GetCurrentHealth() > 0)
         {
             AudioManager.instance.Play("warrior_hit");
             timeBtwAudio = 1f;
         }
-        base.TakeDamage(damage * damage / (armour + damage));
+        if (damage != 0)
+        {
+            base.TakeDamage(damage * damage / (armour + damage));
+        }
     }
     #endregion
 

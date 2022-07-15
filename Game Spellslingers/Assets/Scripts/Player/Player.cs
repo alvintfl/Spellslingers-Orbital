@@ -28,7 +28,7 @@ public class Player : Character
     public int FindCurrentLocation()
     {
         // Snowfields
-        if (transform.position.x < -210f)
+        if (transform.position.x < -215f)
         {
             return 1;
         }
@@ -43,7 +43,7 @@ public class Player : Character
             return 3;
         }
         // ash basin
-        else if (transform.position.y > 33.23f)
+        else if (transform.position.y > 38.23f)
         {
             return 4;
         }

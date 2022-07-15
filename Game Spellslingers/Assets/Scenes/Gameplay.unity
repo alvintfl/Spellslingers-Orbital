@@ -1957,7 +1957,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4597549851913695937, guid: dbe7bac0f9e021149b4a4a6b2a5e805c, type: 3}
       propertyPath: m_text
-      value: Options
+      value: OPTIONS
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597549851913695937, guid: dbe7bac0f9e021149b4a4a6b2a5e805c, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597549851913695937, guid: dbe7bac0f9e021149b4a4a6b2a5e805c, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597549851913695937, guid: dbe7bac0f9e021149b4a4a6b2a5e805c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597549851913695937, guid: dbe7bac0f9e021149b4a4a6b2a5e805c, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597549851913695938, guid: dbe7bac0f9e021149b4a4a6b2a5e805c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597549851913695938, guid: dbe7bac0f9e021149b4a4a6b2a5e805c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 162
       objectReference: {fileID: 0}
     - target: {fileID: 4597549852213112288, guid: dbe7bac0f9e021149b4a4a6b2a5e805c, type: 3}
       propertyPath: m_Camera
