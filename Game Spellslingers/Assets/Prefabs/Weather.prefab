@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7764572410520593676}
   - component: {fileID: 7764572410520593678}
   - component: {fileID: 7764572410520593679}
+  - component: {fileID: 7764572412268513234}
   m_Layer: 0
   m_Name: BlizzardGenerator
   m_TagString: Untagged
@@ -4779,8 +4780,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -948493703
-  m_SortingLayer: 8
+  m_SortingLayerID: 922809283
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -4812,6 +4813,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &7764572412268513234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7764572410520593677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0acab25085cd2da4887d9a91b2dcae22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7764572410540081498
 GameObject:
   m_ObjectHideFlags: 0
@@ -4823,6 +4836,7 @@ GameObject:
   - component: {fileID: 7764572410540081501}
   - component: {fileID: 7764572410540081503}
   - component: {fileID: 7764572410540081500}
+  - component: {fileID: 7764572412268513231}
   m_Layer: 0
   m_Name: AshfallGenerator
   m_TagString: Untagged
@@ -9591,8 +9605,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -948493703
-  m_SortingLayer: 8
+  m_SortingLayerID: 922809283
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -9624,6 +9638,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &7764572412268513231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7764572410540081498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75280011e85c114c84757d47775decb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7764572410583830778
 GameObject:
   m_ObjectHideFlags: 0
@@ -9635,6 +9661,7 @@ GameObject:
   - component: {fileID: 7764572410583830781}
   - component: {fileID: 7764572410583830783}
   - component: {fileID: 7764572410583830780}
+  - component: {fileID: 7764572412268513232}
   m_Layer: 0
   m_Name: HazeGenerator
   m_TagString: Untagged
@@ -14403,8 +14430,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -948493703
-  m_SortingLayer: 8
+  m_SortingLayerID: 922809283
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -14436,6 +14463,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &7764572412268513232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7764572410583830778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d1259a892430a4190538454685e41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7764572410683139829
 GameObject:
   m_ObjectHideFlags: 0
@@ -14447,6 +14486,7 @@ GameObject:
   - component: {fileID: 7764572410683139828}
   - component: {fileID: 7764572410683139830}
   - component: {fileID: 7764572410683139831}
+  - component: {fileID: 7764572412268513233}
   m_Layer: 0
   m_Name: RainGenerator
   m_TagString: Untagged
@@ -15303,7 +15343,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 150
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -19215,8 +19255,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -948493703
-  m_SortingLayer: 8
+  m_SortingLayerID: 922809283
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -19248,6 +19288,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &7764572412268513233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7764572410683139829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8746e5b69629344b5fa5a7653d74dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7764572410979550784
 GameObject:
   m_ObjectHideFlags: 0
@@ -19377,13 +19429,14 @@ GameObject:
   - component: {fileID: 7764572412242268324}
   - component: {fileID: 7764572412242268325}
   - component: {fileID: 7764572412242268322}
+  - component: {fileID: 7764572412268513235}
   m_Layer: 0
   m_Name: SandstormGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7764572412242268324
 Transform:
   m_ObjectHideFlags: 0
@@ -19393,7 +19446,7 @@ Transform:
   m_GameObject: {fileID: 7764572412242268323}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1036, y: -2, z: -1}
-  m_LocalScale: {x: 0.4, y: 0.05, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7764572410979550788}
@@ -20233,7 +20286,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -20856,7 +20909,7 @@ ParticleSystem:
     x:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -50
+      scalar: -200
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -20909,7 +20962,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -50
+      scalar: -40
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -24145,8 +24198,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -948493703
-  m_SortingLayer: 8
+  m_SortingLayerID: 922809283
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -24178,3 +24231,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &7764572412268513235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7764572412242268323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b29e0bd7a9a8684d8f6f29b4855ae42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

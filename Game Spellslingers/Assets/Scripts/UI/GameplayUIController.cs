@@ -19,6 +19,8 @@ public class GameplayUIController : MonoBehaviour
     private GameObject charSheetButton;
     [SerializeField]
     private GameObject charSheet;
+    [SerializeField]
+    private GameObject worldMap;
 
     private void Awake()
     {
@@ -36,6 +38,10 @@ public class GameplayUIController : MonoBehaviour
         if (Input.GetKeyDown("c")) 
         {
             OpenCharSheet();
+        }
+        if (Input.GetKeyDown("m"))
+        {
+            OpenWorldMap();
         }
     }
 
@@ -62,5 +68,11 @@ public class GameplayUIController : MonoBehaviour
 
             charSheet.SetActive(true);
         }
+    }
+
+    public void OpenWorldMap()
+    {
+        AudioManager.instance.Play("UI_buttonclick");
+        worldMap.SetActive(true);
     }
 }
