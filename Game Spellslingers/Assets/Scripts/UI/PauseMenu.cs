@@ -12,16 +12,30 @@ using UnityEngine.SceneManagement;
  */
 public class PauseMenu : MonoBehaviour
 {
+    public static PauseMenu instance { get; private set; }
     private int pauseCount;
+
+    public delegate void UIEventHandler<T, U>(T sender, U eventArgs);
+    public event UIEventHandler<PauseMenu, EventArgs> PauseEvent;
+    public event UIEventHandler<PauseMenu, EventArgs> ResumeEvent;
 
     public void Awake()
     {
-        ExpManager.LevelUp += Pause;
-        GameplayUIController.instance.OpenEvent += Pause;
-        GameplayUIController.instance.CloseEvent += Resume;
-        OptionsMenuController.instance.OpenEvent += Pause;
-        OptionsMenuController.instance.CloseEvent += Resume;
-        Skill.Selected += Resume;
+        if (instance == null)
+        {
+            instance = this;
+            ExpManager.LevelUp += Pause;
+            GameplayUIController.instance.OpenEvent += Pause;
+            GameplayUIController.instance.CloseEvent += Resume;
+            OptionsMenuController.instance.OpenEvent += Pause;
+            OptionsMenuController.instance.CloseEvent += Resume;
+            WorldMapController.instance.OpenEvent += Pause;
+            WorldMapController.instance.CloseEvent += Resume;
+            Skill.Selected += Resume;
+        } else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void OnDisable()
@@ -32,6 +46,8 @@ public class PauseMenu : MonoBehaviour
         GameplayUIController.instance.CloseEvent -= Resume;
         OptionsMenuController.instance.OpenEvent -= Pause;
         OptionsMenuController.instance.CloseEvent -= Resume;
+        WorldMapController.instance.OpenEvent -= Pause;
+        WorldMapController.instance.CloseEvent -= Resume;
         Skill.Selected -= Resume;
     }
 
@@ -41,6 +57,7 @@ public class PauseMenu : MonoBehaviour
         if (this.pauseCount == 0)
         {
             Time.timeScale = 1f;
+            OnResumeEvent();
         }
     }
 
@@ -48,11 +65,21 @@ public class PauseMenu : MonoBehaviour
     {
         this.pauseCount++;
         Time.timeScale = 0f;
+        OnPauseEvent();
     }
 
     private void Reset()
     {
         this.pauseCount = 0;
         Time.timeScale = 1f;
+    }
+
+    private void OnPauseEvent()
+    {
+        PauseEvent?.Invoke(this, EventArgs.Empty);
+    }
+    private void OnResumeEvent()
+    {
+        ResumeEvent?.Invoke(this, EventArgs.Empty);
     }
 }

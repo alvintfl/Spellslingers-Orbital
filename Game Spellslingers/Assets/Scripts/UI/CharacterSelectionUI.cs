@@ -92,4 +92,10 @@ public class CharacterSelectionUI : MonoBehaviour
         CharacterSelectionUI.instance.CharIndex = 2;
         SceneManager.LoadScene("Gameplay");
     }
+
+    public void Back()
+    {
+        AudioManager.instance.Play("UI_buttonclick");
+        SceneManager.LoadScene("MainMenu");
+    }
 }

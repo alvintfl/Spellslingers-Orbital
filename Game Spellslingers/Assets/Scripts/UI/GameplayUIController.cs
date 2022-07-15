@@ -85,7 +85,6 @@ public class GameplayUIController : MonoBehaviour
         }
     }
 
-
     public void OpenWorldMap()
     {
         AudioManager.instance.Play("UI_buttonclick");
