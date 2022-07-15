@@ -72,12 +72,14 @@ public class PlayerCast : MonoBehaviour
             {
                 if (critRecently)
                 {
+                    this.lightning.NonCritColor();
                     this.DecreaseLightningRange();
                     this.DecreaseLightningRange();
                     this.DecreaseLightningRange();
                 }
                 if (Random.value < 0.5f)
                 {
+                    this.lightning.CritColor();
                     this.lightning.DecideCrit(true);
                     this.IncreaseLightningRange();
                     this.IncreaseLightningRange();

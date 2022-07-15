@@ -12,6 +12,8 @@ public class Lightning : MonoBehaviour
     private bool isUpgraded;
     private bool isFirstAttack;
 
+    public SpriteRenderer sr;
+
     private float critMulti;
 
     private void Awake()
@@ -24,6 +26,7 @@ public class Lightning : MonoBehaviour
         this.directionMagnitude = 3.5f;
         this.isUpgraded = false;
         this.isFirstAttack = true;
+        this.sr = GetComponent<SpriteRenderer>();
         this.anim = GetComponent<Animator>();
         transform.SetParent(Camera.main.transform);
         gameObject.SetActive(false);
@@ -121,5 +124,15 @@ public class Lightning : MonoBehaviour
         }
         else 
             this.critMulti = 1f;
+    }
+
+    public void CritColor()
+    {
+        sr.color = Color.cyan;
+    }
+
+    public void NonCritColor()
+    {
+        sr.color = Color.white;
     }
 }
