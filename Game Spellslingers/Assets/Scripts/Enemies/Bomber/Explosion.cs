@@ -9,7 +9,7 @@ using UnityEngine;
  */
 public class Explosion : MonoBehaviour
 {
-    private int damage = 20;
+    private int damage = 10;
 
     private new Collider2D collider;
 

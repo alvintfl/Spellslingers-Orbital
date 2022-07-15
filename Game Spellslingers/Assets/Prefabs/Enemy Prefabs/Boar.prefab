@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2fe0734887d61f4fb0dbfb240a10168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 70
+  maxHealth: 160
 --- !u!114 &1990118930463795948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd3df889ddb0284098170464d2a3605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  exp: 2
+  damage: 30
+  exp: 40
 --- !u!60 &2321473522708519267
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class Icicle : Projectile
 
     private void Start()
     {
-        this.damage = 20;
+        this.damage = 15;
     }
 
     public override int GetDamage()

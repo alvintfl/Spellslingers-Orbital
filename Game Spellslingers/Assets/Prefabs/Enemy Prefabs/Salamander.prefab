@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 6803620703785660456}
   - component: {fileID: 8562716708306267035}
   - component: {fileID: 4169129854558963874}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Salamander
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fdc35edce552ea4086a971e70466439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 6
   anim: {fileID: 0}
   startTimeBtwShots: 1
   projectilePrefab: {fileID: 7216279269278279850, guid: b6cc91fa2e0f0e244a0b2e6803a18b4d, type: 3}
@@ -137,8 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd3df889ddb0284098170464d2a3605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  exp: 26
+  damage: 30
+  exp: 80
 --- !u!114 &8562716708306267035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2fe0734887d61f4fb0dbfb240a10168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 180
 --- !u!60 &4169129854558963874
 PolygonCollider2D:
   m_ObjectHideFlags: 0

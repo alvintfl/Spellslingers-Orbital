@@ -80,16 +80,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2590814450390193031, guid: 39bf7b63ac2eb1e47ad4625bf9686b9c, type: 3}
+      propertyPath: exp
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590814450390193031, guid: 39bf7b63ac2eb1e47ad4625bf9686b9c, type: 3}
       propertyPath: damage
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6102981469479608768, guid: 39bf7b63ac2eb1e47ad4625bf9686b9c, type: 3}
       propertyPath: damage
-      value: 15
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566946244315146564, guid: 39bf7b63ac2eb1e47ad4625bf9686b9c, type: 3}
+      propertyPath: moveSpeed
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7852744049232916462, guid: 39bf7b63ac2eb1e47ad4625bf9686b9c, type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 160
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39bf7b63ac2eb1e47ad4625bf9686b9c, type: 3}

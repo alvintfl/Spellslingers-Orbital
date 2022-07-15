@@ -169,7 +169,7 @@ public class Spawner : MonoBehaviour
         {
             GameObject waveObject = this.nextWaves[0];
             EnemyWave wave = waveObject.GetComponent<EnemyWave>();
-            if (sender.Level == wave.Level)
+            if (sender.Level >= wave.Level)
             {
                 this.currentWave.AddRange(wave.Enemies);
                 this.nextWaves.Remove(waveObject);

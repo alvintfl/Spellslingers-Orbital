@@ -47,13 +47,12 @@ MonoBehaviour:
   currentWave:
   - {fileID: 3071330383064899483, guid: f86aa6dcc5c8c7442ab92afe33118e7a, type: 3}
   - {fileID: 4337051125129301399, guid: dfa7d4ed944432e4c8e353cdc0b07072, type: 3}
-  - {fileID: 51714700934037781, guid: 014e8bab33320d349bc33ed8fcbd0776, type: 3}
   - {fileID: 3549937524947524386, guid: 4a022e09e6478564db50e7b412da6343, type: 3}
-  - {fileID: 5192160574805142956, guid: 7f140bee957ef9e4d87b8dd5d3f873fd, type: 3}
-  nextWaves: []
+  nextWaves:
+  - {fileID: 7543613192762802209, guid: 7353d194857812f49910328492753fac, type: 3}
   bossPrefabs:
   - {fileID: 280101356387483251, guid: 8bec00d5ad567a1499c832574a0758f9, type: 3}
-  minSpawnTime: 2
-  maxSpawnTime: 5
+  minSpawnTime: 1
+  maxSpawnTime: 3
   requiredLevel: 10
   startLevel: 1

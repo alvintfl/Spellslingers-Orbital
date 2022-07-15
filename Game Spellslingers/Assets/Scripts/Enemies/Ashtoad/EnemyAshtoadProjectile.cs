@@ -36,7 +36,7 @@ public class EnemyAshtoadProjectile : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            Player.instance.TakeDamage(20f);
+            Player.instance.TakeDamage(10f);
         }
         anim.SetBool("Hit", true);
         Invoke("DestroyProjectile", 0.5f);

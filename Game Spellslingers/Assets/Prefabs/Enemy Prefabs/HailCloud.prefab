@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2fe0734887d61f4fb0dbfb240a10168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 60
+  maxHealth: 120
 --- !u!114 &5762757538364008401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,8 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd3df889ddb0284098170464d2a3605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  exp: 3
+  damage: 15
+  exp: 10
 --- !u!61 &8833263273096695088
 BoxCollider2D:
   m_ObjectHideFlags: 0

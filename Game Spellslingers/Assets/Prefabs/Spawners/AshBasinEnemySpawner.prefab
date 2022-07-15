@@ -44,11 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac76df82b0fffa42a7ad11d73ffb137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWave: []
+  currentWave:
+  - {fileID: 3098457632368329017, guid: 1cd50b3152867be4d840257092f8ddde, type: 3}
   nextWaves: []
   bossPrefabs:
-  - {fileID: 5110930758426967949, guid: acd1fafe78523d344990bb80580422b7, type: 3}
-  minSpawnTime: 2
-  maxSpawnTime: 5
+  - {fileID: 970968693969993899, guid: 528e38dad62a12e44867a9efce76c84a, type: 3}
+  minSpawnTime: 1
+  maxSpawnTime: 3
   requiredLevel: 10
   startLevel: 1
