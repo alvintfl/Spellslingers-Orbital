@@ -141,4 +141,9 @@ public class MiniMapUI : MonoBehaviour
         this.bossIcon.GetComponent<RectTransform>().anchoredPosition = new Vector2(0.5f, 0.5f);
         this.bossIcon.SetActive(true);
     }
+
+    public void OpenWorldMap()
+    {
+        GameplayUIController.instance.OpenWorldMap();
+    }
 }
