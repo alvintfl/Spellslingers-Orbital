@@ -6,6 +6,6 @@ public class SummonMinotaur : SummoningCircle
 {
     public override string ToString()
     {
-        return "You hear a\ndistant battercry...";
+        return "You hear a distant battercry...";
     }
 }

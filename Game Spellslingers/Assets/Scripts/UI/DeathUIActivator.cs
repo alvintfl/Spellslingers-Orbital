@@ -41,7 +41,6 @@ public class DeathUIActivator : MonoBehaviour
         {
             AudioManager.instance.Play("warrior_death");
         }
-        print("Player has died.");
         dsc.SetActive(true);
     }
 }

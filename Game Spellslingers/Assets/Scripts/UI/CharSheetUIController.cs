@@ -57,6 +57,7 @@ public class CharSheetUIController : MonoBehaviour
         charSelect.ArcherSelected += InitialiseArcherStats;
         charSelect.MageSelected += InitialiseMageStats;
         charSelect.WarriorSelected += InitialiseWarriorStats;
+        gameObject.GetComponent<Canvas>().enabled = true;
         gameObject.SetActive(false);
     }
 

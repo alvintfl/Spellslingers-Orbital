@@ -20,10 +20,13 @@ public class PlayerMovement : Movement
 
     public override void Update()
     {
-        base.Update();
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-        GetUserInput(x, y);
+        if (Time.timeScale != 0)
+        {
+            base.Update();
+            float x = Input.GetAxisRaw("Horizontal");
+            float y = Input.GetAxisRaw("Vertical");
+            GetUserInput(x, y);
+        }
     }
 
     private void GetUserInput(float x, float y)

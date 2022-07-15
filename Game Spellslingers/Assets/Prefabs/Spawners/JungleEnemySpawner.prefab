@@ -48,7 +48,8 @@ MonoBehaviour:
   - {fileID: 4367491063118518831, guid: aceaefddcf6090d4fac74b5d239561d3, type: 3}
   - {fileID: 2219338491829850847, guid: 09ef51dbfcb3d55419fd85c97b4e03b3, type: 3}
   nextWaves: []
-  bossPrefabs: []
+  bossPrefabs:
+  - {fileID: 5110930758426967949, guid: acd1fafe78523d344990bb80580422b7, type: 3}
   minSpawnTime: 2
   maxSpawnTime: 5
   requiredLevel: 10

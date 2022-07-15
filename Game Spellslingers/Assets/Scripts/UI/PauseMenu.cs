@@ -12,31 +12,47 @@ using UnityEngine.SceneManagement;
  */
 public class PauseMenu : MonoBehaviour
 {
-    public void Start()
+    private int pauseCount;
+
+    public void Awake()
     {
         ExpManager.LevelUp += Pause;
+        GameplayUIController.instance.OpenEvent += Pause;
+        GameplayUIController.instance.CloseEvent += Resume;
+        OptionsMenuController.instance.OpenEvent += Pause;
+        OptionsMenuController.instance.CloseEvent += Resume;
         Skill.Selected += Resume;
-        SceneManager.sceneLoaded += Resume;
     }
 
     public void OnDisable()
     {
+        Reset();
         ExpManager.LevelUp -= Pause;
+        GameplayUIController.instance.OpenEvent -= Pause;
+        GameplayUIController.instance.CloseEvent -= Resume;
+        OptionsMenuController.instance.OpenEvent -= Pause;
+        OptionsMenuController.instance.CloseEvent -= Resume;
         Skill.Selected -= Resume;
-        SceneManager.sceneLoaded -= Resume;
     }
 
     public void Resume(object sender, EventArgs e)
     {
-        Time.timeScale = 1f;
-    }
-    public void Resume(Scene scene, LoadSceneMode mode)
-    {
-        Time.timeScale = 1f;
+        this.pauseCount--;
+        if (this.pauseCount == 0)
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     public void Pause(object sender, EventArgs e)
     {
+        this.pauseCount++;
         Time.timeScale = 0f;
+    }
+
+    private void Reset()
+    {
+        this.pauseCount = 0;
+        Time.timeScale = 1f;
     }
 }

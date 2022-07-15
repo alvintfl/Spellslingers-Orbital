@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerCast : MonoBehaviour
 {
@@ -51,6 +53,16 @@ public class PlayerCast : MonoBehaviour
         critRecently = false;
     }
 
+    private void Start()
+    {
+        Player.instance.Death += StopCasting;
+    }
+
+    private void OnDestroy()
+    {
+        Player.instance.Death -= StopCasting;
+    }
+
     private IEnumerator CastLightning()
     {
         yield return new WaitForSeconds(0.5f);
@@ -80,8 +92,7 @@ public class PlayerCast : MonoBehaviour
                     critRecently = false;
                 }
             }
-            else this.lightningObject.SetActive(true);
-            
+            this.lightningObject.SetActive(true);
             yield return this.lightningWait;
         }
     }
@@ -281,5 +292,10 @@ public class PlayerCast : MonoBehaviour
     public void ActivatePerfectStorm()
     {
         perfectStormEnabled = true;
+    }
+    
+    private void StopCasting(Character sender, EventArgs e)
+    {
+        StopAllCoroutines();
     }
 }

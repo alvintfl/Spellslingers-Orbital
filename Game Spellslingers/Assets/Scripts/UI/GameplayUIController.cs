@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,10 @@ public class GameplayUIController : MonoBehaviour
     [SerializeField]
     private GameObject worldMap;
 
+    public delegate void UIEventHandler<T, U>(T sender, U eventArgs);
+    public event UIEventHandler<GameplayUIController, EventArgs> OpenEvent;
+    public event UIEventHandler<GameplayUIController, EventArgs> CloseEvent;
+
     private void Awake()
     {
         if (instance == null)
@@ -34,10 +39,20 @@ public class GameplayUIController : MonoBehaviour
         }
     }
 
-    private void Update() {
-        if (Input.GetKeyDown("c")) 
+    private void Update() 
+    {
+        GetPlayerInput();
+    }
+
+    private void GetPlayerInput()
+    {
+        if (Input.GetKeyDown("c"))
         {
-            OpenCharSheet();
+            ToggleCharSheet();
+        }
+        if (Input.GetKeyDown("escape"))
+        {
+            OpenOptionsMenu();
         }
         if (Input.GetKeyDown("m"))
         {
@@ -51,28 +66,38 @@ public class GameplayUIController : MonoBehaviour
         omc.SetActive(true);
     }
 
-    public void OpenCharSheet()
+    public void ToggleCharSheet()
     {
         AudioManager.instance.Play("UI_buttonclick");
-
         if (charSheet.activeSelf)
         {
             optionsButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(70, -70);
             charSheetButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(70, -160);
             charSheet.SetActive(false);
+            OnCloseEvent();
         }
         else 
         {
             optionsButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(800, -70);
             charSheetButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(800, -160);
-
             charSheet.SetActive(true);
+            OnOpenEvent();
         }
     }
+
 
     public void OpenWorldMap()
     {
         AudioManager.instance.Play("UI_buttonclick");
         worldMap.SetActive(true);
+	}
+    private void OnOpenEvent()
+    {
+        OpenEvent.Invoke(this, EventArgs.Empty);
+    }
+
+    private void OnCloseEvent()
+    {
+        CloseEvent.Invoke(this, EventArgs.Empty);
     }
 }
