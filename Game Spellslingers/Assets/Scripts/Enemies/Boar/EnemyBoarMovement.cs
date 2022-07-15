@@ -10,12 +10,15 @@ public class EnemyBoarMovement : EnemyMovement
     private Vector3 playerDirection;
     private bool isCharging;
 
+    private new Collider2D collider;
+
     public void Start()
     {
         isCharging = false;
-        chargeRange = 12;
+        chargeRange = 7;
         chargeCD = 0;
         player = Player.instance.gameObject.transform;
+        this.collider = GetComponent<Collider2D>();
     }
 
     public override void MoveToPlayer()
@@ -30,6 +33,8 @@ public class EnemyBoarMovement : EnemyMovement
             {
 
                 anim.SetBool("Huff", true);
+                SetMoveSpeed(0);
+                AudioManager.instance.Play("boar_grunt");
                 SetX(0);
                 SetY(0);
 
@@ -55,12 +60,20 @@ public class EnemyBoarMovement : EnemyMovement
 
     private void Charge()
     {
+        anim.SetBool("Charge", true);
         isCharging = true;
         this.playerDirection = Player.instance.transform.position - gameObject.transform.position;
         this.playerDirection.Normalize();
         SetMoveSpeed(0);
-        rb.AddForce(this.playerDirection * 19, ForceMode2D.Impulse);
+        rb.AddForce(this.playerDirection * 10, ForceMode2D.Impulse);
         anim.SetBool("Charge", true);
+
+        if (this.collider.IsTouching(Player.instance.GetComponent<Collider2D>()))
+        {
+            EndCharge();
+            Player.instance.TakeDamage(20f);
+            return;
+        }
     }
 
     private void EndCharge()

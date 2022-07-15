@@ -18,6 +18,7 @@ public class EnemyAshtoadProjectile : MonoBehaviour
         player = Player.instance.gameObject.transform;
         target = new Vector2(player.position.x, player.position.y);
         anim = gameObject.GetComponent<Animator>();
+        anim.SetBool("Hit", false);
     }
 
     // Update is called once per frame
@@ -37,9 +38,9 @@ public class EnemyAshtoadProjectile : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             Player.instance.TakeDamage(10f);
+            anim.SetBool("Hit", true);
+            Invoke("DestroyProjectile", 0.5f);
         }
-        anim.SetBool("Hit", true);
-        Invoke("DestroyProjectile", 0.5f);
     }
 
     void DestroyProjectile()

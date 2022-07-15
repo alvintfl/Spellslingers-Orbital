@@ -19,6 +19,8 @@ public abstract class Movement : MonoBehaviour
     public delegate void MovementChangeEventHandler<T, U>(T sender, U eventArgs);
     public event MovementChangeEventHandler<Movement, EventArgs> MoveSpeedChange;
 
+    private bool isAttacking;
+
     /**
      * <summary>
      * Adds a rigidbody2D that conforms to 2D physics.
@@ -32,6 +34,7 @@ public abstract class Movement : MonoBehaviour
         this.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         this.rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         this.baseMoveSpeed = moveSpeed;
+        this.isAttacking = false;
     }
 
     public virtual void Update()

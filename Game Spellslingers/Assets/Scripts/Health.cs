@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     public event HealthChangeEventHandler<Health, EventArgs> HealthChange;
     public delegate void Died();
     public event Died DiedInfo;
-    private Animator anim;
+    protected Animator anim;
 
     private void Awake()
     {

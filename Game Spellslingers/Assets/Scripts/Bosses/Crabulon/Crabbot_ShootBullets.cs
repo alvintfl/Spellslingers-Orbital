@@ -26,7 +26,7 @@ public class Crabbot_ShootBullets : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (timeBtwShots <= 0 && projCount < 25)
+        if (timeBtwShots <= 0 && projCount < 10)
         {
             crabbot = animator.GetComponent<Transform>();
             Vector3 diff = player.position - crabbot.position;

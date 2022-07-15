@@ -6,6 +6,6 @@ public class SummonBombKing : SummoningCircle
 {
     public override string ToString()
     {
-        return "You see a bright flash...";
+        return "You hear several loud explosions near you...";
     }
 }
