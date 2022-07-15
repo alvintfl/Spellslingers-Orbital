@@ -45,12 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWave:
-  - {fileID: 4367491063118518831, guid: aceaefddcf6090d4fac74b5d239561d3, type: 3}
+  - {fileID: 1936811333991990401, guid: 5d2db4a04b1e99c48bcc0e6b850556ff, type: 3}
   - {fileID: 2219338491829850847, guid: 09ef51dbfcb3d55419fd85c97b4e03b3, type: 3}
-  nextWaves: []
+  - {fileID: 8096164908403691305, guid: 9e50d0308542141479abb532177ea0a0, type: 3}
+  nextWaves:
+  - {fileID: 6040761104954146501, guid: c95b3f8f3e705424f8779616d3670707, type: 3}
   bossPrefabs:
   - {fileID: 5110930758426967949, guid: acd1fafe78523d344990bb80580422b7, type: 3}
-  minSpawnTime: 2
-  maxSpawnTime: 5
+  minSpawnTime: 1
+  maxSpawnTime: 3
   requiredLevel: 10
   startLevel: 1

@@ -129,13 +129,12 @@ public class SkillsManager : MonoBehaviour
             GameObject skillObject = Instantiate(skillPrefabs[i]);
             skillObject.SetActive(false);
             Skill skill = skillObject.GetComponentInChildren<Skill>();
-
             skill.Reset();
             if (skill.IsSignatureSkill())
             {
                 this.signatureSkillsLibrary.Add(skillObject);
-                skill.MaxedOut +=
-                (Skill sender, EventArgs e) => this.signatureSkillsLibrary.Remove(skillObject);
+                skill.MaxedOut += 
+                    (Skill sender, EventArgs e) => this.signatureSkillsLibrary.Remove(skillObject);
             }
             else
             {
