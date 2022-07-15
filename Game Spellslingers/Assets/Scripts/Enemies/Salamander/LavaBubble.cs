@@ -12,15 +12,12 @@ public class LavaBubble : MonoBehaviour
     private Transform player;
     private Vector2 target;
 
-    private Animator anim;
-
 
     // Start is called before the first frame update
     void Start()
     {
         player = Player.instance.gameObject.transform;
         target = new Vector2(player.position.x, player.position.y);
-        anim = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -39,9 +36,8 @@ public class LavaBubble : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             Player.instance.TakeDamage(40f);
+            DestroyProjectile();
         }
-        anim.SetBool("Hit", true);
-        DestroyProjectile();
     }
 
     void DestroyProjectile()

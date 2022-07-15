@@ -6,6 +6,6 @@ public class LavaBarrier : Barrier
 {
     public override string ToString()
     {
-        return "It is too hot for you to enter now.";
+        return "Argh! It's too hot!";
     }
 }

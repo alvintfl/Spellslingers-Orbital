@@ -5150,7 +5150,7 @@ GameObject:
   - component: {fileID: 3658856185734594564}
   - component: {fileID: 3658856185734594565}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Scrolling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5269,7 +5269,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3658856186170318609}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 0}

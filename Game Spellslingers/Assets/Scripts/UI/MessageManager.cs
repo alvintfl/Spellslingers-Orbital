@@ -15,9 +15,9 @@ public class MessageManager : MonoBehaviour
         SummoningCircle.Summon += Print;
         PauseMenu.instance.PauseEvent += Print;
         PauseMenu.instance.ResumeEvent += EndPrint;
-        this.prev = "Controls: wasd for movement, mouse to aim\nShortcuts: c for character sheet, esc to pause";
+        this.prev = "Controls: wasd for movement, mouse to aim";
         this.isPrinting = true;
-        Invoke("EndPrint", 10f);
+        Invoke("EndPrint", 7f);
     }
 
     private void OnDestroy()

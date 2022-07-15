@@ -5,17 +5,11 @@ using UnityEngine;
 public class EnemyGiantFlybugHealth : Health
 {
     private bool isEnraged;
-    private Animator anim;
 
     private void Start()
     {
         isEnraged = false;
-        anim = gameObject.GetComponent<Animator>();
         AudioManager.instance.Play("giantflybug_calm");
-    }
-    private void OnDisable()
-    {
-        AudioManager.instance.Stop("giantflybug_enraged");
     }
 
     private void Update()

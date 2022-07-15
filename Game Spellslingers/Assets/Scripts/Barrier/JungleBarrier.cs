@@ -6,6 +6,6 @@ public class JungleBarrier : Barrier
 {
     public override string ToString()
     {
-        return "The thorns prevent you from advancing any further.";
+        return "Ouch! The thorns prevent you from advancing any further.";
     }
 }

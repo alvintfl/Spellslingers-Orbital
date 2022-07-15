@@ -43,7 +43,6 @@ public class EnemySnowThingAI : EnemyMovement
 
     private void SetMoveOriginal()
     {
-        AudioManager.instance.Play("SnowFootstep");
         SetMoveSpeed(8);
     }
 }

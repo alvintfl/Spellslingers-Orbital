@@ -10,15 +10,22 @@ public class EnemySalamanderMovement : EnemyMovement
     public float startTimeBtwShots;
 
     private Transform player;
+    private bool isAttacking;
 
     [SerializeField]
     private GameObject projectilePrefab;
 
+    private float xDiff;
+
+    private SpriteRenderer sr;
+
     public void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
         stoppingDistance = 10;
         player = Player.instance.gameObject.transform;
         timeBtwShots = startTimeBtwShots;
+        isAttacking = false;
     }
 
     public override void MoveToPlayer()
@@ -37,6 +44,7 @@ public class EnemySalamanderMovement : EnemyMovement
         }
         else if (Vector2.Distance(transform.position, player.position) > stoppingDistance)
         {
+            isAttacking = false;
             anim.SetBool("InRange", false);
             SetX(direction.x);
             SetY(direction.y);
@@ -46,6 +54,7 @@ public class EnemySalamanderMovement : EnemyMovement
 
     private void AttackPlayer()
     {
+        isAttacking = true;
         if (timeBtwShots <= 0)
         {
             Instantiate(projectilePrefab, transform.position, Quaternion.identity);
@@ -55,5 +64,22 @@ public class EnemySalamanderMovement : EnemyMovement
         {
             timeBtwShots -= Time.deltaTime;
         }
+    }
+
+    public override void AnimateRotation()
+    {
+        if (isAttacking)
+        {
+            if (player.position.x - transform.position.x > 0)
+            {
+                gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else
+            {
+                gameObject.transform.rotation = Quaternion.Euler(0, -180, 0);
+            }
+        }
+        else base.AnimateRotation();
+
     }
 }

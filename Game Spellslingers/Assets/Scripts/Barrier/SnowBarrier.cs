@@ -6,6 +6,6 @@ public class SnowBarrier : Barrier
 {
     public override string ToString()
     {
-        return "It is too cold to enter now.";
+        return "Brr... It's too cold!";
     }
 }
