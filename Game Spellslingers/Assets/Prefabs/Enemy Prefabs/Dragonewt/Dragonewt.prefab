@@ -123,8 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e110b03e4572649af617f1939dec5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  exp: 60
+  damage: 40
+  exp: 80
   ringOfFirePrefab: {fileID: 4561307713453521281, guid: 9ffccafe00892274bb4bc46326b4695a, type: 3}
   firePillarPrefab: {fileID: 8365737993452310973, guid: b3a93197b9f7316489c9343391dfc895, type: 3}
   loot: {fileID: 2720432797587972863, guid: 55010aa8e10781447beec58e64120361, type: 3}

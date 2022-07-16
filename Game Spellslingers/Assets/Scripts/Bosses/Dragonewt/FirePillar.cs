@@ -9,7 +9,7 @@ public class FirePillar : MonoBehaviour
 
     private void Start()
     {
-        this.damage = 30;
+        this.damage = 40;
         this.collider = GetComponent<Collider2D>();
         this.transform.position = Player.instance.transform.position;
     }
