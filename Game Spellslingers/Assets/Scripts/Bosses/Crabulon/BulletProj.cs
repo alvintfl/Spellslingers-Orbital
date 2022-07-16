@@ -32,7 +32,7 @@ public class BulletProj : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            Player.instance.TakeDamage(20f);
+            Player.instance.TakeDamage(40f);
             DestroyProjectile();
         }   
     }

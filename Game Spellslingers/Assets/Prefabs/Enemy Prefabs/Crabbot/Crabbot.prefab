@@ -104,8 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e03778a31f73e8f458d1d7ad1d4c76f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  exp: 30
+  damage: 60
+  exp: 160
   loot: {fileID: 527237241313786918, guid: fe80446de2ed0524c8ce57a6ca522a7e, type: 3}
   slamPos1: {fileID: 8013018783463399135}
   slamPos2: {fileID: 7748479231961417063}
