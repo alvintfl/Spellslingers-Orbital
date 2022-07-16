@@ -473,11 +473,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Regenerate 10 additional health per second.
+  m_text: 'Regenerate 3 additional health per second.
 
-    +100 to armour.
+    +30 to armour.
 
-    20%
+    30%
     reduced movement speed.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5369dbb22cea614b9dcb90e824078e6, type: 2}

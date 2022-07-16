@@ -13,10 +13,10 @@ public class Steadfast : Skill
         {
             OnSelected(EventArgs.Empty);
             Warrior warrior = (Warrior)Player.instance;
-            warrior.IncreaseArmour(100);
-            warrior.IncreaseRegen(10);
+            warrior.IncreaseArmour(30);
+            warrior.IncreaseRegen(3);
             float moveSpeed = warrior.GetMoveSpeed();
-            float newMoveSpeed = moveSpeed - moveSpeed * 0.2f;
+            float newMoveSpeed = moveSpeed - moveSpeed * 0.3f;
 
         });
     }
