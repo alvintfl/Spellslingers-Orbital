@@ -29,7 +29,9 @@ public class LightningOrb : MonoBehaviour
 
     private void Update()
     {
-        transform.RotateAround(Player.instance.transform.position, this.direction, LightningOrb.RotationSpeed * Time.deltaTime);
+        Vector2 centre = new Vector2(Screen.width / 2, Screen.height / 2);
+        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(centre);
+        transform.RotateAround(worldPosition, this.direction, LightningOrb.RotationSpeed * Time.deltaTime);
     }
 
     private void Destroy(Character sender, EventArgs e)
