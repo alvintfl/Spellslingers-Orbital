@@ -22,7 +22,7 @@ public class SettingsMenuController : MonoBehaviour
             instance = this;
             this.bgmVolume = 0;
             this.sfxVolume = 0;
-            this.isFullScreen = true;
+            this.isFullScreen = Screen.fullScreen;
             DontDestroyOnLoad(gameObject);
         } else
         {
