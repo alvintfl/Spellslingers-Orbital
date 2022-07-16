@@ -52,7 +52,7 @@ MonoBehaviour:
   - {fileID: 4753018363203620433, guid: 0cb58aca11067d546bbd5ba9911d6e1c, type: 3}
   bossPrefabs:
   - {fileID: 6962707625850843179, guid: 33b1a0a296b76d940842cc4a94894714, type: 3}
-  minSpawnTime: 2
-  maxSpawnTime: 5
+  minSpawnTime: 1
+  maxSpawnTime: 3
   requiredLevel: 10
   startLevel: 1
