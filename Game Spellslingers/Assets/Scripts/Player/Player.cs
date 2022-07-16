@@ -23,6 +23,8 @@ public class Player : Character
         {
             instance = this;
         }
+        Vector2 spawnLocation = new Vector2(-40, -140);
+        transform.position = spawnLocation;
     }
 
     public int FindCurrentLocation()
@@ -43,7 +45,7 @@ public class Player : Character
             return 3;
         }
         // ash basin
-        else if (transform.position.y > 38.23f)
+        else if (transform.position.y > 36.23f)
         {
             return 4;
         }
