@@ -18,8 +18,8 @@ public class BloodDrinker : Skill
         Button.onClick.AddListener(() =>
         {
             OnSelected(EventArgs.Empty);
-            Arrow.ActivateLifeSteal();
             Lifesteal.IncreaseHeal(0.5f);
+            Arrow.ActivateLifeSteal();
         });
     }
 
