@@ -39,5 +39,6 @@ public class MainMenuController : MonoBehaviour
     public void OpenCredits()
     {
         AudioManager.instance.Play("UI_buttonclick");
+        SceneManager.LoadScene("CreditPage");
     }
 }

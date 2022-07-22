@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWave:
+  - {fileID: 9147913371988034289, guid: 0a6c8a32b74222b4c9261adbb9ef9848, type: 3}
+  - {fileID: 9010439601557179636, guid: aecdc8c74f0052a4aad81f2f5aea4c1f, type: 3}
   - {fileID: 3098457632368329017, guid: 1cd50b3152867be4d840257092f8ddde, type: 3}
   nextWaves: []
   bossPrefabs:
