@@ -6,8 +6,7 @@ using UnityEngine;
 /** 
  * <summary>
  * A class that keeps track 
- * of events that can happen to
- * the player.
+ * of the player's deaths.
  * </summary>
  */
 public class DeathUIActivator : MonoBehaviour
@@ -18,7 +17,6 @@ public class DeathUIActivator : MonoBehaviour
 
     void Start() 
     {
-        // subscribe to function
         Player.instance.Death += PlayerDiedListener;
         played = 0;
     }

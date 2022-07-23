@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/**
+ * <summary>
+ * A class that manages the
+ * message system.
+ * </summary>
+ */
 public class MessageManager : MonoBehaviour
 {
     private String prev;

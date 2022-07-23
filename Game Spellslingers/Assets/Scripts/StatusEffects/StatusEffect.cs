@@ -22,14 +22,6 @@ public abstract class StatusEffect : MonoBehaviour
      */
     private bool isActive;
 
-    /*
-    public StatusEffect(float potency, float duration)
-    {
-        this.potency = potency;
-        this.duration = duration;
-    }
-    */
-
     public abstract IEnumerator StartEffect(Character character);
 
     public float Potency { get { return this.potency; } set { this.potency = value; } }

@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class that manages audio.
+ * </summary>
+ */
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance { get; private set; }
@@ -26,7 +31,6 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 
     public void Play(string name)
     {

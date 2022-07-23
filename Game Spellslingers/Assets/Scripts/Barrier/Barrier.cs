@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class that represents the barrier
+ * preventing players from entering a new zone.
+ * </summary>
+ */
 public class Barrier : MonoBehaviour
 {
     public delegate void CollideEventHandler<T, U>(T sender, U eventArgs);

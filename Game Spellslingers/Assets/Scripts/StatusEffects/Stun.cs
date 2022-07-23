@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class that represents the stun
+ * status effect.
+ * </summary>
+ */
 public class Stun : StatusEffect
 {
     public override IEnumerator StartEffect(Character character)

@@ -5,6 +5,12 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/**
+ * <summary>
+ * A class that manages the
+ * settings of the main menu.
+ * </summary>
+ */
 public class SettingsSceneController : MonoBehaviour
 {
     [SerializeField] private Slider BgmSlider;

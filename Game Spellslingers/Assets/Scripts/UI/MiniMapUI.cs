@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+ * <summary>
+ * A class that manages 
+ * the minimap UI.
+ * </summary>
+ */
 public class MiniMapUI : MonoBehaviour
 {
     private GameObject itemIcon;

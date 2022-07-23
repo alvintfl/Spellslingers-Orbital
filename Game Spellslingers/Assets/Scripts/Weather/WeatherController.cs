@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class that manages the weather.
+ * </summary>
+ */
 public class WeatherController : MonoBehaviour
 {
     private int updateLocation;

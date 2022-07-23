@@ -5,6 +5,11 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+/** 
+ * <summary>
+ * A class that manages the character sheet.
+ * </summary>
+ */
 public class CharSheetUIController : MonoBehaviour
 {
     // Unsubscribe event

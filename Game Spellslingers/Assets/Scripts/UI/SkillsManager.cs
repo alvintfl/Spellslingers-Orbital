@@ -197,6 +197,12 @@ public class SkillsManager : MonoBehaviour
         }
         else
         {
+            // Reset 
+            for (int i = 0; i < 3; i++)
+            {
+                this.selectedSkills[i] = null;
+            }
+
             if (this.skillsLibrary.Count == 0)
             {
                 this.selectedSkills[0] = this.defaultSkillsLibrary[0];
@@ -217,18 +223,6 @@ public class SkillsManager : MonoBehaviour
 
     private void GenerateSignatureSkills()
     {
-        /*
-        for (int i = 0; i < this.signatureSkillsLibrary.Count; i++)
-        {
-            GameObject skillObject = this.signatureSkillsLibrary[i];
-            if (skillObject != null)
-            {
-                skillObject.SetActive(true);
-                this.selectedSkills[i] = skillObject;
-            }
-        }
-        */
-
         //Fisher-Yates shuffle
         Random random = new Random();
         for (int i = this.signatureSkillsLibrary.Count - 1; i > 0; i--)

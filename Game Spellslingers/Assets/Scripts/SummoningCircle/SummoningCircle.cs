@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class that is responsible for
+ * summoning the boss for the biome.
+ * </summary>
+ */
 public class SummoningCircle : MonoBehaviour
 {
     public delegate void SummonEventHandler<T, U>(T sender, U eventArgs);

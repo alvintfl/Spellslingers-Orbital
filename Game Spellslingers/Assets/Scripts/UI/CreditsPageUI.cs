@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/** 
+ * <summary>
+ * A class that manages the credits page UI.
+ * </summary>
+ */
 public class CreditsPageUI : MonoBehaviour
 {
     public void MainMenu()

@@ -1,6 +1,12 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/**
+ * <summary>
+ * A class that manages the
+ * world map zoom.
+ * </summary>
+ */
 public class WorldMapZoom : MonoBehaviour, IScrollHandler
 {
 

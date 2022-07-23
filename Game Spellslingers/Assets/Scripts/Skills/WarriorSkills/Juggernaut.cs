@@ -16,6 +16,7 @@ public class Juggernaut : Skill
             Warrior warrior = (Warrior)Player.instance;
             float moveSpeed = warrior.GetMoveSpeed();
             float newMoveSpeed = moveSpeed + moveSpeed * 0.01f;
+            warrior.SetMoveSpeed(newMoveSpeed);
             warrior.IncreaseArmour(5);
         });
     }

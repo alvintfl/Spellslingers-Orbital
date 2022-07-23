@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+/**
+ * <summary>
+ * A class that manages the 
+ * events in the world map.
+ * </summary>
+ */
 public class MapManager : MonoBehaviour
 {
     [SerializeField] private GameObject startingMapPrefab;
@@ -32,6 +38,13 @@ public class MapManager : MonoBehaviour
         Item.PickUp -= AccessNewZone;
     }
 
+    
+    /**
+     * <summary>
+     * Remove barriers in the map based on
+     * the item picked up.
+     * </summary>
+     */
     private void AccessNewZone(Item item, EventArgs e)
     {
         if (this.maps.Count != 0)

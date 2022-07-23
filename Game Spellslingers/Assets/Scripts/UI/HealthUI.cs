@@ -77,6 +77,12 @@ public class HealthUI : MonoBehaviour
             };
     }
 
+    /**
+     * <summary>
+     * Create the boss's healthbar and update it 
+     * each time their health changes.
+     * </summary>
+     */
     private void BossHealthBar(GameObject boss)
     {
         HealthBar bossHealthbar = this.bossHealthCanvas.GetComponentInChildren<HealthBar>();

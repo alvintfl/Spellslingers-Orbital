@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
+/**
+ * <summary>
+ * A class that manages the
+ * settings menu.
+ * </summary>
+ */
 public class SettingsMenuController : MonoBehaviour
 {
     public static SettingsMenuController instance { get; private set; }

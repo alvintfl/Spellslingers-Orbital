@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class that manages the
+ * world map.
+ * </summary>
+ */
 public class WorldMapController : MonoBehaviour
 {
     public static WorldMapController instance { get; private set; }
@@ -27,7 +33,6 @@ public class WorldMapController : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void OnEnable()
     {
         guc.SetActive(false);
@@ -40,7 +45,6 @@ public class WorldMapController : MonoBehaviour
         OnCloseEvent();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown("m") || Input.GetKeyDown(KeyCode.Escape))

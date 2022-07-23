@@ -17,7 +17,7 @@ public class Steadfast : Skill
             warrior.IncreaseRegen(3);
             float moveSpeed = warrior.GetMoveSpeed();
             float newMoveSpeed = moveSpeed - moveSpeed * 0.3f;
-
+            warrior.SetMoveSpeed(newMoveSpeed);
         });
     }
     public override void Reset() { }

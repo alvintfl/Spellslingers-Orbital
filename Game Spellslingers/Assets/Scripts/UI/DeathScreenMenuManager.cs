@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
  */
 public class DeathScreenMenuManager : MonoBehaviour
 {
-    public static DeathScreenMenuManager instance;
+    public static DeathScreenMenuManager instance { get; private set; }
 
     private void Awake()
     {
@@ -27,7 +27,6 @@ public class DeathScreenMenuManager : MonoBehaviour
     public void RestartGame()
     {
         AudioManager.instance.Play("UI_buttonclick");
-        //DontDestroyOnLoad(Player.instance);
         SceneManager.LoadScene("Gameplay");
     }
     public void ReturnToMainMenu()

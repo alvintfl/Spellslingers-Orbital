@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * <summary>
+ * A class that represents an
+ * item to progress the game.
+ * </summary>
+ */
 public class Item : MonoBehaviour
 {
     public delegate void PickUpEventHandler<T, U>(T sender, U eventArgs);

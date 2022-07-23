@@ -15,6 +15,7 @@ public class Frenzy : Skill
             Warrior warrior = (Warrior)Player.instance;
             float moveSpeed = warrior.GetMoveSpeed();
             float newMoveSpeed = moveSpeed + moveSpeed * 0.5f;
+            warrior.SetMoveSpeed(newMoveSpeed);
             warrior.ActivateFrenzy();
         });
     }
