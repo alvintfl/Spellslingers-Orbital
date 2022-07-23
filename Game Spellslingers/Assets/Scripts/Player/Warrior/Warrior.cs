@@ -45,7 +45,7 @@ public class Warrior : Player
     {
         HammerSlamEvent.slamEventInfo += ExecuteAttack;
         regen = 0;
-        InvokeRepeating("Regen", 0, 1.0f);
+        InvokeRepeating("Regen", 0, 3.0f);
         earthquakeEnabled = false;
         cullEnabled = false;
         demonEnabled = false;
@@ -94,7 +94,6 @@ public class Warrior : Player
                 if (areaSlam[i].GetComponent<Health>().CurrentHealth / areaSlam[i].GetComponent<Health>().MaxHealth < 0.1f)
                 {
                     areaSlam[i].GetComponent<Health>().TakeDamage(99999);
-                    Debug.Log(areaSlam[i].GetComponent<Health>().CurrentHealth);
                 }
                 else
                 {
@@ -307,7 +306,7 @@ public class Warrior : Player
 
     private void DestroyHammerOnDeath()
     {
-        Destroy(transform.Find("Hammer").gameObject);
+        transform.Find("Hammer").gameObject.SetActive(false);
     }
 
     public override string ToString()

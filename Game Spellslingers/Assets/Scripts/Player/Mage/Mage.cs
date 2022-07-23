@@ -29,7 +29,7 @@ public class Mage : Player
         this.cast = GetComponent<PlayerCast>();
         this.sr = GetComponent<SpriteRenderer>();
         this.damageTakenMultiplier = 1;
-        this.apexFormEnabled = true;
+        this.apexFormEnabled = false;
     }
 
     public override void TakeDamage(float damage)
