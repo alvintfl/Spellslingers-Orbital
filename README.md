@@ -1,4 +1,3 @@
-# Ashlands
 <img src="Game Spellslingers/Docs/Ashlands.png" width="600px">
 
 You awake in the Ashlands with only your clothes and your weapons to your name. 
